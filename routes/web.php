@@ -27,6 +27,8 @@ require __DIR__.'/auth.php';
 
     Route::get('/admin/dashboard', [AdminController::class, 'AdminDashboard'])->name('admin.dashboard');
 
+    Route::get('/admin/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout');
+
  });// End Group Admin middleware
 
  Route::middleware(['auth','App\Http\Middleware\Role:agent'])->group(function(){
@@ -34,3 +36,5 @@ require __DIR__.'/auth.php';
  Route::get('/agent/dashboard', [AgentController::class, 'AgentDashboard'])->name('agent.dashborad');
 
  });// End Group Agent middleware
+
+ Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login');
