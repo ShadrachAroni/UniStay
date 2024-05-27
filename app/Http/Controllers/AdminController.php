@@ -59,7 +59,12 @@ class AdminController extends Controller
 
         $data->save();
 
-        return redirect()->back();
+        $notification = array(
+            'message' => 'Admin Proile Updated successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
 
     }//end method
 
