@@ -65,7 +65,7 @@
                     @csrf
 
                       <div class="mb-3">
-                        <label for="lgon" class="form-label">Email/Name/Phone</label>
+                        <label for="lgon" class="form-label">Email/Username/Phone</label>
                         <input type="text" class="form-control" id="login" name="login" placeholder="Email/Name/Phone">
                       </div>
 
