@@ -52,10 +52,11 @@ class AdminController extends Controller
        
         if($request->file('photo')){
             $file = $request->file('photo');
-            $filname = date('YmdHi').$file->getClientOriginalName();
-            $file->move(public_path('upload/admin_images'),$filname);
-            $data['photo'] = $filname;
+            $filename = date('YmdHi').$file->getClientOriginalName();
+            $file->move(public_path('upload/admin_images'),$filename);
+            $data['photo'] = $filename;
         }
+
         $data->save();
 
         return redirect()->back();

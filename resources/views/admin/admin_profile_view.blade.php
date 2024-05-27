@@ -14,7 +14,7 @@
                 
 
                   <div>
- <img class="wd-100 rounded-circle" src=" {{ (!empty($profileData->photo)) ? url('upload/admin_images/'.$profileData->photo) : url('upload/no_image.jpg')}}" alt="profile">
+ <img class="img-fluid rounded-circle" style="width: 100px; height: 100px; object-fit: cover;" src=" {{ (!empty($profileData->photo)) ? url('upload/admin_images/'.$profileData->photo) : url('upload/no_image.jpg')}}" alt="profile">
  <span class="h4 ms-3 ">{{$profileData->username}}</span>
                   </div>
 
@@ -60,12 +60,12 @@
 
                             <h6 class="card-title">Update Admin profile</h6>
 
- <form method="POST" action="{{ route('admin.profile.store') }}" class="forms-sample" ectype="multipart/form-data">
+ <form method="POST" action="{{ route('admin.profile.store') }}" class="forms-sample" enctype="multipart/form-data">
 @csrf
 
 <div class="mb-3">
 <label for="username" class="form-label">Username</label>
-<input type="text" class="form-control" id="username" autocomplete="off" value="{{ $profileData->username }}">
+<input type="text" name="username" class="form-control" id="username" autocomplete="off" value="{{ $profileData->username }}">
                                 </div>
                                 <div class="mb-3">
 <label for="name" class="form-label">Name</label>
@@ -85,14 +85,14 @@
                                 </div>
 
 <div class="mb-3">
-     <div class="mb-3">
 <label for="photo" class="form-label">Photo</label>
-<input class="form-control" type="file" id="image" name="photo"> 
-<br>
+<input class="form-control" type="file" name="photo" id="image"> 
+ </div>
+
 <div class="mb-3">
 <img id="showImage" class="img-fluid rounded-circle" style="width: 100px; height: 100px; object-fit: cover;" src=" {{ (!empty($profileData->photo)) ? url('upload/admin_images/'.$profileData->photo) : url('upload/no_image.jpg')}}" alt="profile">
 </div>
- </div>
+
 <div class="form-check mb-3">
 
     </div>
