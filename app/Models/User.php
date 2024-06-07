@@ -69,14 +69,4 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsToMany(Role::class);
     }
-    
-    public function isAdmin()
-    {
-        return $this->role === 'admin';
-    }
-
-    public function isAgent()
-    {
-        return $this->role === 'agent';
-    }
 }
