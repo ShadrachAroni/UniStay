@@ -22,12 +22,3 @@ Route::middleware([
         return Inertia::render('Dashboard');
     })->name('dashboard');
 });
-/*Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
-    Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('dashboard');
-    Route::get('/admin', [AdminController::class, 'index'])->name('admin');
-    Route::get('/agent', [AgentController::class, 'index'])->name('agent');
-});*/
