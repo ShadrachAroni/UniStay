@@ -10,11 +10,11 @@ use Illuminate\Support\Str;
 use Laravel\Jetstream\Features;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Agent>
  */
-class UserFactory extends Factory
+class AgentFactory extends Factory
 {
-    /**
+        /**
      * The current password being used by the factory.
      */
     protected static ?string $password;
@@ -27,8 +27,8 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => 'user',
-            'email' => 'user@user.com',
+            'name' => 'agent',
+            'email' => 'agent@agent.com',
             'email_verified_at' => now(),
             'address' => fake()->address(),
             'phone' => fake()->unique()->phoneNumber(),
@@ -40,8 +40,7 @@ class UserFactory extends Factory
             'current_team_id' => null,
         ];
     }
-
-    /**
+     /**
      * Indicate that the model's email address should be unverified.
      */
     public function unverified(): static
