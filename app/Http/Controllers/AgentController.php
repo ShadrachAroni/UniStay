@@ -17,9 +17,9 @@ use Laravel\Fortify\Http\Requests\LoginRequest;
 
 use App\Actions\Fortify\AttemptToAuthenticate;
 use App\Actions\Fortify\RedirectIfTwoFactorAuthenticatable;
-use App\Http\Responses\AdminLoginResponse;
+use App\Http\Responses\AgentLoginResponse;
 
-class AdminController extends Controller
+class AgentController extends Controller
 {
     /**
      * The guard implementation.
@@ -42,7 +42,7 @@ class AdminController extends Controller
 
 
     public function loginForm(){
-        return view('auth.login',['guard' => 'admin']);
+        return view('auth.login',['guard' => 'agent']);
     }
 
     /**
@@ -65,7 +65,7 @@ class AdminController extends Controller
     public function store(LoginRequest $request)
     {
         return $this->loginPipeline($request)->then(function ($request) {
-            return app(AdminLoginResponse::class);
+            return app(AgentLoginResponse::class);
         });
     }
 
