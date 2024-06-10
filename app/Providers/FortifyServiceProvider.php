@@ -16,7 +16,8 @@ use Illuminate\Contracts\Auth\StatefulGuard;
 use App\Actions\Fortify\AttemptToAuthenticate;
 use App\Actions\Fortify\RedirectIfTwoFactorAuthenticatable;
 use App\Http\Controllers\AdminController;
-use Auth;
+use App\Http\Controllers\AgentController;
+use Illuminate\Support\Facades\Auth;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -30,6 +31,9 @@ class FortifyServiceProvider extends ServiceProvider
         $this->app->when([AdminController::class,AttemptToAuthenticate::class,RedirectIfTwoFactorAuthenticatable::class])->needs(StatefulGuard::class)->give(function (){
                 return Auth::guard('admin');
         });
+        $this->app->when([AgentController::class,AttemptToAuthenticate::class,RedirectIfTwoFactorAuthenticatable::class])->needs(StatefulGuard::class)->give(function (){
+            return Auth::guard('agent');
+    });
     }
 
     /**

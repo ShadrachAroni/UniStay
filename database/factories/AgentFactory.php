@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Laravel\Jetstream\Features;
-
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Agent>
  */
@@ -27,7 +26,7 @@ class AgentFactory extends Factory
             'email_verified_at' => now(),
             'address' => fake()->address(),
             'phone' => fake()->unique()->phoneNumber(),
-            'password' => Hash::make('password'),
+            'password' =>Hash::make('password'),
             'two_factor_secret' => null,
             'two_factor_recovery_codes' => null,
             'remember_token' => Str::random(10),

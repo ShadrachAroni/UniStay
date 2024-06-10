@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AgentController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,8 +33,8 @@ Route::middleware(['auth:sanctum,admin', config('jetstream.auth_session'), 'veri
 });
 
 Route::middleware('agent:agent')->group(function () {
-    Route::get('agent/login', [AdminController::class, 'loginForm']);
-    Route::post('agent/login', [AdminController::class, 'store'])->name('agent.login');
+    Route::get('agent/login', [AgentController::class, 'loginForm']);
+    Route::post('agent/login', [AgentController::class, 'store'])->name('agent.login');
 });
 
 
