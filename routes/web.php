@@ -21,14 +21,14 @@ Route::middleware(['auth:sanctum,admin',config('jetstream.auth_session'),'verifi
 ])->group(function () {
     Route::get('/admin/dashboard', function () {
         return view('dashboard');
-    })->name('dashboard');
+    })->name('admin.dashboard');
 });
 
 Route::middleware(['auth:sanctum,agent',config('jetstream.auth_session'),'verified',
 ])->group(function () {
     Route::get('/agent/dashboard', function () {
         return view('dashboard');
-    })->name('dashboard');
+    })->name('agent.dashboard');
 });
 
 Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',
