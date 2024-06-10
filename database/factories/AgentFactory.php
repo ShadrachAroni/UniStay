@@ -14,11 +14,6 @@ use Laravel\Jetstream\Features;
  */
 class AgentFactory extends Factory
 {
-        /**
-     * The current password being used by the factory.
-     */
-    protected static ?string $password;
-
     /**
      * Define the model's default state.
      *
@@ -32,7 +27,7 @@ class AgentFactory extends Factory
             'email_verified_at' => now(),
             'address' => fake()->address(),
             'phone' => fake()->unique()->phoneNumber(),
-            'password' => static::$password ??= Hash::make('password'),
+            'password' => Hash::make('password'),
             'two_factor_secret' => null,
             'two_factor_recovery_codes' => null,
             'remember_token' => Str::random(10),
