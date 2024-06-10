@@ -39,6 +39,9 @@ class AdminController extends Controller
         $this->guard = $guard;
     }
 
+    public function loginForm(){
+        return view('auth.login', ['gurad' => 'admin']);
+    }
     /**
      * Show the login view.
      *

@@ -12,7 +12,8 @@
             </div>
         @endsession
 
-        <form method="POST" action="{{ route('login') }}">
+        
+        <form method="POST" action="{{ isset($guard) ? url($guard.'/login') : route('login') }}">
             @csrf
 
             <div>

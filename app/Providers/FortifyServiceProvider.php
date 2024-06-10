@@ -20,8 +20,8 @@ use App\Http\Responses\CustomLoginResponse;
 use Illuminate\Auth\Middleware\RedirectIfAuthenticated;
 use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Support\Facades\Auth;
-use Laravel\Fortify\Actions\AttemptToAuthenticate;
-use Laravel\Fortify\Actions\RedirectIfTwoFactorAuthenticatable;
+use App\Actions\Fortify\AttemptToAuthenticate;
+use App\Actions\Fortify\RedirectIfTwoFactorAuthenticatable;
 use Laravel\Fortify\Contracts\LoginResponse as LoginResponseContract;
 
 class FortifyServiceProvider extends ServiceProvider

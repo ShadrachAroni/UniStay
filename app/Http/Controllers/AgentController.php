@@ -9,7 +9,6 @@ use Illuminate\Routing\Pipeline;
 use Laravel\Fortify\Actions\CanonicalizeUsername;
 use Laravel\Fortify\Actions\EnsureLoginIsNotThrottled;
 use Laravel\Fortify\Actions\PrepareAuthenticatedSession;
-use Laravel\Fortify\Contracts\LoginResponse;
 use Laravel\Fortify\Contracts\LoginViewResponse;
 use Laravel\Fortify\Contracts\LogoutResponse;
 use Laravel\Fortify\Features;
@@ -40,6 +39,9 @@ class AgentController extends Controller
         $this->guard = $guard;
     }
 
+    public function loginForm(){
+        return view('auth.login', ['gurad' => 'agent']);
+    }
     /**
      * Show the login view.
      *
