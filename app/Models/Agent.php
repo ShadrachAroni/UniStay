@@ -65,8 +65,4 @@ class Agent extends Authenticatable //implements MustVerifyEmail
             'password' => 'hashed',
         ];
     }
-    public function roles()
-    {
-        return $this->belongsToMany(Role::class);
-    }
 }
