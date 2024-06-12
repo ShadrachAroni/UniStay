@@ -10,38 +10,23 @@ use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Str;
 use Laravel\Fortify\Fortify;
-
-use Illuminate\Contracts\Auth\StatefulGuard;
-use App\Actions\Fortify\AttemptToAuthenticate;
-use App\Actions\Fortify\RedirectIfTwoFactorAuthenticatable;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\AgentController;
-use Illuminate\Support\Facades\Auth;
 
 class FortifyServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
-     *
-     * @return void
      */
-    public function register()
+    public function register(): void
     {
-        $this->app->when([AdminController::class,AttemptToAuthenticate::class,RedirectIfTwoFactorAuthenticatable::class])->needs(StatefulGuard::class)->give(function (){
-                return Auth::guard('admin');
-        });
-        $this->app->when([AgentController::class,AttemptToAuthenticate::class,RedirectIfTwoFactorAuthenticatable::class])->needs(StatefulGuard::class)->give(function (){
-            return Auth::guard('agent');
-    });
+        //
     }
 
     /**
      * Bootstrap any application services.
-     *
-     * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         Fortify::createUsersUsing(CreateNewUser::class);
         Fortify::updateUserProfileInformationUsing(UpdateUserProfileInformation::class);
@@ -49,9 +34,9 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::resetUserPasswordsUsing(ResetUserPassword::class);
 
         RateLimiter::for('login', function (Request $request) {
-            $email = (string) $request->email;
+            $throttleKey = Str::transliterate(Str::lower($request->input(Fortify::username())).'|'.$request->ip());
 
-            return Limit::perMinute(5)->by($email.$request->ip());
+            return Limit::perMinute(5)->by($throttleKey);
         });
 
         RateLimiter::for('two-factor', function (Request $request) {
