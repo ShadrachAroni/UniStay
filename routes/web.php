@@ -17,3 +17,5 @@ Route::middleware([
     })->name('dashboard');
 });
 
+route::get('/home',[DashboardController::class, 'index']);
+
