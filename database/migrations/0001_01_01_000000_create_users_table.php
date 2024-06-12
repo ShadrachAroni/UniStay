@@ -21,9 +21,9 @@ return new class extends Migration
 
         // Insert predefined roles
         DB::table('roles')->insert([
-            ['id' => 0, 'name' => 'admin'],
-            ['id' => 1, 'name' => 'user'],
-            ['id' => 2, 'name' => 'agent'],
+            ['name' => 'admin'],
+            ['name' => 'user'],
+            ['name' => 'agent'],
         ]);
 
         // Create users table
