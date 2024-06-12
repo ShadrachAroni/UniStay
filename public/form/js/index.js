@@ -110,6 +110,21 @@ $(document).ready(function () {
     $('a.profile').on('click', function () {
         location.reload(true);
     });
+    
+    let currentIndex = 0;
+    const backgrounds = $('.background-container .background');
+    const backgroundCount = backgrounds.length;
 
+    function changeBackground() {
+        backgrounds.removeClass('active');
+        currentIndex = (currentIndex + 1) % backgroundCount;
+        backgrounds.eq(currentIndex).addClass('active');
+    }
+
+    // Initial background
+    backgrounds.eq(currentIndex).addClass('active');
+
+    // Change background every 5 seconds
+    setInterval(changeBackground, 5000);
 
 });

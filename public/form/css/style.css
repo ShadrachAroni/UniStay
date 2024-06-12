@@ -1,6 +1,36 @@
+
 body {
-  font-family: "Nimbus-sans", sans-serif;
-  background: url("img/5.jpg");;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.background-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.background-container .background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transform: scale(1.1);
+  transition: opacity 1s ease-in-out, transform 3s ease-in-out;
+}
+
+.background-container .background.active {
+  opacity: 1;
+  transform: scale(1);
 }
 
 .container {
@@ -8,7 +38,9 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  max-width: 900px;
+  max-width: 700px;
+  height: 100vh;
+  
 }
 
 a {
@@ -38,8 +70,9 @@ section#formHolder {
   background-size: cover;
   background-position: left center;
   color: #fff;
-  min-height: 480px;
+  min-height: 600px;
   position: relative;
+  top: -30px;
   transition: all 0.6s cubic-bezier(1, -0.375, 0.285, 0.995);
   z-index: 9999;
 }
@@ -132,12 +165,12 @@ section#formHolder {
 .form .form-peice {
   border-radius: 4px;
   background: #222c3c;
-  min-height: 480px;
+  min-height: 600px;
   color: #96a2b6;
   padding: 30px 0 60px;
   transition: all 0.9s cubic-bezier(1, -0.375, 0.285, 0.995);
   position: absolute;
-  top: 0;
+  top: -30px;
   left: -30%;
   width: 130%;
   overflow: hidden;
@@ -163,7 +196,7 @@ section#formHolder {
   color: #fff;
 }
 .form form .form-group {
-  margin-bottom: 5px;
+  margin-bottom: 1px;
   position: relative;
 }
 .form form .form-group.hasError input {
@@ -220,13 +253,15 @@ section#formHolder {
 }
 .form form .CTA {
   margin-top: 30px;
+  display: flex;
+  
 }
 .form form .CTA input {
   font-family: "Rajdhani", sans-serif;
   font-size: 16px;
   font-weight: 600;
   text-transform: uppercase;
-  padding: 10px 30px;
+  padding: 10px;
   background: #00a2e5;
   color: #fff;
   border-radius: 4px;
@@ -246,20 +281,7 @@ section#formHolder {
   color: #ffffff;
 }
 
-footer {
-  text-align: center;
-}
-footer p {
-  color: #777;
-}
-footer p a, footer p a:focus {
-  color: #b8b09f;
-  transition: all 0.3s;
-  text-decoration: none !important;
-}
-footer p a:hover, footer p a:focus:hover {
-  color: #ffffff;
-}
+
 
 @media (max-width: 768px) {
   .container {
