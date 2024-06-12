@@ -17,4 +17,3 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Route::get('redirects',[DashboardController::class, 'index']);
