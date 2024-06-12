@@ -17,5 +17,6 @@ Route::middleware([
     })->name('dashboard');
 });
 
-route::get('/home',[DashboardController::class, 'index']);
+Route::get('/home',[DashboardController::class, 'index']);
+Route::resource('users', \App\Http\Controllers\UsersController::class);
 

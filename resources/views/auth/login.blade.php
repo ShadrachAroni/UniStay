@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Upturn Login</title>
+    <title>UniStay</title>
     <link href="{{ asset('form/css/fonts.css') }}" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{ asset('form/css/bootstrap.min.css') }}">
