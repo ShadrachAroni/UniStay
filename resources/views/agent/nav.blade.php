@@ -5,20 +5,16 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('admin.dashboard') }}">
+                    <a href="{{ route('agent.dashboard') }}">
                         <x-application-mark class="block h-9 w-auto" />
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                <x-nav-link href="{{ route('admin.dashboard') }}" :active="request()->routeIs('admin.dashboard')">
-                    {{ __('Dashboard') }}
-                </x-nav-link>
-
-                    <x-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.*')">
-                            Users
-                        </x-nav-link>
+                    <x-nav-link href="{{ route('agent.dashboard') }}" :active="request()->routeIs('agent.dashboard')">
+                        {{ __('Dashboard') }}
+                    </x-nav-link>
                 </div>
             </div>
 
