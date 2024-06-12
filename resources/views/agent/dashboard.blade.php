@@ -5,5 +5,5 @@
         </h2>
     </x-slot>
 
- <h1>USER DASHBOARD</h1>
+  <h1>AGENT DASHBOARD</h1>
 </x-app-layout>
