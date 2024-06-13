@@ -14,9 +14,11 @@ class UsersController extends Controller
 {
     public function index()
     {
+       
+        $roles = Role::all();// Fetch all roles to use in the index view
         $users = User::with('role')->get();
 
-        return view('users.index', compact('users',));
+        return view('users.index', compact('users', 'roles'));
     }
 
     public function create()
@@ -41,22 +43,21 @@ class UsersController extends Controller
         return view('users.show', compact('user'));
     }
 
-   public function edit(User $user)
+    public function edit(User $user)
+    {
+        $roles = Role::pluck('name', 'id'); // Fetch all roles to populate the dropdown
+        
+        return view('users.edit', compact('user', 'roles'));
+    }
+    
+    public function update(UpdateUserRequest $request, User $user)
 {
-    $roles = Role::pluck('name', 'id');
+    $user->update($request->validated());
+    $user->roles()->sync($request->input('roles', []));
 
-    $user->load('role');
-
-    return view('users.edit', compact('user', 'roles'));
+    return redirect()->route('users.index');
 }
 
-    public function update(UpdateUserRequest $request, User $user)
-    {
-        $user->update($request->validated());
-        $user->roles()->sync($request->input('roles', []));
-
-        return redirect()->route('users.index');
-    }
 
     public function destroy(User $user)
     {

@@ -37,6 +37,11 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             $user->forceFill([
                 'name' => $input['name'],
                 'email' => $input['email'],
+                'name' => $input['name'],
+                'email' => $input['email'],
+                'phone' => $input['phone'],
+                'address' => $input['address'],
+                'role_id' => $input['role_id'],
             ])->save();
         }
     }

@@ -8,6 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{ asset('form/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('form/css/style.css') }}">
+
+  <!-- Include Toastr CSS and JavaScript -->
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+
 </head>
 
 <body>
@@ -24,113 +28,99 @@
     <div class="container">
         <section id="formHolder">
             <div class="row">
-                <!-- Brand Box -->
-                <div class="col-sm-6 brand">
-                    <div class="success-msg">
-                        @session('status')
+               <!-- Brand Box -->
+            <div class="col-sm-6 brand">
+                <div class="success-msg">
+                    @if(session('status'))
                         <div class="mb-4 font-medium text-sm text-green-600 dark:text-green-400">
-                            {{ $value }}
+                            {{ session('status') }}
                         </div>
-                        @endsession
-                    </div>
+                    @endif
                 </div>
+            </div>
                 <!-- Form Box -->
                 <div class="col-sm-6 form">
                     <!-- Login Form -->
                     <div class="login form-peice switched">
-                        <form class="login-form" method="POST" action="{{ route('login') }}">
-                            @csrf
-                            <div class="form-heading">
-                                <h2>Sign In</h2>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="email" name="email" id="email" required autocomplete="username" >
-                            </div>
+    <form class="login-form" method="POST" action="{{ route('login') }}">
+        @csrf
+        <div class="form-heading">
+            <h2>Sign In</h2>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" required autocomplete="username">
+        </div>
 
-                            <div class="form-group">
-                                <label for="password">Password</label>
-                                <input type="password" name="password" id="password"  required autocomplete="current-password">
-                            </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" required>
+        </div>
 
-                            <!--<div class="">
-                                <input id="remember_me" name="remember" type="" />
-                                <label for="remember_me">{{ __('Remember me') }}</label>
-                            </div>-->
-
-                            <div class="CTA">
-                                <input type="submit" value="Sign In">
-                                <a href="#" class="switch">Dont have an account?</a>
-                            </div>
-                        </form>
-                    </div>
+        <div class="CTA">
+        <input type="submit" value="Sign In">
+            <a href="#" class="switch">Don't have an account?</a>
+        </div>
+        <div class="CTA">
+            <a href="{{ route('password.request') }}">forgot password?</a>
+         
+        </div>
+        <a href="{{ route('welcome') }}">Back to Home</a>
+    
+    </form>
+</div>
                     <!-- End Login Form -->
-
-                    <!-- Signup Form -->
-                    <div class="signup form-peice swithched">
-                        <form class="signup-form" method="POST" action="{{ route('register') }}">
+                    <div class="signup form-peice">
+                        <form method="POST" action="{{ route('register') }}">
                             @csrf
                             <div class="form-heading">
                                 <h2>Create Account</h2>
                             </div>
 
                             <div class="form-group">
-                                <label for="name">Full Name</label>
-                                <input type="text" name="name" id="name" class="name" required autocomplete="name">
+                                <label for="name" value="{{ __('Name') }}">Full Name</label>
+                                <input type="text" name="name" id="name" class="name" value="{{ old('name') }}" required autofocus autocomplete="name">
                                 <span class="error"></span>
                             </div>
 
                             <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="email" name="email" id="email" class="email" required autocomplete="email">
+                                <label for="email" value="{{ __('Email') }}">Email</label>
+                                <input type="email" name="email" id="email" class="email" value="{{ old('email') }}" required autofocus autocomplete="email">
                                 <span class="error"></span>
                             </div>
 
                             <div class="form-group">
-                                <label for="phone">Phone Number</label>
-                                <input type="text" name="phone" id="phone" required autocomplete="phone">
+                                <label for="phone" value="{{ __('Phone') }}">Phone</label>
+                                <input type="text" name="phone" id="phone" class="phone" value="{{ old('phone') }}" required autofocus autocomplete="phone">
                                 <span class="error"></span>
                             </div>
 
                             <div class="form-group">
-                                <label for="address">Address</label>
-                                <input type="text" name="address" id="address"  required autocomplete="address" >
-                            </div>
-
-                            <div class="form-group">
-                                <label for="password">Password</label>
-                                <input type="password" name="password" id="password" class="pass">
+                                <label for="address" value="{{ __('Address') }}">Address</label>
+                                <input type="text" name="address" id="address" class="address" value="{{ old('address') }}" required autofocus autocomplete="address">
                                 <span class="error"></span>
                             </div>
 
                             <div class="form-group">
-                                <label for="password_confirmation">Confirm Password</label>
-                                <input type="password" name="password_confirmation" id="password_confirmation" class="passConfirm">
+                                <label for="password" value="{{ __('Password') }}">Password</label>
+                                <input type="password" name="password" id="password" class="password" required>
                                 <span class="error"></span>
                             </div>
 
-                            <!--@if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
-                            <div class="mt-4">
-                                <x-label for="terms">
-                                    <div class="flex items-center">
-                                        <x-checkbox name="terms" id="terms" required />
-                                        <div class="ms-2">
-                                            {!! __('I agree to the :terms_of_service and :privacy_policy', [
-                                            'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'" class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">'.__('Terms of Service').'</a>',
-                                            'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'" class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">'.__('Privacy Policy').'</a>',
-                                            ]) !!}
-                                        </div>
-                                    </div>
-                                </x-label>
+                            <div class="form-group">
+                                <label for="password_confirmation" value="{{ __('Confirm Password') }}">Confirm Password</label>
+                                <input type="password" name="password_confirmation" id="password_confirmation" class="password_confirmation" required>
+                                <span class="error"></span>
                             </div>
-                            @endif -->
 
                             <div class="CTA">
-                                <input type="submit" value="Signup Now" id="submit">
+                                <input type="submit" value="Register">
                                 <a href="#" class="switch">I have an account</a>
+                                <a href="{{ route('welcome') }}">Back to Home</a>
                             </div>
                         </form>
-                    </div><!-- End Signup Form -->
+                    </div>
+                  
                 </div>
             </div>
         </section>
@@ -139,6 +129,61 @@
     <script src="{{ asset('form/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('form/js/jquery.min.js')}}"></script>
     <script src="{{ asset('form/js/index.js')}}"></script>
+    <!-- core:js -->
+	<script src="../backend/assets/vendors/core/core.js"></script>
+	<!-- endinject -->
+
+	<!-- Plugin js for this page -->
+  <script src="../backend/assets/vendors/flatpickr/flatpickr.min.js"></script>
+  <script src="../backend/assets/vendors/apexcharts/apexcharts.min.js"></script>
+	<!-- End plugin js for this page -->
+
+	<!-- inject:js -->
+	<script src="../backend/assets/vendors/feather-icons/feather.min.js"></script>
+	<script src="../backend/assets/js/template.js"></script>
+	<!-- endinject -->
+
+	<!-- Custom js for this page -->
+  <script src="../backend/assets/js/dashboard-dark.js"></script>
+	<!-- End custom js for this page -->
+   
+      <!-- toastr:js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <!-- end toastr:js -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            @if ($errors->any())
+                @foreach ($errors->all() as $error)
+                    toastr.error("{{ $error }}");
+                @endforeach
+            @endif
+            
+            @if(Session::has('message'))
+                var type = "{{ Session::get('alert-type', 'info') }}";
+                switch(type) {
+                    case 'info':
+                        toastr.info("{{ Session::get('message') }}");
+                        break;
+
+                    case 'success':
+                        toastr.success("{{ Session::get('message') }}");
+                        break;
+
+                    case 'warning':
+                        toastr.warning("{{ Session::get('message') }}");
+                        break;
+
+                    case 'error':
+                        toastr.error("{{ Session::get('message') }}");
+                        break; 
+                }
+            @endif
+
+            @if (session('status'))
+                toastr.success("{{ session('status') }}");
+            @endif
+        });
+    </script>
 </body>
 
 </html>

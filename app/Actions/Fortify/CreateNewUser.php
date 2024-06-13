@@ -17,31 +17,32 @@ class CreateNewUser implements CreatesNewUsers
      * Validate and create a newly registered user.
      *
      * @param  array<string, string>  $input
+     * @return \App\Models\User
      */
     public function create(array $input): User
     {
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'phone' => ['nullable', 'string', 'max:255', 'unique:users'],
-            'address' => ['nullable', 'string', 'max:255'],
-            'role_id' => ['required', 'int'],
+            'phone' => ['nullable', 'string', 'max:15'], // phone validation
+            'address' => ['nullable', 'string', 'max:255'], // address validation
+            'role_id' => ['nullable', 'integer'], // role_id validation
             'password' => $this->passwordRules(),
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ])->validate();
 
-        return User::create([
+        $user = User::create([
             'name' => $input['name'],
             'email' => $input['email'],
-            'phone' => $input['phone'],
-            'address' => $input['address'],
-            'role_id' => $input['role_id'],
+            'phone' => $input['phone'] ?? null,
+            'address' => $input['address'] ?? null,
+            'role_id' => $input['role_id'] ?? 2,
             'password' => Hash::make($input['password']),
         ]);
 
         session()->flash('message', 'Registration successful!');
         session()->flash('alert-type', 'success');
 
-
+        return $user;
     }
 }

@@ -1,7 +1,7 @@
 <nav class="sidebar">
       <div class="sidebar-header">
         <a href="#" class="sidebar-brand">
-          Noble<span>UI</span>
+          Uni<span>Stay</span>
         </a>
         <div class="sidebar-toggler not-active">
           <span></span>
@@ -13,12 +13,18 @@
         <ul class="nav">
           <li class="nav-item nav-category">Main</li>
           <li class="nav-item">
-            <a href="dashboard.html" class="nav-link">
+            <a href="admin/dashboard" class="nav-link">
               <i class="link-icon" data-feather="box"></i>
               <span class="link-title">Dashboard</span>
             </a>
           </li>
-          <li class="nav-item nav-category">web apps</li>
+          <li class="nav-item">
+            <a href="{{ route('users.index') }}" :active="request()->routeIs('users.*')" class="nav-link">
+              <i class="link-icon" data-feather="users"></i>
+              <span class="link-title">Users</span>
+            </a>
+          </li>
+        
           <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#emails" role="button" aria-expanded="false" aria-controls="emails">
               <i class="link-icon" data-feather="mail"></i>
@@ -51,7 +57,7 @@
               <span class="link-title">Calendar</span>
             </a>
           </li>
-          <li class="nav-item nav-category">Components</li>
+       
           <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#uiComponents" role="button" aria-expanded="false" aria-controls="uiComponents">
               <i class="link-icon" data-feather="feather"></i>
@@ -244,7 +250,8 @@
               </ul>
             </div>
           </li>
-          <li class="nav-item nav-category">Pages</li>
+      
+
           <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#general-pages" role="button" aria-expanded="false" aria-controls="general-pages">
               <i class="link-icon" data-feather="book"></i>

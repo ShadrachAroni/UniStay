@@ -1,77 +1,384 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Users List
-        </h2>
-    </x-slot>
 
-    <div>
-        <div class="max-w-6xl mx-auto py-10 sm:px-6 lg:px-8">
-            <div class="block mb-8">
-                <a href="{{ route('users.create') }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Add User</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="description" content=UniStay">
+	<meta name="keywords" content="nobleui, bootstrap, bootstrap 5, bootstrap5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
+
+    <link rel="icon" type="image/png" href="{{ asset('img/icons8-accomodation-lineal-color-96.png') }}">
+  <link rel="shortcut icon" href="{{ asset('img/icons8-accomodation-lineal-color-96.png') }}">
+
+	<title>UniStay</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <!-- End fonts -->
+
+	<!-- core:css -->
+<link rel="stylesheet" href="{{ asset('backend/assets/vendors/core/core.css') }}">
+<!-- endinject -->
+
+<!-- Plugin css for this page -->
+<link rel="stylesheet" href="{{ asset('backend/assets/vendors/flatpickr/flatpickr.min.css') }}">
+<!-- End plugin css for this page -->
+
+<!-- inject:css -->
+<link rel="stylesheet" href="{{ asset('backend/assets/fonts/feather-font/css/iconfont.css') }}">
+<link rel="stylesheet" href="{{ asset('backend/assets/vendors/flag-icon-css/css/flag-icon.min.css') }}">
+<!-- endinject -->
+
+<!-- Layout styles -->
+<link rel="stylesheet" href="{{ asset('backend/assets/css/demo2/style.css') }}">
+<!-- End layout styles -->
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<style>
+    img{
+        width: 50px;
+    }
+</style>
+
+</head>
+<body>
+	<div class="main-wrapper">
+
+		<!-- partial:partials/_sidebar.html -->
+  @include('admin/sidebar')
+		<!-- partial -->
+	
+		<div class="page-wrapper">
+					
+			<!-- partial:partials/_navbar.html -->
+	@include('admin/navBar')
+			<!-- partial -->
+
+<div class="page-content">
+
+      <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
+          <div>
+            <h4 class="mb-3 mb-md-0">View Users</h4>
+          </div>
+          <div class="d-flex align-items-center flex-wrap text-nowrap">
+            <div class="input-group flatpickr wd-200 me-2 mb-2 mb-md-0" id="dashboardDate">
+              <span class="input-group-text input-group-addon bg-transparent border-primary" data-toggle><i data-feather="calendar" class="text-primary"></i></span>
+              <input type="text" class="form-control bg-transparent border-primary" placeholder="Select date" data-input>
             </div>
-            <div class="flex flex-col">
-                <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                    <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                        <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                            <table class="min-w-full divide-y divide-gray-200 w-full">
-                                <thead>
-                                    <tr>
-                                        <th scope="col" width="50" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            ID
-                                        </th>
-                                        <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Name
-                                        </th>
-                                        <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Email
-                                        </th>
-                                    
-                                        <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Role
-                                        </th>
-                                        <th scope="col" width="200" class="px-6 py-3 bg-gray-50">
-                                            Actions
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody class="bg-white divide-y divide-gray-200">
-                                    @foreach ($users as $user)
-                                        <tr>
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                                {{ $user->id }}
-                                            </td>
+          </div>
+        </div>
+        
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                        
+                        <th>User</th>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th></th>
+                        <th rowspan="3">Actions</th>
+                        <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                    @foreach ($users as $user)
+                    <tr>
+                   
+                        <td class="py-1">
+                            <!-- image -->
+                        <img src="{{ $user->profile_photo_url }}" alt="image">
+                            
+                        </td>
+                        <td>{{ $user->id }}</td>
+                        <td>{{ $user->name }}</td>
+                        <td>{{ $user->email }}</td>
+                        <td>{{ $user->role->name }}</td>
+                        <td>
+                            <a href="{{ route('users.show', $user->id) }}" class="btn btn-sm btn-info"  data-bs-toggle="modal" data-bs-target="#show_{{$user->id}}">View</a>
+                            
 
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                                {{ $user->name }}
-                                            </td>
+						
+                        </td>
+                        <td>
+                           
+                            <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-primary"  data-bs-toggle="modal" data-bs-target="#edit_{{$user->id}}">Edit</a>
+                            
+                        </td>
+                        <td>
+                           
+                        
+                        <form id="delete-user-form-{{ $user->id }}" class="inline-block" action="{{ route('users.destroy', $user->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="button" class="btn btn-sm btn-danger" onclick="confirmDeletion({{ $user->id }})">Delete</button>
+                        </form>
+                     
 
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                                {{ $user->email }}
-                                            </td>
-
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                                {{ $user->role->name }}
-                                            </td>
-
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                <a href="{{ route('users.show', $user->id) }}" class="text-blue-600 hover:text-blue-900 mb-2 mr-2">View</a>
-                                <a href="{{ route('users.edit', $user->id) }}" class="text-indigo-600 hover:text-indigo-900 mb-2 mr-2">Edit</a>
-                                <form class="inline-block" action="{{ route('users.destroy', $user->id) }}" method="POST" onsubmit="return confirm('Are you sure?');">
-                                    <input type="hidden" name="_method" value="DELETE">
-                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                    <input type="submit" class="text-red-600 hover:text-red-900 mb-2 mr-2" value="Delete">
-                                </form>
-                            </td>
-                        </tr>
+                        </td>
+                    </tr>
                     @endforeach
-                                </tbody>
-                            </table>
+                </tbody>
+                <div class="d-flex align-items-center flex-wrap text-nowrap">
+                <button href="{{ route('users.create') }}" class="btn btn-sm btn-primary"  data-bs-toggle="modal" data-bs-target="#create_{{$user->id}}">Add User</button>
+            </div>
+          </div>
+        </div>
+        </table>
+        </div>
+        
+    </div>
+
+	</div>
+    
+</div>
+
+
+@foreach($users as $user)
+    <!-- Modal for user -->
+    <div class="modal fade" id="show_{{$user->id}}" tabindex="-1" aria-labelledby="showTitle_{{$user->id}}" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="showTitle_{{$user->id}}">{{$user->name}}'s profile</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="btn-close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="card rounded">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                <h6 class="card-title mb-0">Photo</h6>
+                            </div>
+                            <img src="{{ $user->profile_photo_url }}" alt="image">
+                            <div class="mt-3">
+                                <label class="tx-11 fw-bolder mb-0 text-uppercase">Name:</label>
+                                <p class="text-muted">{{ $user->name }}</p>
+                            </div>
+                            <div class="mt-3">
+                                <label class="tx-11 fw-bolder mb-0 text-uppercase">Email:</label>
+                                <p class="text-muted">{{ $user->email }}</p>
+                            </div>
+                            <div class="mt-3">
+                                <label class="tx-11 fw-bolder mb-0 text-uppercase">Contact:</label>
+                                <p class="text-muted">{{ $user->phone}}</p>
+                            </div>
+                            <div class="mt-3">
+                                <label class="tx-11 fw-bolder mb-0 text-uppercase">Address:</label>
+                                <p class="text-muted">{{ $user->address }}</p>
+                            </div>
+                            <div class="mt-3">
+                                <label class="tx-11 fw-bolder mb-0 text-uppercase">Email Verified at:</label>
+                                <p class="text-muted">{{ $user->email_verified_at }}</p>
+                            </div>
+                            <div class="mt-3">
+                                <label class="tx-11 fw-bolder mb-0 text-uppercase">Role:</label>
+                                <p class="text-muted">{{ $user->role->name }}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                </div>
             </div>
-
         </div>
     </div>
-</x-app-layout>
+    <!-- End of Modal for user -->
+
+
+
+<!--edit  Modal -->
+<div class="modal fade" id="edit_{{$user->id}}" tabindex="-1" aria-labelledby="editTitle" aria-hidden="true" style="display: none;">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editTitle_{{$user->id}}">{{$user->name}}'s profile</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="btn-close"></button>
+                </div>
+                <div class="modal-body">
+                <form id="editForm{{$user->id}}" method="post" action="{{ route('users.update', $user->id) }}">
+                    @csrf
+                    @method('put')
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <input id="name" class="form-control" name="name" type="text"  value="{{ old('name', $user->name) }}" >
+                        @error('name')
+                                <p class="text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input id="email" class="form-control" name="email" type="email"  value="{{ old('name', $user->email) }}" >
+                        @error('email')
+                                <p class="text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="phine" class="form-label">Contact</label>
+                        <input id="phone" class="form-control" name="phone" type="text"  value="{{ old('name', $user->phone) }}" >
+                        @error('phone')
+                                <p class="text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                    </div>
+    
+                
+                    <div class="mb-3">
+                        <label for="address" class="form-label">Address</label>
+                        <input id="address" class="form-control" name="address" type="text"  value="{{ old('name', $user->address) }}" >
+                        @error('address')
+                                <p class="text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                    </div>
+
+                    
+                        <div class="mb-3">
+                            <label class="form-label">Roles</label>
+                            <div>
+                            @foreach($roles as $role)      
+                            <div class="form-check form-check-inline">
+                            
+                                    <input type="radio" class="form-check-input" name="role[{{ $user->id }}]" id="role{{ $role->id }}" value="{{ $role->id }}"
+                                        {{ optional($user->role)->id == $role->id ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="role{{ $role->id }}">
+                                        {{ $role->name }}
+                                    </label>
+                            </div>
+                            @endforeach 
+                            </div>
+                            @error('role')
+                                <p class="text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+    
+                  <!-- <div class="mb-3">
+					<label class="form-label">Gender</label>
+                    <div>
+                      <div class="form-check form-check-inline">
+                        <input type="radio" class="form-check-input" name="gender_radio" id="gender1">
+                        <label class="form-check-label" for="gender1">
+                          Male
+                        </label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input type="radio" class="form-check-input" name="gender_radio" id="gender2">
+                        <label class="form-check-label" for="gender2">
+                          Female
+                        </label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input type="radio" class="form-check-input" name="gender_radio" id="gender3">
+                        <label class="form-check-label" for="gender3">
+                          Other
+                        </label>
+                      </div>
+                    </div>
+                  </div> -->
+                 
+               
+                    <!--<div class="mb-3">
+                        <div class="form-check">
+                        <label class="form-check-label" for="termsCheck">
+                            Agree to <a href="#"> terms and conditions </a>
+                        </label>
+                        <input type="checkbox" class="form-check-input" name="terms_agree" id="termsCheck">
+                        </div>
+                    </div>-->
+                    
+                
+                <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+                
+                </form>
+                </div>
+            </div>
+          </div>
+        </div>
+      
+               
+<!--edit  Modal -->
+@endforeach
+
+
+
+	<!-- core:js -->
+	<script src="../backend/assets/vendors/core/core.js"></script>
+	<!-- endinject -->
+
+	<!-- Plugin js for this page -->
+  <script src="../backend/assets/vendors/flatpickr/flatpickr.min.js"></script>
+  <script src="../backend/assets/vendors/apexcharts/apexcharts.min.js"></script>
+	<!-- End plugin js for this page -->
+
+	<!-- inject:js -->
+	<script src="../backend/assets/vendors/feather-icons/feather.min.js"></script>
+	<script src="../backend/assets/js/template.js"></script>
+	<!-- endinject -->
+
+	<!-- Custom js for this page -->
+  <script src="../backend/assets/js/dashboard-dark.js"></script>
+	<!-- End custom js for this page -->
+    <script>
+        function confirmDeletion(userId) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('delete-user-form-' + userId).submit();
+                }
+            })
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            @if ($errors->any())
+                @foreach ($errors->all() as $error)
+                    toastr.error("{{ $error }}");
+                @endforeach
+            @endif
+            
+            @if(Session::has('message'))
+                var type = "{{ Session::get('alert-type', 'info') }}";
+                switch(type) {
+                    case 'info':
+                        toastr.info("{{ Session::get('message') }}");
+                        break;
+
+                    case 'success':
+                        toastr.success("{{ Session::get('message') }}");
+                        break;
+
+                    case 'warning':
+                        toastr.warning("{{ Session::get('message') }}");
+                        break;
+
+                    case 'error':
+                        toastr.error("{{ Session::get('message') }}");
+                        break; 
+                }
+            @endif
+
+            @if (session('status'))
+                toastr.success("{{ session('status') }}");
+            @endif
+        });
+    </script>
+
+
+</body>
+</html>    
