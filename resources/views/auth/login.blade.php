@@ -8,6 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{ asset('form/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('form/css/style.css') }}">
+
+  <!-- Include Toastr CSS and JavaScript -->
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+
+
 </head>
 
 <body>
@@ -24,46 +29,44 @@
     <div class="container">
         <section id="formHolder">
             <div class="row">
-                <!-- Brand Box -->
-                <div class="col-sm-6 brand">
-                    <div class="success-msg">
-                        @session('status')
+               <!-- Brand Box -->
+            <div class="col-sm-6 brand">
+                <div class="success-msg">
+                    @if(session('status'))
                         <div class="mb-4 font-medium text-sm text-green-600 dark:text-green-400">
-                            {{ $value }}
+                            {{ session('status') }}
                         </div>
-                        @endsession
-                    </div>
+                    @endif
                 </div>
+            </div>
                 <!-- Form Box -->
                 <div class="col-sm-6 form">
                     <!-- Login Form -->
                     <div class="login form-peice">
-                        <form class="login-form" method="POST" action="{{ route('login') }}">
-                            @csrf
-                            <div class="form-heading">
-                                <h2>Sign In</h2>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="email" name="email" id="email" required autocomplete="username" >
-                            </div>
+    <form class="login-form" method="POST" action="{{ route('login') }}">
+        @csrf
+        <div class="form-heading">
+            <h2>Sign In</h2>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" required autocomplete="username">
+        </div>
 
-                            <div class="form-group">
-                                <label for="password">Password</label>
-                                <input type="password" name="password" id="password"  required autocomplete="current-password">
-                            </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" required autocomplete="current-password">
+        </div>
 
-                            <!--<div class="">
-                                <input id="remember_me" name="remember" type="" />
-                                <label for="remember_me">{{ __('Remember me') }}</label>
-                            </div>-->
-
-                            <div class="CTA">
-                                <input type="submit" value="Sign In">
-                                <a href="#" class="switch">Dont have an account?</a>
-                            </div>
-                        </form>
-                    </div>
+        <div class="CTA">
+        <input type="submit" value="Sign In">
+            <a href="#" class="switch">Don't have an account?</a>
+        </div>
+        <div class="CTA">
+            <a href="{{ route('register') }}" class="switch">forgot password?</a>
+        </div>
+    </form>
+</div>
                     <!-- End Login Form -->
 
                     <!-- Signup Form -->
@@ -139,6 +142,60 @@
     <script src="{{ asset('form/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('form/js/jquery.min.js')}}"></script>
     <script src="{{ asset('form/js/index.js')}}"></script>
+    <!-- core:js -->
+	<script src="../backend/assets/vendors/core/core.js"></script>
+	<!-- endinject -->
+
+	<!-- Plugin js for this page -->
+  <script src="../backend/assets/vendors/flatpickr/flatpickr.min.js"></script>
+  <script src="../backend/assets/vendors/apexcharts/apexcharts.min.js"></script>
+	<!-- End plugin js for this page -->
+
+	<!-- inject:js -->
+	<script src="../backend/assets/vendors/feather-icons/feather.min.js"></script>
+	<script src="../backend/assets/js/template.js"></script>
+	<!-- endinject -->
+
+	<!-- Custom js for this page -->
+  <script src="../backend/assets/js/dashboard-dark.js"></script>
+	<!-- End custom js for this page -->
+   
+      <!-- toastr:js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <!-- end toastr:js -->
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        @if ($errors->any())
+            toastr.error("{{ $errors->first() }}");
+        @endif
+
+        @if(session('status'))
+            toastr.success("{{ session('status') }}");
+        @endif
+
+        @if(session('message'))
+            var type = "{{ session('alert-type', 'info') }}";
+            switch(type) {
+                case 'info':
+                    toastr.info("{{ session('message') }}");
+                    break;
+
+                case 'success':
+                    toastr.success("{{ session('message') }}");
+                    break;
+
+                case 'warning':
+                    toastr.warning("{{ session('message') }}");
+                    break;
+
+                case 'error':
+                    toastr.error("{{ session('message') }}");
+                    break; 
+            }
+        @endif
+    });
+</script>
 </body>
 
 </html>

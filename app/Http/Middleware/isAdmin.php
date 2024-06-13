@@ -13,6 +13,6 @@ class IsAdmin
             return $next($request);
         }
 
-        abort(403, 'Page not found');
+        return response()->view('errors.403', [], 403);
     }
 }
