@@ -3,6 +3,7 @@
 namespace App\Actions\Fortify;
 
 use App\Models\User;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
@@ -37,5 +38,10 @@ class CreateNewUser implements CreatesNewUsers
             'role_id' => $input['role_id'],
             'password' => Hash::make($input['password']),
         ]);
+
+        session()->flash('message', 'Registration successful!');
+        session()->flash('alert-type', 'success');
+
+
     }
 }

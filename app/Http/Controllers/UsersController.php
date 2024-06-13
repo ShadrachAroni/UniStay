@@ -16,7 +16,7 @@ class UsersController extends Controller
     {
         $users = User::with('role')->get();
 
-        return view('users.index', compact('users'));
+        return view('users.index', compact('users',));
     }
 
     public function create()

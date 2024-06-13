@@ -12,7 +12,6 @@
   <!-- Include Toastr CSS and JavaScript -->
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
 
-
 </head>
 
 <body>
@@ -63,8 +62,11 @@
             <a href="#" class="switch">Don't have an account?</a>
         </div>
         <div class="CTA">
-            <a href="{{ route('register') }}" class="switch">forgot password?</a>
+            <a href="{{ route('password.request') }}">forgot password?</a>
+         
         </div>
+        <a href="{{ route('welcome') }}">Back to Home</a>
+    
     </form>
 </div>
                     <!-- End Login Form -->
@@ -131,9 +133,13 @@
                             <div class="CTA">
                                 <input type="submit" value="Signup Now" id="submit">
                                 <a href="#" class="switch">I have an account</a>
+       
+                                    <a href="{{ route('welcome') }}">Back to Home</a>
+                                </div>
                             </div>
                         </form>
-                    </div><!-- End Signup Form -->
+                    </div>
+                    <!-- End Signup Form -->
                 </div>
             </div>
         </section>
@@ -163,36 +169,35 @@
       <!-- toastr:js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <!-- end toastr:js -->
-
-    <script>
+<script>
     document.addEventListener("DOMContentLoaded", function() {
         @if ($errors->any())
-            toastr.error("{{ $errors->first() }}");
+            toastr.error("{{ $errors->first('email') }}");
         @endif
-
-        @if(session('status'))
-            toastr.success("{{ session('status') }}");
-        @endif
-
-        @if(session('message'))
-            var type = "{{ session('alert-type', 'info') }}";
+        
+        @if(Session::has('message'))
+            var type = "{{ Session::get('alert-type', 'info') }}";
             switch(type) {
                 case 'info':
-                    toastr.info("{{ session('message') }}");
+                    toastr.info("{{ Session::get('message') }}");
                     break;
 
                 case 'success':
-                    toastr.success("{{ session('message') }}");
+                    toastr.success("{{ Session::get('message') }}");
                     break;
 
                 case 'warning':
-                    toastr.warning("{{ session('message') }}");
+                    toastr.warning("{{ Session::get('message') }}");
                     break;
 
                 case 'error':
-                    toastr.error("{{ session('message') }}");
+                    toastr.error("{{ Session::get('message') }}");
                     break; 
             }
+        @endif
+
+        @if (session('status'))
+            toastr.success("{{ session('status') }}");
         @endif
     });
 </script>
