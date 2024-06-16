@@ -44,7 +44,7 @@
 	<div class="main-wrapper">
 
 		<!-- partial:partials/_sidebar.html -->
-  @include('admin/sidebar')
+  @include('user/sidebar')
 		<!-- partial -->
 	
 		<div class="page-wrapper">

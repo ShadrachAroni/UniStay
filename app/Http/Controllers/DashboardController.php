@@ -19,7 +19,7 @@ class DashboardController extends Controller
                 return view('agent.dashboard');
                 break;
             default:
-                return view('dashboard');
+                return view('user.dashboard');
                 break;
         }
     }
