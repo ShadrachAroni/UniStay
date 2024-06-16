@@ -3,41 +3,25 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Gate;
 
 class UpdateUserRequest extends FormRequest
 {
     public function rules()
     {
+        $userId = $this->route('user')->id; // Get the ID of the user being updated
+
         return [
-            'name'    => [
-                'string',
-                'required',
-            ],
-            'email'   => [
-                'required',
-                'unique:users,email,' . request()->route('user')->id,
-            ],
-            'phone'    => [
-                'required',
-                'unique:users,phone,' . request()->route('user')->id,
-            ],
-            'address'    => [
-                'string',
-                'required',
-            ],
-            'roles.*' => [
-                'integer',
-            ],
-            'roles'   => [
-                'required',
-                'array',
-            ],
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email,' . $userId,
+            'phone' => 'required|string|max:20|unique:users,phone,' . $userId,
+            'address' => 'required|string|max:255',
+            'password' => 'nullable|string|min:8|confirmed', // Make password nullable to allow updates without changing password
+            'role_id' => 'required|exists:roles,id', // Validate that role_id exists in the roles table
         ];
     }
 
     public function authorize()
     {
-        return Gate::allows('user_access');
+        return true;
     }
 }

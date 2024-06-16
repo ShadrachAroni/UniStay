@@ -70,6 +70,7 @@
     </form>
 </div>
                     <!-- End Login Form -->
+                     <!-- Register Form -->
                     <div class="signup form-peice">
                         <form method="POST" action="{{ route('register') }}">
                             @csrf

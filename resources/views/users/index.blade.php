@@ -36,7 +36,8 @@
 <link rel="stylesheet" href="{{ asset('backend/assets/css/demo2/style.css') }}">
 <!-- End layout styles -->
 
-
+<!-- Toastr CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -127,7 +128,7 @@
                     @endforeach
                 </tbody>
                 <div class="d-flex align-items-center flex-wrap text-nowrap">
-                <button href="{{ route('users.create') }}" class="btn btn-sm btn-primary"  data-bs-toggle="modal" data-bs-target="#create_{{$user->id}}">Add User</button>
+                <button href="{{ route('users.create') }}" class="btn btn-sm btn-primary"  data-bs-toggle="modal" data-bs-target="#create">Add User</button>
             </div>
           </div>
         </div>
@@ -184,9 +185,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
-                </div>
             </div>
         </div>
     </div>
@@ -194,120 +192,148 @@
 
 
 
-<!--edit  Modal -->
-<div class="modal fade" id="edit_{{$user->id}}" tabindex="-1" aria-labelledby="editTitle" aria-hidden="true" style="display: none;">
-          <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editTitle_{{$user->id}}">{{$user->name}}'s profile</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="btn-close"></button>
-                </div>
-                <div class="modal-body">
-                <form id="editForm{{$user->id}}" method="post" action="{{ route('users.update', $user->id) }}">
+<!-- Edit Modal -->
+<div class="modal fade" id="edit_{{$user->id}}" tabindex="-1" aria-labelledby="editTitle_{{$user->id}}" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editTitle_{{$user->id}}">Edit {{$user->name}}'s profile</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="btn-close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="updateForm" method="post" action="{{ route('users.update', $user->id) }}">
                     @csrf
-                    @method('put')
+                    @method('PUT')
+
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
-                        <input id="name" class="form-control" name="name" type="text"  value="{{ old('name', $user->name) }}" >
+                        <input id="name" class="form-control" name="name" type="text" value="{{ old('name', $user->name) }}">
                         @error('name')
-                                <p class="text-sm text-red-600">{{ $message }}</p>
-                            @enderror
+                            <p class="text-sm text-red-600">{{ $message }}</p>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
-                        <input id="email" class="form-control" name="email" type="email"  value="{{ old('name', $user->email) }}" >
+                        <input id="email" class="form-control" name="email" type="email" value="{{ old('email', $user->email) }}">
                         @error('email')
-                                <p class="text-sm text-red-600">{{ $message }}</p>
-                            @enderror
+                            <p class="text-sm text-red-600">{{ $message }}</p>
+                        @enderror
                     </div>
-
                     <div class="mb-3">
-                        <label for="phine" class="form-label">Contact</label>
-                        <input id="phone" class="form-control" name="phone" type="text"  value="{{ old('name', $user->phone) }}" >
+                        <label for="phone" class="form-label">Contact</label>
+                        <input id="phone" class="form-control" name="phone" type="text" value="{{ old('phone', $user->phone) }}">
                         @error('phone')
-                                <p class="text-sm text-red-600">{{ $message }}</p>
-                            @enderror
+                            <p class="text-sm text-red-600">{{ $message }}</p>
+                        @enderror
                     </div>
-    
-                
                     <div class="mb-3">
                         <label for="address" class="form-label">Address</label>
-                        <input id="address" class="form-control" name="address" type="text"  value="{{ old('name', $user->address) }}" >
+                        <input id="address" class="form-control" name="address" type="text" value="{{ old('address', $user->address) }}">
                         @error('address')
-                                <p class="text-sm text-red-600">{{ $message }}</p>
-                            @enderror
+                            <p class="text-sm text-red-600">{{ $message }}</p>
+                        @enderror
                     </div>
-
-                    
-                        <div class="mb-3">
-                            <label class="form-label">Roles</label>
-                            <div>
+                    <div class="mb-3">
+                        <label class="form-label">Role</label>
+                        <div>
                             @foreach($roles as $role)      
-                            <div class="form-check form-check-inline">
-                            
-                                    <input type="radio" class="form-check-input" name="role[{{ $user->id }}]" id="role{{ $role->id }}" value="{{ $role->id }}"
-                                        {{ optional($user->role)->id == $role->id ? 'checked' : '' }}>
+                                <div class="form-check form-check-inline">
+                                    <input type="radio" class="form-check-input" name="role_id" id="role{{ $role->id }}" value="{{ $role->id }}"
+                                        {{ $user->role_id == $role->id ? 'checked' : '' }}>
                                     <label class="form-check-label" for="role{{ $role->id }}">
                                         {{ $role->name }}
                                     </label>
-                            </div>
-                            @endforeach 
-                            </div>
-                            @error('role')
-                                <p class="text-sm text-red-600">{{ $message }}</p>
-                            @enderror
+                                </div>
+                            @endforeach
                         </div>
-
-    
-                  <!-- <div class="mb-3">
-					<label class="form-label">Gender</label>
-                    <div>
-                      <div class="form-check form-check-inline">
-                        <input type="radio" class="form-check-input" name="gender_radio" id="gender1">
-                        <label class="form-check-label" for="gender1">
-                          Male
-                        </label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                        <input type="radio" class="form-check-input" name="gender_radio" id="gender2">
-                        <label class="form-check-label" for="gender2">
-                          Female
-                        </label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                        <input type="radio" class="form-check-input" name="gender_radio" id="gender3">
-                        <label class="form-check-label" for="gender3">
-                          Other
-                        </label>
-                      </div>
+                        @error('role_id')
+                            <p class="text-sm text-red-600">{{ $message }}</p>
+                        @enderror
                     </div>
-                  </div> -->
-                 
-               
-                    <!--<div class="mb-3">
-                        <div class="form-check">
-                        <label class="form-check-label" for="termsCheck">
-                            Agree to <a href="#"> terms and conditions </a>
-                        </label>
-                        <input type="checkbox" class="form-check-input" name="terms_agree" id="termsCheck">
-                        </div>
-                    </div>-->
-                    
-                
-                <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">Save Changes</button>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-                
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
                 </form>
-                </div>
             </div>
-          </div>
         </div>
-      
-               
-<!--edit  Modal -->
+    </div>
+</div>
+
+<!-- End Edit Modal -->
 @endforeach
+
+<!-- Create Modal -->
+<div class="modal fade" id="create" tabindex="-1" aria-labelledby="createTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createTitle">Add User</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="createForm" method="post" action="{{ route('users.store') }}">
+                    @csrf
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <input id="name" class="form-control" name="name" type="text" value="{{ old('name', '') }}">
+                        @error('name')
+                            <p class="text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input id="email" class="form-control" name="email" type="email" value="{{ old('email', '') }}">
+                        @error('email')
+                            <p class="text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Contact</label>
+                        <input id="phone" class="form-control" name="phone" type="text" value="{{ old('phone', '') }}">
+                        @error('phone')
+                            <p class="text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
+                        <label for="address" class="form-label">Address</label>
+                        <input id="address" class="form-control" name="address" type="text" value="{{ old('address', '') }}">
+                        @error('address')
+                            <p class="text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Role</label>
+                        <div>
+                            @foreach($roles as $role)
+                                <div class="form-check form-check-inline">
+                                    <input type="radio" class="form-check-input" name="role_id" id="role_id" value="{{ $role->id }}">
+                                    <label class="form-check-label" for="role_id">{{ $role->name }}</label>
+                                </div>
+                            @endforeach
+                        </div>
+                        @error('role')
+                            <p class="text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input id="password" class="form-control" name="password" type="password" value="{{ old('password', '') }}">
+                        @error('password')
+                            <p class="text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Add</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Create Modal -->
 
 
 
@@ -328,7 +354,24 @@
 	<!-- Custom js for this page -->
   <script src="../backend/assets/js/dashboard-dark.js"></script>
 	<!-- End custom js for this page -->
+
+    <!-- Toastr JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
     <script>
+
+    <script>
+
+    @if(Session::has('success'))
+        Swal.fire({
+            icon: 'success',
+            title: 'Success!',
+            text: "{{ Session::get('success') }}",
+            confirmButtonText: 'OK'
+        });
+    @endif
+
         function confirmDeletion(userId) {
             Swal.fire({
                 title: 'Are you sure?',
@@ -345,7 +388,6 @@
             })
         }
 
-        document.addEventListener("DOMContentLoaded", function() {
             @if ($errors->any())
                 @foreach ($errors->all() as $error)
                     toastr.error("{{ $error }}");
@@ -357,10 +399,6 @@
                 switch(type) {
                     case 'info':
                         toastr.info("{{ Session::get('message') }}");
-                        break;
-
-                    case 'success':
-                        toastr.success("{{ Session::get('message') }}");
                         break;
 
                     case 'warning':
@@ -376,7 +414,7 @@
             @if (session('status'))
                 toastr.success("{{ session('status') }}");
             @endif
-        });
+    
     </script>
 
 

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AgentController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -17,9 +18,6 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
     Route::get('/home',[DashboardController::class, 'index']);
 });
 
@@ -34,10 +32,10 @@ Route::middleware(['auth', 'isAgent'])->group(function () {
 });
 
 Route::middleware(['auth', 'isUser'])->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [UserController::class, 'index'])->name('dashboard');
 });
 
-
+Route::get('/home', [DashboardController::class, 'index'])->name('home');
 
 
 

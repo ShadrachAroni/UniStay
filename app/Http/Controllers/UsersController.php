@@ -24,18 +24,35 @@ class UsersController extends Controller
     public function create()
     {
 
-        $roles = Role::pluck('name', 'id');
+        $roles = Role::all();
 
         return view('users.create', compact('roles'));
     }
-
     public function store(StoreUserRequest $request)
     {
-        $user = User::create($request->validated());
-        $user->roles()->sync($request->input('roles', []));
-
-        return redirect()->route('users.index');
+        try {
+            // Validate incoming request data
+            $validatedData = $request->validated();
+    
+            // Create a new user with validated data, ensuring the password is hashed
+            $user = User::create([
+                'name' => $validatedData['name'],
+                'email' => $validatedData['email'],
+                'phone' => $validatedData['phone'],
+                'address' => $validatedData['address'],
+                'password' => bcrypt($validatedData['password']), // Hash the password
+                'role_id' => $validatedData['role_id'],
+            ]);
+    
+            // Redirect to users index with a success message
+            return redirect()->route('users.index')->with('success', 'User created successfully.');
+    
+        } catch (\Exception $e) {
+            // Handle any errors that may occur
+            return redirect()->back()->withErrors(['error' => 'An error occurred while creating the user.'])->withInput();
+        }
     }
+    
 
     public function show(User $user)
     {
@@ -45,19 +62,42 @@ class UsersController extends Controller
 
     public function edit(User $user)
     {
-        $roles = Role::pluck('name', 'id'); // Fetch all roles to populate the dropdown
+        $roles = Role::all();
         
         return view('users.edit', compact('user', 'roles'));
     }
     
     public function update(UpdateUserRequest $request, User $user)
-{
-    $user->update($request->validated());
-    $user->roles()->sync($request->input('roles', []));
-
-    return redirect()->route('users.index');
-}
-
+    {
+        try {
+            // Validate incoming request data
+            $validatedData = $request->validated();
+    
+            // Update user with validated data
+            $user->update([
+                'name' => $validatedData['name'],
+                'email' => $validatedData['email'],
+                'phone' => $validatedData['phone'],
+                'address' => $validatedData['address'],
+                'role_id' => $validatedData['role_id'],
+            ]);
+    
+            // Only update the password if it's provided
+            if (!empty($validatedData['password'])) {
+                $user->update([
+                    'password' => bcrypt($validatedData['password']),
+                ]);
+            }
+    
+            // Redirect to users index with a success message
+            return redirect()->route('users.index')->with('success', 'User updated successfully.');
+    
+        } catch (\Exception $e) {
+            // Handle any errors that may occur
+            return redirect()->back()->withErrors(['error' => 'An error occurred while updating the user.'])->withInput();
+        }
+    }
+    
 
     public function destroy(User $user)
     {
