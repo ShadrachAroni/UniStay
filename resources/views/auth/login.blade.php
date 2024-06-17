@@ -8,22 +8,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{ asset('form/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('form/css/style.css') }}">
+    <link rel="icon" type="image/png" href="{{ asset('img/icons8-accomodation-lineal-color-96.png') }}">
+  <link rel="shortcut icon" href="{{ asset('img/icons8-accomodation-lineal-color-96.png') }}">
 
   <!-- Include Toastr CSS and JavaScript -->
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+
+<link rel="stylesheet" type="text/css" href="{{asset('background/style.css')}}">
 
 </head>
 
 <body>
 
-<div class="background-container">
-        <div class="background" style="background-image: url('{{ asset('form/css/img/8.jpg') }}');"></div>
-        <div class="background" style="background-image: url('{{ asset('form/css/img/A2.jpg') }}');"></div>
-        <div class="background" style="background-image: url('{{ asset('form/css/img/A3.jpg') }}');"></div>
-        <div class="background" style="background-image: url('{{ asset('form/css/img/A4.jpg') }}');"></div>
-        <div class="background" style="background-image: url('{{ asset('form/css/img/A5.jpg') }}');"></div>
-        <!-- Add more background divs as needed -->
-    </div>
+
+<div id="particles-background" class="vertical-centered-box"></div>
+<div id="particles-foreground" class="vertical-centered-box"></div>
+<div class="vertical-centered-box">
+  <div class="content">
 
     <div class="container">
         <section id="formHolder">
@@ -124,11 +125,14 @@
                 </div>
             </div>
         </section>
-
+    </div>
+  </div>
 </div>
     <script src="{{ asset('form/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('form/js/jquery.min.js')}}"></script>
     <script src="{{ asset('form/js/index.js')}}"></script>
+    <script src="{{ asset('background/script.js')}}"></script>
+    
     <!-- core:js -->
 	<script src="../backend/assets/vendors/core/core.js"></script>
 	<!-- endinject -->

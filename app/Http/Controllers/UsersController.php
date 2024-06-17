@@ -40,6 +40,7 @@ class UsersController extends Controller
                 'email' => $validatedData['email'],
                 'phone' => $validatedData['phone'],
                 'address' => $validatedData['address'],
+                'email_verified_at' => now(),
                 'password' => bcrypt($validatedData['password']), // Hash the password
                 'role_id' => $validatedData['role_id'],
             ]);
