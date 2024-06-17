@@ -359,15 +359,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
-
-$(document).ready(function() {
-        // Display Toastr success message if session contains 'success'
-        @if(Session::has('success'))
-            toastr.success("{{ Session::get('success') }}");
-        @endif
-
-        // Your other JavaScript code here
-        function confirmDeletion(userId) {
+ function confirmDeletion(userId) {
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
@@ -382,6 +374,14 @@ $(document).ready(function() {
                 }
             });
         }
+$(document).ready(function() {
+        // Display Toastr success message if session contains 'success'
+        @if(Session::has('success'))
+            toastr.success("{{ Session::get('success') }}");
+        @endif
+
+        // Your other JavaScript code here
+       
 
             @if ($errors->any())
                 @foreach ($errors->all() as $error)
