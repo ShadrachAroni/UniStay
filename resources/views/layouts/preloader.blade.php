@@ -1,7 +1,7 @@
 <style>
     #preloader{
-        background: #000 url(img/loader.gif) no-repeat center center;
-        background-size: 15%;
+        background: #000 url(img/loader2.gif) no-repeat center center;
+        background-size: 60%;
         height: 100vh;
         width: 100%;
         position: fixed;
@@ -9,6 +9,7 @@
         opacity: 1; /* Initial opacity */
         transition: opacity 0.5s ease-in-out; /* Smooth transition */
     }
+    
 </style>
 
 <div id="preloader" class="loader" >
@@ -47,8 +48,8 @@ window.addEventListener("load", function() {
         loader.style.opacity = '0'; // Fade out
         setTimeout(function() {
             loader.style.display = 'none'; // Hide the preloader
-        }, 700); // Adjust the delay (in milliseconds) as needed
-    }, 1200); // Adjust the delay (in milliseconds) as needed
+        }, 500); // Adjust the delay (in milliseconds) as needed
+    }, 1000); // Adjust the delay (in milliseconds) as needed
 });
 
 
