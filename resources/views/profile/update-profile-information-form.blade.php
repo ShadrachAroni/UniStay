@@ -44,7 +44,7 @@
               <div class="card-body">
 
                     <h6 class="card-title">Update Profile</h6>
-                    <form id="updateForm" method="post" action="{{ route('user.update', $user->id) }}">
+                    <form id="updateForm" method="post" action="{{ route('profile.update', $user->id) }}">
                     @csrf
                     @method('PUT')
 

@@ -131,17 +131,15 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-    <script>
+<script>
 
-    @if(Session::has('success'))
-        Swal.fire({
-            icon: 'success',
-            title: 'Success!',
-            text: "{{ Session::get('success') }}",
-            confirmButtonText: 'OK'
-        });
-    @endif
+$(document).ready(function() {
+        // Display Toastr success message if session contains 'success'
+        @if(Session::has('success'))
+            toastr.success("{{ Session::get('success') }}");
+        @endif
 
+        // Your other JavaScript code here
         function confirmDeletion(userId) {
             Swal.fire({
                 title: 'Are you sure?',
@@ -155,7 +153,7 @@
                 if (result.isConfirmed) {
                     document.getElementById('delete-user-form-' + userId).submit();
                 }
-            })
+            });
         }
 
             @if ($errors->any())
@@ -181,12 +179,8 @@
                 }
             @endif
 
-            @if (session('status'))
-                toastr.success("{{ session('status') }}");
-            @endif
-    
+        });
     </script>
-
 
 </body>
 </html>    

@@ -34,18 +34,19 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
 Route::middleware(['auth', 'isAgent'])->group(function () {
     Route::get('/agent/dashboard', [AgentController::class, 'index'])->name('agent.dashboard');
     Route::get('/agent/profile', [AgentController::class, 'profile'])->name('agent.profile');
-    Route::resource('user', \App\Http\Controllers\AgentController::class);
+
 });
 
 Route::middleware(['auth', 'isUser'])->group(function () {
     Route::get('user/dashboard', [UserController::class, 'index'])->name('user.dashboard');
     Route::get('user/profile', [UserController::class, 'profile'])->name('user.profile');
-    Route::resource('user', \App\Http\Controllers\UserController::class);
 });
 
-
+Route::put('profile/{user}', [\App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 });
+
+
 
 

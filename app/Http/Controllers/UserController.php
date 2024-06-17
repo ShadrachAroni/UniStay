@@ -26,31 +26,4 @@ class UserController extends Controller
     }
 
 
-    public function update(UpdateUserRequest $request, User $user)
-    {
-        try {
-            // Validate incoming request data
-            $validatedData = $request->validated();
-    
-            // Update user with validated data
-            $user->update([
-                'name' => $validatedData['name'],
-                'email' => $validatedData['email'],
-                'phone' => $validatedData['phone'],
-                'address' => $validatedData['address'],
-            ]);
-    
-            if (!empty($validatedData['password'])) {
-                $user->password = bcrypt($validatedData['password']);
-            }
-    
-            // Redirect to users index with a success message
-            return redirect()->route('user.profile')->with('success', 'User updated successfully.');
-    
-        } catch (\Exception $e) {
-            // Handle any errors that may occur
-            return redirect()->back()->withErrors(['error' => 'An error occurred while updating the user.'])->withInput();
-        }
-    }
-
 }
