@@ -143,7 +143,7 @@
 
 
 @foreach($users as $user)
-    <!-- Modal for user -->
+    <!-- Modal for view  -->
     <div class="modal fade" id="show_{{$user->id}}" tabindex="-1" aria-labelledby="showTitle_{{$user->id}}" aria-hidden="true" style="display: none;">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -361,8 +361,6 @@
 
     <script>
 
-    <script>
-
     @if(Session::has('success'))
         Swal.fire({
             icon: 'success',
@@ -419,4 +417,4 @@
 
 
 </body>
-</html>    
+</html>   

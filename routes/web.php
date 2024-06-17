@@ -7,12 +7,12 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
-Route::get('/welcome', function () {
-    return view('welcome');
-})->name('welcome');
+Route::get('/home', function () {
+    return view('home');
+})->name('home');
 
 Route::middleware([
     'auth:sanctum',
@@ -20,6 +20,10 @@ Route::middleware([
     'verified',
 ])->group(function () {
  
+//
+
+
+
 
 Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
@@ -29,14 +33,18 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
 
 Route::middleware(['auth', 'isAgent'])->group(function () {
     Route::get('/agent/dashboard', [AgentController::class, 'index'])->name('agent.dashboard');
+    Route::get('/agent/profile', [AgentController::class, 'profile'])->name('agent.profile');
+    Route::resource('user', \App\Http\Controllers\AgentController::class);
 });
 
 Route::middleware(['auth', 'isUser'])->group(function () {
     Route::get('user/dashboard', [UserController::class, 'index'])->name('user.dashboard');
+    Route::get('user/profile', [UserController::class, 'profile'])->name('user.profile');
+    Route::resource('user', \App\Http\Controllers\UserController::class);
 });
 
-Route::get('/home', [DashboardController::class, 'index'])->name('home');
-Route::get('/home', [DashboardController::class, 'index'])->name('dashboard');
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 });
 

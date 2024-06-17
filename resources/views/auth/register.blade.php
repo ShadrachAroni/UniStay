@@ -66,7 +66,7 @@
             <a href="{{ route('password.request') }}">forgot password?</a>
          
         </div>
-        <a href="{{ route('welcome') }}">Back to Home</a>
+        <a href="{{ route('home') }}">Back to Home</a>
     
     </form>
 </div>
@@ -117,7 +117,7 @@
                             <div class="CTA">
                                 <input type="submit" value="Register">
                                 <a href="#" class="switch">I have an account</a>
-                                <a href="{{ route('welcome') }}">Back to Home</a>
+                                <a href="{{ route('home') }}">Back to Home</a>
                             </div>
                         </form>
                     </div>

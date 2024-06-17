@@ -35,6 +35,8 @@
 <!-- Layout styles -->
 <link rel="stylesheet" href="{{ asset('backend/assets/css/demo2/style.css') }}">
 <!-- End layout styles -->
+<!-- Toastr CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
 
 
@@ -43,13 +45,13 @@
 	<div class="main-wrapper">
 
 		<!-- partial:partials/_sidebar.html -->
-  @include('admin/sidebar')
+  @include('user/sidebar')
 		<!-- partial -->
 	
 		<div class="page-wrapper">
 					
 			<!-- partial:partials/_navbar.html -->
-	@include('admin/navBar')
+	@include('user/navBar')
 			<!-- partial -->
 
 			<div class="page-content">
@@ -68,7 +70,7 @@
                             <div class="row">
                                 <div class="col-12">
                                     @if (Laravel\Fortify\Features::canUpdateProfileInformation())
-                                         @include('profile.update-profile-information-form')
+                                        @include('profile.update-profile-information-form')
                                     @endif
 
                                     @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::updatePasswords()))
@@ -124,6 +126,66 @@
 	<!-- Custom js for this page -->
   <script src="{{ asset('../backend/assets/js/dashboard-dark.js')}}"></script>
 	<!-- End custom js for this page -->
+
+      <!-- Toastr JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script>
+
+    @if(Session::has('success'))
+        Swal.fire({
+            icon: 'success',
+            title: 'Success!',
+            text: "{{ Session::get('success') }}",
+            confirmButtonText: 'OK'
+        });
+    @endif
+
+        function confirmDeletion(userId) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('delete-user-form-' + userId).submit();
+                }
+            })
+        }
+
+            @if ($errors->any())
+                @foreach ($errors->all() as $error)
+                    toastr.error("{{ $error }}");
+                @endforeach
+            @endif
+            
+            @if(Session::has('message'))
+                var type = "{{ Session::get('alert-type', 'info') }}";
+                switch(type) {
+                    case 'info':
+                        toastr.info("{{ Session::get('message') }}");
+                        break;
+
+                    case 'warning':
+                        toastr.warning("{{ Session::get('message') }}");
+                        break;
+
+                    case 'error':
+                        toastr.error("{{ Session::get('message') }}");
+                        break; 
+                }
+            @endif
+
+            @if (session('status'))
+                toastr.success("{{ session('status') }}");
+            @endif
+    
+    </script>
 
 
 </body>
