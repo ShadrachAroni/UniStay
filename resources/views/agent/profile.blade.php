@@ -42,6 +42,7 @@
 
 </head>
 <body>
+@include('layouts.preloader')
 	<div class="main-wrapper">
 
 		<!-- partial:partials/_sidebar.html -->
