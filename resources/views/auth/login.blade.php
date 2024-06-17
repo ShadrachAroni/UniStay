@@ -19,7 +19,7 @@
 </head>
 
 <body>
-
+@include('layouts.preloader')
 
 <div id="particles-background" class="vertical-centered-box"></div>
 <div id="particles-foreground" class="vertical-centered-box"></div>

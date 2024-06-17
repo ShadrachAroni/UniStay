@@ -16,6 +16,8 @@
         </style>
     </head>
     <body class="font-sans antialiased">
+    @include('layouts.preloader')
+  
      
                         @if (Route::has('login'))
                             <nav class="-mx-3 flex flex-1 justify-end">
