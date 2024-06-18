@@ -6,6 +6,7 @@ use App\Http\Requests\UpdateProfileRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
@@ -80,8 +81,20 @@ class ProfileController extends Controller
                 $user->save();
             }
     
+
             // Redirect to users index with a success message
-            return redirect()->route('agent.profile')->with('success', 'User updated successfully.');
+            $userRole = Auth::user()->role_id; // Adjust this line to match your user role retrieval logic
+
+            switch ($userRole) {
+                case '3':
+                    return redirect()->route('agent.profile')->with('success', 'User updated successfully.');
+                case '2':
+                    return redirect()->route('user.profile')->with('success', 'User updated successfully.');
+                case '1':
+                    return redirect()->route('admin.profile')->with('success', 'User updated successfully.');
+                default:
+                    return redirect()->route('home')->with('success', 'User updated successfully.');
+            }
     
         } catch (\Exception $e) {
             // Handle any errors that may occur
