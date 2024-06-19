@@ -19,7 +19,7 @@ class AdminController extends Controller
     {
         $user = Auth::user();
 
-      return view('admin.profile', compact('user'));
+        return view('admin.profile', compact('user'));
     }
 
 
