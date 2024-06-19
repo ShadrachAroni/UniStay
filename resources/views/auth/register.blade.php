@@ -163,39 +163,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- end toastr:js -->
-    <script>
-
-$(document).ready(function() {
-        // Display Toastr success message if session contains 'success'
-        @if(Session::has('success'))
-            toastr.success("{{ Session::get('success') }}");
-        @endif
-
-            @if ($errors->any())
-                @foreach ($errors->all() as $error)
-                    toastr.error("{{ $error }}");
-                @endforeach
-            @endif
-            
-            @if(Session::has('message'))
-                var type = "{{ Session::get('alert-type', 'info') }}";
-                switch(type) {
-                    case 'info':
-                        toastr.info("{{ Session::get('message') }}");
-                        break;
-
-                    case 'warning':
-                        toastr.warning("{{ Session::get('message') }}");
-                        break;
-
-                    case 'error':
-                        toastr.error("{{ Session::get('message') }}");
-                        break; 
-                }
-            @endif
-
-        });
-    </script>
+<script src="{{ asset('../js/app.js')}}"></script>
 </body>
 
 </html>
