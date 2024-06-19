@@ -11,7 +11,8 @@ class UpdateProfileRequest extends FormRequest
         $userId = $this->route('user')->id; // Get the ID of the user being updated
 
         return [
-            'name' => 'required|string|max:255',
+            'Fname' => 'required|string|max:255',
+            'Lname' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,' . $userId,
             'phone' => 'required|string|max:20|unique:users,phone,' . $userId,
             'address' => 'required|string|max:255',

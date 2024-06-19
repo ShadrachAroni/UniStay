@@ -61,12 +61,24 @@ class ProfileController extends Controller
     
             // Prepare data for update
             $updateData = [
-                'name' => $validatedData['name'],
+                'Fname' => $validatedData['Fname'],
+                'Lname' => $validatedData['Lname'],
                 'email' => $validatedData['email'],
                 'phone' => $validatedData['phone'],
                 'address' => $validatedData['address'],
             ];
     
+            //photo update logic
+            if($request->file('profile_photo')){
+               $file = $request->file('profile_photo'); 
+               $filename = date('YmdHi').$file->getClientOriginalName();
+               $file->move(public_path('upload/img'),$filename);
+               $data['profile_photo'] = $filename;
+            }
+
+            $data->save();
+
+
             // Only update role_id if it's provided in the request
             if (isset($validatedData['role_id'])) {
                 $updateData['role_id'] = $validatedData['role_id'];

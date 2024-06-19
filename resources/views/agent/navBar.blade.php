@@ -83,7 +83,7 @@
 <!-- messages -->
     <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <img class="wd-30 ht-30 rounded-circle" src="{{ Auth::user()->profile_photo_url }}" alt="profile">
+            <img class="wd-30 ht-30 rounded-circle" src="{{ Auth::user()->profile_photo }}" alt="profile">
         </a>
         <div class="dropdown-menu p-0" aria-labelledby="profileDropdown">
             <div class="d-flex flex-column align-items-center border-bottom px-5 py-3">
@@ -91,7 +91,7 @@
                     <img class="wd-80 ht-80 rounded-circle" src="{{ Auth::user()->profile_photo_url }}" alt="">
                 </div>
                 <div class="text-center">
-                    <p class="tx-16 fw-bolder">{{Auth::user()->name}}</p>
+                    <p class="tx-16 fw-bolder">{{Auth::user()->Fname}}</p>
                     <p class="tx-12 text-muted">{{Auth::user()->email}}</p>
                 </div>
             </div>

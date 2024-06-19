@@ -22,9 +22,10 @@ class CreateNewUser implements CreatesNewUsers
     public function create(array $input): User
     {
         Validator::make($input, [
-            'name' => ['required', 'string', 'max:255'],
+            'Fname' => ['required', 'string', 'max:255'],
+            'Lname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'phone' => ['nullable', 'string', 'max:15'], // phone validation
+            'phone' => ['nullable', 'string', 'max:15', 'unique:users'], // phone validation
             'address' => ['nullable', 'string', 'max:255'], // address validation
             'role_id' => ['nullable', 'integer'], // role_id validation
             'password' => $this->passwordRules(),
@@ -32,7 +33,8 @@ class CreateNewUser implements CreatesNewUsers
         ])->validate();
 
         $user = User::create([
-            'name' => $input['name'],
+            'Fname' => $input['Fname'],
+            'Lname' => $input['Lname'],
             'email' => $input['email'],
             'phone' => $input['phone'] ?? null,
             'address' => $input['address'] ?? null,

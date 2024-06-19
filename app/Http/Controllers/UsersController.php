@@ -36,7 +36,8 @@ class UsersController extends Controller
     
             // Create a new user with validated data, ensuring the password is hashed
             $user = User::create([
-                'name' => $validatedData['name'],
+                'Fname' => $validatedData['Fname'],
+                'Lname' => $validatedData['Lname'],
                 'email' => $validatedData['email'],
                 'phone' => $validatedData['phone'],
                 'address' => $validatedData['address'],
@@ -76,7 +77,8 @@ class UsersController extends Controller
     
             // Update user with validated data
             $user->update([
-                'name' => $validatedData['name'],
+                'Fname' => $validatedData['Fname'],
+                'Lname' => $validatedData['Lname'],
                 'email' => $validatedData['email'],
                 'phone' => $validatedData['phone'],
                 'address' => $validatedData['address'],

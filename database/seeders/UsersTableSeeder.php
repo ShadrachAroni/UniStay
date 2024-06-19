@@ -17,7 +17,8 @@ class UsersTableSeeder extends Seeder
     public function run(): void
     {
         DB::table('users')->insert([
-            'name' => 'admin',
+            'Fname' => 'Admin',
+            'Lname' => 'admin',
             'email' => 'admin@admin.com',
             'role_id' => 1,
             'phone' => '1234567891',
@@ -30,7 +31,8 @@ class UsersTableSeeder extends Seeder
         ]);
         
         DB::table('users')->insert([
-            'name' => 'Agent',
+            'Fname' => 'Agent',
+            'Lname' => 'agent',
             'email' => 'agent@agent.com',
             'role_id' => 3,
             'phone' => '1234567892',
@@ -43,7 +45,8 @@ class UsersTableSeeder extends Seeder
         ]);
 
         DB::table('users')->insert([
-            'name' => 'User',
+            'Fname' => 'User',
+            'Lname' => 'User',
             'email' => 'user@user.com',
             'role_id' => 2,
             'phone' => '1234567893',

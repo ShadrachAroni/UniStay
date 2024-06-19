@@ -1,3 +1,4 @@
+
 <div class="card mb-4">
  <div class="card rounded">
     <div class="card-body">
@@ -9,7 +10,7 @@
                 <div class="d-flex align-items-center justify-content-between mb-2">
 
                 <div>
-                    <img class="wd-100 rounded-circle" src="{{ Auth::user()->profile_photo_url }}">
+                    <img class="wd-100 rounded-circle" src="{{ (!empty(Auth::user()->profile_photo)) ? url('upload/img'.Auth::user()->profile_photo) : url('upload/img/no_image.jpg')}}">
                     <span class="h4 ms-3">{{ Auth::user()->name }}</span>
                 </div>
 
@@ -28,7 +29,7 @@
                             </div>
 
                             <div class="mt-3">
-                                <label class="tx-11 fw-bolder mb-0 text-uppercase">Role:</label>
+                                <label class="tx-11 fw-bolder mb-0 text-uppercase">Account type:</label>
                                 <p class="text-muted">{{ Auth::user()->role->name }}</p>
                             </div>
             </div>
@@ -44,7 +45,7 @@
               <div class="card-body">
 
                     <h6 class="card-title">Update Profile</h6>
-                    <form id="updateForm" method="post" action="{{ route('profile.update', $user->id) }}">
+                    <form id="updateForm" method="post" action="{{ route('profile.update', $user->id) }}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
 
@@ -79,9 +80,19 @@
                             <p class="text-sm text-red-600">{{ $message }}</p>
                         @enderror
                     </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Update</button>
+                    <div class="mb-3">
+                        <label for="profile_photo" class="form-label">Photo</label>
+                        <input class="form-control" type="file" name="profile_photo" id="image">
                     </div>
+
+                    <div class="mb-3">
+                        <label for="profile_photo" class="form-label"></label>
+                        <img id="showImage" class="wd-80 rounded-circle" src="{{ (!empty(Auth::user()->profile_photo)) ? url('upload/img'.Auth::user()->profile_photo) : url('upload/img/no_image.jpg')}}" style="width: 80px; height: 80px;">
+                    </div>
+
+                    
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                   
                     </div>
                    
                 </form>
@@ -97,3 +108,4 @@
         </div>
     </div>
 </div>
+

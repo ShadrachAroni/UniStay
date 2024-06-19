@@ -82,7 +82,7 @@
                         
                         <th>User</th>
                         <th>ID</th>
-                        <th>Name</th>
+                        <th>First Name</th>
                         <th>Email</th>
                         <th>Role</th>
                         <th></th>
@@ -96,11 +96,11 @@
                    
                         <td class="py-1">
                             <!-- image -->
-                        <img src="{{ $user->profile_photo_url }}" alt="image">
+                        <img src="{{ $user->profile_photo }}" alt="image">
                             
                         </td>
                         <td>{{ $user->id }}</td>
-                        <td>{{ $user->name }}</td>
+                        <td>{{ $user->Fname }}</td>
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->role->name }}</td>
                         <td>
@@ -149,7 +149,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="showTitle_{{$user->id}}">{{$user->name}}'s profile</h5>
+                    <h5 class="modal-title" id="showTitle_{{$user->id}}">User ID {{$user->id}}'s profile</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="btn-close"></button>
                 </div>
                 <div class="modal-body">
@@ -158,10 +158,14 @@
                             <div class="d-flex align-items-center justify-content-between mb-2">
                                 <h6 class="card-title mb-0">Photo</h6>
                             </div>
-                            <img src="{{ $user->profile_photo_url }}" alt="image">
+                            <img src="{{ $user->profile_photo }}" alt="image">
                             <div class="mt-3">
-                                <label class="tx-11 fw-bolder mb-0 text-uppercase">Name:</label>
-                                <p class="text-muted">{{ $user->name }}</p>
+                                <label class="tx-11 fw-bolder mb-0 text-uppercase">First Name:</label>
+                                <p class="text-muted">{{ $user->Fname }}</p>
+                            </div>
+                            <div class="mt-3">
+                                <label class="tx-11 fw-bolder mb-0 text-uppercase">Last Name:</label>
+                                <p class="text-muted">{{ $user->Lname }}</p>
                             </div>
                             <div class="mt-3">
                                 <label class="tx-11 fw-bolder mb-0 text-uppercase">Email:</label>
@@ -198,7 +202,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editTitle_{{$user->id}}">Edit {{$user->name}}'s profile</h5>
+                <h5 class="modal-title" id="editTitle_{{$user->id}}">Edit User ID {{$user->id}}'s profile</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="btn-close"></button>
             </div>
             <div class="modal-body">
@@ -207,8 +211,15 @@
                     @method('PUT')
 
                     <div class="mb-3">
-                        <label for="name" class="form-label">Name</label>
-                        <input id="name" class="form-control" name="name" type="text" value="{{ old('name', $user->name) }}">
+                        <label for="Fname" class="form-label">First Name</label>
+                        <input id="Fname" class="form-control" name="Fname" type="text" value="{{ old('Fname', $user->Fname) }}">
+                        @error('name')
+                            <p class="text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
+                        <label for="Lname" class="form-label">Last Name</label>
+                        <input id="Lname" class="form-control" name="Lname" type="text" value="{{ old('Lname', $user->Lname) }}">
                         @error('name')
                             <p class="text-sm text-red-600">{{ $message }}</p>
                         @enderror
@@ -276,8 +287,15 @@
                 <form id="createForm" method="post" action="{{ route('users.store') }}">
                     @csrf
                     <div class="mb-3">
-                        <label for="name" class="form-label">Name</label>
-                        <input id="name" class="form-control" name="name" type="text" value="{{ old('name', '') }}">
+                        <label for="Fname" class="form-label">First Name</label>
+                        <input id="Fname" class="form-control" name="Fname" type="text" value="{{ old('Fname', '') }}">
+                        @error('name')
+                            <p class="text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
+                        <label for="Lname" class="form-label">Last Name</label>
+                        <input id="Lname" class="form-control" name="Lname" type="text" value="{{ old('Lname', '') }}">
                         @error('name')
                             <p class="text-sm text-red-600">{{ $message }}</p>
                         @enderror

@@ -80,8 +80,14 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="name" value="{{ __('Name') }}">Full Name</label>
-                                <input type="text" name="name" id="name" class="name" value="{{ old('name') }}" required autofocus autocomplete="name">
+                                <label for="Fname" value="{{ __('First Name') }}">Full Name</label>
+                                <input type="text" name="Fname" id="Fname" class="name" value="{{ old('Fname') }}" required autofocus autocomplete="name">
+                                <span class="error"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Lname" value="{{ __('Last Name') }}">Full Name</label>
+                                <input type="text" name="Lname" id="Lname" class="name" value="{{ old('Lname') }}" required autofocus autocomplete="name">
                                 <span class="error"></span>
                             </div>
 
