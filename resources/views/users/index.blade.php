@@ -8,8 +8,8 @@
   <meta name="description" content=UniStay">
 	<meta name="keywords" content="nobleui, bootstrap, bootstrap 5, bootstrap5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
 
-    <link rel="icon" type="image/png" href="{{ asset('img/icons8-accomodation-lineal-color-96.png') }}">
-  <link rel="shortcut icon" href="{{ asset('img/icons8-accomodation-lineal-color-96.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('img/logo.png') }}">
+  <link rel="shortcut icon" href="{{ asset('img/logo.png') }}">
 
 	<title>UniStay</title>
 
