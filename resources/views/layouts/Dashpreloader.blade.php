@@ -4,6 +4,7 @@
         background-size: 60%;
         height: 100vh;
         position: fixed;
+        left: 110px;
         width: 100%;
         z-index: 100;
         opacity: 1; /* Initial opacity */

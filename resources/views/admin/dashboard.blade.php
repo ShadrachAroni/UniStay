@@ -1,5 +1,5 @@
 @include('header')
-@include('layouts.preloader')
+@include('layouts.Dashpreloader')
 	<div class="main-wrapper">
 
 		<!-- partial:partials/_sidebar.html -->

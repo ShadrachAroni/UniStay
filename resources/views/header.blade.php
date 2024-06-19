@@ -37,6 +37,7 @@
 <link rel="stylesheet" href="{{ asset('backend/assets/css/demo2/style.css') }}">
 <!-- End layout styles -->
 
+<script src="jquery-3.7.1.min.js"></script>
 
 
 </head>

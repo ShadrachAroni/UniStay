@@ -49,7 +49,7 @@
 
 </head>
 <body>
-@include('layouts.preloader')
+@include('layouts.Dashpreloader')
 	<div class="main-wrapper">
 
 		<!-- partial:partials/_sidebar.html -->
@@ -96,7 +96,7 @@
                    
                         <td class="py-1">
                             <!-- image -->
-                        <img src="{{ $user->profile_photo }}" alt="image">
+                        <img src="{{ (!empty($user->profile_photo)) ? url('upload/img'.$user->profile_photo) : url('upload/img/no_image.jpg') }}" alt="image">
                             
                         </td>
                         <td>{{ $user->id }}</td>
@@ -149,7 +149,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="showTitle_{{$user->id}}">User ID {{$user->id}}'s profile</h5>
+                    <h5 class="modal-title" id="showTitle_{{$user->id}}">User ID {{$user->id}} </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="btn-close"></button>
                 </div>
                 <div class="modal-body">
@@ -158,7 +158,7 @@
                             <div class="d-flex align-items-center justify-content-between mb-2">
                                 <h6 class="card-title mb-0">Photo</h6>
                             </div>
-                            <img src="{{ $user->profile_photo }}" alt="image">
+                            <img src="{{ (!empty($user->profile_photo)) ? url('upload/img'.$user->profile_photo) : url('upload/img/no_image.jpg') }}" alt="image">
                             <div class="mt-3">
                                 <label class="tx-11 fw-bolder mb-0 text-uppercase">First Name:</label>
                                 <p class="text-muted">{{ $user->Fname }}</p>
@@ -202,7 +202,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editTitle_{{$user->id}}">Edit User ID {{$user->id}}'s profile</h5>
+                <h5 class="modal-title" id="editTitle_{{$user->id}}">Edit User ID {{$user->id}}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="btn-close"></button>
             </div>
             <div class="modal-body">
