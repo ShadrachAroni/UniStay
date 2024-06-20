@@ -25,5 +25,13 @@ class UserController extends Controller
       return view('user.profile', compact('user'));
     }
 
+    public function data()
+    {
+       
+        $roles = Role::all();// Fetch all roles to use in the index view
+        $users = User::with('role')->get();
+
+        return view('users.Students', compact('users', 'roles'));
+    }
 
 }

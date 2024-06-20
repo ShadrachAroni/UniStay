@@ -20,15 +20,14 @@ Route::middleware([
     'verified',
 ])->group(function () {
  
-//
-
-
-
 
 Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::get('/admin/profile', [AdminController::class, 'profile'])->name('admin.profile');
     Route::resource('users', \App\Http\Controllers\UsersController::class);
+    Route::get('/Users/Admins', [AdminController::class, 'data'])->name('users.Admins');
+    Route::get('/Users/Students', [UserController::class, 'data'])->name('users.Students');
+    Route::get('/Users/Agents', [AgentController::class, 'data'])->name('users.Agents');
 });
 
 Route::middleware(['auth', 'isAgent'])->group(function () {

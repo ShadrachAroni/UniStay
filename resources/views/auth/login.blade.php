@@ -19,7 +19,7 @@
 </head>
 
 <body>
-@include('layouts.preloader')
+
 
 <div id="particles-background" class="vertical-centered-box"></div>
 <div id="particles-foreground" class="vertical-centered-box"></div>
@@ -79,8 +79,14 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="name" value="{{ __('Name') }}">Full Name</label>
-                                <input type="text" name="name" id="name" class="name" value="{{ old('name') }}" required autofocus autocomplete="name">
+                                <label for="Fname" value="{{ __('First Name') }}">First Name</label>
+                                <input type="text" name="Fname" id="Fname" class="name" value="{{ old('FFname') }}" required autofocus autocomplete="name">
+                                <span class="error"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Lname" value="{{ __('Last Name') }}">Last Name</label>
+                                <input type="text" name="Lname" id="Lname" class="name" value="{{ old('Lname') }}" required autofocus autocomplete="name">
                                 <span class="error"></span>
                             </div>
 

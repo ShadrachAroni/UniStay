@@ -50,8 +50,16 @@
                     @method('PUT')
 
                     <div class="mb-3">
-                        <label for="name" class="form-label">Name</label>
-                        <input id="name" class="form-control" name="name" type="text" value="{{ old('name', $user->name) }}">
+                        <label for="Fname" class="form-label">First Name</label>
+                        <input id="Fname" class="form-control" name="name" type="text" value="{{ old('Fname', $user->Fname) }}">
+                        @error('name')
+                            <p class="text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="Lname" class="form-label">Last Name</label>
+                        <input id="Lname" class="form-control" name="Lname" type="text" value="{{ old('Lname', $user->Lname) }}">
                         @error('name')
                             <p class="text-sm text-red-600">{{ $message }}</p>
                         @enderror

@@ -19,7 +19,6 @@
 </head>
 
 <body>
-@include('layouts.preloader')
 
 
 <div id="particles-background" class="vertical-centered-box"></div>
