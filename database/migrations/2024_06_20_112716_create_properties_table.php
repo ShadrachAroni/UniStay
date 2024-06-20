@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('city')->nullable();
             $table->string('district')->nullable();
             $table->decimal('price', 8, 2)->nullable();
+            $table->enum('status', ['Approved', 'Pending', 'rejected'])->default('pending');
             $table->foreignId('category_id')->constrained('categories')->nullable()->nullable();
             $table->foreignId('property_type_id')->constrained('property_types');
             $table->enum('availability_status', ['available', 'booked', 'unavailable'])->default('available');

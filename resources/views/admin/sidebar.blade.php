@@ -48,18 +48,21 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" href="#Properties" role="button" aria-expanded="false" aria-controls="Properties">
+            <a class="nav-link" data-bs-toggle="collapse" href="#Listings" role="button" aria-expanded="false" aria-controls="Listings">
               <i class="link-icon" data-feather="home"></i>
-              <span class="link-title">Properties</span>
+              <span class="link-title">Listings</span>
               <i class="link-arrow" data-feather="chevron-down"></i>
             </a>
-            <div class="collapse" id="Properties">
+            <div class="collapse" id="Listings">
               <ul class="nav sub-menu">
                 <li class="nav-item">
-                  <a href="#" class="nav-link">Manage Properties</a>
+                  <a href="#" class="nav-link">Approved Listings</a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">Listing Types</a>
+                  <a href="#" class="nav-link">Pending Approval</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">Types</a>
                 </li>
                 <li class="nav-item">
                   <a href="#" class="nav-link">Categories</a>
@@ -90,6 +93,9 @@
                 </li>
                 <li class="nav-item">
                   <a href="#" class="nav-link">Receipts</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">Transaction History</a>
                 </li>
                 <li class="nav-item">
                   <a href="#" class="nav-link">Reports</a>
