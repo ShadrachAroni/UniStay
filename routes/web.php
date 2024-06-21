@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AgentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -28,6 +29,9 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/Users/Admins', [AdminController::class, 'data'])->name('users.Admins');
     Route::get('/Users/Students', [UserController::class, 'data'])->name('users.Students');
     Route::get('/Users/Agents', [AgentController::class, 'data'])->name('users.Agents');
+    Route::get('/Users/verification', [UsersController::class, 'verification'])->name('users.verification');
+    Route::put('/users/approve/{id}', 'UsersController@approve')->name('users.approve');
+    Route::delete('/reject-user/{user}', [UsersController::class, 'reject'])->name('users.reject');
 });
 
 Route::middleware(['auth', 'isAgent'])->group(function () {

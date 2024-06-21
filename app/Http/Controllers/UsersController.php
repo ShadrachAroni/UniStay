@@ -6,8 +6,10 @@ use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\Role;
 use App\Models\User;
+use App\Notifications\UserRejectedNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Notification;
 use Symfony\Component\HttpFoundation\Response;
 
 class UsersController extends Controller
@@ -108,5 +110,44 @@ class UsersController extends Controller
         $user->delete();
 
         return redirect()->route('users.index');
+    }
+
+    public function verification()
+    {
+       
+        $roles = Role::all();// Fetch all roles to use in the index view
+        $users = User::with('role')->get();
+
+        return view('users.verification', compact('users', 'roles'));
+    }
+
+    public function approve(Request $request, $id)
+    {
+        // Find the user by ID
+        $user = User::findOrFail($id);
+
+        // Update the status and verified fields
+        $user->status = 'verified'; // Assuming 'status' is the field to update
+        $user->verified = true; // Assuming 'verified' is the boolean field
+
+        // Save the changes
+        $user->save();
+
+        // Redirect back or to any other route
+        return response()->json(['message' => 'User approved successfully'], 200)
+        ->header('Content-Type', 'application/json')
+        ->withHeaders([
+            'Location' => route('users.verification') // Set the location header for redirection
+        ]);
+    }
+
+    public function reject(User $user)
+    {
+        $user->delete();
+
+        // Send rejection email notification
+        Notification::send($user, new UserRejectedNotification());
+
+        return redirect()->route('users.verification');
     }
 }

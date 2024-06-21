@@ -23,6 +23,8 @@ class UsersTableSeeder extends Seeder
             'role_id' => 1,
             'phone' => '1234567891',
             'address' => '123 Main St, City',
+            'Status' => 'verified',
+            'verified' => true,
             'email_verified_at' => now(),
             'password' => Hash::make('password'),
             'remember_token' => Str::random(10),

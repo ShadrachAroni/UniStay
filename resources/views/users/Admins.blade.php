@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta name="description" content=UniStay">
+  <meta name="description" content="UniStay">
 	<meta name="keywords" content="nobleui, bootstrap, bootstrap 5, bootstrap5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
 
     <link rel="icon" type="image/png" href="{{ asset('img/logo.png') }}">
@@ -66,7 +66,7 @@
 
       <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
           <div>
-            <h4 class="mb-3 mb-md-0">View Users</h4>
+            <h4 class="mb-3 mb-md-0">View Admins</h4>
           </div>
           <div class="d-flex align-items-center flex-wrap text-nowrap">
             <div class="input-group flatpickr wd-200 me-2 mb-2 mb-md-0" id="dashboardDate">
@@ -80,7 +80,7 @@
             <thead>
                 <tr>
                         
-                        <th>User</th>
+                        <th>Photo</th>
                         <th>ID</th>
                         <th>First Name</th>
                         <th>Email</th>
@@ -120,7 +120,7 @@
                         <form id="delete-user-form-{{ $user->id }}" class="inline-block" action="{{ route('users.destroy', $user->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="button" class="btn btn-sm btn-danger" onclick="confirmDeletion({{ $user->id }})">Delete</button>
+                            <button type="button" class="btn btn-sm btn-danger" onclick="confirmDeletion('{{ $user->id }}')">Delete</button>
                         </form>
                      
 

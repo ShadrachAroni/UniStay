@@ -41,7 +41,7 @@
                   <a href="{{ route('users.Agents') }}" :active="request()->routeIs('users.Agents')" class="nav-link">Agents</a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">Pending verification</a>
+                  <a href="{{ route('users.verification') }}" class="nav-link">Pending verification</a>
                 </li>
               </ul>
             </div>
