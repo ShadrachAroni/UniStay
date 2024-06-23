@@ -6,7 +6,6 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PropertyTypeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UsersController;
-use App\Models\PropertyType;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
