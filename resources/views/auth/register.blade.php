@@ -63,10 +63,10 @@
             <a href="#" class="switch">Don't have an account?</a>
         </div>
         <div class="CTA">
-            <a href="{{ route('password.request') }}">forgot password?</a>
+            <a href="{{ route('password.request') }}" class="switch2">forgot password?</a>
          
         </div>
-        <a href="{{ route('home') }}">Back to Home</a>
+        <a href="{{ route('home') }}" class="switch2">Back to Home</a>
     
     </form>
 </div>
@@ -123,7 +123,7 @@
                             <div class="CTA">
                                 <input type="submit" value="Register">
                                 <a href="#" class="switch">I have an account</a>
-                                <a href="{{ route('home') }}">Back to Home</a>
+                                <a href="{{ route('home') }}" class="switch2">Back to Home</a>
                             </div>
                         </form>
                     </div>
@@ -162,7 +162,35 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- end toastr:js -->
-<script src="{{ asset('../js/app.js')}}"></script>
+    <script>
+     @if(Session::has('success'))
+        toastr.success("{{ Session::get('success') }}");
+    @endif
+
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            toastr.error("{{ $error }}");
+        @endforeach
+    @endif
+
+    @if(Session::has('message'))
+        var type = "{{ Session::get('alert-type', 'info') }}";
+        switch(type) {
+            case 'info':
+                toastr.info("{{ Session::get('message') }}");
+                break;
+
+            case 'warning':
+                toastr.warning("{{ Session::get('message') }}");
+                break;
+
+            case 'error':
+                toastr.error("{{ Session::get('message') }}");
+                break; 
+        }
+    @endif
+</script>
+
 </body>
 
 </html>

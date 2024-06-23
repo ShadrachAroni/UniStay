@@ -281,6 +281,18 @@ section#formHolder {
   color: #ffffff;
 }
 
+.form form .CTA a.switch2 {
+  font-size: 13px;
+  font-weight: 400;
+  font-family: "Nimbus-sans", sans-serif;
+  color: #96a2b6;
+  text-decoration: underline;
+  transition: all 0.3s;
+}
+.form form .CTA a.switch2:hover {
+  color: #ffffff;
+}
+
 
 
 @media (max-width: 768px) {
