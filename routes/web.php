@@ -3,8 +3,10 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AgentController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PropertyTypeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UsersController;
+use App\Models\PropertyType;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -32,6 +34,9 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/Users/verification', [UsersController::class, 'verification'])->name('users.verification');
     Route::put('/users/approve/{id}', 'UsersController@approve')->name('users.approve');
     Route::delete('/reject-user/{user}', [UsersController::class, 'reject'])->name('users.reject');
+    Route::get('/listings/types', [PropertyTypeController::class, 'types'])->name('listings.types');
+    Route::resource('types', \App\Http\Controllers\PropertyTypeController::class);
+
 });
 
 Route::middleware(['auth', 'isAgent'])->group(function () {

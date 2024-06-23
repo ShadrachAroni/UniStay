@@ -62,7 +62,7 @@
                   <a href="#" class="nav-link">Pending Approval</a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">Types</a>
+                  <a href="{{ route('listings.types') }}" class="nav-link">Types</a>
                 </li>
                 <li class="nav-item">
                   <a href="#" class="nav-link">Categories</a>
