@@ -112,7 +112,7 @@ class ProfileController extends Controller
     
         } catch (\Exception $e) {
             // Handle any errors that may occur
-            return redirect()->back()->withErrors(['error' => 'An error occurred while updating the user.'])->withInput();
+            return redirect()->back()->withErrors(['error' => 'An error occurred while updating your.'])->withInput();
         }
     }
     

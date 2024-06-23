@@ -134,11 +134,8 @@ class UsersController extends Controller
         $user->save();
 
         // Redirect back or to any other route
-        return response()->json(['message' => 'User approved successfully'], 200)
-        ->header('Content-Type', 'application/json')
-        ->withHeaders([
-            'Location' => route('users.verification')
-        ]);
+        return response()->json(['message' => 'User has been approved successfully.'], 200);
+        return view('users.verification');
     }
 
     public function reject(User $user)

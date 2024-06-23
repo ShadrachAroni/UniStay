@@ -31,8 +31,10 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/Users/Students', [UserController::class, 'data'])->name('users.Students');
     Route::get('/Users/Agents', [AgentController::class, 'data'])->name('users.Agents');
     Route::get('/Users/verification', [UsersController::class, 'verification'])->name('users.verification');
-    Route::put('/users/approve/{id}', 'UsersController@approve')->name('users.approve');
-    Route::delete('users/reject/{user}', 'UsersController@approve')->name('users.reject');
+    Route::put('/users/approve/{id}', [UsersController::class, 'approve'])->name('users.approve');
+
+    Route::put('/users/reject/{id}', [UsersController::class, 'reject'])->name('users.reject');
+
     Route::get('/listings/types', [PropertyTypeController::class, 'types'])->name('listings.types');
     Route::resource('types', \App\Http\Controllers\PropertyTypeController::class);
 

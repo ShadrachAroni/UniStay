@@ -214,9 +214,7 @@
   <script src="../backend/assets/js/dashboard-dark.js"></script>
 	<!-- End custom js for this page -->
 
-    <!-- Toastr JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 <script>
  function confirmRejection(userId) {
             Swal.fire({

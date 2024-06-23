@@ -126,6 +126,10 @@
                 break; 
         }
     @endif
+    function submitForm() {
+        document.getElementById('updateForm').submit();
+    }
+    
 </script>
 
 
