@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreTypeRequest;
+use App\Http\Requests\Types\StoreTypeRequest;
+use App\Http\Requests\Types\UpdateTypeRequest;
 use App\Models\PropertyType;
 use Illuminate\Http\Request;
 
@@ -69,9 +70,25 @@ class PropertyTypeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateTypeRequest $request, PropertyType $type)
     {
-        //
+        try {
+            // Validate incoming request data
+            $validatedData = $request->validated();
+    
+            // Update user with validated data
+            $type->update([
+                'name' => $validatedData['name'],
+                'description' => $validatedData['description'],
+            ]);
+
+            // Redirect to users index with a success message
+            return redirect()->route('listings.types')->with('success', 'Type updated successfully.');
+    
+        } catch (\Exception $e) {
+            // Handle any errors that may occur
+            return redirect()->back()->withErrors(['error' => 'An error occurred while updating the user.'])->withInput();
+        }
     }
 
     /**

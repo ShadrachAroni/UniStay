@@ -377,7 +377,6 @@
     <!-- Toastr JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="{{ asset('../js/app.js')}}"></script>
 <script>
  function confirmDeletion(userId) {
             Swal.fire({
@@ -391,10 +390,46 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     document.getElementById('delete-user-form-' + userId).submit();
+                    Swal.fire({
+                    icon: 'success',
+                    title: 'Success!',
+                    text: 'Type deleted Successfully!',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
                 }
             });
         }
-    </script>
+
+
+    // Display Toastr success message if session contains 'success'
+    @if(Session::has('success'))
+        toastr.success("{{ Session::get('success') }}");
+    @endif
+
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            toastr.error("{{ $error }}");
+        @endforeach
+    @endif
+
+    @if(Session::has('message'))
+        var type = "{{ Session::get('alert-type', 'info') }}";
+        switch(type) {
+            case 'info':
+                toastr.info("{{ Session::get('message') }}");
+                break;
+
+            case 'warning':
+                toastr.warning("{{ Session::get('message') }}");
+                break;
+
+            case 'error':
+                toastr.error("{{ Session::get('message') }}");
+                break; 
+        }
+    @endif
+</script>
 
 
 </body>

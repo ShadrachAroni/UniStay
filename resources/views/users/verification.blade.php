@@ -217,7 +217,6 @@
     <!-- Toastr JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="{{ asset('../js/app.js')}}"></script>
 <script>
  function confirmRejection(userId) {
             Swal.fire({
@@ -271,9 +270,6 @@
                     showConfirmButton: false,
                     timer: 1500
                 });
-
-                // Optionally, you can redirect to another page after success
-                // window.location.href = '/redirect-url'; // Replace with your redirect URL
             })
             .catch(error => {
                 console.error('Error:', error);

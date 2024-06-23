@@ -137,7 +137,7 @@ class UsersController extends Controller
         return response()->json(['message' => 'User approved successfully'], 200)
         ->header('Content-Type', 'application/json')
         ->withHeaders([
-            'Location' => route('users.verification') // Set the location header for redirection
+            'Location' => route('users.verification')
         ]);
     }
 
