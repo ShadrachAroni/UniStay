@@ -2,66 +2,51 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Property extends Model
 {
-    use HasFactory;
-
     protected $fillable = [
-        'agent_id',
-        'title',
-        'description',
-        'address',
-        'city',
-        'state',
-        'zipcode',
-        'price',
-        'category_id',
-        'property_type_id',
-        'availability_status',
+        'agent_id', 'title', 'description', 'address', 'city', 'state', 'zipcode', 'price', 'category_id', 'property_type_id', 'availability_status', 'video'
     ];
 
     public function agent()
     {
-        return $this->belongsTo(User::class, 'id');
+        return $this->belongsTo(User::class, 'agent_id');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 
     public function propertyType()
     {
-        return $this->belongsTo(PropertyType::class, 'id');
+        return $this->belongsTo(PropertyType::class);
     }
-
-   /* public function category()
-    {
-        return $this->belongsTo(Category::class, 'category_id');
-    }
-
-
 
     public function features()
     {
-        return $this->belongsToMany(PropertyFeature::class, 'property_feature_mappings', 'property_id', 'feature_id');
+        return $this->belongsToMany(PropertyFeature::class, 'property_feature_mappings');
     }
 
     public function amenities()
     {
-        return $this->belongsToMany(PropertyAmenity::class, 'property_amenity_mappings', 'property_id', 'amenity_id');
+        return $this->belongsToMany(PropertyAmenity::class, 'property_amenity_mappings');
     }
 
     public function surroundingAreas()
     {
-        return $this->belongsToMany(SurroundingArea::class, 'property_surrounding_area_mappings', 'property_id', 'surrounding_area_id');
+        return $this->belongsToMany(SurroundingArea::class, 'property_surrounding_area_mappings');
     }
 
     public function bookings()
     {
-        return $this->hasMany(Booking::class, 'property_id');
+        return $this->hasMany(Booking::class);
     }
 
     public function reviews()
     {
-        return $this->hasMany(Review::class, 'property_id');
-    } */
+        return $this->hasMany(Review::class);
+    }
 }

@@ -76,8 +76,28 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsTo(Role::class, 'role_id');
     }
 
-   /* public function isAdmin()
+    public function properties()
     {
-        return $this->role_id === 1; // Assuming 1 is the ID of the admin role
-    } */
+        return $this->hasMany(Property::class, 'agent_id');
+    }
+
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class, 'student_id');
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class, 'student_id');
+    }
+
+    public function sentMessages()
+    {
+        return $this->hasMany(Message::class, 'sender_id');
+    }
+
+    public function receivedMessages()
+    {
+        return $this->hasMany(Message::class, 'receiver_id');
+    }
 }

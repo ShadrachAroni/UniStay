@@ -18,13 +18,15 @@ return new class extends Migration
             $table->text('description');
             $table->string('address');
             $table->string('city');
-            $table->string('state');
-            $table->string('zipcode');
+            $table->string('area');
+            $table->string('country');
+            $table->string('county');
             $table->decimal('price', 10, 2);
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
             $table->foreignId('property_type_id')->constrained('property_types')->onDelete('cascade');
             $table->enum('availability_status', ['available', 'booked', 'unavailable']);
-            $table->string('video')->nullable();
+            $table->string('videos')->nullable();
+            $table->string('photos')->nullable();
             $table->timestamps();
         });
     }
