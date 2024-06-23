@@ -1,5 +1,4 @@
 @include('header')
-@include('layouts.preloader')
 	<div class="main-wrapper">
 
 		<!-- partial:partials/_sidebar.html -->
