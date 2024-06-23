@@ -7,10 +7,17 @@ use Illuminate\Support\Facades\Auth;
 
 class UpdateProfileRequest extends FormRequest
 {
+
+    
+    public function authorize()
+    {
+        return true;
+    }
+    
     public function rules()
     {
-        $userId = $this->route('user')->id;
-        
+        $userId = $this->route('profile');     
+           
         return [
             'Fname' => 'required|string|max:255',
             'Lname' => 'required|string|max:255',
@@ -23,8 +30,4 @@ class UpdateProfileRequest extends FormRequest
         ];
     }
 
-    public function authorize()
-    {
-        return true;
-    }
 }

@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AgentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PropertyTypeController;
@@ -50,8 +49,7 @@ Route::middleware(['auth', 'isUser'])->group(function () {
     Route::get('user/profile', [UserController::class, 'profile'])->name('user.profile');
 });
 
-Route::put('/profile/{user}', [ProfileController::class, 'update'])->name('profile.update');
-
+Route::resource('profile', \App\Http\Controllers\ProfileController::class);
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 });
