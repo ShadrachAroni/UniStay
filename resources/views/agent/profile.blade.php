@@ -1,15 +1,14 @@
 @include('header')
-@include('layouts.Dashpreloader')
 	<div class="main-wrapper">
 
 		<!-- partial:partials/_sidebar.html -->
-  @include('user/sidebar')
+  @include('agent/sidebar')
 		<!-- partial -->
 	
 		<div class="page-wrapper">
 					
 			<!-- partial:partials/_navbar.html -->
-	@include('user/navBar')
+	@include('agent/navBar')
 			<!-- partial -->
 
 			<div class="page-content">
@@ -89,6 +88,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="{{ asset('../js/app.js')}}"></script>
+<script src="{{ asset('../js/app.js')}}"></script>
 <script type="text/javascript">
     $(document).ready(function(){
         $('#image').change(function(e){
@@ -99,6 +99,37 @@
             reader.readAsDataURL(e.target.files['0']);
         });
     });
+
+    @if(Session::has('success'))
+        toastr.success("{{ Session::get('success') }}");
+    @endif
+
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            toastr.error("{{ $error }}");
+        @endforeach
+    @endif
+
+    @if(Session::has('message'))
+        var type = "{{ Session::get('alert-type', 'info') }}";
+        switch(type) {
+            case 'info':
+                toastr.info("{{ Session::get('message') }}");
+                break;
+
+            case 'warning':
+                toastr.warning("{{ Session::get('message') }}");
+                break;
+
+            case 'error':
+                toastr.error("{{ Session::get('message') }}");
+                break; 
+        }
+    @endif
+    
 </script>
+
+
+
 </body>
 </html>    
