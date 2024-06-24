@@ -17,7 +17,8 @@ class UpdateUserRequest extends FormRequest
             'phone' => 'required|string|max:20|unique:users,phone,' . $userId,
             'address' => 'required|string|max:255',
             'password' => 'nullable|string|min:8|confirmed', // Make password nullable to allow updates without changing password
-            'role_id' => 'required|exists:roles,id', // Validate that role_id exists in the roles table
+            'role_id' => 'nullable|exists:roles,id', // Validate that role_id exists in the roles table
+            'profile_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ];
     }
 

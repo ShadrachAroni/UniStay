@@ -1,4 +1,4 @@
-<script>
+
 $(document).ready(function() {
 
     // Your other JavaScript code here
@@ -16,35 +16,6 @@ $(document).ready(function() {
                 document.getElementById('delete-user-form-' + userId).submit();
             }
         });
-    }
-
-    // Display Toastr success message if session contains 'success'
-    @if(Session::has('success'))
-        toastr.success("{{ Session::get('success') }}");
-    @endif
-
-    @if ($errors->any())
-        @foreach ($errors->all() as $error)
-            toastr.error("{{ $error }}");
-        @endforeach
-    @endif
-
-    @if(Session::has('message'))
-        var type = "{{ Session::get('alert-type', 'info') }}";
-        switch(type) {
-            case 'info':
-                toastr.info("{{ Session::get('message') }}");
-                break;
-
-            case 'warning':
-                toastr.warning("{{ Session::get('message') }}");
-                break;
-
-            case 'error':
-                toastr.error("{{ Session::get('message') }}");
-                break; 
-        }
-    @endif
+    }  
 
 });
-</script>

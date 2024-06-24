@@ -55,47 +55,30 @@ class ProfileController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateProfileRequest $request, User $user)
+
+    public function update(UpdateUserRequest $request, User $user)
     {
         try {
             // Validate incoming request data
             $validatedData = $request->validated();
     
-            // Prepare data for update
-            $updateData = [
+            // Update user with validated data
+            $user->update([
                 'Fname' => $validatedData['Fname'],
                 'Lname' => $validatedData['Lname'],
                 'email' => $validatedData['email'],
                 'phone' => $validatedData['phone'],
                 'address' => $validatedData['address'],
-            ];
-    
-            //photo update logic
-            if($request->file('profile_photo')){
-               $file = $request->file('profile_photo'); 
-               $filename = date('YmdHi').$file->getClientOriginalName();
-               $file->move(public_path('upload/img'),$filename);
-               $data['profile_photo'] = $filename;
-            }
-
-            $data->save();
+            ]);
 
 
-            // Only update role_id if it's provided in the request
-            if (isset($validatedData['role_id'])) {
-                $updateData['role_id'] = $validatedData['role_id'];
-            }
-    
-            // Update user with validated data
-            $user->update($updateData);
-    
-            // Update password if provided
+            // Only update the password if it's provided
             if (!empty($validatedData['password'])) {
-                $user->password = bcrypt($validatedData['password']);
-                $user->save();
+                $user->update([
+                    'password' => bcrypt($validatedData['password']),
+                ]);
             }
     
-
             // Redirect to users index with a success message
             $userRole = Auth::user()->role_id; // Adjust this line to match your user role retrieval logic
 
@@ -108,12 +91,11 @@ class ProfileController extends Controller
                     return redirect()->route('admin.profile')->with('success', 'User updated successfully.');
                 default:
                     return redirect()->route('home')->with('success', 'User updated successfully.');
-            }
-    
+            }    
         } catch (\Exception $e) {
             // Handle any errors that may occur
-            return redirect()->back()->withErrors(['error' => 'An error occurred while updating your.'])->withInput();
-        }
+            return redirect()->route('errors.page')->withErrors(['error' => 'An error occurred while updating your profile: ' . $e->getMessage()])->withInput();
+                }
     }
     
 

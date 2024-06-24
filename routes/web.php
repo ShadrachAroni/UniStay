@@ -3,6 +3,8 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AgentController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ErrorController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PropertyTypeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UsersController;
@@ -51,11 +53,9 @@ Route::middleware(['auth', 'isUser'])->group(function () {
     Route::get('user/profile', [UserController::class, 'profile'])->name('user.profile');
 });
 
-Route::resource('profile', \App\Http\Controllers\ProfileController::class);
+Route::resource('users', \App\Http\Controllers\ProfileController::class);
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 });
 
-
-
-
+Route::get('/errors', [ErrorController::class, 'show'])->name('errors.page');

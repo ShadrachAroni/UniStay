@@ -53,72 +53,63 @@
 
 
         <!-- middle wrapper start -->
-        <div class="col-md-8 col-xl-8  middle-wrapper">
+        <div class="col-md-8 col-xl-8 middle-wrapper">
             <div class="row">
                 <div class="card">
                     <div class="card-body">
                         <h6 class="card-title">Update Profile</h6>
 
-                            <form id="updateProfile" method="post" action="{{ route('profile.update', $user->id) }}" enctype="multipart/form-data">
-                                @csrf
-                                @method('PUT')
+                        <form id="updateProfile" method="post" action="{{ route('users.update', $user->id) }}" enctype="multipart/form-data">
+                            @csrf
+                            @method('PUT')
 
-                                <div class="mb-3">
-                                    <label for="Fname" class="form-label">First Name</label>
-                                    <input id="Fname" class="form-control" name="Fname" type="text" value="{{ old('Fname', $user->Fname) }}">
-                                    @error('Fname')
-                                        <p class="text-sm text-red-600">{{ $message }}</p>
-                                    @enderror
-                                </div>
+                            <div class="mb-3">
+                                <label for="Fname" class="form-label">First Name</label>
+                                <input id="Fname" class="form-control" name="Fname" type="text" value="{{ old('Fname', $user->Fname) }}">
+                                @error('First name')
+                                    <p class="text-sm text-red-600">{{ $message }}</p>
+                                @enderror
+                            </div>
 
-                                <div class="mb-3">
-                                    <label for="Lname" class="form-label">Last Name</label>
-                                    <input id="Lname" class="form-control" name="Lname" type="text" value="{{ old('Lname', $user->Lname) }}">
-                                    @error('Lname')
-                                        <p class="text-sm text-red-600">{{ $message }}</p>
-                                    @enderror
-                                </div>
+                            <div class="mb-3">
+                                <label for="Lname" class="form-label">Last Name</label>
+                                <input id="Lname" class="form-control" name="Lname" type="text" value="{{ old('Lname', $user->Lname) }}">
+                                @error('Last name')
+                                    <p class="text-sm text-red-600">{{ $message }}</p>
+                                @enderror
+                            </div>
 
-                                <div class="mb-3">
-                                    <label for="email" class="form-label">Email</label>
-                                    <input id="email" class="form-control" name="email" type="email" value="{{ old('email', $user->email) }}">
-                                    @error('email')
-                                        <p class="text-sm text-red-600">{{ $message }}</p>
-                                    @enderror
-                                </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input id="email" class="form-control" name="email" type="email" value="{{ old('email', $user->email) }}">
+                                @error('email')
+                                    <p class="text-sm text-red-600">{{ $message }}</p>
+                                @enderror
+                            </div>
 
-                                <div class="mb-3">
-                                    <label for="phone" class="form-label">Contact</label>
-                                    <input id="phone" class="form-control" name="phone" type="text" value="{{ old('phone', $user->phone) }}">
-                                    @error('phone')
-                                        <p class="text-sm text-red-600">{{ $message }}</p>
-                                    @enderror
-                                </div>
+                            <div class="mb-3">
+                                <label for="phone" class="form-label">Contact</label>
+                                <input id="phone" class="form-control" name="phone" type="text" value="{{ old('phone', $user->phone) }}">
+                                @error('contact')
+                                    <p class="text-sm text-red-600">{{ $message }}</p>
+                                @enderror
+                            </div>
 
-                                <div class="mb-3">
-                                    <label for="address" class="form-label">Address</label>
-                                    <input id="address" class="form-control" name="address" type="text" value="{{ old('address', $user->address) }}">
-                                    @error('address')
-                                        <p class="text-sm text-red-600">{{ $message }}</p>
-                                    @enderror
-                                </div>
+                            <div class="mb-3">
+                                <label for="address" class="form-label">Address</label>
+                                <input id="address" class="form-control" name="address" type="text" value="{{ old('address', $user->address) }}">
+                                @error('address')
+                                    <p class="text-sm text-red-600">{{ $message }}</p>
+                                @enderror
+                            </div>
 
-                                <div class="mb-3">
-                                    <label for="profile_photo" class="form-label">Photo</label>
-                                    <input class="form-control" type="file" name="profile_photo" id="image">
-                                </div>
-
-                                <div class="mb-3">
-                                    <img id="showImage" class="wd-90 rounded-circle" src="{{ (!empty($user->profile_photo)) ? url('upload/img/'.$user->profile_photo) : url('upload/img/no_image.jpg')}}" style="width: 90px; height: 90px;">
-                                </div>
-
-                                <button type="submit" class="btn btn-primary">Save Changes</button>
-                            </form>
-
+                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
+
         <!-- middle wrapper end -->
 
         </div>
