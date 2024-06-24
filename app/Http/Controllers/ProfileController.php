@@ -70,7 +70,13 @@ class ProfileController extends Controller
                 'phone' => $validatedData['phone'],
                 'address' => $validatedData['address'],
             ]);
-
+                //photo update logic
+                if ($request->file('profile_photo')) {
+                    $file = $request->file('profile_photo'); 
+                    $filename = date('YmdHi') . $file->getClientOriginalName();
+                    $file->move(public_path('upload/img'), $filename);
+                    $user->update(['profile_photo' => $filename]);
+                }
 
             // Only update the password if it's provided
             if (!empty($validatedData['password'])) {
@@ -94,8 +100,8 @@ class ProfileController extends Controller
             }    
         } catch (\Exception $e) {
             // Handle any errors that may occur
-            return redirect()->route('errors.page')->withErrors(['error' => 'An error occurred while updating your profile: ' . $e->getMessage()])->withInput();
-                }
+            return redirect()->back()->withErrors(['error' => 'An error occurred while updating the user.'])->withInput();
+        }
     }
     
 

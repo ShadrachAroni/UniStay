@@ -90,7 +90,7 @@
                             <div class="mb-3">
                                 <label for="phone" class="form-label">Contact</label>
                                 <input id="phone" class="form-control" name="phone" type="text" value="{{ old('phone', $user->phone) }}">
-                                @error('contact')
+                                @error('phone')
                                     <p class="text-sm text-red-600">{{ $message }}</p>
                                 @enderror
                             </div>
@@ -101,6 +101,15 @@
                                 @error('address')
                                     <p class="text-sm text-red-600">{{ $message }}</p>
                                 @enderror
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="profile_photo" class="form-label">Photo</label>
+                                <input class="form-control" type="file" name="profile_photo" id="image">
+                            </div>
+
+                            <div class="mb-3">
+                                <img id="showImage" class="wd-90 rounded-circle" src="{{ (!empty($user->profile_photo)) ? url('upload/img/'.$user->profile_photo) : url('upload/img/no_image.jpg') }}" style="width: 90px; height: 90px;">
                             </div>
 
                             <button type="submit" class="btn btn-primary">Save Changes</button>
