@@ -18,7 +18,7 @@ class UpdateUserRequest extends FormRequest
             'address' => 'required|string|max:255',
             'password' => 'nullable|string|min:8|confirmed', // Make password nullable to allow updates without changing password
             'role_id' => 'nullable|exists:roles,id', // Validate that role_id exists in the roles table
-            'profile_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'profile_photo' => 'image|mimes:jpeg,png,jpg,gif|max:2048' // Adjust validation rules as needed
         ];
     }
 

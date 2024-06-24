@@ -100,4 +100,11 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Message::class, 'receiver_id');
     }
+
+    public function deleteProfilePhoto()
+    {
+        // Set 'profile_photo' column to null
+        $this->profile_photo = null;
+        $this->save();
+    }
 }

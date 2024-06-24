@@ -70,14 +70,29 @@ class ProfileController extends Controller
                 'phone' => $validatedData['phone'],
                 'address' => $validatedData['address'],
             ]);
+
+
                 //photo update logic
-                if ($request->file('profile_photo')) {
-                    $file = $request->file('profile_photo'); 
-                    $filename = date('YmdHi') . $file->getClientOriginalName();
-                    $file->move(public_path('upload/img'), $filename);
-                    $user->update(['profile_photo' => $filename]);
+                if ($request->hasFile('profile_photo')) {
+                // Delete old photo if exists
+                if ($user->profile_photo) {
+                    // Assuming you have a delete method in your User model
+                    $user->deleteProfilePhoto();
                 }
 
+                // Store new photo
+                $image = $request->file('profile_photo');
+                $filename = time() . '_' . $image->getClientOriginalName();
+                $image->storeAs('public/upload/img', $filename);
+
+                // Update user's profile_photo field in database
+                $user->profile_photo = $filename;
+                $user->save();
+            }
+
+
+
+                
             // Only update the password if it's provided
             if (!empty($validatedData['password'])) {
                 $user->update([
