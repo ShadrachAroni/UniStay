@@ -53,9 +53,7 @@ Route::middleware(['auth', 'isUser'])->group(function () {
     Route::get('user/profile', [UserController::class, 'profile'])->name('user.profile');
 });
 
-Route::resource('users', \App\Http\Controllers\ProfileController::class);
+Route::resource('profile', \App\Http\Controllers\ProfileController::class);
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 });
-
-Route::get('/errors', [ErrorController::class, 'show'])->name('errors.page');

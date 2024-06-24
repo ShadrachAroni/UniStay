@@ -18,7 +18,6 @@ class StoreUserRequest extends FormRequest
             'address' => 'required|string|max:255',
             'password' => 'required|string|max:255',
             'role_id' => 'required|exists:roles,id', // Validate that role_id exists in the roles table
-            
         ];
     }
     
