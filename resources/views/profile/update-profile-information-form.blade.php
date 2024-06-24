@@ -109,7 +109,7 @@
                             </div>
 
                             <div class="mb-3">
-                            <img id="showImage" class="wd-90 rounded-circle" src="{{ (!empty($user->profile_photo)) ? asset($user->profile_photo) : url('upload/img/no_image.jpg') }}" style="width: 90px; height: 90px;">
+                            <img class="wd-100 rounded-circle" src="{{ (!empty(Auth::user()->profile_photo)) ? url('upload/img'.Auth::user()->profile_photo) : url('upload/img/no_image.jpg')}}" alt="profile" > 
                             </div>
                             <button type="submit" class="btn btn-primary">Save Changes</button>
                         </form>
