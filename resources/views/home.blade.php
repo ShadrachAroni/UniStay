@@ -7,8 +7,8 @@
   <meta name="description" content="UniStay">
 
   
-    <link rel="icon" type="image/png" href="{{ asset('img/icons8-accomodation-lineal-color-96.png') }}">
-    <link rel="shortcut icon" href="{{ asset('img/icons8-accomodation-lineal-color-96.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('img/logo.png') }}">
+    <link rel="shortcut icon" href="{{ asset('img/logo.png') }}">
  
      <link rel="stylesheet" type="text/css" href ="{{asset('front/css/style.css')}}">
  
