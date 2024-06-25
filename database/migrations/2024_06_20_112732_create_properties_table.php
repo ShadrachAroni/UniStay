@@ -16,11 +16,11 @@ return new class extends Migration
             $table->foreignId('agent_id')->constrained('users')->onDelete('cascade');
             $table->string('title');
             $table->text('description');
-            $table->string('address');
-            $table->string('city');
-            $table->string('area');
             $table->string('country');
             $table->string('county');
+            $table->string('city');
+            $table->string('street');
+            $table->string('area_name')->nullable();
             $table->decimal('price', 10, 2);
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
             $table->foreignId('property_type_id')->constrained('property_types')->onDelete('cascade');
