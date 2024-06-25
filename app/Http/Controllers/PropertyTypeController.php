@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Types\StoreTypeRequest;
-use App\Http\Requests\Types\UpdateTypeRequest;
+use App\Http\Requests\types\StoreTypeRequest;
+use App\Http\Requests\types\UpdateTypeRequest;
 use App\Models\PropertyType;
 use Illuminate\Http\Request;
 

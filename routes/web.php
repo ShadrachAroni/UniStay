@@ -5,6 +5,7 @@ use App\Http\Controllers\AgentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ErrorController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PropertyFeatureController;
 use App\Http\Controllers\PropertyTypeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UsersController;
@@ -39,6 +40,8 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
 
     Route::get('/listings/types', [PropertyTypeController::class, 'types'])->name('listings.types');
     Route::resource('types', \App\Http\Controllers\PropertyTypeController::class);
+    Route::get('/listings/features', [PropertyFeatureController::class, 'features'])->name('listings.features');
+    Route::resource('features', \App\Http\Controllers\PropertyFeatureController::class);
 
 });
 

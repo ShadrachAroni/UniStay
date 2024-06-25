@@ -71,7 +71,7 @@
                   <a href="#" class="nav-link">Amenities</a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">Features</a>
+                  <a href="{{ route('listings.features') }}" class="nav-link">Features</a>
                 </li>
                 <li class="nav-item">
                   <a href="#" class="nav-link">Surrounding Area</a>

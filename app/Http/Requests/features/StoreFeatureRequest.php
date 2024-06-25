@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\types;
+namespace App\Http\Requests\features;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
 
-class StoreTypeRequest extends FormRequest
+class StoreFeatureRequest extends FormRequest
 {
     
     public function rules()
