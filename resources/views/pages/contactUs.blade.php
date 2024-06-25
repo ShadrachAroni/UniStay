@@ -73,7 +73,7 @@
 </header>
 
 
-<section class="ftco-section img bg-hero" style="background-image:  url('{{ asset('front/img/p2.png') }}');">
+<section class="ftco-section img bg-hero" style="background: #121b25">
 		<div class="container">
 			<div class="row justify-content-center">
 
@@ -98,7 +98,7 @@
 				        			<span class="fa fa-phone"></span>
 				        		</div>
 				        		<div class="text pl-4">
-					            <p><span>Phone:</span> <a href="tel://1234567920">+ 1235 2355 98</a></p>
+					            <p><span>Phone:</span> <a href="tel://1234567920">+ 254 123 456 789</a></p>
 					          </div>
 				          </div>
 				        	<div class="dbox w-100 d-flex align-items-start">
@@ -109,6 +109,7 @@
 					            <p><span>Email:</span> <a href="mailto:info@UniStay.com">info@UniStay.com</a></p>
 					          </div>
 				          </div>
+						 
 				        	<div class="dbox w-100 d-flex align-items-start">
 				        		<div class="icon d-flex align-items-center justify-content-center">
 				        			<span class="fa fa-globe"></span>
@@ -117,6 +118,14 @@
 					            <p><span>Website</span> <a href="#">UniStay.com</a></p>
 					          </div>
 				          </div>
+						  <div class="contact-content">
+							<div class="icons">
+								<a href="#"><i class='bx bxl-facebook' ></i></a>
+								<a href="#"><i class='bx bxl-instagram' ></i></a>
+								<a href="#"><i class='bx bxl-twitter' ></i></a>
+								<a href="#"><i class='bx bxl-youtube' ></i></a>
+							</div>
+						</div>
 			          </div>
 							</div>
 							<div class="col-lg-5">
