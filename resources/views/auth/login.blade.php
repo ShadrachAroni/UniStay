@@ -8,8 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{ asset('form/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('form/css/style.css') }}">
-    <link rel="icon" type="image/png" href="{{ asset('img/icons8-accomodation-lineal-color-96.png') }}">
-  <link rel="shortcut icon" href="{{ asset('img/icons8-accomodation-lineal-color-96.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('img/logo.png') }}">
+  <link rel="shortcut icon" href="{{ asset('img/logo.png') }}">
 
   <!-- Include Toastr CSS and JavaScript -->
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">

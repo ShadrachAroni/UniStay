@@ -167,6 +167,7 @@ header.sticky{
     padding: 60px 15% 50px;
 }
 .center-left h2{
+    margin-top: 5%;
     font-size: var(--h2-font);
 }
 .feature-content{

@@ -94,7 +94,7 @@
 <!--features section-->
 <section class="feature" data-aos="zoom-in-up">
     <div class="center-left">
-        <h2>Feature In</h2>
+        <h2>FeatureD In</h2>
     </div>
     <div class="feature-content">
 
