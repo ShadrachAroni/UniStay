@@ -200,7 +200,7 @@
     </div>
     <div class="about-text" data-aos="zoom-in-up">
         <h2>We help Students find suitable accomodations</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum.Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum.</p>
+        <p> Whether you're looking for a cozy single room, a shared apartment, or a place in a student dormitory, UniStay provides comprehensive listings complete with detailed descriptions, photos, and reviews from fellow students</p>
         <a href="#" class="btn">Get In touch</a>
     </div>
 </section>
@@ -209,7 +209,7 @@
 <section class="Subscribe" data-aos="zoom-in-up">
     <div class="Subscribe-content">
         <h2>Let's simplify life with UniStay</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum.</p>
+        <p> Our revolutionary website designed to simplify the process of finding student accommodation</p>
         <a href="#" class="btn">Get Started</a>
     </div>
 </section>
@@ -218,7 +218,7 @@
 <section class="contact" data-aos="zoom-in-up">
     <div class="contact-content">
         <img src="{{asset('front/img/logo.png')}}">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,molestiae.</p>
+        <p>Below you will be able to access our social media platforms and get mor in touch with us</p>
         <div class="icons">
             <a href="#"><i class='bx bxl-facebook' ></i></a>
             <a href="#"><i class='bx bxl-instagram' ></i></a>
@@ -251,13 +251,6 @@
         <li><a href="#">Hostels</a></li>
     </div>
     
-    <div class="contact-content">
-        <h4>Listings</h4>
-        <li><a href="#">Houses</a></li>
-        <li><a href="#">Rooms</a></li>
-        <li><a href="#">Appartment</a></li>
-        <li><a href="#">Hostels</a></li>
-    </div>
 </section>
 </div>
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
