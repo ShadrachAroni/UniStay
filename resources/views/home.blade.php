@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="description" content="UniStay">
-    <title>UniStay</title>
+  <meta name="description" content="UniStay">
+
   
-    <link rel="icon" type="image/png" href="{{ asset('img/logo.png') }}">
-    <link rel="shortcut icon" href="{{ asset('img/logo.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('img/icons8-accomodation-lineal-color-96.png') }}">
+    <link rel="shortcut icon" href="{{ asset('img/icons8-accomodation-lineal-color-96.png') }}">
  
      <link rel="stylesheet" type="text/css" href ="{{asset('front/css/style.css')}}">
  
@@ -38,6 +38,7 @@
         <li><a href="#">Home</a></li>
         <li><a href="#">About Us</a></li>
         <li><a href="#">Contact Us</a></li>
+        <li><a href="#">View listings</a></li>
         <li><a href="#">Add Listing</a></li>
     </ul>
 
@@ -62,7 +63,7 @@
 
                     @if (Route::has('register'))
                         <a href="{{ route('register') }}" class="h-btn2">
-                            Sign Up
+                            Register
                         </a>
                     @endif
                 @endauth
@@ -94,7 +95,7 @@
 <!--features section-->
 <section class="feature" data-aos="zoom-in-up">
     <div class="center-left">
-        <h2>FeatureD In</h2>
+        <h2>Featured In</h2>
     </div>
     <div class="feature-content">
 
@@ -200,7 +201,7 @@
     </div>
     <div class="about-text" data-aos="zoom-in-up">
         <h2>We help Students find suitable accomodations</h2>
-        <p>Find your ideal space to learn, grow, and thrive. Discover comfort, community, and the perfect place to call your own with our UniStay Application</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum.Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum.</p>
         <a href="#" class="btn">Get In touch</a>
     </div>
 </section>
@@ -209,8 +210,8 @@
 <section class="Subscribe" data-aos="zoom-in-up">
     <div class="Subscribe-content">
         <h2>Let's simplify life with UniStay</h2>
-        <p>Unlock your next chapter with ease and confidence. Navigate your journey to success with our seamless student accommodation finder, where every space becomes a stepping stone to your dreams</p>
-        <a href="{{ route('register')}}" class="btn">Get Started</a>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum.</p>
+        <a href="#" class="btn">Get Started</a>
     </div>
 </section>
 

@@ -8,12 +8,11 @@
     outline: none;
     scroll-behavior: smooth;
     font-family: 'Work Sans', sans-serif;
-    min-width: -10px;
 }
 
 :root{
-    --h1-font: 3rem;
-    --h2-font: 0.9rem;
+    --h1-font: 5rem;
+    --h2-font: 2.9rem;
     --p-font:1.1rem;
 
     --bg-color: #121b25;
