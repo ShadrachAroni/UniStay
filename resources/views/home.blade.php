@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta name="description" content="UniStay">
-
+    <meta name="description" content="UniStay">
+    <title>UniStay</title>
   
     <link rel="icon" type="image/png" href="{{ asset('img/logo.png') }}">
     <link rel="shortcut icon" href="{{ asset('img/logo.png') }}">
@@ -38,7 +38,6 @@
         <li><a href="#">Home</a></li>
         <li><a href="#">About Us</a></li>
         <li><a href="#">Contact Us</a></li>
-        <li><a href="#">View listings</a></li>
         <li><a href="#">Add Listing</a></li>
     </ul>
 
@@ -63,7 +62,7 @@
 
                     @if (Route::has('register'))
                         <a href="{{ route('register') }}" class="h-btn2">
-                            Register
+                            Sign Up
                         </a>
                     @endif
                 @endauth
@@ -108,7 +107,7 @@
         </div>
 
         <div class="f-img">
-            <img src="{{asset('front//f3.png')}}">
+            <img src="{{asset('front/img/f3.png')}}">
         </div>
 
         <div class="f-img">
@@ -201,7 +200,7 @@
     </div>
     <div class="about-text" data-aos="zoom-in-up">
         <h2>We help Students find suitable accomodations</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum.Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum.</p>
+        <p>Find your ideal space to learn, grow, and thrive. Discover comfort, community, and the perfect place to call your own with our UniStay Application</p>
         <a href="#" class="btn">Get In touch</a>
     </div>
 </section>
@@ -210,8 +209,8 @@
 <section class="Subscribe" data-aos="zoom-in-up">
     <div class="Subscribe-content">
         <h2>Let's simplify life with UniStay</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum.</p>
-        <a href="#" class="btn">Get Started</a>
+        <p>Unlock your next chapter with ease and confidence. Navigate your journey to success with our seamless student accommodation finder, where every space becomes a stepping stone to your dreams</p>
+        <a href="{{ route('register')}}" class="btn">Get Started</a>
     </div>
 </section>
 
