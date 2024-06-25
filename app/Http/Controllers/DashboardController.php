@@ -23,4 +23,11 @@ class DashboardController extends Controller
                 break;
         }
     }
+
+    public function about(){
+        return view('pages.aboutUs');
+    }
+    public function contact(){
+        return view('pages.contactUs');
+    }
 }

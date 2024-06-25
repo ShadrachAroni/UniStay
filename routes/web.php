@@ -19,6 +19,9 @@ Route::get('/home', function () {
     return view('home');
 })->name('home');
 
+Route::get('/pages/aboutUs', [DashboardController::class, 'about'])->name('about');
+Route::get('/pages/ContactUs', [DashboardController::class, 'contact'])->name('contact');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -58,5 +61,4 @@ Route::middleware(['auth', 'isUser'])->group(function () {
 
 Route::resource('profile', \App\Http\Controllers\ProfileController::class);
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
 });

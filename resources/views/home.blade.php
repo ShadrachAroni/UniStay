@@ -7,8 +7,8 @@
   <meta name="description" content="UniStay">
 
   
-    <link rel="icon" type="image/png" href="{{ asset('img/icons8-accomodation-lineal-color-96.png') }}">
-    <link rel="shortcut icon" href="{{ asset('img/icons8-accomodation-lineal-color-96.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('img/logo.png') }}">
+    <link rel="shortcut icon" href="{{ asset('img/logo.png') }}">
  
      <link rel="stylesheet" type="text/css" href ="{{asset('front/css/style.css')}}">
  
@@ -36,9 +36,8 @@
     </a>
     <ul class="navbar open">
         <li><a href="#">Home</a></li>
-        <li><a href="#">About Us</a></li>
-        <li><a href="#">Contact Us</a></li>
-        <li><a href="#">View listings</a></li>
+        <li><a href="{{ route('about')}}">About Us</a></li>
+        <li><a href="{{route('contact')}}">Contact Us</a></li>
         <li><a href="#">Add Listing</a></li>
     </ul>
 
