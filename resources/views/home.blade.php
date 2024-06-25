@@ -218,7 +218,7 @@
 <section class="contact" data-aos="zoom-in-up">
     <div class="contact-content">
         <img src="{{asset('front/img/logo.png')}}">
-        <p>Below you will be able to access our social media platforms and get mor in touch with us</p>
+        <p>Below you will be able to access our social media platforms and get more in touch with us</p>
         <div class="icons">
             <a href="#"><i class='bx bxl-facebook' ></i></a>
             <a href="#"><i class='bx bxl-instagram' ></i></a>
