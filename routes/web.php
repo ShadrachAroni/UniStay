@@ -2,11 +2,14 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AgentController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ErrorController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PropertyAmenityController;
 use App\Http\Controllers\PropertyFeatureController;
 use App\Http\Controllers\PropertyTypeController;
+use App\Http\Controllers\SurroundingAreaController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
@@ -45,6 +48,12 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::resource('types', \App\Http\Controllers\PropertyTypeController::class);
     Route::get('/listings/features', [PropertyFeatureController::class, 'features'])->name('listings.features');
     Route::resource('features', \App\Http\Controllers\PropertyFeatureController::class);
+    Route::get('/listings/amenities', [PropertyAmenityController::class, 'amenities'])->name('listings.amenities');
+    Route::resource('surroundings', \App\Http\Controllers\SurroundingAreaController::class);
+    Route::get('/listings/surroundings', [SurroundingAreaController::class, 'surroundings'])->name('listings.surroundings');
+    Route::resource('amenities', \App\Http\Controllers\PropertyAmenityController::class);
+    Route::get('/listings/categories', [CategoryController::class, 'categories'])->name('listings.categories');
+    Route::resource('categories', \App\Http\Controllers\CategoryController::class);
 
 });
 

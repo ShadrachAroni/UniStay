@@ -65,16 +65,16 @@
                   <a href="{{ route('listings.types') }}" class="nav-link">Types</a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">Categories</a>
+                  <a href="{{ route('listings.categories') }}" class="nav-link">Categories</a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">Amenities</a>
+                  <a href="{{ route('listings.amenities')}}" class="nav-link">Amenities</a>
                 </li>
                 <li class="nav-item">
                   <a href="{{ route('listings.features') }}" class="nav-link">Features</a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">Surrounding Area</a>
+                  <a href="{{ route('listings.surroundings')}}" class="nav-link">Surrounding Area</a>
                 </li>
               </ul>
             </div>

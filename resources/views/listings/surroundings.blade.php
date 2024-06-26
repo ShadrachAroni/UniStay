@@ -1,5 +1,5 @@
 
-<!DOCamenity html>
+<!DOCsurrounding html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -8,7 +8,7 @@
   <meta name="description" content="UniStay">
 	<meta name="keywords" content="nobleui, bootstrap, bootstrap 5, bootstrap5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
 
-    <link rel="icon" amenity="image/png" href="{{ asset('img/logo.png') }}">
+    <link rel="icon" surrounding="image/png" href="{{ asset('img/logo.png') }}">
   <link rel="shortcut icon" href="{{ asset('img/logo.png') }}">
 
 	<title>UniStay</title>
@@ -65,12 +65,12 @@
 
       <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
           <div>
-            <h4 class="mb-3 mb-md-0">Listing Amenities </h4>
+            <h4 class="mb-3 mb-md-0">Listing Surrounding Areas </h4>
           </div>
           <div class="d-flex align-items-center flex-wrap text-nowrap">
             <div class="input-group flatpickr wd-200 me-2 mb-2 mb-md-0" id="dashboardDate">
               <span class="input-group-text input-group-addon bg-transparent border-primary" data-toggle><i data-feather="calendar" class="text-primary"></i></span>
-              <input amenity="text" class="form-control bg-transparent border-primary" placeholder="Select date" data-input>
+              <input surrounding="text" class="form-control bg-transparent border-primary" placeholder="Select date" data-input>
             </div>
           </div>
         </div>
@@ -86,24 +86,24 @@
                 </tr>
             </thead>
             <tbody>
-            @foreach($amenities as $amenity)
+            @foreach($surroundings as $surrounding)
 
                     <tr>
-                        <td>{{ $amenity->id }}</td>
-                        <td>{{ $amenity->name }}</td>
-                        <td>{{ $amenity->description }}</td>
+                        <td>{{ $surrounding->id }}</td>
+                        <td>{{ $surrounding->name }}</td>
+                        <td>{{ $surrounding->description }}</td>
                         <td>
                            
-                           <a href="#" class="btn btn-sm btn-primary"  data-bs-toggle="modal" data-bs-target="#edit_{{$amenity->id}}">Edit</a>
+                           <a href="#" class="btn btn-sm btn-primary"  data-bs-toggle="modal" data-bs-target="#edit_{{$surrounding->id}}">Edit</a>
                            
                        </td>
                        <td>
                           
                        
-                       <form id="delete-amenity-form-{{ $amenity->id }}" class="inline-block" action="{{ route('amenities.destroy', $amenity->id) }}" method="POST">
+                       <form id="delete-surrounding-form-{{ $surrounding->id }}" class="inline-block" action="{{ route('surroundings.destroy', $surrounding->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button amenity="button" class="btn btn-sm btn-danger" onclick="confirmDeletion('{{ $amenity->id }}')">Delete</button>
+                            <button type="button" class="btn btn-sm btn-danger" onclick="confirmDeletion('{{ $surrounding->id }}')">Delete</button>
                         </form>
                     
 
@@ -112,7 +112,7 @@
                     @endforeach
                 </tbody>
                 <div class="d-flex align-items-center flex-wrap text-nowrap">
-                <button href="#" class="btn btn-sm btn-primary"  data-bs-toggle="modal" data-bs-target="#add">Add amenity</button>
+                <button href="#" class="btn btn-sm btn-primary"  data-bs-toggle="modal" data-bs-target="#add">Add surrounding</button>
           </div>
         </div>
         </table>
@@ -122,33 +122,33 @@
 </div>
 
 <!-- Edit Modal -->
-@foreach($amenities as $amenity)
-<div class="modal fade" id="edit_{{$amenity->id}}" tabindex="-1" aria-labelledby="editTitle_{{$amenity->id}}" aria-hidden="true">
+@foreach($surroundings as $surrounding)
+<div class="modal fade" id="edit_{{$surrounding->id}}" tabindex="-1" aria-labelledby="editTitle_{{$surrounding->id}}" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editTitle_{{$amenity->id}}">Edit amenity ID {{$amenity->id}}</h5>
-                <button amenity="button" class="btn-close" data-bs-dismiss="modal" aria-label="btn-close"></button>
+                <h5 class="modal-title" id="editTitle_{{$surrounding->id}}">Edit surrounding ID {{$surrounding->id}}</h5>
+                <button surrounding="button" class="btn-close" data-bs-dismiss="modal" aria-label="btn-close"></button>
             </div>
             <div class="modal-body">
-                <form id="updateForm" method="post" action="{{ route('amenities.update', $amenity->id) }}">
+                <form id="updateForm" method="post" action="{{ route('surroundings.update', $surrounding->id) }}">
                     @csrf
                     @method('PUT')
 
                     <div class="mb-3">
                         <label for="name" class="form-label">First Name</label>
-                        <input id="name" class="form-control" name="name" amenity="text" value="{{ old('name', $amenity->name) }}">
+                        <input id="name" class="form-control" name="name" surrounding="text" value="{{ old('name', $surrounding->name) }}">
                         @error('name')
                             <p class="text-sm text-red-600">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="mb-3">
                       <label for="description" class="form-label">Description</label>
-                      <textarea id="description" class="form-control" name="description" rows="6">{{ old('description', $amenity->description) }}</textarea>
+                      <textarea id="description" class="form-control" name="description" rows="6">{{ old('description', $surrounding->description) }}</textarea>
                   </div>    
                     <div class="modal-footer">
-                        <button amenity="submit" class="btn btn-primary">Save Changes</button>
-                        <button amenity="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button surrounding="submit" class="btn btn-primary">Save Changes</button>
+                        <button surrounding="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                     </div>
                 </form>
             </div>
@@ -163,29 +163,29 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="addTitle">Add amenity</h5>
-                <button amenity="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 class="modal-title" id="addTitle">Add surrounding</h5>
+                <button surrounding="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="addForm" method="post" action="{{ route('amenities.store') }}">
+                <form id="addForm" method="post" action="{{ route('surroundings.store') }}">
                     @csrf
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
-                        <input id="name" class="form-control" name="name" amenity="text" value="{{ old('name', '') }}">
+                        <input id="name" class="form-control" name="name" surrounding="text" value="{{ old('name', '') }}">
                         @error('name')
                             <p class="text-sm text-red-600">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="mb-3">
                         <label for="description" class="form-label">Description</label>
-                        <textarea rows="6" id="description" class="form-control" name="description" amenity="text" value="{{ old('description', '') }}"></textarea>
+                        <textarea rows="6" id="description" class="form-control" name="description" surrounding="text" value="{{ old('description', '') }}"></textarea>
                         @error('name')
                             <p class="text-sm text-red-600">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="modal-footer">
-                        <button amenity="submit" class="btn btn-primary">Add</button>
-                        <button amenity="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button surrounding="submit" class="btn btn-primary">Add</button>
+                        <button surrounding="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                     </div>
                 </form>
             </div>
@@ -218,7 +218,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <script>
- function confirmDeletion(amenityId) {
+function confirmDeletion(surroundingId) {
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
@@ -229,11 +229,11 @@
                 confirmButtonText: 'Yes, delete it!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    document.getElementById('delete-amenity-form-' + amenityId).submit();
+                    document.getElementById('delete-surrounding-form-' + surroundingId).submit();
                     Swal.fire({
                     icon: 'success',
                     title: 'Success!',
-                    text: 'amenity deleted Successfully!',
+                    text: 'surrounding deleted Successfully!',
                     showConfirmButton: false,
                     timer: 1500
                 });
@@ -251,8 +251,8 @@
     @endif
 
     @if(Session::has('message'))
-        var amenity = "{{ Session::get('alert-amenity', 'info') }}";
-        switch(amenity) {
+        var surrounding = "{{ Session::get('alert-surrounding', 'info') }}";
+        switch(surrounding) {
             case 'info':
                 toastr.info("{{ Session::get('message') }}");
                 break;
