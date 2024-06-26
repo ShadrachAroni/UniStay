@@ -73,7 +73,7 @@
 </header>
 
 
-<section class="ftco-section img bg-hero" style="background: #121b25">
+<section class="ftco-section img bg-hero" style="background: #182431">
 		<div class="container">
 			<div class="row justify-content-center">
 
