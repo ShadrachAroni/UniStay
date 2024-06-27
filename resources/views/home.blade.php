@@ -38,7 +38,7 @@
         <li><a href="#">Home</a></li>
         <li><a href="{{ route('about')}}">About Us</a></li>
         <li><a href="{{route('contact')}}">Contact Us</a></li>
-        <li><a href="#">Add Listing</a></li>
+        <li><a href="{{ route('pages.addListings') }}">Add Listing</a></li>
     </ul>
 
     <div class="h-btn">

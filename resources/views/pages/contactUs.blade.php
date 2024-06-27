@@ -132,9 +132,9 @@
 								<div class="contact-wrap w-100 p-md-5 p-4">
 									
 									<div id="form-message-warning" class="mb-4"></div> 
-				      		<div id="form-message-success" class="mb-4">
-				            Your message was sent, thank you!
-				      		</div>
+										<div id="form-message-success" class="mb-4">
+										Your message was sent, thank you!
+										</div>
 									<form method="POST" id="contactForm" name="contactForm">
 										<div class="row">
 											<div class="col-md-12">

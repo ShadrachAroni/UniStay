@@ -2,7 +2,14 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
+use App\Models\Property;
+use App\Models\Category;
+use App\Models\PropertyType;
+use App\Models\PropertyFeature;
+use App\Models\PropertyAmenity;
+
 
 class PropertyController extends Controller
 {
@@ -27,7 +34,50 @@ class PropertyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required',
+            'country' => 'required|string|max:255',
+            'county' => 'required|string|max:255',
+            'city' => 'required|string|max:255',
+            'street' => 'required|string|max:255',
+            'area_name' => 'nullable|string|max:255',
+            'price' => 'required|numeric',
+            'category_id' => 'required|integer|exists:categories,id',
+            'property_type_id' => 'required|integer|exists:property_types,id',
+            'availability_status' => 'required|in:available,booked,unavailable',
+            'features' => 'array',
+            'amenities' => 'array',
+            'photos' => 'array',
+            'photos.*' => 'file|mimes:jpg,jpeg,png',
+            'videos' => 'array',
+            'videos.*' => 'file|mimes:mp4,mov,avi,mkv',
+        ]);
+    
+        $property = Property::create($validatedData);
+        
+        // Handle file uploads
+        $propertyFolder = 'properties/' . $property->id;
+        $imageFolder = $propertyFolder . '/images';
+        $videoFolder = $propertyFolder . '/videos';
+    
+        if ($request->hasFile('photos')) {
+            foreach ($request->file('photos') as $index => $photo) {
+                $photo->storeAs($imageFolder, 'image_' . ($index + 1) . '.' . $photo->getClientOriginalExtension());
+            }
+        }
+    
+        if ($request->hasFile('videos')) {
+            foreach ($request->file('videos') as $index => $video) {
+                $video->storeAs($videoFolder, 'video_' . ($index + 1) . '.' . $video->getClientOriginalExtension());
+            }
+        }
+    
+        // Sync relationships
+        $property->features()->sync($request->features);
+        $property->amenities()->sync($request->amenities);
+    
+        return redirect()->route('pages.addListings')->with('success', 'Listing added successfully!');
     }
 
     /**
@@ -60,6 +110,16 @@ class PropertyController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function add(){
+
+        $categories = Category::all();
+        $propertyTypes = PropertyType::all();
+        $features = PropertyFeature::all();
+        $amenities = PropertyAmenity::all();
+        return view('pages.addListings', compact('categories', 'propertyTypes', 'features', 'amenities'));
+
     }
 
 }

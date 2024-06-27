@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Property extends Model
 {
     protected $fillable = [
-        'agent_id', 'title', 'description', 'address', 'city', 'state', 'zipcode', 'price', 'category_id', 'property_type_id', 'availability_status', 'video'
+        'agent_id', 'title', 'description', 'country', 'county', 'city', 'street', 'area_name', 'price', 'category_id', 'property_type_id', 'availability_status'
     ];
 
     public function agent()

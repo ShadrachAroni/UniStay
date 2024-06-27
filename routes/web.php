@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ErrorController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PropertyAmenityController;
+use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\PropertyFeatureController;
 use App\Http\Controllers\PropertyTypeController;
 use App\Http\Controllers\SurroundingAreaController;
@@ -71,3 +72,6 @@ Route::middleware(['auth', 'isUser'])->group(function () {
 Route::resource('profile', \App\Http\Controllers\ProfileController::class);
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
+
+Route::resource('properties', \App\Http\Controllers\PropertyController::class);
+Route::get('/pages/addListings', [PropertyController::class, 'add'])->name('pages.addListings');
