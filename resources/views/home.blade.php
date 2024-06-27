@@ -25,7 +25,6 @@
      <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;800;900&display=swap"  rel="stylesheet">
  
      <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
- 
 </head>
 <body>
 
@@ -38,7 +37,7 @@
         <li><a href="#">Home</a></li>
         <li><a href="{{ route('about')}}">About Us</a></li>
         <li><a href="{{route('contact')}}">Contact Us</a></li>
-        <li><a href="{{ route('pages.addListings') }}">Add Listing</a></li>
+        <li><a href="{{ route('pages.add') }}">Add Listing</a></li>
     </ul>
 
     <div class="h-btn">
@@ -253,6 +252,8 @@
     
 </section>
 </div>
+
+
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 
 
@@ -263,5 +264,6 @@
         document.getElementById('logout-form').submit();
     }
 </script>
+
 </body>
 </html>

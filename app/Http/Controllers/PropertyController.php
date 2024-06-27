@@ -10,6 +10,9 @@ use App\Models\PropertyType;
 use App\Models\PropertyFeature;
 use App\Models\PropertyAmenity;
 use App\Models\SurroundingArea;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class PropertyController extends Controller
 {
@@ -115,15 +118,19 @@ class PropertyController extends Controller
         //
     }
 
-    public function add(){
+    public function add() {
 
-        $categories = PropertyCategory::all();
-        $propertyTypes = PropertyType::all();
-        $features = PropertyFeature::all();
-        $amenities = PropertyAmenity::all();
-        $surroundings = SurroundingArea::all();
-        return view('pages.add', compact('categories', 'propertyTypes', 'features', 'amenities', 'surroundings'));
-
+        if (Auth::check() && Auth::user()->role_id === 1 && Auth::user()->role_id === 3) {
+            $categories = PropertyCategory::all();
+            $propertyTypes = PropertyType::all();
+            $features = PropertyFeature::all();
+            $amenities = PropertyAmenity::all();
+            $surroundings = SurroundingArea::all();
+            return view('pages.add', compact('categories', 'propertyTypes', 'features', 'amenities', 'surroundings'));
+        } else {
+            // User is not authorized or not logged in, show the login modal or handle as needed
+            return redirect()->route('home')->with('showModal', true);
+        }
     }
 
 }

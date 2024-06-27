@@ -23,7 +23,6 @@ class DashboardController extends Controller
                 break;
         }
     }
-
     public function about(){
         return view('pages.aboutUs');
     }

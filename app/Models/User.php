@@ -107,4 +107,15 @@ class User extends Authenticatable implements MustVerifyEmail
         $this->profile_photo = null;
         $this->save();
     }
+
+    public function isAdmin()
+    {
+        return $this->role_id === 1; // Adjust 'role' column as per your database structure
+    }
+
+    // Define isAgent method to check if user has agent role
+    public function isAgent()
+    {
+        return $this->role_id === 3; // Adjust 'role' column as per your database structure
+    }
 }
