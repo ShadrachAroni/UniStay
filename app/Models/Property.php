@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Property extends Model
 {
     protected $fillable = [
-        'agent_id', 'title', 'description', 'country', 'county', 'city', 'street', 'area_name', 'price', 'category_id', 'property_type_id', 'availability_status'
+        'agent_id', 'title', 'description','policies', 'country', 'county', 'city', 'street', 'area_name', 'price', 'property_type_id', 'availability_status'
     ];
 
     public function agent()
@@ -17,7 +17,7 @@ class Property extends Model
 
     public function category()
     {
-        return $this->belongsToMany(Category::class);
+        return $this->belongsToMany(PropertyCategory::class);
     }
 
     public function propertyType()

@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AgentController;
-use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PropertyCategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ErrorController;
 use App\Http\Controllers\ProfileController;
@@ -53,8 +53,8 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::resource('surroundings', \App\Http\Controllers\SurroundingAreaController::class);
     Route::get('/listings/surroundings', [SurroundingAreaController::class, 'surroundings'])->name('listings.surroundings');
     Route::resource('amenities', \App\Http\Controllers\PropertyAmenityController::class);
-    Route::get('/listings/categories', [CategoryController::class, 'categories'])->name('listings.categories');
-    Route::resource('categories', \App\Http\Controllers\CategoryController::class);
+    Route::get('/listings/categories', [PropertyCategoryController::class, 'categories'])->name('listings.categories');
+    Route::resource('categories', \App\Http\Controllers\PropertyCategoryController::class);
 
 });
 

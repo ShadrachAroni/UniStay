@@ -87,9 +87,14 @@
 									
                                     <div class="mb-3">
                                     <label for="description">Description</label>
-                                     <textarea class="form-control" id="description" name="description" rows="4" style="border-radius: 10px;" required></textarea>
+                                     <textarea class="form-control" id="description" name="description" rows="4" style="border-radius: 10px;"></textarea>
 									</div>
                                     
+                                    <div class="mb-3">
+                                    <label for="policies">Description</label>
+                                     <textarea class="form-control" id="policies" name="policies" rows="4" style="border-radius: 10px;" ></textarea>
+									</div>
+
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <label for="country">Country</label>
@@ -98,7 +103,7 @@
 
                                         <div class="col-sm-6">
                                             <label for="county">County</label>
-                                            <input type="text" class="form-control" id="county" name="county" style="border-radius: 10px;" required>
+                                            <input type="text" class="form-control" id="county" name="county" style="border-radius: 10px;" >
                                         </div>
                                     </div>
 
@@ -139,7 +144,7 @@
                                    <div class="row">
                                     <div class="col-sm-6">
                                          <label for="features">Features</label>
-                                        <select multiple class="form-control" id="features" name="features[]"  style="border-radius: 10px; ">
+                                        <select multiple class="form-control" id="features" name="features[]"  style="border-radius: 10px; " required>
                                             @foreach($features as $feature)
                                                 <option value="{{ $feature->id }}">{{ $feature->name }}</option>
                                             @endforeach
@@ -148,7 +153,7 @@
 
                                     <div class="col-sm-6">
                                         <label for="amenities">Amenities</label>
-                                        <select multiple class="form-control" id="amenities" name="amenities[]"  style="border-radius: 10px; ">
+                                        <select multiple class="form-control" id="amenities" name="amenities[]"  style="border-radius: 10px; " required>
                                             @foreach($amenities as $amenity)
                                                 <option value="{{ $amenity->id }}">{{ $amenity->name }}</option>
                                             @endforeach
@@ -158,8 +163,8 @@
                                    
                                    <div class="row">
                                     <div class="col-sm-6">
-                                        <label for="category_id">Category</label>
-                                        <select class="form-control" id="category_id" name="category_id"  style="border-radius: 10px; " required>
+                                        <label for="categories">Categories</label>
+                                        <select class="form-control" id="categories" name="categories[]"  style="border-radius: 10px; " required>
                                             @foreach($categories as $category)
                                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                                             @endforeach

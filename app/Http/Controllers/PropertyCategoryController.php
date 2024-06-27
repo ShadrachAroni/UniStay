@@ -4,17 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\categories\StoreCategoryRequest;
 use App\Http\Requests\categories\UpdateCategoryRequest;
-use App\Models\Category;
+use App\Models\PropertyCategory;
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class PropertyCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function categories()
     {
-        $categories = Category::all();
+        $categories = PropertyCategory::all();
 
         return view('listings.categories', compact('categories'));
     }
@@ -37,7 +37,7 @@ class CategoryController extends Controller
             $validatedData = $request->validated();
     
             // Create a new Category with validated data, ensuring the password is hashed
-            $Category = Category::create([
+            $Category = PropertyCategory::create([
                 'name' => $validatedData['name'],
                 'description' => $validatedData['description'],
             ]);
@@ -70,7 +70,7 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCategoryRequest $request, Category $Category)
+    public function update(UpdateCategoryRequest $request, PropertyCategory $Category)
     {
         try {
             // Validate incoming request data
@@ -94,7 +94,7 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Category $Category)
+    public function destroy(PropertyCategory $Category)
     {
         $Category->delete();
 

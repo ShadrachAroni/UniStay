@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Property;
-use App\Models\Category;
+use App\Models\PropertyCategory;
 use App\Models\PropertyType;
 use App\Models\PropertyFeature;
 use App\Models\PropertyAmenity;
@@ -36,7 +36,8 @@ class PropertyController extends Controller
     {
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
-            'description' => 'required',
+            'description' => 'nullable',
+            'policies' => 'nullable',
             'country' => 'required|string|max:255',
             'county' => 'required|string|max:255',
             'city' => 'required|string|max:255',
@@ -74,7 +75,7 @@ class PropertyController extends Controller
         }
     
         // Sync relationships
-       // $property->categories()->sync($request->categories);
+        $property->categories()->sync($request->categories);
         $property->features()->sync($request->features);
         $property->amenities()->sync($request->amenities);
         $property->surroundings()->sync($request->surroundings);
@@ -116,7 +117,7 @@ class PropertyController extends Controller
 
     public function add(){
 
-        $categories = Category::all();
+        $categories = PropertyCategory::all();
         $propertyTypes = PropertyType::all();
         $features = PropertyFeature::all();
         $amenities = PropertyAmenity::all();
