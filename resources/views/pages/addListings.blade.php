@@ -127,24 +127,13 @@
                                         </div>
                                    </div>
 
-                                   <div class="row">
-                                    <div class="col-sm-6">
-                                        <label for="category_id">Category</label>
-                                        <select class="form-control" id="category_id" name="category_id"  style="border-radius: 10px; " required>
-                                            @foreach($categories as $category)
-                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-
-                                    <div class="col-sm-6">
+                                   <div class="mb-3">
                                         <label for="property_type_id">Property Type</label>
                                         <select class="form-control" id="property_type_id" name="property_type_id" style="border-radius: 10px;" required>
                                             @foreach($propertyTypes as $propertyType)
                                                 <option value="{{ $propertyType->id }}">{{ $propertyType->name }}</option>
                                             @endforeach
                                         </select>
-                                    </div>
                                    </div>
 
                                    <div class="row">
@@ -166,6 +155,25 @@
                                         </select>
                                     </div>
                                    </div>
+                                   
+                                   <div class="row">
+                                    <div class="col-sm-6">
+                                        <label for="category_id">Category</label>
+                                        <select class="form-control" id="category_id" name="category_id"  style="border-radius: 10px; " required>
+                                            @foreach($categories as $category)
+                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label for="surroundings">Surrounding Area availabilities</label>
+                                        <select multiple class="form-control" id="surroundings" name="surroundings[]"  style="border-radius: 10px; ">
+                                            @foreach($surroundings as $surrounding)
+                                                <option value="{{ $surrounding->id }}">{{ $surrounding->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    </div>
 
                                    <div class="mb-3">
                                         <label for="availability_status">Availability Status</label>

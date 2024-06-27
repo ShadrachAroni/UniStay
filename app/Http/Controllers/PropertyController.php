@@ -9,7 +9,7 @@ use App\Models\Category;
 use App\Models\PropertyType;
 use App\Models\PropertyFeature;
 use App\Models\PropertyAmenity;
-
+use App\Models\SurroundingArea;
 
 class PropertyController extends Controller
 {
@@ -43,7 +43,7 @@ class PropertyController extends Controller
             'street' => 'required|string|max:255',
             'area_name' => 'nullable|string|max:255',
             'price' => 'required|numeric',
-            'category_id' => 'required|integer|exists:categories,id',
+            'categories' => 'required|integer|exists:categories,id',
             'property_type_id' => 'required|integer|exists:property_types,id',
             'availability_status' => 'required|in:available,booked,unavailable',
             'features' => 'array',
@@ -74,8 +74,10 @@ class PropertyController extends Controller
         }
     
         // Sync relationships
+       // $property->categories()->sync($request->categories);
         $property->features()->sync($request->features);
         $property->amenities()->sync($request->amenities);
+        $property->surroundings()->sync($request->surroundings);
     
         return redirect()->route('pages.addListings')->with('success', 'Listing added successfully!');
     }
@@ -118,7 +120,8 @@ class PropertyController extends Controller
         $propertyTypes = PropertyType::all();
         $features = PropertyFeature::all();
         $amenities = PropertyAmenity::all();
-        return view('pages.addListings', compact('categories', 'propertyTypes', 'features', 'amenities'));
+        $surroundings = SurroundingArea::all();
+        return view('pages.addListings', compact('categories', 'propertyTypes', 'features', 'amenities', 'surroundings'));
 
     }
 
