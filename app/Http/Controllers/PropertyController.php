@@ -127,7 +127,9 @@ class PropertyController extends Controller
             $amenities = PropertyAmenity::all();
             $surroundings = SurroundingArea::all();
             return view('pages.add', compact('categories', 'propertyTypes', 'features', 'amenities', 'surroundings'));
-        } else {
+        } elseif(Auth::check() && Auth::user()->role_id === 2){
+            return redirect()->route('home')->with('showRegister', true);
+        }else {
             // User is not authorized or not logged in, show the login modal or handle as needed
             return redirect()->route('home')->with('showModal', true);
         }
