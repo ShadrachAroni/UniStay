@@ -26,7 +26,29 @@
      <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;800;900&display=swap"  rel="stylesheet">
  
      <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
- 
+     <style>
+    .file-item {
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        padding: 5px;
+    }
+
+    .file-item img,
+    .file-item video {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .file-item button {
+        margin-top: 5px;
+        background-color: #ff6347;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+    }
+</style>
+
 </head>
 <body>
 
@@ -219,13 +241,19 @@
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <label for="photos">Photos</label>
-                                            <input type="file" class="form-control-file" id="photos" name="photos[]" multiple>
+                                            <input type="file" class="form-control-file" id="photos" name="photos[]" multiple onchange="showSelectedFiles(event, 'photoPreview')">
+                                            <br>
+                                            <div id="photoPreview" class="file-preview"></div>
                                         </div>
                                         <div class="col-sm-6">
                                             <label for="videos">Videos</label>
-                                            <input type="file" class="form-control-file" id="videos" name="videos[]" multiple>
+                                            <input type="file" class="form-control-file" id="videos" name="videos[]" multiple onchange="showSelectedFiles(event, 'videoPreview')">
+                                            <br>
+                                            <div id="videoPreview" class="file-preview"></div>
                                         </div>
                                     </div>
+
+                                  
                                    <br>
 									<input class="btn btn-primary" type="submit" value="Add">
 								</form>
@@ -235,7 +263,6 @@
 			</div>
 		</div>
 	</section>
-
 <!--js file-->
 <script  src="{{asset('front/js/script.js')}}"></script>
 <script src="js/jquery.min.js"></script>
@@ -249,5 +276,60 @@
         document.getElementById('logout-form').submit();
     }
 </script>
+
+<script>
+    function showSelectedFiles(event, previewId) {
+        const input = event.target;
+        const preview = document.getElementById(previewId);
+        preview.innerHTML = ''; // Clear previous previews
+
+        if (input.files) {
+            const files = input.files;
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                const reader = new FileReader();
+
+                reader.onload = function (e) {
+                    const fileType = file.type.split('/')[0]; // 'image' or 'video'
+                    const fileContainer = document.createElement('div');
+                    fileContainer.classList.add('file-item');
+
+                    if (fileType === 'image') {
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.style.maxWidth = '100%';
+                        img.style.height = 'auto';
+                        fileContainer.appendChild(img);
+                    } else if (fileType === 'video') {
+                        const video = document.createElement('video');
+                        video.src = e.target.result;
+                        video.controls = true;
+                        video.style.maxWidth = '100%';
+                        video.style.height = 'auto';
+                        fileContainer.appendChild(video);
+                    }
+
+                    // Add file name and remove button
+                    const fileName = document.createElement('p');
+                    fileName.textContent = file.name;
+                    fileContainer.appendChild(fileName);
+
+                    const removeBtn = document.createElement('button');
+                    removeBtn.textContent = 'Remove';
+                    removeBtn.addEventListener('click', function() {
+                        fileContainer.remove();
+                    });
+                    fileContainer.appendChild(removeBtn);
+
+                    preview.appendChild(fileContainer);
+                };
+
+                reader.readAsDataURL(file);
+            }
+        }
+    }
+</script>
+
+
 </body>
 </html>
