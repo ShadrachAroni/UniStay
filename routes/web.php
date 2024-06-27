@@ -74,4 +74,4 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 });
 
 Route::resource('properties', \App\Http\Controllers\PropertyController::class);
-Route::get('/pages/addListings', [PropertyController::class, 'add'])->name('pages.addListings');
+Route::get('/pages/add', [PropertyController::class, 'add'])->name('pages.add');

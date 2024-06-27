@@ -91,7 +91,7 @@
 									</div>
                                     
                                     <div class="mb-3">
-                                    <label for="policies">Description</label>
+                                    <label for="policies">Policies</label>
                                      <textarea class="form-control" id="policies" name="policies" rows="4" style="border-radius: 10px;" ></textarea>
 									</div>
 
@@ -140,46 +140,74 @@
                                             @endforeach
                                         </select>
                                    </div>
-
+                                   <br>
                                    <div class="row">
                                     <div class="col-sm-6">
-                                         <label for="features">Features</label>
-                                        <select multiple class="form-control" id="features" name="features[]"  style="border-radius: 10px; " required>
-                                            @foreach($features as $feature)
-                                                <option value="{{ $feature->id }}">{{ $feature->name }}</option>
-                                            @endforeach
-                                        </select>
+                                        <label for="features">Features</label>
+                                        <div style="height: 200px; overflow-y: auto;">
+                                                <div id="features" style="border-radius: 10px;">
+                                                    @foreach($features as $feature)
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" name="features[]" value="{{ $feature->id }}" id="feature_{{ $feature->id }}">
+                                                            <label class="form-check-label" for="feature_{{ $feature->id }}">
+                                                                {{ $feature->name }}
+                                                            </label>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                        </div>
                                     </div>
 
                                     <div class="col-sm-6">
                                         <label for="amenities">Amenities</label>
-                                        <select multiple class="form-control" id="amenities" name="amenities[]"  style="border-radius: 10px; " required>
-                                            @foreach($amenities as $amenity)
-                                                <option value="{{ $amenity->id }}">{{ $amenity->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
+                                            <div style="height: 200px; overflow-y: auto;">
+                                                <div id="amenities" style="border-radius: 10px;">
+                                                    @foreach($amenities as $amenity)
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" name="amenities[]" value="{{ $amenity->id }}" id="amenity_{{ $amenity->id }}">
+                                                            <label class="form-check-label" for="amenity_{{ $amenity->id }}">
+                                                                {{ $amenity->name }}
+                                                            </label>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                        </div>
                                    </div>
-                                   
+                                   <br>
                                    <div class="row">
                                     <div class="col-sm-6">
                                         <label for="categories">Categories</label>
-                                        <select class="form-control" id="categories" name="categories[]"  style="border-radius: 10px; " required>
-                                            @foreach($categories as $category)
-                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                            @endforeach
-                                        </select>
+                                        <div style="height: 200px; overflow-y: auto;">
+                                                <div id="categories" style="border-radius: 10px;">
+                                                    @foreach($categories as $category)
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" name="categories[]" value="{{ $category->id }}" id="category_{{ $category->id }}">
+                                                            <label class="form-check-label" for="category_{{ $category->id }}">
+                                                                {{ $category->name }}
+                                                            </label>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                        </div>
                                     </div>
-                                    <div class="col-sm-6">
-                                        <label for="surroundings">Surrounding Area availabilities</label>
-                                        <select multiple class="form-control" id="surroundings" name="surroundings[]"  style="border-radius: 10px; ">
-                                            @foreach($surroundings as $surrounding)
-                                                <option value="{{ $surrounding->id }}">{{ $surrounding->name }}</option>
-                                            @endforeach
-                                        </select>
+                                        <div class="col-sm-6">
+                                            <label for="surroundings">Surrounding Area Availabilities</label>
+                                            <div style="height: 200px; overflow-y: auto;">
+                                                    <div id="surroundings" style="border-radius: 10px;">
+                                                        @foreach($surroundings as $surrounding)
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" name="surroundings[]" value="{{ $surrounding->id }}" id="surrounding_{{ $surrounding->id }}">
+                                                                <label class="form-check-label" for="surrounding_{{ $surrounding->id }}">
+                                                                    {{ $surrounding->name }}
+                                                                </label>
+                                                            </div>
+                                                        @endforeach
+                                                    </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    </div>
-
+                                    <br>
                                    <div class="mb-3">
                                         <label for="availability_status">Availability Status</label>
                                         <select class="form-control" id="availability_status" name="availability_status"  style="border-radius: 10px; " required>

@@ -122,7 +122,7 @@ class PropertyController extends Controller
         $features = PropertyFeature::all();
         $amenities = PropertyAmenity::all();
         $surroundings = SurroundingArea::all();
-        return view('pages.addListings', compact('categories', 'propertyTypes', 'features', 'amenities', 'surroundings'));
+        return view('pages.add', compact('categories', 'propertyTypes', 'features', 'amenities', 'surroundings'));
 
     }
 
