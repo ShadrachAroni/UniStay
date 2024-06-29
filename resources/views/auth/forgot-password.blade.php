@@ -31,17 +31,13 @@
     <link rel="stylesheet" href="{{ asset('backend/assets/css/demo2/style.css') }}">
     <!-- End layout styles -->
 
-    <link rel="shortcut icon" href="{{ asset('backend/assets/images/favicon.png') }}" />
+    <link rel="icon" type="image/png" href="{{ asset('img/logo.png') }}">
+    <link rel="shortcut icon" href="{{ asset('img/logo.png') }}">
 
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
 
     <!-- Custom styles for hiding scrollbar and background image -->
     <style>
-        body {
-            overflow: auto; /* Show scrollbar only when needed */
-            background: url('{{ asset('backend/assets/images/bg-login.jpg') }}') no-repeat center center fixed;
-            background-size: cover;
-        }
         .input-group {
             position: relative;
         }
@@ -52,26 +48,7 @@
             transform: translateY(-125%);
             cursor: pointer;
         }
-        .password-info {
-            display: none;
-            position: absolute;
-            top: 100%;
-            right: 10px;
-            background-color: rgba(248, 249, 250, 0.9); /* Translucent background */
-            border: 1px solid #ced4da;
-            padding: 10px;
-            border-radius: 5px;
-            width: 360px;
-            z-index: 10;
-            color: black; /* Black text color */
-            transition: opacity 1s ease-in-out; /* Slow transition */
-            opacity: 0;
-        }
-
-        .icon:hover + .password-info {
-            display: block;
-            opacity: 1; /* Make it fully visible on hover */
-        }
+        
     </style>
 
 </head>
@@ -83,8 +60,10 @@
                     <div class="col-md-8 col-xl-6 mx-auto">
                         <div class="card">
                             <div class="auth-form-wrapper px-5 py-6">
-                                <a href="#" class="noble-ui-logo logo-light d-block mb-2">UniStay<span>Accommodation</span></a>
-                                <h5 class="text-muted fw-normal mb-4">Forgot your password? No problem.</h5>
+                                <div class="justify-content-center ">
+                                    <a href="#" class="noble-ui-logo logo-light d-block mb-2 justify-content-center">UniStay<span>Accommodation</span></a>
+                                    <h5 class="text-muted fw-normal mb-4 justify-content-center">Forgot your password? No problem.</h5>
+                                </div>
                                 <div class="mb-4 text-sm text-gray-600">
                                     {{ __('Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
                                 </div> 
@@ -98,19 +77,20 @@
                                             <span class="icon"><i class="fas fa-envelope"></i></span>
                                         </div>
                                     </div>
-
-                                    <div class="d-flex justify-content-center mt-4">
-                                        <button type="submit" class="btn btn-primary">
-                                            {{ __('Email Password Reset Link') }}
-                                        </button>
-                                    </div>
-                                    <br>
-                                    <div class="d-flex justify-content-center mt-1">
-                                        <a href="{{ route('login') }}"class="btn btn-outline-primary btn-icon-text mb-2 mb-md-0">
-                                             Back to login
-                                        </a>
-                                            </div>
-                                        </form>
+                                    <div class="row">
+                                        <div class="d-flex justify-content-center mt-4 col-sm-6">
+                                            <button type="submit" class="btn btn-primary">
+                                                {{ __('Email Password Reset Link') }}
+                                            </button>
+                                        </div>
+                                        <br>
+                                        <div class="d-flex justify-content-center mt-4 col-sm-6">
+                                            <a href="{{ route('home') }}"class="btn btn-outline-primary btn-icon-text mb-2 mb-md-0">
+                                                Home
+                                            </a>
+                                                </div>
+                                            </form>
+                                        </div>
                                     </div>
                         </div>
                     </div>
