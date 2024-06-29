@@ -120,7 +120,7 @@ class PropertyController extends Controller
 
     public function add() {
 
-        if (Auth::check() && Auth::user()->role_id === 1 && Auth::user()->role_id === 3) {
+        if (Auth::check() && (Auth::user()->role_id === 1 || Auth::user()->role_id === 3)) {
             $categories = PropertyCategory::all();
             $propertyTypes = PropertyType::all();
             $features = PropertyFeature::all();
@@ -130,8 +130,7 @@ class PropertyController extends Controller
         } elseif(Auth::check() && Auth::user()->role_id === 2){
             return redirect()->route('home')->with('showRegister', true);
         }else {
-            // User is not authorized or not logged in, show the login modal or handle as needed
-            return redirect()->route('home')->with('showModal', true);
+            return redirect()->route('home')->with('showLogin', true);
         }
     }
 

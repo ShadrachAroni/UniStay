@@ -11,7 +11,18 @@
     <link rel="shortcut icon" href="{{ asset('img/logo.png') }}">
  
      <link rel="stylesheet" type="text/css" href ="{{asset('front/css/style.css')}}">
- 
+     <link rel="stylesheet" href="{{asset ('modal/css/ionicons.min.css')}}">
+     <link rel="stylesheet" href="{{asset('modal/css/flaticon.css')}}">
+     <link rel="stylesheet" href="{{asset('modal/css/style.css')}}">
+
+     <style>
+        .center-left h2{
+    margin-top: 5%;
+    font-size: 2.9rem;
+    font-weight: bold;
+}
+     </style>
+
      <!--box-icon link-->
      <link rel="stylesheet"
      href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
@@ -26,6 +37,7 @@
      
  
      <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 
@@ -76,10 +88,11 @@
 <section class="home">
     <div class="home-text" data-aos="zoom-in-up">
         <h1>Find Your Perfect Haven, Effortlessly</h1>
-        <p>Discovering suitable student accommodation is now simpler than ever with our innovative application. Designed with students in mind, our platform streamlines the search process, offering a comprehensive database of verified properties tailored to your needs and preferences. </p>
+        <p>Discovering suitable student accommodation is now simpler than ever with our innovative application. Designed with students in mind, our platform streamlines the search process, offering a comprehensive database of verified listings tailored to your needs and preferences. </p>
 
         <div class="h-search">
-            <form>
+            <form  action="#">
+                <i class="fas fa-map-marker-alt search-icon"></i>
                 <input type="search" placeholder="Search by location..." class="search-input">
                 <input type="submit" value="Search">
             </form>
@@ -254,73 +267,216 @@
 </section>
 </div>
 
-<!-- Agent Registration Modal -->
-<div class="modal fade" id="create" tabindex="-1" aria-labelledby="createTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="createTitle">Add User</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form id="createForm" method="post" action=" ">
-                    @csrf
-                    <div class="mb-3">
-                        <label for="Fname" class="form-label">First Name</label>
-                        <input id="Fname" class="form-control" name="Fname" type="text" value="{{ old('Fname', '') }}">
-                        @error('name')
-                            <p class="text-sm text-red-600">{{ $message }}</p>
-                        @enderror
-                    </div>
-                    <div class="mb-3">
-                        <label for="Lname" class="form-label">Last Name</label>
-                        <input id="Lname" class="form-control" name="Lname" type="text" value="{{ old('Lname', '') }}">
-                        @error('name')
-                            <p class="text-sm text-red-600">{{ $message }}</p>
-                        @enderror
-                    </div>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input id="email" class="form-control" name="email" type="email" value="{{ old('email', '') }}">
-                        @error('email')
-                            <p class="text-sm text-red-600">{{ $message }}</p>
-                        @enderror
-                    </div>
-                    <div class="mb-3">
-                        <label for="phone" class="form-label">Contact</label>
-                        <input id="phone" class="form-control" name="phone" type="text" value="{{ old('phone', '') }}">
-                        @error('phone')
-                            <p class="text-sm text-red-600">{{ $message }}</p>
-                        @enderror
-                    </div>
-                    <div class="mb-3">
-                        <label for="address" class="form-label">Address</label>
-                        <input id="address" class="form-control" name="address" type="text" value="{{ old('address', '') }}">
-                        @error('address')
-                            <p class="text-sm text-red-600">{{ $message }}</p>
-                        @enderror
-                    </div>
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Password</label>
-                        <input id="password" class="form-control" name="password" type="password" value="{{ old('password', '') }}">
-                        @error('password')
-                            <p class="text-sm text-red-600">{{ $message }}</p>
-                        @enderror
-                    </div>
-                    
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Add</button>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    </div>
-                </form>
-            </div>
+<!-- Login Modal -->
+<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="loginTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close d-flex align-items-center justify-content-center" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true" class="ion-ios-close"></span>
+          </button>
         </div>
+        <div class="row2 no-gutters">
+            <div class="col-md-6 d-flex">
+                <div class="modal-body p-5 img d-flex img text-center d-flex align-items-center" style="background-image: url({{asset('upload/login.png')}});">
+                </div>
+              </div>
+              <div class="col-md-6 d-flex">
+                <div class="modal-body p-4 p-md-5 align-items-center color-2">
+                    <div class="tabulation tabulation2">
+                              <div class="d-flex tabs">
+                                  <ul class="nav nav-tabs border-0">
+                                    <li class="nav-item">
+                                      <a class="nav-link active" data-toggle="tab" href="#signin">Log in</a>
+                                    </li>
+                                    <li class="nav-item">
+                                      <a class="nav-link" data-toggle="tab" href="#signup">Sign Up</a>
+                                    </li>
+                                  </ul>
+                              </div>
+
+                              <!-- Tab panes -->
+                              <div class="tab-content border-0">
+                                <div class="tab-pane p-0 container active" id="signin">
+                                    <div class="text w-100">
+                                        <h3 class="mb-4">Log in to continue</h3>
+                                        <form class="signin-form" method="POST" action="{{ route('login') }}">
+                                            @csrf
+                                        <div class="form-group mb-3">
+                                            <label class="label" for="name">Email</label>
+                                            <input type="text" name="email" id="email" class="form-control" placeholder="Username" required>
+                                        </div>
+                                  <div class="form-group mb-3">
+                                      <label class="label" for="password">Password</label>
+                                    <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
+                                  </div>
+                                  <div class="form-group">
+                                      <button type="submit" class="form-control btn btn-primary rounded submit px-3">Sign In</button>
+                                  </div>
+                                  <div class="form-group d-md-flex">
+                                      <div class="form-check w-50 text-left">
+                                          <label class="custom-control fill-checkbox">
+                                                          <input type="checkbox" class="fill-control-input">
+                                                          <span class="fill-control-indicator"></span>
+                                                          <span class="fill-control-description">Remember Me</span>
+                                                      </label>
+                                                  </div>
+                                                  <div class="w-50 text-md-right">
+                                                      <a href="{{ route('password.request') }}">Forgot Password</a>
+                                                  </div>
+                                  </div>
+                                </form>
+                                <p>Dont have an account? <a data-toggle="tab" href="#signup">Sign Up</a></p>
+                              </div>
+                                </div>
+                                <div class="tab-pane p-0 container fade" id="signup">
+                                    <div class="text w-100">
+                                        <h3 class="mb-4">Sign Up</h3>
+                                    <form action="#" class="signup-form">
+                                        <div class="form-group mb-3">
+                                            <label class="label" for="name">Full Name</label>
+                                            <input type="text" class="form-control" placeholder="John Doe">
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <label class="label" for="email">Email Address</label>
+                                            <input type="text" class="form-control" placeholder="johndoe@gmail.com">
+                                        </div>
+                                  <div class="form-group mb-3">
+                                      <label class="label" for="password">Password</label>
+                                    <input type="password" class="form-control" placeholder="Password">
+                                  </div>
+                                  <div class="form-group d-md-flex">
+                                      <div class="form-check w-100 text-left">
+                                          <label class="custom-control fill-checkbox">
+                                                          <input type="checkbox" class="fill-control-input">
+                                                          <span class="fill-control-indicator"></span>
+                                                          <span class="fill-control-description">I agree all statements in <a href="#">terms of service</a></span>
+                                                      </label>
+                                                  </div>
+                                  </div>
+                                  <div class="form-group">
+                                      <button type="submit" class="form-control btn btn-primary rounded submit px-3">Sign Up</button>
+                                  </div>
+                                </form>
+                                <p>I'm already a member! <a data-toggle="tab" href="#signin">Sign In</a></p>
+                              </div>
+                                </div>
+                              </div>
+                          </div>
+                </div>
+              </div>
+            </div>
+      </div>
     </div>
-</div>
+  </div>
+
+<!-- End Modal -->
+
+<!-- Login Modal -->
+<div class="modal fade" id="register" tabindex="-1" role="dialog" aria-labelledby="registerTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close d-flex align-items-center justify-content-center" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true" class="ion-ios-close"></span>
+          </button>
+        </div>
+        <div class="row no-gutters">
+            <div class="col-md-6 d-flex">
+                <div class="modal-body p-5 img d-flex img text-center d-flex align-items-center" style="background-image: url({{asset('upload/login.png')}});">
+                </div>
+              </div>
+              <div class="col-md-6 d-flex">
+                <div class="modal-body p-4 p-md-5 align-items-center color-2">
+                    <div class="tabulation tabulation2">
+                              <div class="d-flex tabs">
+                                  <ul class="nav nav-tabs border-0">
+                                    <li class="nav-item">
+                                      <a class="nav-link active" data-toggle="tab" href="#signin">Sign In</a>
+                                    </li>
+                                    <li class="nav-item">
+                                      <a class="nav-link" data-toggle="tab" href="#signup">Sign Up</a>
+                                    </li>
+                                  </ul>
+                              </div>
+
+                              <!-- Tab panes -->
+                              <div class="tab-content border-0">
+                                <div class="tab-pane p-0 container active" id="signin">
+                                    <div class="text w-100">
+                                        <h3 class="mb-4">Sign In</h3>
+                                    <form action="#" class="signin-form">
+                                        <div class="form-group mb-3">
+                                            <label class="label" for="name">Username</label>
+                                            <input type="text" class="form-control" placeholder="Username">
+                                        </div>
+                                  <div class="form-group mb-3">
+                                      <label class="label" for="password">Password</label>
+                                    <input type="password" class="form-control" placeholder="Password">
+                                  </div>
+                                  <div class="form-group">
+                                      <button type="submit" class="form-control btn btn-primary rounded submit px-3">Sign In</button>
+                                  </div>
+                                  <div class="form-group d-md-flex">
+                                      <div class="form-check w-50 text-left">
+                                          <label class="custom-control fill-checkbox">
+                                                          <input type="checkbox" class="fill-control-input">
+                                                          <span class="fill-control-indicator"></span>
+                                                          <span class="fill-control-description">Remember Me</span>
+                                                      </label>
+                                                  </div>
+                                                  <div class="w-50 text-md-right">
+                                                      <a href="#">Forgot Password</a>
+                                                  </div>
+                                  </div>
+                                </form>
+                                <p>Not a member? <a data-toggle="tab" href="#signup">Sign Up</a></p>
+                              </div>
+                                </div>
+                                <div class="tab-pane p-0 container fade" id="signup">
+                                    <div class="text w-100">
+                                        <h3 class="mb-4">Sign Up</h3>
+                                    <form action="#" class="signup-form">
+                                        <div class="form-group mb-3">
+                                            <label class="label" for="name">Full Name</label>
+                                            <input type="text" class="form-control" placeholder="John Doe">
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <label class="label" for="email">Email Address</label>
+                                            <input type="text" class="form-control" placeholder="johndoe@gmail.com">
+                                        </div>
+                                  <div class="form-group mb-3">
+                                      <label class="label" for="password">Password</label>
+                                    <input type="password" class="form-control" placeholder="Password">
+                                  </div>
+                                  <div class="form-group d-md-flex">
+                                      <div class="form-check w-100 text-left">
+                                          <label class="custom-control fill-checkbox">
+                                                          <input type="checkbox" class="fill-control-input">
+                                                          <span class="fill-control-indicator"></span>
+                                                          <span class="fill-control-description">I agree all statements in <a href="#">terms of service</a></span>
+                                                      </label>
+                                                  </div>
+                                  </div>
+                                  <div class="form-group">
+                                      <button type="submit" class="form-control btn btn-primary rounded submit px-3">Sign Up</button>
+                                  </div>
+                                </form>
+                                <p>I'm already a member! <a data-toggle="tab" href="#signin">Sign In</a></p>
+                              </div>
+                                </div>
+                              </div>
+                          </div>
+                </div>
+              </div>
+            </div>
+      </div>
+    </div>
+  </div>
+
 <!-- End Modal -->
  
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-
 
 <!--js file-->
 <script  src="{{asset('front/js/script.js')}}"></script>
@@ -329,31 +485,13 @@
         document.getElementById('logout-form').submit();
     }
 </script>
-	<!-- core:js -->
-	<script src="../backend/assets/vendors/core/core.js"></script>
-	<!-- endinject -->
-
-	<!-- Plugin js for this page -->
-  <script src="../backend/assets/vendors/flatpickr/flatpickr.min.js"></script>
-  <script src="../backend/assets/vendors/apexcharts/apexcharts.min.js"></script>
-	<!-- End plugin js for this page -->
-
-	<!-- inject:js -->
-	<script src="../backend/assets/vendors/feather-icons/feather.min.js"></script>
-	<script src="../backend/assets/js/template.js"></script>
-	<!-- endinject -->
-
-	<!-- Custom js for this page -->
-  <script src="../backend/assets/js/dashboard-dark.js"></script>
-	<!-- End custom js for this page -->
-
     <!-- Toastr JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
 $(document).ready(function() {
-    @if (session('showModal'))
-        $('#create').modal('show');
+    @if (session('showLogin'))
+        $('#login').modal('show');
     @endif
 });
 
@@ -362,6 +500,40 @@ $(document).ready(function() {
         $('#register').modal('show');
     @endif
 });
+
+  // Display Toastr success message if session contains 'success'
+  @if(Session::has('success'))
+        toastr.success("{{ Session::get('success') }}");
+    @endif
+
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            toastr.error("{{ $error }}");
+        @endforeach
+    @endif
+
+    @if(Session::has('message'))
+        var type = "{{ Session::get('alert-type', 'info') }}";
+        switch(type) {
+            case 'info':
+                toastr.info("{{ Session::get('message') }}");
+                break;
+
+            case 'warning':
+                toastr.warning("{{ Session::get('message') }}");
+                break;
+
+            case 'error':
+                toastr.error("{{ Session::get('message') }}");
+                break; 
+        }
+    @endif
     </script>
+
+    <script src="{{asset('modal/js/jquery.min.js')}}"></script>
+    <script src="{{asset('modal/js/popper.js')}}"></script>
+    <script src="{{asset('modal/js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('modal/js/main.js')}}"></script>
+
 </body>
 </html>
