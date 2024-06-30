@@ -24,6 +24,10 @@ body {
     width: 100%;
     height: 100%;
     text-align: center;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
+    -ms-overflow-style: none; /* Hide scrollbar for IE/Edge */
     &:after {
       content: '';
       display: inline-block;
@@ -32,13 +36,20 @@ body {
       margin-right: -0.25em;
     }
     .content {
+      margin-top: 20px;
+      margin-bottom: 20px;
       box-sizing: border-box;
       display: inline-block;
       vertical-align: middle;
       text-align: left;
       font-size: 0;
+      overflow-y: auto; /* Enable vertical scroll */
+      max-height: 650px; /* Example: Set a maximum height for the scrollable content */
+      scrollbar-width: none; /* Hide scrollbar for Firefox */
+      -ms-overflow-style: none; /* Hide scrollbar for IE/Edge */
     }
   }
+  
 }
 
 * {
