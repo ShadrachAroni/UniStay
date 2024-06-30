@@ -76,5 +76,6 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 
 Route::resource('properties', \App\Http\Controllers\PropertyController::class);
 Route::get('/pages/add', [PropertyController::class, 'add'])->name('pages.add');
-Route::get('policy', [DashboardController::class, 'showPolicy'])->name('policy.show');
-Route::get('terms', [DashboardController::class, 'showTerms'])->name('terms.show');
+//Route::get('policy', [DashboardController::class, 'showPolicy'])->name('policy.show');
+//Route::get('terms', [DashboardController::class, 'showTerms'])->name('terms.show');
+Route::get('auth/AgentRegistration', [DashboardController::class, 'AgentRegister'])->name('register.agent');

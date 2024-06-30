@@ -128,17 +128,18 @@ class PropertyController extends Controller
             $amenities = PropertyAmenity::all();
             $surroundings = SurroundingArea::all();
             return view('pages.add', compact('categories', 'propertyTypes', 'features', 'amenities', 'surroundings'));
-        } elseif (Auth::check() && Auth::user()->role_id === 2) {
-            return redirect()->route('home')->with([
-                'showRegister' => true,
-                'toastr' => ['type' => 'error', 'message' => 'must be an agent to add listing']
-            ]);
         } else {
             return redirect()->route('home')->with([
                 'showLogin' => true,
-                'toastr' => ['type' => 'error', 'message' => 'must be an agent to add listing']
             ]);
         }
+    }
+
+    public function user(){
+
+        $users = User::all(); // Fetch all users from the database
+
+        return view('home', compact('users'));
     }
 
 }

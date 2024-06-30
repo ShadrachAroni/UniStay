@@ -52,4 +52,10 @@ class DashboardController extends Controller
     // Pass the contents to the view
     return view('policy', ['policy' => $policy]);
     }
+
+    public function AgentRegister() {
+
+        return view('auth.agent');
+
+    }
 }
