@@ -15,12 +15,23 @@
      <link rel="stylesheet" href="{{asset('modal/css/flaticon.css')}}">
      <link rel="stylesheet" href="{{asset('modal/css/style.css')}}">
 
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
      <style>
         .center-left h2{
     margin-top: 5%;
     font-size: 2.9rem;
     font-weight: bold;
 }
+.form-control:hover + .error {
+        display: block;
+    }
+    .error {
+        display: none;
+        color: red;
+        font-size: 12px;
+    }
      </style>
 
      <!--box-icon link-->
@@ -38,9 +49,18 @@
  
      <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 </head>
 <body>
-
+    <div class="col-sm-6 brand">
+        <div class="success-msg">
+            @if(session('status'))
+                <div class="mb-4 font-medium text-sm text-green-600 dark:text-green-400">
+                    {{ session('status') }}
+                </div>
+            @endif
+        </div>
+    </div>
 <!--header-->
 <header class="sticky">
     <a href="#" class="logo">
@@ -68,14 +88,13 @@
                         Dashboard
                     </a>                
                 @else
-                    <a href="{{ route('login') }}" class="h-btn1">
+                    <a href="#login" id="openLogin" class="h-btn1" onclick="showLogin()">
                         Log in
                     </a>
-
                     @if (Route::has('register'))
-                        <a href="{{ route('register') }}" class="h-btn2">
+                        <button class="h-btn2" onclick="showRegister()"> 
                             Register
-                        </a>
+                        </button>
                     @endif
                 @endauth
             </nav>
@@ -278,7 +297,7 @@
         </div>
         <div class="row2 no-gutters">
             <div class="col-md-6 d-flex">
-                <div class="modal-body p-5 img d-flex img text-center d-flex align-items-center" style="background-image: url({{asset('upload/login.png')}});">
+                <div class="modal-body p-5 img d-flex img text-center d-flex align-items-center" style="background-image: url({{asset('form/css/img/A4.jpg')}});">
                 </div>
               </div>
               <div class="col-md-6 d-flex">
@@ -294,130 +313,35 @@
                                     </li>
                                   </ul>
                               </div>
+                              <div class="col-sm-6 brand">
+                                <div class="success-msg">
+                                    @if(session('status'))
+                                        <div class="mb-4 font-medium text-sm text-green-600 dark:text-green-400">
+                                            {{ session('status') }}
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
 
                               <!-- Tab panes -->
                               <div class="tab-content border-0">
                                 <div class="tab-pane p-0 container active" id="signin">
                                     <div class="text w-100">
-                                        <h3 class="mb-4">Log in to continue</h3>
+                                        <h3 class="mb-4">Log in </h3>
                                         <form class="signin-form" method="POST" action="{{ route('login') }}">
                                             @csrf
-                                        <div class="form-group mb-3">
+                                        <div class="form-group mb-3 mb-3">
                                             <label class="label" for="name">Email</label>
-                                            <input type="text" name="email" id="email" class="form-control" placeholder="Username" required>
+                                            <input type="text" name="email" id="email" class="form-control" placeholder="Email" required>
                                         </div>
-                                  <div class="form-group mb-3">
+                                  <div class="form-group mb-3 mb-3">
                                       <label class="label" for="password">Password</label>
                                     <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
                                   </div>
-                                  <div class="form-group">
+                                  <div class="form-group mb-3">
                                       <button type="submit" class="form-control btn btn-primary rounded submit px-3">Sign In</button>
                                   </div>
-                                  <div class="form-group d-md-flex">
-                                      <div class="form-check w-50 text-left">
-                                          <label class="custom-control fill-checkbox">
-                                                          <input type="checkbox" class="fill-control-input">
-                                                          <span class="fill-control-indicator"></span>
-                                                          <span class="fill-control-description">Remember Me</span>
-                                                      </label>
-                                                  </div>
-                                                  <div class="w-50 text-md-right">
-                                                      <a href="{{ route('password.request') }}">Forgot Password</a>
-                                                  </div>
-                                  </div>
-                                </form>
-                                <p>Dont have an account? <a data-toggle="tab" href="#signup">Sign Up</a></p>
-                              </div>
-                                </div>
-                                <div class="tab-pane p-0 container fade" id="signup">
-                                    <div class="text w-100">
-                                        <h3 class="mb-4">Sign Up</h3>
-                                    <form action="#" class="signup-form">
-                                        <div class="form-group mb-3">
-                                            <label class="label" for="name">Full Name</label>
-                                            <input type="text" class="form-control" placeholder="John Doe">
-                                        </div>
-                                        <div class="form-group mb-3">
-                                            <label class="label" for="email">Email Address</label>
-                                            <input type="text" class="form-control" placeholder="johndoe@gmail.com">
-                                        </div>
-                                  <div class="form-group mb-3">
-                                      <label class="label" for="password">Password</label>
-                                    <input type="password" class="form-control" placeholder="Password">
-                                  </div>
-                                  <div class="form-group d-md-flex">
-                                      <div class="form-check w-100 text-left">
-                                          <label class="custom-control fill-checkbox">
-                                                          <input type="checkbox" class="fill-control-input">
-                                                          <span class="fill-control-indicator"></span>
-                                                          <span class="fill-control-description">I agree all statements in <a href="#">terms of service</a></span>
-                                                      </label>
-                                                  </div>
-                                  </div>
-                                  <div class="form-group">
-                                      <button type="submit" class="form-control btn btn-primary rounded submit px-3">Sign Up</button>
-                                  </div>
-                                </form>
-                                <p>I'm already a member! <a data-toggle="tab" href="#signin">Sign In</a></p>
-                              </div>
-                                </div>
-                              </div>
-                          </div>
-                </div>
-              </div>
-            </div>
-      </div>
-    </div>
-  </div>
-
-<!-- End Modal -->
-
-<!-- Login Modal -->
-<div class="modal fade" id="register" tabindex="-1" role="dialog" aria-labelledby="registerTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close d-flex align-items-center justify-content-center" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true" class="ion-ios-close"></span>
-          </button>
-        </div>
-        <div class="row no-gutters">
-            <div class="col-md-6 d-flex">
-                <div class="modal-body p-5 img d-flex img text-center d-flex align-items-center" style="background-image: url({{asset('upload/login.png')}});">
-                </div>
-              </div>
-              <div class="col-md-6 d-flex">
-                <div class="modal-body p-4 p-md-5 align-items-center color-2">
-                    <div class="tabulation tabulation2">
-                              <div class="d-flex tabs">
-                                  <ul class="nav nav-tabs border-0">
-                                    <li class="nav-item">
-                                      <a class="nav-link active" data-toggle="tab" href="#signin">Sign In</a>
-                                    </li>
-                                    <li class="nav-item">
-                                      <a class="nav-link" data-toggle="tab" href="#signup">Sign Up</a>
-                                    </li>
-                                  </ul>
-                              </div>
-
-                              <!-- Tab panes -->
-                              <div class="tab-content border-0">
-                                <div class="tab-pane p-0 container active" id="signin">
-                                    <div class="text w-100">
-                                        <h3 class="mb-4">Sign In</h3>
-                                    <form action="#" class="signin-form">
-                                        <div class="form-group mb-3">
-                                            <label class="label" for="name">Username</label>
-                                            <input type="text" class="form-control" placeholder="Username">
-                                        </div>
-                                  <div class="form-group mb-3">
-                                      <label class="label" for="password">Password</label>
-                                    <input type="password" class="form-control" placeholder="Password">
-                                  </div>
-                                  <div class="form-group">
-                                      <button type="submit" class="form-control btn btn-primary rounded submit px-3">Sign In</button>
-                                  </div>
-                                  <div class="form-group d-md-flex">
+                                  <div class="form-group mb-3 d-md-flex">
                                       <div class="form-check w-50 text-left">
                                           <label class="custom-control fill-checkbox">
                                                           <input type="checkbox" class="fill-control-input">
@@ -430,26 +354,56 @@
                                                   </div>
                                   </div>
                                 </form>
-                                <p>Not a member? <a data-toggle="tab" href="#signup">Sign Up</a></p>
+                                <p>Dont have an account? <a data-toggle="tab" href="#signup">Sign Up</a></p>
                               </div>
                                 </div>
                                 <div class="tab-pane p-0 container fade" id="signup">
                                     <div class="text w-100">
                                         <h3 class="mb-4">Sign Up</h3>
-                                    <form action="#" class="signup-form">
+                                        <form method="POST" action="{{ route('register') }}">
+                                            @csrf
                                         <div class="form-group mb-3">
-                                            <label class="label" for="name">Full Name</label>
-                                            <input type="text" class="form-control" placeholder="John Doe">
+                                            <label for="Fname" value="{{ __('First Name') }}">Full Name</label>
+                                            <input type="text" name="Fname" id="Fname" class="form-control" value="{{ old('Fname') }}" required autofocus autocomplete="name" placeholder="First Name">
+                                            <span class="error"></span>
                                         </div>
+            
                                         <div class="form-group mb-3">
-                                            <label class="label" for="email">Email Address</label>
-                                            <input type="text" class="form-control" placeholder="johndoe@gmail.com">
+                                            <label for="Lname" value="{{ __('Last Name') }}">Full Name</label>
+                                            <input type="text" name="Lname" id="Lname" class="form-control" value="{{ old('Lname') }}" required autofocus autocomplete="name" placeholder="Last Name">
+                                            <span class="error"></span>
                                         </div>
-                                  <div class="form-group mb-3">
-                                      <label class="label" for="password">Password</label>
-                                    <input type="password" class="form-control" placeholder="Password">
-                                  </div>
-                                  <div class="form-group d-md-flex">
+            
+                                        <div class="form-group mb-3">
+                                            <label for="email" value="{{ __('Email') }}">Email</label>
+                                            <input type="email" name="email" id="email" class="form-control" value="{{ old('email') }}" required autofocus autocomplete="email" placeholder="email">
+                                            <span class="error"></span>
+                                        </div>
+            
+                                        <div class="form-group mb-3">
+                                            <label for="phone" value="{{ __('Phone') }}">Phone</label>
+                                            <input type="text" name="phone" id="phone" class="form-control" value="{{ old('phone') }}" required autofocus autocomplete="phone" placeholder="contact">
+                                            <span class="error"></span>
+                                        </div>
+            
+                                        <div class="form-group mb-3">
+                                            <label for="address" value="{{ __('Address') }}">Address</label>
+                                            <input type="text" name="address" id="address" class="form-control" value="{{ old('address') }}" autofocus autocomplete="address" placeholder="address">
+                                            <span class="error"></span>
+                                        </div>
+            
+                                        <div class="form-group mb-3">
+                                            <label for="password" value="{{ __('Password') }}">Password</label>
+                                            <input type="password" name="password" id="password" class="form-control" required placeholder="password">
+                                            <span class="error"></span>
+                                        </div>
+            
+                                        <div class="form-group mb-3">
+                                            <label for="password_confirmation" value="{{ __('Confirm Password') }}">Confirm Password</label>
+                                            <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" required placeholder="confirm password">
+                                            <span class="error"></span>
+                                        </div>
+                                  <div class="form-group mb-3 d-md-flex">
                                       <div class="form-check w-100 text-left">
                                           <label class="custom-control fill-checkbox">
                                                           <input type="checkbox" class="fill-control-input">
@@ -458,7 +412,7 @@
                                                       </label>
                                                   </div>
                                   </div>
-                                  <div class="form-group">
+                                  <div class="form-group mb-3">
                                       <button type="submit" class="form-control btn btn-primary rounded submit px-3">Sign Up</button>
                                   </div>
                                 </form>
@@ -475,7 +429,150 @@
   </div>
 
 <!-- End Modal -->
- 
+
+<!-- Register Modal -->
+<div class="modal fade" id="register" tabindex="-1" role="dialog" aria-labelledby="loginTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close d-flex align-items-center justify-content-center" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true" class="ion-ios-close"></span>
+          </button>
+        </div>
+        <div class="row2 no-gutters">
+            <div class="col-md-6 d-flex">
+                <div class="modal-body p-5 img d-flex img text-center d-flex align-items-center" style="background-image: url({{asset('form/css/img/A4.jpg')}});">
+                </div>
+              </div>
+              <div class="col-md-6 d-flex">
+                <div class="modal-body p-4 p-md-5 align-items-center color-2">
+                    <div class="tabulation tabulation2">
+                              <div class="d-flex tabs">
+                                  <ul class="nav nav-tabs border-0">
+                                    <li class="nav-item">
+                                      <a class="nav-link" data-toggle="tab" href="#signIn">Log in</a>
+                                    </li>
+                                    <li class="nav-item">
+                                      <a class="nav-link active" data-toggle="tab" href="#signUp">Sign Up</a>
+                                    </li>
+                                  </ul>
+                              </div>
+
+                              <!-- Tab panes -->
+                              <div class="tab-content border-0">
+                                <div class="tab-pane p-0 container fade" id="signIn">
+                                    <div class="text w-100">
+                                        <h3 class="mb-4">Log in </h3>
+                                        <form class="signin-form" method="POST" action="{{ route('login') }}">
+                                            @csrf
+                                        <div class="form-group mb-3">
+                                            <label class="label" for="name">Email</label>
+                                            <input type="text" name="email" id="email" class="form-control" placeholder="Email" required>
+                                        </div>
+                                  <div class="form-group mb-3">
+                                      <label class="label" for="password">Password</label>
+                                    <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
+                                  </div>
+                                  <div class="form-group mb-3">
+                                      <button type="submit" class="form-control btn btn-primary rounded submit px-3">Sign In</button>
+                                  </div>
+                                  <div class="form-group mb-3 d-md-flex">
+                                      <div class="form-check w-50 text-left">
+                                          <label class="custom-control fill-checkbox">
+                                                          <input type="checkbox" class="fill-control-input">
+                                                          <span class="fill-control-indicator"></span>
+                                                          <span class="fill-control-description">Remember Me</span>
+                                                      </label>
+                                                  </div>
+                                                  <div class="w-50 text-md-right">
+                                                      <a href="#">Forgot Password</a>
+                                                  </div>
+                                  </div>
+                                </form>
+                                <p>Dont have an account? <a data-toggle="tab" href="#signUp">Sign Up</a></p>
+                              </div>
+                                </div>
+                                <div class="tab-pane p-0 container active" id="signUp">
+                                    <div class="text w-100">
+                                        <h3 class="mb-4">Sign Up</h3>
+                                        <form method="POST" action="{{ route('register') }}">
+                                            @csrf
+                                        <div class="form-group mb-3">
+                                            <label for="Fname" value="{{ __('First Name') }}">Full Name</label>
+                                            <input type="text" name="Fname" id="Fname" class="form-control" value="{{ old('Fname') }}" required autofocus autocomplete="name" placeholder="First Name">
+                                            <span class="error">Must contain alphabets only</span>
+                                        </div>
+            
+                                        <div class="form-group mb-3">
+                                            <label for="Lname" value="{{ __('Last Name') }}">Full Name</label>
+                                            <input type="text" name="Lname" id="Lname" class="form-control" value="{{ old('Lname') }}" required autofocus autocomplete="name" placeholder="Last Name">
+                                            <span class="error">Must contain alphabets only</span>
+                                        </div>
+            
+                                        <div class="form-group mb-3">
+                                            <label for="email" value="{{ __('Email') }}">Email</label>
+                                            <input type="email" name="email" id="email" class="form-control" value="{{ old('email') }}" required autofocus autocomplete="email" placeholder="email">
+                                            <span class="error">must contiain '@example.example'</span>
+                                        </div>
+            
+                                        <div class="form-group mb-3">
+                                            <label for="phone" value="{{ __('Phone') }}">Phone</label>
+                                            <input type="text" name="phone" id="phone" class="form-control" value="{{ old('phone') }}" required autofocus autocomplete="phone" placeholder="contact">
+                                            <span class="error">Must contain numbers only<br>Must not exeed 12 digits
+                                            </span>
+                                          
+                                        </div>
+            
+                                        <div class="form-group mb-3">
+                                            <label for="address" value="{{ __('Address') }}">Address</label>
+                                            <input type="text" name="address" id="address" class="form-control" value="{{ old('address') }}" autofocus autocomplete="address" placeholder="address">
+                                            <span class="error"></span>
+                                        </div>
+            
+                                        <div class="form-group mb-3">
+                                            <label for="password" value="{{ __('Password') }}">Password</label>
+                                            <input type="password" name="password" id="password" class="form-control" required placeholder="password">
+                                            <span class="error">Must contain more that 8 characters</span>
+                                        </div>
+            
+                                        <div class="form-group mb-3">
+                                            <label for="password_confirmation" value="{{ __('Confirm Password') }}">Confirm Password</label>
+                                            <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" required placeholder="confirm password">
+                                            <span class="error"></span>
+                                        </div>
+                                            <div class="form-group mb-3 d-md-flex">
+                                                <div class="form-check w-100 text-left">
+                                                    <label class="custom-control fill-checkbox">
+                                                                    <input type="checkbox" class="fill-control-input" required>
+                                                                    <span class="fill-control-indicator"></span>
+                                                                    <span class="fill-control-description">  {!! __('I agree to the :terms_of_service and :privacy_policy', [
+                                                                        'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'" class="text-decoration-none">'.__('Terms of Service').'</a>',
+                                                                        'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'" class="text-decoration-none">'.__('Privacy Policy').'</a>',
+                                                                    ]) !!}
+                                                                </label>
+                                                            </div>
+                                            </div>
+
+                                  <div class="form-group mb-3">
+                                      <button type="submit" class="form-control btn btn-primary rounded submit px-3">Sign Up</button>
+                                  </div>
+                                </form>
+                                <p>I have an account! <a data-toggle="tab" href="#signIn">Sign In</a></p>
+                                <p><a href="{{route('register')}}">Click here to register as Agent</a></p>
+                              </div>
+                                </div>
+                              </div>
+                          </div>
+                </div>
+              </div>
+            </div>
+      </div>
+    </div>
+  </div>
+
+<!-- End Modal -->
+
+
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 
 <!--js file-->
@@ -500,6 +597,12 @@ $(document).ready(function() {
         $('#register').modal('show');
     @endif
 });
+function showLogin() {
+    $('#login').modal('show');
+}
+function showRegister() {
+    $('#register').modal('show');
+}
 
   // Display Toastr success message if session contains 'success'
   @if(Session::has('success'))
