@@ -105,7 +105,7 @@
                         Log in
                     </a>
                     @if (Route::has('register'))
-                        <a href="{{route('register')}}" class="h-btn2" > 
+                        <a href="{{ route('register') }}" class="h-btn2" > 
                             Register
                         </a>
                     @endif
