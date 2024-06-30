@@ -575,6 +575,7 @@
 
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 
+
 <!--js file-->
 <script  src="{{asset('front/js/script.js')}}"></script>
 <script>
@@ -586,6 +587,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
+
 $(document).ready(function() {
     @if (session('showLogin'))
         $('#login').modal('show');
@@ -631,6 +633,7 @@ function showRegister() {
                 break; 
         }
     @endif
+    
     </script>
 
     <script src="{{asset('modal/js/jquery.min.js')}}"></script>
