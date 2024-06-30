@@ -313,22 +313,12 @@
                                     </li>
                                   </ul>
                               </div>
-                              <div class="col-sm-6 brand">
-                                <div class="success-msg">
-                                    @if(session('status'))
-                                        <div class="mb-4 font-medium text-sm text-green-600 dark:text-green-400">
-                                            {{ session('status') }}
-                                        </div>
-                                    @endif
-                                </div>
-                            </div>
-
                               <!-- Tab panes -->
                               <div class="tab-content border-0">
                                 <div class="tab-pane p-0 container active" id="signin">
                                     <div class="text w-100">
                                         <h3 class="mb-4">Log in </h3>
-                                        <form class="signin-form" method="POST" action="{{ route('login') }}">
+                                        <form class="signin-form" method="POST" action="{{ route('login') }}" id="loginForm">
                                             @csrf
                                         <div class="form-group mb-3 mb-3">
                                             <label class="label" for="name">Email</label>
@@ -350,7 +340,7 @@
                                                       </label>
                                                   </div>
                                                   <div class="w-50 text-md-right">
-                                                      <a href="#">Forgot Password</a>
+                                                      <a href="{{route('password.request')}}">Forgot Password</a>
                                                   </div>
                                   </div>
                                 </form>
@@ -360,16 +350,16 @@
                                 <div class="tab-pane p-0 container fade" id="signup">
                                     <div class="text w-100">
                                         <h3 class="mb-4">Sign Up</h3>
-                                        <form method="POST" action="{{ route('register') }}">
+                                        <form method="POST" id="registerForm" action="{{ route('register') }}">
                                             @csrf
                                         <div class="form-group mb-3">
-                                            <label for="Fname" value="{{ __('First Name') }}">Full Name</label>
+                                            <label for="Fname" value="{{ __('First Name') }}">First Name</label>
                                             <input type="text" name="Fname" id="Fname" class="form-control" value="{{ old('Fname') }}" required autofocus autocomplete="name" placeholder="First Name">
                                             <span class="error"></span>
                                         </div>
             
                                         <div class="form-group mb-3">
-                                            <label for="Lname" value="{{ __('Last Name') }}">Full Name</label>
+                                            <label for="Lname" value="{{ __('Last Name') }}">Last Name</label>
                                             <input type="text" name="Lname" id="Lname" class="form-control" value="{{ old('Lname') }}" required autofocus autocomplete="name" placeholder="Last Name">
                                             <span class="error"></span>
                                         </div>
@@ -498,13 +488,13 @@
                                         <form method="POST" action="{{ route('register') }}">
                                             @csrf
                                         <div class="form-group mb-3">
-                                            <label for="Fname" value="{{ __('First Name') }}">Full Name</label>
+                                            <label for="Fname" value="{{ __('First Name') }}">First Name</label>
                                             <input type="text" name="Fname" id="Fname" class="form-control" value="{{ old('Fname') }}" required autofocus autocomplete="name" placeholder="First Name">
                                             <span class="error">Must contain alphabets only</span>
                                         </div>
             
                                         <div class="form-group mb-3">
-                                            <label for="Lname" value="{{ __('Last Name') }}">Full Name</label>
+                                            <label for="Lname" value="{{ __('Last Name') }}">Last Name</label>
                                             <input type="text" name="Lname" id="Lname" class="form-control" value="{{ old('Lname') }}" required autofocus autocomplete="name" placeholder="Last Name">
                                             <span class="error">Must contain alphabets only</span>
                                         </div>
@@ -574,7 +564,12 @@
 
 
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<!-- jQuery and Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 
+<!-- Toastr JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 <!--js file-->
 <script  src="{{asset('front/js/script.js')}}"></script>
@@ -582,11 +577,6 @@
     function logout() {
         document.getElementById('logout-form').submit();
     }
-</script>
-    <!-- Toastr JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script>
 
 $(document).ready(function() {
     @if (session('showLogin'))
@@ -605,37 +595,7 @@ function showLogin() {
 function showRegister() {
     $('#register').modal('show');
 }
-
-  // Display Toastr success message if session contains 'success'
-  @if(Session::has('success'))
-        toastr.success("{{ Session::get('success') }}");
-    @endif
-
-    @if ($errors->any())
-        @foreach ($errors->all() as $error)
-            toastr.error("{{ $error }}");
-        @endforeach
-    @endif
-
-    @if(Session::has('message'))
-        var type = "{{ Session::get('alert-type', 'info') }}";
-        switch(type) {
-            case 'info':
-                toastr.info("{{ Session::get('message') }}");
-                break;
-
-            case 'warning':
-                toastr.warning("{{ Session::get('message') }}");
-                break;
-
-            case 'error':
-                toastr.error("{{ Session::get('message') }}");
-                break; 
-        }
-    @endif
-    
-    </script>
-
+</script>
     <script src="{{asset('modal/js/jquery.min.js')}}"></script>
     <script src="{{asset('modal/js/popper.js')}}"></script>
     <script src="{{asset('modal/js/bootstrap.min.js')}}"></script>
