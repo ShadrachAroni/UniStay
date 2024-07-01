@@ -44,6 +44,7 @@ class PropertyController extends Controller
         try {
 
         $data = $request->validated();
+        $data['agent_id'] = Auth::id();
 
         if ($request->hasFile('photos')) {
             $photos = [];
@@ -74,7 +75,7 @@ class PropertyController extends Controller
 
         return redirect()->route('properties.index')->with('success', 'Property added successfully.');
         } catch (\Exception $e) {
-             return redirect()->back()->withErrors(['error' => 'An error occurred while creating the Listing.'])->withInput();
+            return redirect()->back()->withErrors(['error' => 'An error occurred while creating the Listing: ' . $e->getMessage()])->withInput();
         }
     }
 

@@ -15,7 +15,7 @@ class CreatePropertyCategoryMappingsTable extends Migration
     {
         Schema::create('property_category_mappings', function (Blueprint $table) {
             $table->foreignId('property_id')->constrained('properties')->onDelete('cascade');
-            $table->foreignId('category_id')->constrained('property_categories')->onDelete('cascade');
+            $table->foreignId('property_category_id')->constrained('property_categories')->onDelete('cascade');
         });
     }
 

@@ -3,6 +3,7 @@
 namespace App\Http\Requests\properties;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
 class StorePropertyRequest extends FormRequest

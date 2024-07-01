@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('property_amenity_mappings', function (Blueprint $table) {
             $table->foreignId('property_id')->constrained('properties');
-            $table->foreignId('amenity_id')->constrained('property_amenities');
+            $table->foreignId('property_amenity_id')->constrained('property_amenities');
         });
     }
 

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('property_feature_mappings', function (Blueprint $table) {
             $table->foreignId('property_id')->constrained('properties');
-            $table->foreignId('feature_id')->constrained('property_features');
+            $table->foreignId('property_feature_id')->constrained('property_features');
         });
     }
 
