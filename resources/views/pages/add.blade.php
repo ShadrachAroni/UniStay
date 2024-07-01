@@ -77,13 +77,133 @@
         <div class="row justify-content-center">
             <div class="card" style=" background-color: rgba(0, 0, 0, 0.5); padding: 20px; color: white; border-radius: 10px; border-radius: 20px; ">
                 <div class="card-body">
-                    <h4 class="card-title" style="color: white;">Add Listing</h4>
+                    <h4 class="card-title" style="color: white;">Add new Listing</h4>
                     <form action="{{ route('properties.store') }}" method="POST" enctype="multipart/form-data" style="width: 700px;">
                         @csrf
 
+                        <div class="mb-3">
+                            <label for="title">Title</label>
+                            <input type="text" class="form-control" id="title" name="title" style="border-radius: 10px;" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="description">Description</label>
+                            <textarea class="form-control" id="description" name="description" rows="4" style="border-radius: 10px;"></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="policies">Policies</label>
+                            <textarea class="form-control" id="policies" name="policies" rows="4" style="border-radius: 10px;"></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="country">Country</label>
+                            <input type="text" class="form-control" id="country" name="country" style="border-radius: 10px;" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="city">City</label>
+                            <input type="text" class="form-control" id="city" name="city" style="border-radius: 10px;" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="street">Street</label>
+                            <input type="text" class="form-control" id="street" name="street" style="border-radius: 10px;" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="area_name">Area Name  (Optional)</label>
+                            <input type="text" class="form-control" id="area_name" style="border-radius: 10px;" name="area_name">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="price">Price</label>
+                            <input type="number" class="form-control" id="price" name="price" step="0.01" style="border-radius: 10px;" required>
+                        </div>
+
+
+                        <div class="mb-3">
+                            <label for="property_type_id">Property Type</label>
+                            <select class="form-control" id="property_type_id" name="property_type_id" style="border-radius: 10px;" required>
+                                @foreach($propertyTypes as $propertyType)
+                                    <option value="{{ $propertyType->id }}">{{ $propertyType->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label for="features">Features</label>
+                                <select class="form-control" id="features" name="features[]" multiple>
+                                    @foreach($features as $feature)
+                                        <option value="{{ $feature->id }}">{{ $feature->name }}</option>
+                                    @endforeach
+                                </select>
+
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="amenities">Amenities</label>
+                                <select class="form-control" id="amenities" name="amenities[]" multiple>
+                                    @foreach($amenities as $amenity)
+                                        <option value="{{ $amenity->id }}">{{ $amenity->name }}</option>
+                                    @endforeach
+                                </select>
+
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label for="categories">Categories</label>
+                                <select class="form-control" id="categories" name="categories[]" multiple>
+                                    @foreach($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endforeach
+                                </select>
+
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="surroundings">Surrounding Area Availabilities</label>
+                                <select class="form-control" id="surroundings" name="surroundings[]" multiple>
+                                    @foreach($surroundings as $surrounding)
+                                        <option value="{{ $surrounding->id }}">{{ $surrounding->name }}</option>
+                                    @endforeach
+                                </select>
+
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="availability_status">Availability Status</label>
+                            <select class="form-control" id="availability_status" name="availability_status" style="border-radius: 10px;" required>
+                                <option value="available">Available</option>
+                                <option value="booked">Booked</option>
+                                <option value="unavailable">Unavailable</option>
+                            </select>
+                        </div>
 
                         <br>
-                        <input class="btn btn-primary" type="submit" value="Add">
+                        <div id="map" style="height: 400px; width: 100%;"></div>
+        
+                        <input type="hidden" id="latitude" name="latitude">
+                        <input type="hidden" id="longitude" name="longitude">
+
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label for="photos">Photos</label>
+                                <input type="file" class="form-control-file" id="photos" name="photos[]" multiple>
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="videos">Videos</label>
+                                <input type="file" class="form-control-file" id="videos" name="videos[]" multiple>
+                            </div>
+                        </div>
+
+                       
+
+                        <br>
+                        <input class="btn btn-primary" type="submit" value="Add Listing">
                     <form>
                     </div>
                 </div>
@@ -94,7 +214,9 @@
 <!-- Toastr JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script>
+
+<!-- Google Maps API -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCGI83diAumDCTbY-AwEXMPmOR6fj6qIis&callback=initMap" async defer></script>
 
 <script>
     function logout() {
@@ -126,4 +248,28 @@
                 break; 
         }
     @endif
+
+        // Initialize map
+        function initMap() {
+        var initialLocation = { lat: -1.286389, lng: 36.817223 };
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 8,
+            center: initialLocation
+        });
+
+        var marker = new google.maps.Marker({
+            position: initialLocation,
+            map: map,
+            draggable: true
+        });
+
+        google.maps.event.addListener(marker, 'dragend', function(event) {
+            document.getElementById('latitude').value = event.latLng.lat();
+            document.getElementById('longitude').value = event.latLng.lng();
+        });
+
+        // Update input fields on marker drag
+        document.getElementById('latitude').value = initialLocation.lat;
+        document.getElementById('longitude').value = initialLocation.lng;
+    }
 </script>

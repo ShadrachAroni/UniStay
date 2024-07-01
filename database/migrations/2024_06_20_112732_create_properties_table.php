@@ -18,7 +18,6 @@ return new class extends Migration
             $table->text('description');
             $table->text('policies');
             $table->string('country');
-            $table->string('county');
             $table->string('city');
             $table->string('street');
             $table->string('area_name')->nullable();
