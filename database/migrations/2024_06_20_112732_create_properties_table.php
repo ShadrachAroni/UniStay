@@ -27,6 +27,8 @@ return new class extends Migration
             $table->enum('availability_status', ['available', 'booked', 'unavailable']);
             $table->string('videos')->nullable();
             $table->string('photos')->nullable();
+            $table->decimal('latitude', 10, 8)->nullable();
+            $table->decimal('longitude', 11, 8)->nullable();
             $table->timestamp('posted_at');
             $table->timestamps();
         });

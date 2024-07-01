@@ -234,7 +234,7 @@
     </div>
 
     <div class="center-btn">
-        <a href="#" class="btn">View all properties</a>
+        <a href="#" class="btn">View all Listings</a>
     </div>
 </section>
 

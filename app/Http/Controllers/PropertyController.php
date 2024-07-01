@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-use toastr;
+
+use App\Http\Requests\properties\StorePropertyRequest;
+
 
 
 use Illuminate\Http\Request;
@@ -36,7 +38,7 @@ class PropertyController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function str(Request $request)
     {
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
@@ -48,6 +50,8 @@ class PropertyController extends Controller
             'street' => 'required|string|max:255',
             'area_name' => 'nullable|string|max:255',
             'price' => 'required|numeric',
+            'latitude' => 'required|numeric',
+            'longitude' => 'required|numeric',
             'categories' => 'required|integer|exists:categories,id',
             'property_type_id' => 'required|integer|exists:property_types,id',
             'availability_status' => 'required|in:available,booked,unavailable',
@@ -83,8 +87,15 @@ class PropertyController extends Controller
         $property->features()->sync($request->features);
         $property->amenities()->sync($request->amenities);
         $property->surroundings()->sync($request->surroundings);
+
     
         return redirect()->route('pages.addListings')->with('success', 'Listing added successfully!');
+    }
+
+
+    public function store(StorePropertyRequest $request)
+    {
+
     }
 
     /**
@@ -140,6 +151,11 @@ class PropertyController extends Controller
         $users = User::all(); // Fetch all users from the database
 
         return view('home', compact('users'));
+    }
+
+    public function view(){
+
+        return view('pages.listings');
     }
 
 }
