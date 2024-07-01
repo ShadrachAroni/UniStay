@@ -56,12 +56,14 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::resource('amenities', \App\Http\Controllers\PropertyAmenityController::class);
     Route::get('/listings/categories', [PropertyCategoryController::class, 'categories'])->name('listings.categories');
     Route::resource('categories', \App\Http\Controllers\PropertyCategoryController::class);
+    Route::get('/admin/Listings', [AdminController::class, 'MyListings'])->name('admin.MyListings');
 
 });
 
 Route::middleware(['auth', 'isAgent'])->group(function () {
     Route::get('/agent/dashboard', [AgentController::class, 'index'])->name('agent.dashboard');
     Route::get('/agent/profile', [AgentController::class, 'profile'])->name('agent.profile');
+    Route::get('/agent/Listings', [AgentController::class, 'MyListings'])->name('agent.MyListings');
 
 });
 

@@ -33,4 +33,8 @@ class AdminController extends Controller
         return view('users.Admins', compact('users', 'roles'));
     }
 
+    public function MyListings(){
+        return view('admin.MyListings');
+    }
+
 }

@@ -184,7 +184,7 @@ class PropertyController extends Controller
 
     public function view(){
 
-        return view('pages.listings');
+        return view('pages.All_listings');
     }
 
 }

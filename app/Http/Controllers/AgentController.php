@@ -33,4 +33,8 @@ class AgentController extends Controller
 
         return view('users.Agents', compact('users', 'roles'));
     }
+
+    public function MyListings(){
+        return view('agent.MyListings');
+    }
 }

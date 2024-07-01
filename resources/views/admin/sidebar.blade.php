@@ -109,6 +109,13 @@
 
           <li class="nav-item">
             <a href="#" class="nav-link">
+              <i class="link-icon" data-feather="home"></i>
+              <span class="link-title">My listings</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">
               <i class="link-icon" data-feather="inbox"></i>
               <span class="link-title">Messages</span>
             </a>
