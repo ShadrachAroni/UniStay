@@ -30,6 +30,7 @@ class StorePropertyRequest extends FormRequest
             'features' => 'array|exists:property_features,id',
             'amenities' => 'array|exists:property_amenities,id',
             'surroundings' => 'array|exists:surrounding_areas,id',
+            'posted_at' => 'nullable|date',
         ];
     }
     

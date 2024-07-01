@@ -26,6 +26,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- Toastr CSS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 </head>
 <body>
@@ -78,7 +79,7 @@
             <div class="card" style=" background-color: rgba(0, 0, 0, 0.5); padding: 20px; color: white; border-radius: 10px; border-radius: 20px; ">
                 <div class="card-body">
                     <h4 class="card-title" style="color: white;">Add new Listing</h4>
-                    <form action="{{ route('properties.store') }}" method="POST" enctype="multipart/form-data" style="width: 700px;">
+                    <form action="{{ route('properties.store') }}" id="listingForm" method="POST" enctype="multipart/form-data" style="width: 700px;">
                         @csrf
 
                         <div class="mb-3">

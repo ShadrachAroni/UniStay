@@ -38,63 +38,11 @@ class PropertyController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function str(Request $request)
-    {
-        $validatedData = $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'nullable',
-            'policies' => 'nullable',
-            'country' => 'required|string|max:255',
-            'county' => 'required|string|max:255',
-            'city' => 'required|string|max:255',
-            'street' => 'required|string|max:255',
-            'area_name' => 'nullable|string|max:255',
-            'price' => 'required|numeric',
-            'latitude' => 'required|numeric',
-            'longitude' => 'required|numeric',
-            'categories' => 'required|integer|exists:categories,id',
-            'property_type_id' => 'required|integer|exists:property_types,id',
-            'availability_status' => 'required|in:available,booked,unavailable',
-            'features' => 'array',
-            'amenities' => 'array',
-            'photos' => 'array',
-            'photos.*' => 'file|mimes:jpg,jpeg,png',
-            'videos' => 'array',
-            'videos.*' => 'file|mimes:mp4,mov,avi,mkv',
-        ]);
-    
-        $property = Property::create($validatedData);
-        
-        // Handle file uploads
-        $propertyFolder = 'properties/' . $property->id;
-        $imageFolder = $propertyFolder . '/images';
-        $videoFolder = $propertyFolder . '/videos';
-    
-        if ($request->hasFile('photos')) {
-            foreach ($request->file('photos') as $index => $photo) {
-                $photo->storeAs($imageFolder, 'image_' . ($index + 1) . '.' . $photo->getClientOriginalExtension());
-            }
-        }
-    
-        if ($request->hasFile('videos')) {
-            foreach ($request->file('videos') as $index => $video) {
-                $video->storeAs($videoFolder, 'video_' . ($index + 1) . '.' . $video->getClientOriginalExtension());
-            }
-        }
-    
-        // Sync relationships
-        $property->categories()->sync($request->categories);
-        $property->features()->sync($request->features);
-        $property->amenities()->sync($request->amenities);
-        $property->surroundings()->sync($request->surroundings);
-
-    
-        return redirect()->route('pages.addListings')->with('success', 'Listing added successfully!');
-    }
-
 
     public function store(StorePropertyRequest $request)
     {
+        try {
+
         $data = $request->validated();
 
         if ($request->hasFile('photos')) {
@@ -125,6 +73,9 @@ class PropertyController extends Controller
         $property->categories()->sync($request->input('categories', []));
 
         return redirect()->route('properties.index')->with('success', 'Property added successfully.');
+        } catch (\Exception $e) {
+             return redirect()->back()->withErrors(['error' => 'An error occurred while creating the Listing.'])->withInput();
+        }
     }
 
     /**
