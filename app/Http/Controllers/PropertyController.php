@@ -106,9 +106,22 @@ class PropertyController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Property $property)
     {
-        //
+        $property->delete();
+
+        $role = Auth::user()->role_id;
+        switch ($role) {
+            case '1':
+                return view('admin.MyListings');
+                break;
+            case '3':
+                return view('agent.MyListings');
+                break;
+            default:
+                return view('home');
+                break;
+        }
     }
 
     public function add() {

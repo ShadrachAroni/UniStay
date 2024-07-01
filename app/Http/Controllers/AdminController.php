@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Property;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -34,7 +35,10 @@ class AdminController extends Controller
     }
 
     public function MyListings(){
-        return view('admin.MyListings');
+        
+        $properties = Property::all();
+
+        return view('admin.MyListings', compact('properties'));
     }
 
 }
