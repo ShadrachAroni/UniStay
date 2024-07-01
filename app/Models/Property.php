@@ -35,7 +35,7 @@ class Property extends Model
         return $this->belongsToMany(PropertyAmenity::class, 'property_amenity_mappings');
     }
 
-    public function surroundingAreas()
+    public function surroundings()
     {
         return $this->belongsToMany(SurroundingArea::class, 'property_surrounding_area_mappings');
     }

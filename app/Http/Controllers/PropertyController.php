@@ -73,7 +73,7 @@ class PropertyController extends Controller
         $property->surroundings()->sync($request->input('surroundings', []));
         $property->categories()->sync($request->input('categories', []));
 
-        return redirect()->route('properties.index')->with('success', 'Property added successfully.');
+        return redirect()->route('pages.add')->with('success', 'Property added successfully.');
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => 'An error occurred while creating the Listing: ' . $e->getMessage()])->withInput();
         }
