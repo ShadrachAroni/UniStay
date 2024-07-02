@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('property_surrounding_area_mappings', function (Blueprint $table) {
-            $table->foreignId('property_id')->constrained('properties');
-            $table->foreignId('surrounding_area_id')->constrained('surrounding_areas');
+            $table->foreignId('property_id')->constrained('properties')  ->onDelete('cascade');
+            $table->foreignId('surrounding_area_id')->constrained('surrounding_areas')  ->onDelete('cascade');
         });
     
     }

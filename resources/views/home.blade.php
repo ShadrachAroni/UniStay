@@ -15,27 +15,19 @@
      <link rel="stylesheet" href="{{asset('modal/css/flaticon.css')}}">
      <link rel="stylesheet" href="{{asset('modal/css/style.css')}}">
 
+     <link href="{{asset('view/vendor/animate.css/animate.min.css')}}" rel="stylesheet">
+     <link href="{{asset('view/vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
+     <link href="{{asset('view/vendor/swiper/swiper-bundle.min.css')}}" rel="stylesheet">
+   
+     <!-- Template Main CSS File -->
+     <link href="{{asset('view/css/style.css')}}" rel="stylesheet">
+
+
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.27/dist/sweetalert2.min.css">
      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-
-     <style>
-        .center-left h2{
-    margin-top: 5%;
-    font-size: 2.9rem;
-    font-weight: bold;
-}
-.form-control:hover + .error {
-        display: block;
-    }
-    .error {
-        display: none;
-        color: red;
-        font-size: 12px;
-    }
-     </style>
 
      <!--box-icon link-->
      <link rel="stylesheet"
@@ -52,6 +44,13 @@
  
      <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+     <style>
+        .card-body-a a:hover{
+            transform: translateY(0px) scale(1.1); 
+            color: var(--main-color);
+        }
+     </style>
 
 </head>
 <body>
@@ -131,8 +130,37 @@
         </div>
     </div>
 
-    <div class="home-img" data-aos="zoom-in-up">
-        <img src="{{asset('front/img/hero.png')}}">
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-aos="zoom-in-up">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{{asset('front/img/hero.png')}}" class="d-block w-100" alt="First slide">
+            </div>
+            <div class="carousel-item">
+                <img src="{{asset('front/img/A1.png')}}" class="d-block w-100 " alt="Second slide">
+            </div>
+            <div class="carousel-item">
+                <img src="{{asset('front/img/A2.png')}}" class="d-block w-100" alt="Third slide">
+            </div>
+            <div class="carousel-item">
+                <img src="{{asset('front/img/A3.png')}}" class="d-block w-100" alt="Fourth slide">
+            </div>
+            <div class="carousel-item">
+                <img src="{{asset('front/img/A4.png')}}" class="d-block w-100" alt="Fifth slide">
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
     </div>
 </section>
 
@@ -170,71 +198,166 @@
     <div class="center-left">
         <h2>Featured listings</h2>
     </div>
-
-    <div class="property-content">
+    <div class="container">
         <div class="row">
-            <img src="{{asset('front/img/p1.png')}}">
-            <h5>Property</h5>
-            <p>Somewhere,Kenya 10th street</p>
-            <div class="list">
-                <a href="#" class="residence-list">
-                    <i class='bx bx-bed'></i>
-                    4 Bed
+          <div class="col-md-4">
+            <div class="card-box-a card-shadow">
+              <div class="img-box-a">
+                <img src="{{url('view/img/property-1.jpg')}}" alt="" class="img-a img-fluid">
+              </div>
+              <div class="card-overlay">
+                <div class="card-overlay-a-content">
+                  <div class="card-header-a">
+                    <h2 class="card-title-a">
+                      <a href="#">204 Mount
+                        <br /> Olive Road Two</a>
+                    </h2>
+                  </div>
+                  <div class="card-body-a">
+                    <div class="price-box d-flex">
+                      <span class="price-a">price | $ 12.000</span>
+                    </div>
+                    <div class="price-box d-flex">
+                      <span class="price-a">monthly</span>
+                    </div>
+                    <a href="#" class="link-a">Click here to view
+                      <span class="bi bi-chevron-right"></span>
+                    </a>
+                  </div>
+                  <div class="card-footer-a">
+                    <ul class="card-info d-flex justify-content-around">
+                      <li>
+
+                        <li>
+                          <h4 class="card-info-title">Category</h4>
+                          <span>Hostel</span>
+                        </li>
+                        <li>
+                        <h4 class="card-info-title">Type</h4>
+                        <span>Room</span>
+                      </li>
+                      <li>
+                        <h4 class="card-info-title">Beds</h4>
+                        <span>2</span>
+                      </li>
+                      <li>
+                        <h4 class="card-info-title">Baths</h4>
+                        <span>1</span>
+                      </li>
+
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+        <div class="col-md-4">
+        <div class="card-box-a card-shadow">
+            <div class="img-box-a">
+            <img src="{{url('view/img/property-3.jpg')}}" alt="" class="img-a img-fluid">
+            </div>
+            <div class="card-overlay">
+            <div class="card-overlay-a-content">
+                <div class="card-header-a">
+                <h2 class="card-title-a">
+                    <a href="#">204 Mount
+                    <br /> Olive Road Two</a>
+                </h2>
+                </div>
+                <div class="card-body-a">
+                <div class="price-box d-flex">
+                    <span class="price-a">price | $ 12.000</span>
+                </div>
+                <div class="price-box d-flex">
+                    <span class="price-a">monthly</span>
+                </div>
+                <a href="#" class="link-a">Click here to view
+                    <span class="bi bi-chevron-right"></span>
                 </a>
-                <a href="#" class="residence-list">
-                    <i class='bx bx-bath' ></i>
-                2 Bath
-                </a>
-                <a href="#" class="residence-list">
-                    <i class='bx bx-shape-square' ></i>
-                    1203 sqft
-                </a>
+                </div>
+                <div class="card-footer-a">
+                <ul class="card-info d-flex justify-content-around">
+                    <li>
+
+                    <li>
+                        <h4 class="card-info-title">Category</h4>
+                        <span>Hostel</span>
+                    </li>
+                    <li>
+                    <h4 class="card-info-title">Type</h4>
+                    <span>Room</span>
+                    </li>
+                    <li>
+                    <h4 class="card-info-title">Beds</h4>
+                    <span>2</span>
+                    </li>
+                    <li>
+                    <h4 class="card-info-title">Baths</h4>
+                    <span>1</span>
+                    </li>
+                </ul>
+                </div>
+            </div>
             </div>
         </div>
-
-        <div class="row">
-            <img src="{{asset('front/img/p2.png')}}">
-            <h5>Property</h5>
-            <p>Somewhere,Kenya 10th street</p>
-            <div class="list">
-                <a href="#" class="residence-list">
-                    <i class='bx bx-bed'></i>
-                    4 Bed
-                </a>
-                <a href="#" class="residence-list">
-                    <i class='bx bx-bath' ></i>
-                2 Bath
-                </a>
-                <a href="#" class="residence-list">
-                    <i class='bx bx-shape-square' ></i>
-                    1203 sqft
-                </a>
-            </div>
         </div>
 
-        <div class="row">
-            <img src="{{asset('front/img/p3.png')}}">
-            <h5>Property</h5>
-            <p>Somewhere,Kenya 10th street</p>
-            <div class="list">
-                <a href="#" class="residence-list">
-                    <i class='bx bx-bed'></i>
-                    4 Bed
+        <div class="col-md-4">
+        <div class="card-box-a card-shadow">
+            <div class="img-box-a">
+            <img src="{{url('view/img/property-6.jpg')}}" alt="" class="img-a img-fluid">
+            </div>
+            <div class="card-overlay">
+            <div class="card-overlay-a-content">
+                <div class="card-header-a">
+                <h2 class="card-title-a">
+                    <a href="#">204 Mount
+                    <br /> Olive Road Two</a>
+                </h2>
+                </div>
+                <div class="card-body-a">
+                <div class="price-box d-flex">
+                    <span class="price-a">price | $ 12.000</span>
+                </div>
+                <div class="price-box d-flex">
+                    <span class="price-a">monthly</span>
+                </div>
+                <a href="#" class="link-a">Click here to view
+                    <span class="bi bi-chevron-right"></span>
                 </a>
-                <a href="#" class="residence-list">
-                    <i class='bx bx-bath' ></i>
-                2 Bath
-                </a>
-                <a href="#" class="residence-list">
-                    <i class='bx bx-shape-square' ></i>
-                    1203 sqft
-                </a>
+                </div>
+                <div class="card-footer-a">
+                <ul class="card-info d-flex justify-content-around">
+                    <li>
+
+                    <li>
+                        <h4 class="card-info-title">Category</h4>
+                        <span>Hostel</span>
+                    </li>
+                    <li>
+                    <h4 class="card-info-title">Type</h4>
+                    <span>Room</span>
+                    </li>
+                    <li>
+                    <h4 class="card-info-title">Beds</h4>
+                    <span>2</span>
+                    </li>
+                    <li>
+                    <h4 class="card-info-title">Baths</h4>
+                    <span>1</span>
+                    </li>
+                </ul>
+                </div>
+            </div>
             </div>
         </div>
-    </div>
+        </div>
+
+      </div>
 
     <div class="center-btn">
-        <a href="#" class="btn">View all Listings</a>
+        <a href="{{route('view.listings')}}" class="btn">View all Listings</a>
     </div>
 </section>
 
@@ -245,7 +368,7 @@
     </div>
     <div class="about-text" data-aos="zoom-in-up">
         <h2>We help Students find suitable accomodations</h2>
-        <p> Whether you're looking for a cozy single room, a shared apartment, or a place in a student dormitory, UniStay provides comprehensive listings complete with detailed descriptions, photos, and reviews from fellow students</p>
+        <p style="color:#d6d6d6;"> Whether you're looking for a cozy single room, a shared apartment, or a place in a student dormitory, UniStay provides comprehensive listings complete with detailed descriptions, photos, and reviews from fellow students</p>
         <a href="#" class="btn">Get In touch</a>
     </div>
 </section>
@@ -354,7 +477,7 @@
                                                   </div>
                                   </div>
                                 </form>
-                                <p>Dont have an account? <a data-toggle="tab" href="{{route('register')}}">Sign Up</a></p>
+                                <p>Dont have an account? <a data-toggle="tab" href="{{route('register')}}">Register</a></p>
                               </div>
                                 </div>
                               </div>
@@ -378,6 +501,11 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 
+ <!-- Bootstrap JS, Popper.js, and jQuery -->
+ <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+ <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 
 <!--js files-->
 <script src="{{asset('modal/js/jquery.min.js')}}"></script>
@@ -386,6 +514,10 @@
 <script src="{{asset('modal/js/main.js')}}"></script>
 <script  src="{{asset('front/js/script.js')}}"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.27/dist/sweetalert2.all.min.js"></script>
+<script src="{{asset('view/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<script src="{{asset('view/vendor/swiper/swiper-bundle.min.js')}}"></script>
+<script src="{{asset('view/vendor/php-email-form/validate.js')}}"></script>
+<script src="{{asset('view/js/main.js')}}"></script>
 
 <script>
     function logout() {
