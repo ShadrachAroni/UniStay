@@ -23,6 +23,10 @@
                                 <label class="tx-11 fw-bolder mb-0 text-uppercase"> Full Name:</label>
                                 <p class="text-muted">{{ Auth::user()->Fname }} {{ Auth::user()->Lname }}</p>
                             </div>
+                            <div class="mt-3">
+                                <label class="tx-11 fw-bolder mb-0 text-uppercase">Gender:</label>
+                                <p class="text-muted">{{ Auth::user()->gender }}</p>
+                            </div>
                             <div class=
                             <div class="mt-3">
                                 <label class="tx-11 fw-bolder mb-0 text-uppercase">Email:</label>
@@ -75,6 +79,14 @@
                                 <label for="Lname" class="form-label">Last Name</label>
                                 <input id="Lname" class="form-control" name="Lname" type="text" value="{{ old('Lname', $user->Lname) }}">
                                 @error('Last name')
+                                    <p class="text-sm text-red-600">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="gender" class="form-label">Gender</label>
+                                <input id="gender" class="form-control" name="gender" type="text" value="{{ old('gender', $user->Lname) }}">
+                                @error('gender')
                                     <p class="text-sm text-red-600">{{ $message }}</p>
                                 @enderror
                             </div>

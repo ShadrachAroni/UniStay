@@ -26,7 +26,45 @@
 
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<style>
+    button:hover{
+        transform: translateY(0px) scale(1.1); 
+    }
 
+    .col-2 a {
+            text-decoration: none;
+            color: #007BFF; /* Blue color */
+            font-weight: bold;
+            font-size: 16px;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .col-2 a:hover {
+            background-color: #007BFF; /* Blue background */
+            color: white; /* White text */
+        }
+        .input-group p {
+            margin: 0; /* Remove default margin */
+            text-decoration: none;
+            color: black; /* Blue color */
+            font-weight: none;
+            font-size: 16px;
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+
+        .input-group a {
+            color: #007BFF; /* Blue color */
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .input-group a:hover {
+            text-decoration: underline; /* Underline on hover */
+        }
+</style>
 </head>
 
 <body>
@@ -48,7 +86,17 @@
         <div class="wrapper wrapper--w680">
             <div class="card card-4">
                 <div class="card-body">
-                    <h2 class="title">Create Account</h2>
+                    <div class="row row-span">
+                        <div class="col-2">
+                            <h2 class="title">Create Account</h2>
+                        </div>
+                      
+                            <div class="input-group">
+                                <p><a href="{{route('register.agent')}}">Click here</a> to register as Agent</p>
+                             </div>
+                      
+                    </div>
+                   
                     <form class="login-form" method="POST" action="{{ route('login') }}">
                         @csrf
 
@@ -180,10 +228,18 @@
                             </div>
 
                           </div>
+                          <br>
 
-                        <div class="p-t-15">
+                    <div class="row ">
+                        <div class="col-2">
                             <button class="btn btn--radius-2 btn--blue" type="submit">Submit</button>
                         </div>
+                        <div class="col-2"  style="justify-content: flex-end;">
+                            <button class="btn btn--radius-2 btn--blue" href="javascript:history.back()">Back</button>
+                        </div>
+                    </div>
+
+
                     </form>
                 </div>
             </div>
