@@ -153,6 +153,7 @@
                                 'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'" class="text-decoration-none">'.__('Privacy Policy').'</a>',
                             ]) !!}
                                 <input type="checkbox" id="terms" name="terms" required>
+                                <span class="checkmark"></span>
                                 @error('terms')
                                 <span class="error">{{ $message }}</span>
                                 @enderror
