@@ -68,6 +68,7 @@ class ProfileController extends Controller
                 'email' => $validatedData['email'],
                 'phone' => $validatedData['phone'],
                 'address' => $validatedData['address'],
+                'gender'=> $validatedData['gender'],
             ];
     
             // Update user with validated data

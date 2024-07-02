@@ -22,6 +22,7 @@ class UpdateProfileRequest extends FormRequest
             'email' => 'required|email|max:255|unique:users,email,' . $userId,
             'phone' => 'required|string|max:15'. $userId,
             'address' => 'required|string|max:255',
+            'gender' => 'nullable|string|max:255',
             'profile_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'role_id' => 'nullable|exists:roles,id',
             'password' => 'nullable|string|min:8|confirmed',

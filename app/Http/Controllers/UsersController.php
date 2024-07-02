@@ -46,6 +46,7 @@ class UsersController extends Controller
                 'email_verified_at' => now(),
                 'password' => bcrypt($validatedData['password']), // Hash the password
                 'role_id' => $validatedData['role_id'],
+                'gender'=> $validatedData['gender'],
             ]);
     
             // Redirect to users index with a success message
@@ -85,6 +86,7 @@ class UsersController extends Controller
                 'phone' => $validatedData['phone'],
                 'address' => $validatedData['address'],
                 'role_id' => $validatedData['role_id'],
+                'gender'=> $validatedData['gender'],
             ]);
     
             // Only update the password if it's provided

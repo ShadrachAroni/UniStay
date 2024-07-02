@@ -27,6 +27,7 @@ class CreateNewUser implements CreatesNewUsers
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'phone' => ['nullable', 'string', 'max:15', 'unique:users'], // phone validation
             'address' => ['nullable', 'string', 'max:255'], // address validation
+            'gender' => ['required', 'string', 'max:255'], 
             'role_id' => ['nullable', 'integer'], // role_id validation
             'password' => $this->passwordRules(),
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
@@ -36,6 +37,9 @@ class CreateNewUser implements CreatesNewUsers
             'Fname' => $input['Fname'],
             'Lname' => $input['Lname'],
             'email' => $input['email'],
+            'gender'=> $input['gender'],
+            'student_id_card' => $input['student_id_card'] ?? null,
+            'national_id_card' => $input['national_id_card'] ?? null,
             'phone' => $input['phone'] ?? null,
             'address' => $input['address'] ?? null,
             'role_id' => $input['role_id'] ?? 2,
