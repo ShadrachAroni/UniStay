@@ -108,19 +108,25 @@ class PropertyController extends Controller
      */
     public function destroy(Property $property)
     {
-        $property->delete();
+        try {
+            $property = Property::findOrFail($property);
+            $property->delete();
+    
+            $role = Auth::user()->role_id;
+            switch ($role) {
+                case '1':
+                    return view('admin.MyListings');
+                    break;
+                case '3':
+                    return view('agent.MyListings');
+                    break;
+                default:
+                    return view('home');
+                    break;
+            }
 
-        $role = Auth::user()->role_id;
-        switch ($role) {
-            case '1':
-                return view('admin.MyListings');
-                break;
-            case '3':
-                return view('agent.MyListings');
-                break;
-            default:
-                return view('home');
-                break;
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => 'An error occurred while deleting the property: ' . $e->getMessage()]);
         }
     }
 
@@ -140,16 +146,10 @@ class PropertyController extends Controller
         }
     }
 
-    public function user(){
-
-        $users = User::all(); // Fetch all users from the database
-
-        return view('home', compact('users'));
-    }
-
     public function view(){
 
-        return view('pages.All_listings');
+        return view('pages.listings');
+
     }
 
 }

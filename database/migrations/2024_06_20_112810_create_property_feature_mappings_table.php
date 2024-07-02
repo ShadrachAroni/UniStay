@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('property_feature_mappings', function (Blueprint $table) {
-            $table->foreignId('property_id')->constrained('properties');
-            $table->foreignId('property_feature_id')->constrained('property_features');
+            $table->foreignId('property_id')->constrained('properties') ->onDelete('cascade');
+            $table->foreignId('property_feature_id')->constrained('property_features')  ->onDelete('cascade');
         });
     }
 
