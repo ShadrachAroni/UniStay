@@ -26,7 +26,36 @@
   <link href="{{asset('view/css/style.css')}}" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href ="{{asset('front/css/style.css')}}">
   <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+<style>
+  /* Define the spin-in animation */
+@keyframes spin-in {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
 
+/* Define the spin-out animation */
+@keyframes spin-out {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(-360deg); }
+}
+
+/* Apply the spin-in animation on hover */
+.close-box-collapse:hover {
+    animation: spin-in 0.5s linear forwards;
+}
+
+/* Apply the spin-out animation on mouse leave */
+.close-box-collapse {
+    transition: transform 0.5s ease-out;
+}
+
+.close-box-collapse:not(:hover) {
+    animation: spin-out 0.5s linear forwards;
+}
+.icons i:hover{
+  color: aqua;
+}
+</style>
 </head>
 
 <body>
@@ -36,9 +65,9 @@
   <!--/ Form Search Star /-->
   <div class="box-collapse">
     <div class="title-box-d">
-      <h3 class="title-d">Search Property</h3>
+      <h3 class="title-d" style="color: black">Search Property</h3>
     </div>
-    <span class="close-box-collapse right-boxed bi bi-x"></span>
+    <span class="close-box-collapse right-boxed bi bi-x" style="color: black;"></span>
     <div class="box-collapse-wrap form">
       <form class="form-a">
         <div class="row">
@@ -117,13 +146,14 @@
               </select>
             </div>
           </div>
-          <div class="col-md-12">
+          <div class="col-md-12" style="margin-top: 20px;">
             <button type="submit" class="btn btn-b">Search Property</button>
           </div>
         </div>
       </form>
     </div>
-  </div><!-- End Property Search Section -->>
+  </div>
+  <!-- End Property Search Section -->
 
   <!-- ======= Header/Navbar ======= -->
   <header class="sticky">
@@ -184,7 +214,7 @@
         @endif
         <div class="bx bx-menu" id="menu-icon"></div> 
     </div>  
-</header>
+  </header>
   <!-- End Header/Navbar -->
 
   <main id="main">
@@ -202,7 +232,7 @@
             </div>
           </div>
           
-          <div class="col-sm-12 col-lg-4 d-flex justify-content-lg-end justify-content-center">
+           <div class="col-sm-12 col-lg-4 d-flex justify-content-lg-end justify-content-end" style="margin-top: -100px;">
               <a href="#" class="logo">
                 <img src="{{asset('../front/img/logo.png')}}" style="max-width: 200px;">
             </a>
@@ -595,6 +625,8 @@
   <script src="{{asset('view/vendor/swiper/swiper-bundle.min.js')}}"></script>
   <script src="{{asset('view/vendor/php-email-form/validate.js')}}"></script>
 
+  <!-- Template Main JS File -->
+  <script src="{{asset('view/js/main.js')}}"></script>
 
 <!-- core:js -->
 <script src="{{ asset('../backend/assets/vendors/core/core.js')}}"></script>

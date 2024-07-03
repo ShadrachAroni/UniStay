@@ -222,7 +222,7 @@
                     <div class="price-box d-flex">
                       <span class="price-a">monthly</span>
                     </div>
-                    <a href="#" class="link-a">Click here to view
+                    <a href="#" class="link-a">Click here to view >
                       <span class="bi bi-chevron-right"></span>
                     </a>
                   </div>
@@ -274,7 +274,7 @@
                 <div class="price-box d-flex">
                     <span class="price-a">monthly</span>
                 </div>
-                <a href="#" class="link-a">Click here to view
+                <a href="#" class="link-a">Click here to view >
                     <span class="bi bi-chevron-right"></span>
                 </a>
                 </div>
@@ -325,7 +325,7 @@
                 <div class="price-box d-flex">
                     <span class="price-a">monthly</span>
                 </div>
-                <a href="#" class="link-a">Click here to view
+                <a href="#" class="link-a">Click here to view >
                     <span class="bi bi-chevron-right"></span>
                 </a>
                 </div>
