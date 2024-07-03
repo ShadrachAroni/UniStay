@@ -86,11 +86,11 @@ class ProfileController extends Controller
 
             switch ($userRole) {
                 case '3':
-                    return redirect()->route('agent.profile')->with('success', 'User updated successfully.');
+                    return redirect()->route('agent.profile')->with('success', 'agent updated successfully.');
                 case '2':
                     return redirect()->route('user.profile')->with('success', 'User updated successfully.');
                 case '1':
-                    return redirect()->route('admin.profile')->with('success', 'User updated successfully.');
+                    return redirect()->route('admin.profile')->with('success', 'admin updated successfully.');
                 default:
                     return redirect()->route('home')->with('success', 'User updated successfully.');
             }
