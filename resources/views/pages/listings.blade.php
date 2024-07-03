@@ -595,8 +595,6 @@
   <script src="{{asset('view/vendor/swiper/swiper-bundle.min.js')}}"></script>
   <script src="{{asset('view/vendor/php-email-form/validate.js')}}"></script>
 
-  <!-- Template Main JS File -->
-  <script src="{{asset('view/js/main.js')}}"></script>
 
 <!-- core:js -->
 <script src="{{ asset('../backend/assets/vendors/core/core.js')}}"></script>
