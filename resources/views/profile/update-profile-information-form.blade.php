@@ -84,6 +84,8 @@
                             </div>
 
                             <div class="mb-3">
+                                
+                                <label for="gender" class="form-label">Gender</label>
                                 <select id="gender" class="form-control" name="gender">
                                     
                                     <option value="male" {{ old('gender', $user->gender) == 'male' ? 'selected' : '' }}>Male</option>
