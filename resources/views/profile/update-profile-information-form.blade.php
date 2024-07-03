@@ -84,8 +84,11 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="gender" class="form-label">Gender</label>
-                                <input id="gender" class="form-control" name="gender" type="text" value="{{ old('gender', $user->Lname) }}">
+                                <select id="gender" class="form-control" name="gender">
+                                    
+                                    <option value="male" {{ old('gender', $user->gender) == 'male' ? 'selected' : '' }}>Male</option>
+                                    <option value="female" {{ old('gender', $user->gender) == 'female' ? 'selected' : '' }}>Female</option>
+                                </select>
                                 @error('gender')
                                     <p class="text-sm text-red-600">{{ $message }}</p>
                                 @enderror
