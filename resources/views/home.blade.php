@@ -50,6 +50,10 @@
             transform: translateY(0px) scale(1.1); 
             color: var(--main-color);
         }
+        .carousel-item img{
+            width: 100%;
+            height: 90vh;
+        }
      </style>
 
 </head>
@@ -135,10 +139,12 @@
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
             <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
             <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="{{asset('front/img/hero.png')}}" class="d-block w-100" alt="First slide">
+                <img src="{{asset('front/img/A5.png')}}" class="d-block w-100" alt="First slide">
             </div>
             <div class="carousel-item">
                 <img src="{{asset('front/img/A1.png')}}" class="d-block w-100 " alt="Second slide">

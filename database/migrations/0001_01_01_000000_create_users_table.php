@@ -36,6 +36,7 @@ return new class extends Migration
             $table->string('phone')->unique()->nullable();
             $table->string('address')->nullable();
             $table->enum('status', ['pending', 'verified', 'rejected'])->default('pending');
+            $table->enum('gender', ['male','female']);
             $table->boolean('verified')->default(false);
             $table->string('student_id_card')->nullable();
             $table->string('national_id_card')->nullable(); 
