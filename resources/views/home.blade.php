@@ -60,13 +60,13 @@
         <img src="{{asset('../front/img/logo.png')}}">
     </a>
     <ul class="navbar open">
-        <li><a href="#">Home</a></li>
-        <li><a href="{{ route('about')}}">About Us</a></li>
-        <li><a href="{{route('contact')}}">Contact Us</a></li>
+        <a href="{{url('/')}}" class="h-btn1">Home</a>
+        <a href="{{ route('about')}}" class="h-btn1">About Us</a>
+        <a href="{{route('contact')}}" class="h-btn1">Contact Us</a>
 
         @auth
             @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 3)
-                <li><a href="{{ route('pages.add') }}">Add Listing</a></li>
+                <a href="{{ route('pages.add') }}" class="h-btn1">Add Listing</a>
             @else
                 <a href="#" onclick="showAccessDeniedAlert()">Add Listing</a>
                 <script>
@@ -81,7 +81,9 @@
                 </script>
             @endif
                 @else
-                    <a href="{{ route('pages.add') }}">Add Listing</a>
+                <a href="#login" id="openLogin" class="h-btn1" onclick="showLogin()">
+                   Add Listing
+                </a>
         @endauth
     </ul>
 

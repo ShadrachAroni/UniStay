@@ -140,9 +140,7 @@ class PropertyController extends Controller
             $surroundings = SurroundingArea::all();
             return view('pages.add', compact('categories', 'propertyTypes', 'features', 'amenities', 'surroundings'));
         } else {
-            return redirect()->route('home')->with([
-                'showLogin' => true,
-            ]);
+            return redirect()->to('/')->with('showLogin', true);
         }
     }
 

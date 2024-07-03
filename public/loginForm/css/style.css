@@ -302,7 +302,13 @@ figure {
   font-size: 14px;
   color: #222;
   display: block;
-  text-align: center; }
+  text-align: center; 
+  text-decoration: none;
+}
+.signup-image-link:hover{
+  transition: all .20s ease;
+  text-decoration: underline;
+}
 
 .term-service {
   font-size: 13px;
