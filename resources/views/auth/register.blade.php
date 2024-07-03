@@ -97,7 +97,7 @@
                       
                     </div>
                    
-                    <form class="login-form" method="POST" action="{{ route('login') }}">
+                    <form class="login-form" method="POST" action="{{ route('register') }}">
                         @csrf
 
                         <div class="row row-space">

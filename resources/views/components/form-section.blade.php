@@ -1,3 +1,4 @@
+@include('header')
 @props(['submit'])
 
 <div {{ $attributes->merge(['class' => 'md:grid md:grid-cols-3 md:gap-6']) }}>
@@ -8,9 +9,15 @@
 
     <div class="mt-5 md:mt-0 md:col-span-2">
         <form wire:submit="{{ $submit }}">
-            <div class="px-4 py-5 bg-white dark:bg-gray-800 sm:p-6 shadow {{ isset($actions) ? 'sm:rounded-tl-md sm:rounded-tr-md' : 'sm:rounded-md' }}">
-                <div class="grid grid-cols-6 gap-6">
-                    {{ $form }}
+            <div class="p-3 p-sm-4 shadow card mb-4 {{ isset($actions) ? 'rounded-top' : 'rounded' }}">
+                <div class="card mb-4">
+                    <div class="card rounded">
+                       <div class="card-body">
+                            <div class="row profile-body">
+                                {{ $form }}
+                            </div>
+                       </div>
+                    </div>
                 </div>
             </div>
 
