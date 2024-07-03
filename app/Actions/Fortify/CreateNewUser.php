@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 use Laravel\Jetstream\Jetstream;
 
@@ -27,7 +28,7 @@ class CreateNewUser implements CreatesNewUsers
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'phone' => ['nullable', 'string', 'max:15', 'unique:users'], // phone validation
             'address' => ['nullable', 'string', 'max:255'], // address validation
-            'gender' => ['required', 'string', 'max:255'], 
+            'gender' => ['required', 'string', 'max:255' , Rule::in(['male', 'female'])], 
             'role_id' => ['nullable', 'integer'], // role_id validation
             'password' => $this->passwordRules(),
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',

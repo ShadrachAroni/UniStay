@@ -97,7 +97,7 @@
                       
                     </div>
                    
-                    <form class="login-form" method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('register') }}" class="login-form">
                         @csrf
 
                         <div class="row row-space">
@@ -105,7 +105,7 @@
                             <div class="col-2">
                                 <div class="input-group">
                                     <label for="Fname" class="label">First Name</label>
-                                    <input type="text" name="Fname" id="Fname" class="input--style-4" value="{{ old('Fname') }}" required autofocus autocomplete="First name">
+                                    <input type="text" name="Fname" id="Fname" class="input--style-4" class="Fname" value="{{ old('Fname') }}" required autofocus autocomplete="First name">
                                     @error('Fname')
                                     <span class="error">{{ $message }}</span>
                                     @enderror
@@ -115,7 +115,7 @@
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">last name</label>
-                                    <input type="text" name="Lname" id="Lname" class="input--style-4" value="{{ old('Lname') }}" required autofocus autocomplete="last name">
+                                    <input type="text" name="Lname" id="Lname" class="input--style-4" class="Lname" value="{{ old('Lname') }}" required autofocus autocomplete="last name">
                                     @error('Lname')
                                         <span class="error">{{ $message }}</span>
                                     @enderror
@@ -123,7 +123,7 @@
                             </div>
                         </div>
 
-                       
+                        <div>
                             <div class="input-group">
                                 <label class="label">Email</label>
                                 <input class="input--style-4" name="email" id="email" class="email" value="{{ old('email') }}" required autofocus autocomplete="email">
@@ -131,6 +131,7 @@
                                 <span class="error">{{ $message }}</span>
                                 @enderror
                             </div>
+                        </div>
                        
 
                         <div class="row row-space">
@@ -158,16 +159,15 @@
                         </div>
                         <div class="row row-space">
                             <div class="col-2">
-
                                 <div class="input-group">
                                     <label class="label">Gender</label>
                                     <div class="p-t-10">
-                                        <label class="radio-container m-r-45">Male
-                                            <input type="radio" name="gender" required autofocus autocomplete="gender">
+                                        <label class="radio-container m-r-45">male
+                                            <input type="radio" name="gender" required autofocus autocomplete="gender" value="male">
                                             <span class="checkmark"></span>
                                         </label>
-                                        <label class="radio-container">Female
-                                            <input type="radio" name="gender" required autofocus autocomplete="gender">
+                                        <label class="radio-container">female
+                                            <input type="radio" name="gender" required autofocus autocomplete="gender" value="female">
                                             <span class="checkmark"></span>
                                         </label>
                                         @error('gender')
@@ -178,34 +178,37 @@
 
                             </div>
                         </div>
-
-                        <div class="input-group">
-                            <label class="label">Password</label>
-                            <input type="password" class="input--style-4" name="password" id="password" class="password" required>
-                            @error('password')
-                            <span class="error">{{ $message }}</span>
-                            @enderror
-                        </div>
-
-                        <div class="input-group">
-                            <label class="label">Confirm Password</label>
-                            <input type="password" class="input--style-4" name="password_confirmation" id="password_confirmation" class="password_confirmation" required>
-                            @error('Confirm Password')
-                            <span class="error">{{ $message }}</span>
-                            @enderror
-                        </div>
-
-                        <div class="input-group">
-                            <label class="radio-container m-r-45"> {!! __('I agree to the :terms_of_service and :privacy_policy', [
-                                'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'" class="text-decoration-none">'.__('Terms of Service').'</a>',
-                                'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'" class="text-decoration-none">'.__('Privacy Policy').'</a>',
-                            ]) !!}
-                                <input type="checkbox" id="terms" name="terms" required>
-                                <span class="checkmark"></span>
-                                @error('terms')
+                        <div>
+                            <div class="input-group">
+                                <label class="label">Password</label>
+                                <input type="password" class="input--style-4" name="password" id="password" class="password" required>
+                                @error('password')
                                 <span class="error">{{ $message }}</span>
                                 @enderror
-                            </label>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="input-group">
+                                <label class="label">Confirm Password</label>
+                                <input type="password" class="input--style-4" name="password_confirmation" id="password_confirmation" class="password_confirmation" required>
+                                @error('Confirm Password')
+                                <span class="error">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div>
+                            <div class="input-group">
+                                <label class="radio-container m-r-45"> {!! __('I agree to the :terms_of_service and :privacy_policy', [
+                                    'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'" class="text-decoration-none">'.__('Terms of Service').'</a>',
+                                    'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'" class="text-decoration-none">'.__('Privacy Policy').'</a>',
+                                ]) !!}
+                                    <input type="checkbox" id="terms" name="terms" required>
+                                    <span class="checkmark"></span>
+                                    @error('terms')
+                                    <span class="error">{{ $message }}</span>
+                                    @enderror
+                                </label>
+                            </div>
                         </div>
                         
                         <label class="label">Upload a <strong>clear </strong> of Student/National ID for verification</label>
@@ -230,16 +233,14 @@
                           </div>
                           <br>
 
-                    <div class="row ">
-                        <div class="col-2">
-                            <button class="btn btn--radius-2 btn--blue" type="submit">Submit</button>
+                        <div class="row ">
+                            <div class="col-2">
+                                <button class="btn btn--radius-2 btn--blue" type="submit">Submit</button>
+                            </div>
+                            <div class="col-2"  style="justify-content: flex-end;">
+                                <button class="btn btn--radius-2 btn--blue" href="javascript:history.back()">Back</button>
+                            </div>
                         </div>
-                        <div class="col-2"  style="justify-content: flex-end;">
-                            <button class="btn btn--radius-2 btn--blue" href="javascript:history.back()">Back</button>
-                        </div>
-                    </div>
-
-
                     </form>
                 </div>
             </div>
