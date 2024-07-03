@@ -14,7 +14,7 @@ Apache or Nginx server
 ## Installation Steps:
 ### Clone the Repository:
 
-bash
+#### bash:
 Copy code
 git clone https://github.com/ShadrachAroni/UniStay.git
 cd unistay
