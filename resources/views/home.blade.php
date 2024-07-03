@@ -217,7 +217,7 @@
                   </div>
                   <div class="card-body-a">
                     <div class="price-box d-flex">
-                      <span class="price-a">price | $ 12.000</span>
+                      <span class="price-a">price | ksh 12000</span>
                     </div>
                     <div class="price-box d-flex">
                       <span class="price-a">monthly</span>
@@ -269,7 +269,7 @@
                 </div>
                 <div class="card-body-a">
                 <div class="price-box d-flex">
-                    <span class="price-a">price | $ 12.000</span>
+                    <span class="price-a">price | Ksh 12000</span>
                 </div>
                 <div class="price-box d-flex">
                     <span class="price-a">monthly</span>
@@ -320,7 +320,7 @@
                 </div>
                 <div class="card-body-a">
                 <div class="price-box d-flex">
-                    <span class="price-a">price | $ 12.000</span>
+                    <span class="price-a">price | Ksh 12000</span>
                 </div>
                 <div class="price-box d-flex">
                     <span class="price-a">monthly</span>
