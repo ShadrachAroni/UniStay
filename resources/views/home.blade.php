@@ -50,6 +50,9 @@
             width: 100%;
             height: 80vh;
         }
+        ::-webkit-scrollbar {
+        display: none;
+        }
      </style>
 
 </head>

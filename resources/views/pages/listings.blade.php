@@ -26,7 +26,11 @@
   <link href="{{asset('view/css/style.css')}}" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href ="{{asset('front/css/style.css')}}">
   <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
-
+<style>
+  ::-webkit-scrollbar {
+        display: none;
+        }
+</style>
 </head>
 
 <body>
