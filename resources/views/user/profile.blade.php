@@ -27,7 +27,7 @@
                             <div class="row">
                                 <div class="col-12">
                                     @if (Laravel\Fortify\Features::canUpdateProfileInformation())
-                                        @include('profile.update-profile-information-form')
+                                         @include('profile.update-profile-information-form')
                                     @endif
 
                                     @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::updatePasswords()))
@@ -83,12 +83,9 @@
 	<!-- Custom js for this page -->
   <script src="{{ asset('../backend/assets/js/dashboard-dark.js')}}"></script>
 	<!-- End custom js for this page -->
-
-      <!-- Toastr JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <!-- Toastr JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="{{ asset('../js/app.js')}}"></script>
-<script src="{{ asset('../js/app.js')}}"></script>
 <script type="text/javascript">
     $(document).ready(function(){
         $('#image').change(function(e){
@@ -100,6 +97,8 @@
         });
     });
 
+</script>
+<script>
     @if(Session::has('success'))
         toastr.success("{{ Session::get('success') }}");
     @endif
@@ -126,10 +125,8 @@
                 break; 
         }
     @endif
-    
+  
 </script>
-
-
 
 </body>
 </html>    

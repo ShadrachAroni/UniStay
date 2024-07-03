@@ -9,7 +9,7 @@
     <meta name="keywords" content="Colorlib Templates">
 
     <!-- Title Page-->
-    <title>Agent Registration</title>
+    <title>Registration</title>
 
     <!-- Icons font CSS-->
     <link href="{{asset('registerForm/vendor/mdi-font/css/material-design-iconic-font.min.css')}}" rel="stylesheet" media="all">
