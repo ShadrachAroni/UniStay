@@ -99,9 +99,25 @@
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
                                 <input id="email" class="form-control" name="email" type="email" value="{{ old('email', $user->email) }}">
+                                @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::emailVerification()) && !Auth::user()->hasVerifiedEmail())
+                                <p class="text-sm mt-2">
+                                    {{ __('Your email address is unverified.') }}
+                
+                                    <button type="button" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" wire:click.prevent="sendEmailVerification">
+                                        {{ __('Click here to re-send the verification email.') }}
+                                    </button>
+                                </p>
+                
+                                @if ($this->verificationLinkSent)
+                                    <p class="mt-2 font-medium text-sm text-green-600">
+                                        {{ __('A new verification link has been sent to your email address.') }}
+                                    </p>
+                                @endif
+                            @endif
                                 @error('email')
                                     <p class="text-sm text-red-600">{{ $message }}</p>
                                 @enderror
+
                             </div>
 
                             <div class="mb-3">
