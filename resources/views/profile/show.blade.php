@@ -1,15 +1,28 @@
 @include('header')
 	<div class="main-wrapper">
 
-		<!-- partial:partials/_sidebar.html -->
-  @include('agent/sidebar')
-		<!-- partial -->
-	
-		<div class="page-wrapper">
-					
-			<!-- partial:partials/_navbar.html -->
-	@include('agent/navBar')
-			<!-- partial -->
+		
+        @if(Auth::user()->role_id === 1)
+        @include('admin/sidebar')
+    
+        <div class="page-wrapper">
+            @include('admin/navBar')
+    @endif
+    
+    @if(Auth::user()->role_id === 3)
+        @include('agent/sidebar')
+    
+        <div class="page-wrapper">
+            @include('agent/navBar')
+    @endif
+    
+    @if(Auth::user()->role_id !== 1 && Auth::user()->role_id !== 3)
+        @include('user/sidebar')
+    
+        <div class="page-wrapper">
+            @include('user/navBar')
+    @endif
+    
 
 			<div class="page-content">
 					<div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
@@ -27,7 +40,7 @@
                             <div class="row">
                                 <div class="col-12">
                                     @if (Laravel\Fortify\Features::canUpdateProfileInformation())
-                                        @include('profile.update-profile-information-form')
+                                         @include('profile.update-profile-information-form')
                                     @endif
 
                                     @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::updatePasswords()))
@@ -83,12 +96,9 @@
 	<!-- Custom js for this page -->
   <script src="{{ asset('../backend/assets/js/dashboard-dark.js')}}"></script>
 	<!-- End custom js for this page -->
-
-      <!-- Toastr JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <!-- Toastr JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="{{ asset('../js/app.js')}}"></script>
-<script src="{{ asset('../js/app.js')}}"></script>
 <script type="text/javascript">
     $(document).ready(function(){
         $('#image').change(function(e){
@@ -100,6 +110,8 @@
         });
     });
 
+</script>
+<script>
     @if(Session::has('success'))
         toastr.success("{{ Session::get('success') }}");
     @endif
@@ -126,10 +138,8 @@
                 break; 
         }
     @endif
-    
+  
 </script>
-
-
 
 </body>
 </html>    

@@ -18,13 +18,6 @@ class AgentController extends Controller
         return view('agent.dashboard');
     }
 
-    public function profile()
-    {
-      $user = Auth::user();
-
-      return view('agent.profile', compact('user'));
-    }
-
     public function data()
     {
        
