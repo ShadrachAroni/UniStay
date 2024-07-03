@@ -1,7 +1,7 @@
 # UniStay
 
 ## Description:
-The Student Accommodation Hub is a web application designed to connect students with homeowners who offer accommodation. Students can search for and book accommodation while homeowners can list properties and manage reservations. This project aims to simplify the process of finding and reserving student housing, providing a seamless and user-friendly experience for both students and property owners.
+UniStay is a web application designed to connect students with homeowners who offer accommodation. Students can search for and book accommodation while homeowners can list properties and manage reservations. This project aims to simplify the process of finding and reserving student housing, providing a seamless and user-friendly experience for both students and property owners.
 
 ## Project Setup/Installation Instructions
 ## Dependencies:
@@ -16,46 +16,46 @@ Apache or Nginx server
 
 bash
 Copy code
-git clone https://github.com/yourusername/student-accommodation-hub.git
-cd student-accommodation-hub
+git clone https://github.com/ShadrachAroni/UniStay.git
+cd unistay
 ### Install Backend Dependencies:
 
-bash
+#### bash:
 Copy code
 composer install
 ### Install Frontend Dependencies:
 
-bash
+#### bash:
 Copy code
 npm install
 npm run dev
 ### Set Up Environment Variables:
 Copy the .env.example file to .env and configure your database and other necessary settings:
 
-bash
+#### bash:
 Copy code
 cp .env.example .env
 php artisan key:generate
 Run Migrations:
 
-bash
+#### bash:
 Copy code
 php artisan migrate
 Seed the Database (optional):
 
-bash
+#### bash:
 Copy code
 php artisan db:seed
 Start the Development Server:
 
-bash
+#### bash:
 Copy code
 php artisan serve
 ### Usage Instructions
 How to Run:
 To start the application, navigate to the project directory and run the development server:
 
-bash
+#### bash:
 Copy code
 php artisan serve
 Open your browser and go to http://127.0.0.1:8000 to access the application.
@@ -92,7 +92,7 @@ Composer
 Node.js
 Icons made by Freepik from Flaticon
 ## Contact Information:
-For questions or feedback, please open an issue on GitHub or contact us at support@studentaccommodationhub.com.
+For questions or feedback, please open an issue on GitHub or contact us at [shadrach.aroni@strathmore.edu] or [tracey.munyagia@strathmore.edu]
 
 ```
 UniStay
