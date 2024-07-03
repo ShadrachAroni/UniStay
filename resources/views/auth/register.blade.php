@@ -163,7 +163,7 @@
                                     <label class="label">Gender</label>
                                     <div class="p-t-10">
                                         <label class="radio-container m-r-45">Male
-                                            <input type="radio" checked="checked" name="gender" required autofocus autocomplete="gender">
+                                            <input type="radio" name="gender" required autofocus autocomplete="gender">
                                             <span class="checkmark"></span>
                                         </label>
                                         <label class="radio-container">Female

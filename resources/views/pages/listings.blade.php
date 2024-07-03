@@ -26,36 +26,7 @@
   <link href="{{asset('view/css/style.css')}}" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href ="{{asset('front/css/style.css')}}">
   <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
-<style>
-  /* Define the spin-in animation */
-@keyframes spin-in {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
 
-/* Define the spin-out animation */
-@keyframes spin-out {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(-360deg); }
-}
-
-/* Apply the spin-in animation on hover */
-.close-box-collapse:hover {
-    animation: spin-in 0.5s linear forwards;
-}
-
-/* Apply the spin-out animation on mouse leave */
-.close-box-collapse {
-    transition: transform 0.5s ease-out;
-}
-
-.close-box-collapse:not(:hover) {
-    animation: spin-out 0.5s linear forwards;
-}
-.icons i:hover{
-  color: aqua;
-}
-</style>
 </head>
 
 <body>

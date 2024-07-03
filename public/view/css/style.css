@@ -2161,3 +2161,31 @@ footer .copyright-footer {
 footer .credits {
   font-size: 14px;
 }
+ /* Define the spin-in animation */
+ @keyframes spin-in {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Define the spin-out animation */
+@keyframes spin-out {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(-360deg); }
+}
+
+/* Apply the spin-in animation on hover */
+.close-box-collapse:hover {
+  animation: spin-in 0.5s linear forwards;
+}
+
+/* Apply the spin-out animation on mouse leave */
+.close-box-collapse {
+  transition: transform 0.5s ease-out;
+}
+
+.close-box-collapse:not(:hover) {
+  animation: spin-out 0.5s linear forwards;
+}
+.icons i:hover{
+color: aqua;
+}

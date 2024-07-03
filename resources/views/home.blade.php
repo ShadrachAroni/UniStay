@@ -222,7 +222,7 @@
                     <div class="price-box d-flex">
                       <span class="price-a">monthly</span>
                     </div>
-                    <a href="#" class="link-a">Click here to view >
+                    <a href="#" class="link-a">Click here to view ->
                       <span class="bi bi-chevron-right"></span>
                     </a>
                   </div>
@@ -274,7 +274,7 @@
                 <div class="price-box d-flex">
                     <span class="price-a">monthly</span>
                 </div>
-                <a href="#" class="link-a">Click here to view >
+                <a href="#" class="link-a">Click here to view ->
                     <span class="bi bi-chevron-right"></span>
                 </a>
                 </div>
@@ -325,7 +325,7 @@
                 <div class="price-box d-flex">
                     <span class="price-a">monthly</span>
                 </div>
-                <a href="#" class="link-a">Click here to view >
+                <a href="#" class="link-a">Click here to view ->
                     <span class="bi bi-chevron-right"></span>
                 </a>
                 </div>
@@ -429,9 +429,9 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close d-flex align-items-center justify-content-center" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true" class="ion-ios-close"></span>
-          </button>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
         </div>
         <div class="row2 no-gutters">
             <div class="col-md-6 d-flex">
