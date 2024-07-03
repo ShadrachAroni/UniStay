@@ -29,7 +29,7 @@ Route::middleware([
         return view('home');
     })->name('home');
 
-//Route::resource('profile', \App\Http\Controllers\ProfileController::class);
+Route::resource('details', \App\Http\Controllers\DetailsController::class);
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
 
@@ -83,7 +83,7 @@ Route::middleware(['auth', 'isUser'])->group(function () {
 });
 
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
 
 
 

@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 
-class ProfileController extends Controller
+class DetailsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -82,22 +82,11 @@ class ProfileController extends Controller
     
 
             // Redirect to users index with a success message
-            $userRole = Auth::user()->role_id; // Adjust this line to match your user role retrieval logic
-
-            switch ($userRole) {
-                case '3':
-                    return redirect()->route('agent.profile')->with('success', 'agent updated successfully.');
-                case '2':
-                    return redirect()->route('user.profile')->with('success', 'User updated successfully.');
-                case '1':
-                    return redirect()->route('admin.profile')->with('success', 'admin updated successfully.');
-                default:
-                    return redirect()->route('home')->with('success', 'User updated successfully.');
-            }
+             return redirect()->route('profile.show')->with('success', 'Profile updated successfully.');
     
         } catch (\Exception $e) {
             // Handle any errors that may occur
-            return redirect()->back()->withErrors(['error' => 'An error occurred while updating your profile.'])->withInput();
+            return redirect()->back()->withErrors(['error' => 'An error occurred while Updating your profile ' . $e->getMessage()]);
         }
     }
     

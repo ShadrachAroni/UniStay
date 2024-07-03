@@ -63,7 +63,7 @@
                     <div class="card-body">
                         <h6 class="card-title">Update Profile</h6>
 
-                        <form id="updateProfile" method="post" action="{{ route('profile.update', $user->id) }}" enctype="multipart/form-data">
+                        <form id="updateProfile" method="post" action="{{ route('details.update', $user->id) }}" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
 

@@ -88,7 +88,7 @@
         <div class="dropdown-menu p-0" aria-labelledby="profileDropdown">
             <div class="d-flex flex-column align-items-center border-bottom px-5 py-3">
                 <div class="mb-3">
-                    <img class="wd-80 ht-80 rounded-circle" src="{{(!empty(Auth::user()->profile_photo)) ? url('upload/img'.Auth::user()->profile_photo) : url('upload/img/no_image.jpg') }}" alt="">
+                    <img class="wd-80 ht-80 rounded-circle" src="{{ (!empty(Auth::user()->profile_photo)) ? url('upload/img'.Auth::user()->profile_photo) : url('upload/img/no_image.jpg') }}" >
                 </div>
                 <div class="text-center">
                     <p class="tx-16 fw-bolder">{{Auth::user()->Fname}}</p>
@@ -102,7 +102,7 @@
                       <span>Profile</span>
                     </a>
                   </li>
-                  
+
                   <li class="dropdown-item py-2">
                     <form id="logout-form" action="{{ route('logout') }}" method="POST">
                       @csrf
@@ -119,7 +119,6 @@
                       <span>Home</span>
                     </a>
                   </li>
-
                   
                 </ul>
 							</div>
