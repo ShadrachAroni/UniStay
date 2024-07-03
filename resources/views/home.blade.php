@@ -96,7 +96,7 @@
                         @csrf
                     </form>
  
-                    <a href="{{ route('dashboard') }}" class="h-btn2">
+                    <a href="{{ url('/dashboard') }}" class="h-btn2">
                         Dashboard
                     </a>                
                 @else
