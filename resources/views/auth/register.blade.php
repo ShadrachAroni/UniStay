@@ -5,13 +5,34 @@
             @csrf
 
             <div>
-                <x-label for="name" value="{{ __('Name') }}" />
-                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+                <x-label for="Fname" value="{{ __('First Name') }}" />
+                <x-input id="Fname" class="block mt-1 w-full" type="text" name="Fname" :value="old('Fname')" required autofocus autocomplete="First Name" />
+            </div>
+
+            <div>
+                <x-label for="Lname" value="{{ __('Last Name') }}" />
+                <x-input id="Lname" class="block mt-1 w-full" type="text" name="Lname" :value="old('Lname')" required autofocus autocomplete="Last Name" />
             </div>
 
             <div class="mt-4">
                 <x-label for="email" value="{{ __('Email') }}" />
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
+            </div>
+
+            
+            <div>
+                <x-label for="phone" value="{{ __('Phone Number') }}" />
+                <x-input id="phone" class="block mt-1 w-full" type="text" name="phone" :value="old('phone')" required autofocus autocomplete="phone" />
+            </div>
+
+            <div>
+                <x-label for="address" value="{{ __('address(Optional)') }}" />
+                <x-input id="address" class="block mt-1 w-full" type="text" name="address" :value="old('address')" required autofocus autocomplete="address" />
+            </div>
+
+            <div>
+                <x-label for="gender" value="{{ __('gender') }}" />
+                <x-input id="gender" class="block mt-1 w-full" type="text" name="gender" :value="old('name')" required autofocus autocomplete="gender" />
             </div>
 
             <div class="mt-4">
