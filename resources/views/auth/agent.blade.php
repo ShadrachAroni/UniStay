@@ -226,8 +226,8 @@
                             <div class="col-2">
                                 <button class="btn btn--radius-2 btn--blue" type="submit">Submit</button>
                             </div>
-                        <div class="col-2"  style="justify-content: flex-end;">
-                            <button class="btn btn--radius-2 btn--blue" href="{{route('home')}}">Home</button>
+                        <div class="col-2">
+                            <a href="{{route('home')}}">Home</a>
                         </div>
                     </div>
 

@@ -15,10 +15,6 @@
      <link rel="stylesheet" href="{{asset('modal/css/flaticon.css')}}">
      <link rel="stylesheet" href="{{asset('modal/css/style.css')}}">
 
-     <link href="{{asset('view/vendor/animate.css/animate.min.css')}}" rel="stylesheet">
-     <link href="{{asset('view/vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
-     <link href="{{asset('view/vendor/swiper/swiper-bundle.min.css')}}" rel="stylesheet">
-   
      <!-- Template Main CSS File -->
      <link href="{{asset('view/css/style.css')}}" rel="stylesheet">
 
@@ -523,7 +519,6 @@
 <script src="{{asset('view/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <script src="{{asset('view/vendor/swiper/swiper-bundle.min.js')}}"></script>
 <script src="{{asset('view/vendor/php-email-form/validate.js')}}"></script>
-<script src="{{asset('view/js/main.js')}}"></script>
 
 <script>
     function logout() {
