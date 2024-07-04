@@ -88,33 +88,53 @@
                                     <div class="mb-3">
                                         <label class="form-label">Gender</label>
                                         <div class="d-flex">
-                                            <div class="form-check me-3">
-                                                <input class="form-check-input" type="radio" name="gender" id="male" value="male" required>
-                                                <label class="form-check-label" for="male">
-                                                    Male
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="gender" id="female" value="female" required>
-                                                <label class="form-check-label" for="female">
-                                                    Female
-                                                </label>
-                                            </div>
+                                        <div class="form-check me-3">
+                                        <input class="form-check-input" type="radio" name="gender" id="male" value="male" required>
+                                        <label class="form-check-label" for="male">
+                                             Male
+                                         </label>
+                                    </div>
+                                     <div class="form-check">
+                                         <input class="form-check-input" type="radio" name="gender" id="female" value="female" required>
+                                         <label class="form-check-label" for="female">
+                                             Female
+                                         </label>
+                                     </div>
                                         </div>
                                         @error('gender')
                                             <span class="error">{{ $message }}</span>
                                         @enderror
-                                    </div>
+                                        </div>
+
+                                         <div class="mb-3">
+                                              <label class="form-label">Role</label>
+                                              <div class="d-flex">
+                                              <div class="form-check me-3">
+                                              <input class="form-check-input" type="radio" name="role" id="agent" value="agent" required>
+                                               <label class="form-check-label" for="agent">
+                                                    Agent
+                                                </label>
+                                            </div>
+                                         <div class="form-check">
+                                         <input class="form-check-input" type="radio" name="role" id="student" value="student" required>
+                                                <label class="form-check-label" for="student">
+                                                    Student
+                                                </label>
+                                            </div>
+                                            </div>
+                            
 
                                     <div class="mb-3">
                                         <label for="password" class="form-label">Password</label>
                                         <input type="password" id="password" name="password" class="form-control" required autocomplete="new-password">
                                     </div>
 
+
                                     <div class="mb-3">
                                         <label for="password_confirmation" class="form-label">Confirm Password</label>
                                         <input type="password" id="password_confirmation" name="password_confirmation" class="form-control" required autocomplete="new-password">
                                     </div>
+
 
                                     @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
                                         <div class="form-check mb-3">
