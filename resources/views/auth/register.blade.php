@@ -115,6 +115,18 @@
                                         <label for="password_confirmation" class="form-label">Confirm Password</label>
                                         <input type="password" id="password_confirmation" name="password_confirmation" class="form-control" required autocomplete="new-password">
                                     </div>
+                                    
+                                    <label for="ids">Upload a copy of Student/National ID for verification</label>
+                                    <br>
+                                    <div class="mb-3">
+                                        <label for="student_id_card" class="form-label">Student ID</label>
+                                        <input type="file" id="student_id_card" name="student_id_card" class="form-control">
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="national_id_card" class="form-label">National ID</label>
+                                        <input type="file" id="national_id_card" name="national_id_card" class="form-control"s>
+                                    </div>
 
                                     @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
                                         <div class="form-check mb-3">
