@@ -148,7 +148,8 @@
                                     </div>
                                     <br>
                                     <a href="{{ route('login') }}" class="text-muted">Already registered?</a>
-                                    <a href="{{ route('login') }}" class="text-muted">Already registered?</a>
+
+                                    <p><a href="{{ route('login') }}" class="text-muted">Click Here</a> to register as agent</p>
                                 </form>
                             </div>
                         </div>
