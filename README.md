@@ -12,70 +12,79 @@ Composer
 Node.js and npm (for frontend dependencies)
 Apache or Nginx server
 ## Installation Steps:
+
 ### Clone the Repository:
 
 #### bash:
-Copy code
-git clone https://github.com/ShadrachAroni/UniStay.git
+Run code:
+git clone https://github.com/ShadrachAroni/UniStay.git 
+
+navigate into the project directory:
 cd unistay
 ### Install Backend Dependencies:
 
 #### bash:
-Copy code
-composer install
+run code:
+composer install &&
+composer require laravel/ui
 ### Install Frontend Dependencies:
 
 #### bash:
-Copy code
-npm install
+run code: 
+npm install &&
 npm run dev
+
 ### Set Up Environment Variables:
 Copy the .env.example file to .env and configure your database and other necessary settings:
 
 #### bash:
-Copy code
-cp .env.example .env
+run code
+cp .env.example .env &&
 php artisan key:generate
 Run Migrations:
 
 #### bash:
-Copy code
+run code
 php artisan migrate
 Seed the Database (optional):
 
 #### bash:
-Copy code
+run code:
 php artisan db:seed
 Start the Development Server:
 
 #### bash:
-Copy code
+run code:
 php artisan serve
 ### Usage Instructions
+
 How to Run:
 To start the application, navigate to the project directory and run the development server:
 
 #### bash:
-Copy code
+run code:
 php artisan serve
 Open your browser and go to http://127.0.0.1:8000 to access the application.
 
 ## Steps:
 Students: Sign up, search for accommodations, view property details, and book a stay.
 Homeowners: Sign up, add property listings, manage bookings, and update property details.
+
 ## Input/Output:
 Input: Users provide details such as email, gender, student ID card, national ID card, phone number, and address.
 Output: The application displays a list of available accommodations, booking confirmations, and property management options.
 Project Structure
+
 ## Overview:
 The project is organized into the following main folders:
 
-app: Contains the core application code (models, controllers, etc.).
+app: Contains the core application logic code (models, controllers, etc.).
 database: Contains database migrations and seeders.
 public: Contains publicly accessible files (e.g., images, CSS, JS).
 resources: Contains view templates and raw assets (CSS, JS, etc.).
 routes: Contains all route definitions.
 tests: Contains automated tests.
+
 ## Key Files:
 app/Models/User.php: Defines the user model and its relationships.
 app/Http/Controllers/AuthController.php: Handles user authentication.
@@ -83,6 +92,7 @@ database/migrations/: Contains the database schema.
 routes/web.php: Defines the web routes for the application.
 resources/views/: Contains the Blade templates for the frontend.
 Additional Sections (Optional)
+
 ## Project Status:
 The project is currently in progress.
 
@@ -91,6 +101,7 @@ Laravel Documentation
 Composer
 Node.js
 Icons made by Freepik from Flaticon
+
 ## Contact Information:
 For questions or feedback, please open an issue on GitHub or contact us at [shadrach.aroni@strathmore.edu] or [tracey.munyagia@strathmore.edu]
 
