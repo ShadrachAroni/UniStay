@@ -12,30 +12,34 @@ Composer
 Node.js and npm (for frontend dependencies)
 Apache or Nginx server
 ## Installation Steps:
+
 ### Clone the Repository:
 
 #### bash:
 Run code:
-git clone https://github.com/ShadrachAroni/UniStay.git
+git clone https://github.com/ShadrachAroni/UniStay.git 
+
+#####go navigate into the project directory
 cd unistay
 ### Install Backend Dependencies:
 
 #### bash:
 run code:
-composer install
+composer install &&
 composer require laravel/ui
 ### Install Frontend Dependencies:
 
 #### bash:
 run code: 
-npm install
+npm install &&
 npm run dev
+
 ### Set Up Environment Variables:
 Copy the .env.example file to .env and configure your database and other necessary settings:
 
 #### bash:
 run code
-cp .env.example .env
+cp .env.example .env &&
 php artisan key:generate
 Run Migrations:
 
@@ -45,12 +49,12 @@ php artisan migrate
 Seed the Database (optional):
 
 #### bash:
-Copy code
+run code:
 php artisan db:seed
 Start the Development Server:
 
 #### bash:
-Copy code
+run code:
 php artisan serve
 ### Usage Instructions
 
