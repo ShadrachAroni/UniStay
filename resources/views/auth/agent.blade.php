@@ -46,6 +46,7 @@
                                     <div class="auth-form-wrapper px-4 py-5">
                                         <a href="#" class="noble-ui-logo logo-light d-block mb-2">Uni<span>Stay</span></a>
                                         <h5 class="text-muted fw-normal mb-4">Create a new account.</h5>
+                                        @auth
                                         <form method="POST" action="{{ route('register') }}" class="forms-sample">
                                             @csrf
                                             <div class="mb-3">
@@ -136,6 +137,7 @@
                                             <a href="{{ route('login') }}" class="text-muted">Already registered?</a>
                                                
                                         </form>
+                                        @endauth
                                     </div>
                                
                         </div>
