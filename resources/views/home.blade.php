@@ -63,7 +63,7 @@
         <img src="{{asset('../front/img/logo.png')}}">
     </a>
     <ul class="navbar open">
-        <a href="{{url('/')}}" class="h-btn1">Home</a>
+        <a href="{{ url('/')}}" class="h-btn1">Home</a>
         <a href="{{ route('about')}}" class="h-btn1">About Us</a>
         <a href="{{route('contact')}}" class="h-btn1">Contact Us</a>
 
@@ -75,10 +75,17 @@
                 <script>
                     function showAccessDeniedAlert() {
                         Swal.fire({
-                            icon: 'error',
-                            title: 'Access Denied!',
-                            text: 'You do not have permission to access this feature.',
-                            showConfirmButton: true
+                        title: "<strong>Oops!</strong>",
+                        icon: "info",
+                        html: `
+                            You have to be an agent to access <br>
+                            <a href="{{route('register.agent')}}" style="color: blue; text-decoration:underline;">Click here</a> to register as an agent.
+                        `,
+                        showCloseButton: true,
+                        focusConfirm: false,
+                        confirmButtonText: `
+                            <i class="fa fa-thumbs-up"></i>
+                        `
                         });
                     }
                 </script>
