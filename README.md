@@ -23,6 +23,7 @@ cd unistay
 #### bash:
 run code:
 composer install
+composer require laravel/ui
 ### Install Frontend Dependencies:
 
 #### bash:
