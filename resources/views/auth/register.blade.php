@@ -148,6 +148,7 @@
                                     </div>
                                     <br>
                                     <a href="{{ route('login') }}" class="text-muted">Already registered?</a>
+                                    <a href="{{ route('login') }}" class="text-muted">Already registered?</a>
                                 </form>
                             </div>
                         </div>
