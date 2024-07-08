@@ -4,34 +4,28 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-  <title>EstateAgency Bootstrap Template - Index</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+  <meta name="description" content="UniStay">
+  
+  <title>UniStay</title>
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link rel="icon" type="image/png" href="{{ asset('img/logo.png') }}">
+  <link rel="shortcut icon" href="{{ asset('img/logo.png') }}">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="{{asset('view/vendor/animate.css/animate.min.css')}}" rel="stylesheet">
+  <link href="{{asset('view/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+  <link href="{{asset('view/vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
+  <link href="{{asset('view/vendor/swiper/swiper-bundle.min.css')}}" rel="stylesheet">
+
 
   <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="{{asset('view/css/style.css')}}" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: EstateAgency
-  * Template URL: https://bootstrapmade.com/real-estate-agency-bootstrap-template/
-  * Updated: Mar 17 2024 with Bootstrap v5.3.3
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+  <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
 </head>
 
 <body>
@@ -128,58 +122,77 @@
         </div>
       </form>
     </div>
-  </div><!-- End Property Search Section -->>
+  </div>
+  <!-- End Property Search Section -->
 
   <!-- ======= Header/Navbar ======= -->
-  <nav class="navbar navbar-default navbar-trans navbar-expand-lg fixed-top">
-    <div class="container">
-      <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarDefault" aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-      <a class="navbar-brand text-brand" href="index.html">Estate<span class="color-b">Agency</span></a>
+  <header class="sticky">
+    <a href="#" class="logo">
+        <img src="{{asset('../front/img/logo.png')}}">
+    </a>
+    <ul class="navbar open">
+        <a href="#">Home</a></li>
+        <a href="{{ route('about')}}">About Us</a>
+        <a href="{{route('contact')}}">Contact Us</a>
 
-      <div class="navbar-collapse collapse justify-content-center" id="navbarDefault">
-        <ul class="navbar-nav">
+        @auth
+            @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 3)
+                <a href="{{ route('pages.add') }}">Add Listing</a>
+            @else
+                <a href="#" onclick="showAccessDeniedAlert()">Add Listing</a>
+                <script>
+                    function showAccessDeniedAlert() {
+                      Swal.fire({
+                        title: "<strong>Oops!</strong>",
+                        icon: "info",
+                        html: `
+                            You have to be an agent to access <br>
+                            <a href="{{route('register.agent')}}" style="color: blue; text-decoration:underline;">Click here</a> to register as an agent.
+                        `,
+                        showCloseButton: true,
+                        focusConfirm: false,
+                        confirmButtonText: `
+                            <i class="fa fa-thumbs-up"></i>
+                        `
+                        });
+                    }
+                </script>
+            @endif
+                @else
+                    <a href="{{ route('pages.add') }}">Add Listing</a>
+        @endauth
+    </ul>
 
-          <li class="nav-item">
-            <a class="nav-link " href="index.html">Home</a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link " href="about.html">About</a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link " href="property-grid.html">Property</a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link " href="blog-grid.html">Blog</a>
-          </li>
-
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>
-            <div class="dropdown-menu">
-              <a class="dropdown-item active" href="property-single.html">Property Single</a>
-              <a class="dropdown-item " href="blog-single.html">Blog Single</a>
-              <a class="dropdown-item " href="agents-grid.html">Agents Grid</a>
-              <a class="dropdown-item " href="agent-single.html">Agent Single</a>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link " href="contact.html">Contact</a>
-          </li>
-        </ul>
-      </div>
-
-      <button type="button" class="btn btn-b-n navbar-toggle-box navbar-toggle-box-collapse" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01">
-        <i class="bi bi-search"></i>
-      </button>
-
-    </div>
-  </nav><!-- End Header/Navbar -->
+    <div class="h-btn">
+        @if (Route::has('login'))
+            <nav class="-mx-3 flex flex-1 justify-end">
+                @auth
+                    <a href="#" class="h-btn1" onclick="logout()" onclick="event.preventDefault();" onclick="event.preventDefault();">
+                        Logout
+                    </a>           
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+ 
+                    <a href="{{ url('/dashboard') }}" class="h-btn2">
+                        Dashboard
+                    </a>                
+                @else
+                    <a href="#login" id="openLogin" class="h-btn1" onclick="showLogin()">
+                        Log in
+                    </a>
+                    @if (Route::has('register'))
+                        <a href="{{ route('register') }}" class="h-btn2" > 
+                            Register
+                        </a>
+                    @endif
+                @endauth
+            </nav>
+        @endif
+        <div class="bx bx-menu" id="menu-icon"></div> 
+    </div>  
+  </header>
+  <!-- End Header/Navbar -->
 
   <main id="main">
 
@@ -193,24 +206,10 @@
               <span class="color-text-a">Chicago, IL 606543</span>
             </div>
           </div>
-          <div class="col-md-12 col-lg-4">
-            <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
-              <ol class="breadcrumb">
-                <li class="breadcrumb-item">
-                  <a href="index.html">Home</a>
-                </li>
-                <li class="breadcrumb-item">
-                  <a href="property-grid.html">Properties</a>
-                </li>
-                <li class="breadcrumb-item active" aria-current="page">
-                  304 Blaster Up
-                </li>
-              </ol>
-            </nav>
-          </div>
         </div>
       </div>
-    </section><!-- End Intro Single-->
+    </section>
+    <!-- End Intro Single-->
 
     <!-- ======= Property Single ======= -->
     <section class="property-single nav-arrow-b">
@@ -457,178 +456,98 @@
           </div>
         </div>
       </div>
-    </section><!-- End Property Single-->
+    </section>
+    <!-- End Property Single-->
 
-  </main><!-- End #main -->
+  </main>
+  <!-- End #main -->
 
   <!-- ======= Footer ======= -->
-  <section class="section-footer">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-12 col-md-4">
-          <div class="widget-a">
-            <div class="w-header-a">
-              <h3 class="w-title-a text-brand">EstateAgency</h3>
-            </div>
-            <div class="w-body-a">
-              <p class="w-text-a color-text-a">
-                Enim minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip exea commodo consequat duis
-                sed aute irure.
-              </p>
-            </div>
-            <div class="w-footer-a">
-              <ul class="list-unstyled">
-                <li class="color-a">
-                  <span class="color-text-a">Phone .</span> contact@example.com
-                </li>
-                <li class="color-a">
-                  <span class="color-text-a">Email .</span> +54 356 945234
-                </li>
-              </ul>
-            </div>
-          </div>
+  <section class="contact" data-aos="zoom-in-up">
+    <div class="contact-content">
+        <img src="{{asset('front/img/logo.png')}}">
+        <p>Below you will be able to access our social media platforms and get more in touch with us</p>
+        <div class="icons">
+            <a href="#"><i class='bx bxl-facebook' ></i></a>
+            <a href="#"><i class='bx bxl-instagram' ></i></a>
+            <a href="#"><i class='bx bxl-twitter' ></i></a>
+            <a href="#"><i class='bx bxl-youtube' ></i></a>
         </div>
-        <div class="col-sm-12 col-md-4 section-md-t3">
-          <div class="widget-a">
-            <div class="w-header-a">
-              <h3 class="w-title-a text-brand">The Company</h3>
-            </div>
-            <div class="w-body-a">
-              <div class="w-body-a">
-                <ul class="list-unstyled">
-                  <li class="item-list-a">
-                    <i class="bi bi-chevron-right"></i> <a href="#">Site Map</a>
-                  </li>
-                  <li class="item-list-a">
-                    <i class="bi bi-chevron-right"></i> <a href="#">Legal</a>
-                  </li>
-                  <li class="item-list-a">
-                    <i class="bi bi-chevron-right"></i> <a href="#">Agent Admin</a>
-                  </li>
-                  <li class="item-list-a">
-                    <i class="bi bi-chevron-right"></i> <a href="#">Careers</a>
-                  </li>
-                  <li class="item-list-a">
-                    <i class="bi bi-chevron-right"></i> <a href="#">Affiliate</a>
-                  </li>
-                  <li class="item-list-a">
-                    <i class="bi bi-chevron-right"></i> <a href="#">Privacy Policy</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-12 col-md-4 section-md-t3">
-          <div class="widget-a">
-            <div class="w-header-a">
-              <h3 class="w-title-a text-brand">International sites</h3>
-            </div>
-            <div class="w-body-a">
-              <ul class="list-unstyled">
-                <li class="item-list-a">
-                  <i class="bi bi-chevron-right"></i> <a href="#">Venezuela</a>
-                </li>
-                <li class="item-list-a">
-                  <i class="bi bi-chevron-right"></i> <a href="#">China</a>
-                </li>
-                <li class="item-list-a">
-                  <i class="bi bi-chevron-right"></i> <a href="#">Hong Kong</a>
-                </li>
-                <li class="item-list-a">
-                  <i class="bi bi-chevron-right"></i> <a href="#">Argentina</a>
-                </li>
-                <li class="item-list-a">
-                  <i class="bi bi-chevron-right"></i> <a href="#">Singapore</a>
-                </li>
-                <li class="item-list-a">
-                  <i class="bi bi-chevron-right"></i> <a href="#">Philippines</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
-  </section>
-  <footer>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <nav class="nav-footer">
-            <ul class="list-inline">
-              <li class="list-inline-item">
-                <a href="#">Home</a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#">About</a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#">Property</a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#">Blog</a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#">Contact</a>
-              </li>
-            </ul>
-          </nav>
-          <div class="socials-a">
-            <ul class="list-inline">
-              <li class="list-inline-item">
-                <a href="#">
-                  <i class="bi bi-facebook" aria-hidden="true"></i>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#">
-                  <i class="bi bi-twitter" aria-hidden="true"></i>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#">
-                  <i class="bi bi-instagram" aria-hidden="true"></i>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#">
-                  <i class="bi bi-linkedin" aria-hidden="true"></i>
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div class="copyright-footer">
-            <p class="copyright color-text-a">
-              &copy; Copyright
-              <span class="color-a">EstateAgency</span> All Rights Reserved.
-            </p>
-          </div>
-          <div class="credits">
-            <!--
-            All the links in the footer should remain intact.
-            You can delete the links only if you purchased the pro version.
-            Licensing information: https://bootstrapmade.com/license/
-            Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=EstateAgency
-          -->
-            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-          </div>
-        </div>
-      </div>
+
+    <div class="contact-content" style="font-weight: bold;">
+        <h4>Listings</h4>
+        <li><a href="#">Houses</a></li>
+        <li><a href="#">Rooms</a></li>
+        <li><a href="#">Appartment</a></li>
+        <li><a href="#">Hostels</a></li>
     </div>
-  </footer><!-- End  Footer -->
 
-  <div id="preloader"></div>
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <div class="contact-content">
+        <h4>Listings</h4>
+        <li><a href="#">Houses</a></li>
+        <li><a href="#">Rooms</a></li>
+        <li><a href="#">Appartment</a></li>
+        <li><a href="#">Hostels</a></li>
+    </div>
 
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
+    <div class="contact-content">
+        <h4>Listings</h4>
+        <li><a href="#">Houses</a></li>
+        <li><a href="#">Rooms</a></li>
+        <li><a href="#">Appartment</a></li>
+        <li><a href="#">Hostels</a></li>
+    </div>
+    
+</section>
+  <!-- End  Footer -->
 
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<!-- Vendor JS Files -->
+<script src="{{asset('view/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<script src="{{asset('view/vendor/swiper/swiper-bundle.min.js')}}"></script>
+<script src="{{asset('view/vendor/php-email-form/validate.js')}}"></script>
+
+<!-- Template Main JS File -->
+<script src="{{asset('view/js/main.js')}}"></script>
+
+<!-- core:js -->
+<script src="{{ asset('../backend/assets/vendors/core/core.js')}}"></script>
+<!-- endinject -->
+
+<!-- Plugin js for this page -->
+<script src="{{ asset('../backend/assets/vendors/flatpickr/flatpickr.min.js')}}"></script>
+<script src="{{ asset('../backend/assets/vendors/apexcharts/apexcharts.min.js')}}"></script>
+<!-- End plugin js for this page -->
+
+<!-- inject:js -->
+<script src="{{ asset('../backend/assets/vendors/feather-icons/feather.min.js')}}"></script>
+<script src="{{ asset('../backend/assets/js/template.js')}}"></script>
+<!-- endinject -->
+
+<!-- Custom js for this page -->
+<script src="{{ asset('../backend/assets/js/dashboard-dark.js')}}"></script>
+<!-- End custom js for this page -->
+
+<!-- jQuery and Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+<!-- Bootstrap JS, Popper.js, and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+<!--js files-->
+<script src="{{asset('modal/js/jquery.min.js')}}"></script>
+<script src="{{asset('modal/js/popper.js')}}"></script>
+<script src="{{asset('modal/js/bootstrap.min.js')}}"></script>
+<script src="{{asset('modal/js/main.js')}}"></script>
+<script  src="{{asset('front/js/script.js')}}"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.27/dist/sweetalert2.all.min.js"></script>
 
 </body>
-
 </html>
