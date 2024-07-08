@@ -34,8 +34,8 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 });
 
 
-Route::get('/pages/aboutUs', [DashboardController::class, 'about'])->name('about');
-Route::get('/pages/ContactUs', [DashboardController::class, 'contact'])->name('contact');
+Route::get('/pages/About', [DashboardController::class, 'about'])->name('about');
+Route::get('/pages/Contact', [DashboardController::class, 'contact'])->name('contact');
 Route::get('/auth/Agent', [DashboardController::class, 'AgentRegister'])->name('register.agent');
 
 Route::resource('properties', \App\Http\Controllers\PropertyController::class);
