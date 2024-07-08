@@ -46,6 +46,9 @@
         .form-control.error::placeholder {
             color: #dc3545 !important;
         }
+        p a:hover{
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -58,6 +61,9 @@
                             <div class="auth-form-wrapper px-4 py-5">
                                 <a href="#" class="noble-ui-logo logo-light d-block mb-2">Uni<span>Stay</span></a>
                                 <h5 class="text-muted fw-normal mb-4">Create a new account.</h5>
+
+                                <p><a href="{{ route('register.agent') }}" class="text-muted">Click Here</a> to register as agent</p>
+                                <br>
                                 <form id="registerForm" method="POST" action="{{ route('register') }}" class="forms-sample">
                                     @csrf
                                     <div class="mb-3">
@@ -148,8 +154,6 @@
                                     </div>
                                     <br>
                                     <a href="{{ route('login') }}" class="text-muted">Already registered?</a>
-
-                                    <p><a href="{{ route('login') }}" class="text-muted">Click Here</a> to register as agent</p>
                                 </form>
                             </div>
                         </div>
