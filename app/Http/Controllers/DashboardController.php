@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -55,7 +56,9 @@ class DashboardController extends Controller
 
     public function AgentRegister() {
 
-        return view('auth.agent');
+        $id = Auth::user()->id;
+        $user = User::findOrFail($id); // Ensure that you get a single user instance
 
+        return view('auth.agent', ['user' => $user]);
     }
 }
