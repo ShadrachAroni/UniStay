@@ -19,7 +19,7 @@ Apache or Nginx server
 Run code:
 git clone https://github.com/ShadrachAroni/UniStay.git 
 
-#####go navigate into the project directory
+navigate into the project directory:
 cd unistay
 ### Install Backend Dependencies:
 
