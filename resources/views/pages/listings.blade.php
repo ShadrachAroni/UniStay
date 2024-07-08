@@ -30,6 +30,10 @@
   ::-webkit-scrollbar {
         display: none;
         }
+        .card-body-a a:hover{
+            transform: translateY(0px) scale(1.1); 
+            color: var(--main-color);
+        }
 </style>
 </head>
 
@@ -223,7 +227,8 @@
           </div>
         </div>
       </div>
-    </section><!-- End Intro Single-->
+    </section>
+    <!-- End Intro Single-->
 
     <!-- ======= Property Grid ======= -->
     <section class="property-grid grid">
@@ -259,7 +264,7 @@
                     <div class="price-box d-flex">
                       <span class="price-a">monthly</span>
                     </div>
-                    <a href="#" class="link-a">Click here to view
+                    <a href="{{ route('pages.show') }}" class="link-a">Click here to view
                       <span class="bi bi-chevron-right"></span>
                     </a>
                   </div>

@@ -82,9 +82,10 @@ class PropertyController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(/*string $id*/)
     {
-        //
+
+        return view('pages.show');
     }
 
     /**
@@ -147,7 +148,6 @@ class PropertyController extends Controller
     public function view(){
 
         return view('pages.listings');
-
     }
 
 }

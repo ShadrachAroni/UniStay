@@ -128,7 +128,7 @@
         
                                             <div class="d-flex justify-content-between">
                                                 <button type="submit" class="btn btn-primary">Update</button>
-                                                <a href="#" class="btn btn-outline-primary btn-icon-text mb-2 mb-md-0">
+                                                <a href="{{url('/')}}" class="btn btn-outline-primary btn-icon-text mb-2 mb-md-0">
                                                     Home
                                                 </a>
                                             </div>
@@ -213,7 +213,7 @@
         
                                             <div class="d-flex justify-content-between">
                                                 <button type="submit" class="btn btn-primary">Register</button>
-                                                <a href="#" class="btn btn-outline-primary btn-icon-text mb-2 mb-md-0">
+                                                <a href="{{url('/')}}" class="btn btn-outline-primary btn-icon-text mb-2 mb-md-0">
                                                     Home
                                                 </a>
                                             </div>

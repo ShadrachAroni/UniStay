@@ -38,14 +38,15 @@ Route::get('/pages/About', [DashboardController::class, 'about'])->name('about')
 Route::get('/pages/Contact', [DashboardController::class, 'contact'])->name('contact');
 Route::get('/auth/Agent', [DashboardController::class, 'AgentRegister'])->name('register.agent');
 
-Route::resource('properties', \App\Http\Controllers\PropertyController::class);
+
 
 //Route::get('policy', [DashboardController::class, 'showPolicy'])->name('policy.show');
 //Route::get('terms', [DashboardController::class, 'showTerms'])->name('terms.show');
 
+Route::resource('properties', \App\Http\Controllers\PropertyController::class);
 Route::get('/pages/Listings', [PropertyController::class, 'view'])->name('view.listings');
 Route::get('/pages/add', [PropertyController::class, 'add'])->name('pages.add');
-
+Route::get('/pages/show', [PropertyController::class, 'show'])->name('pages.show');
 
 Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
