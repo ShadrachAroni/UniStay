@@ -14,14 +14,13 @@ return new class extends Migration
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
             $table->foreignId('property_id')->constrained('properties');
-            $table->foreignId('student_id')->constrained('users');
             $table->date('booking_date');
             $table->enum('status', ['pending', 'confirmed', 'canceled']);
             $table->enum('payment_status', ['pending', 'completed', 'failed']);
             $table->timestamps();
         });
     }
-
+    
     /**
      * Reverse the migrations.
      */
