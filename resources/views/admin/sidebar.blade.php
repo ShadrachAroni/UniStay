@@ -104,7 +104,7 @@
                   <a href="#" class="nav-link">Reports</a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">Analysis</a>
+                  <a href="{{route('Analytics')}}" class="nav-link">Analytics</a>
                 </li>
               </ul>
             </div>
@@ -118,14 +118,7 @@
           </li>
 
           <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="link-icon" data-feather="check-circle"></i>
-              <span class="link-title">Booking requests</span>
-            </a>
-          </li>
-
-          <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{route('messages.show')}}" class="nav-link">
               <i class="link-icon" data-feather="inbox"></i>
               <span class="link-title">Messages</span>
             </a>
@@ -135,13 +128,6 @@
             <a href="#" class="nav-link">
               <i class="link-icon" data-feather="check-circle"></i>
               <span class="link-title">Feedbacks</span>
-            </a>
-          </li>
-
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="link-icon" data-feather="calendar"></i>
-              <span class="link-title">Tour Appointments</span>
             </a>
           </li>
 

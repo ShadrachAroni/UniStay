@@ -17,7 +17,9 @@
     },
     "dependencies": {
         "composer": "^4.1.0",
+        "laravel-echo": "^1.16.1",
         "leaflet": "^1.9.4",
+        "pusher-js": "^8.4.0-rc2",
         "sweetalert": "^2.1.2"
     }
 }
