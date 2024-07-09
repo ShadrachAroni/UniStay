@@ -95,6 +95,8 @@
                    Add Listing
                 </a>
         @endauth
+
+        <a href="{{route('view.listings')}}" class="h-btn1">All Listings</a>
     </ul>
 
     <div class="h-btn">
@@ -409,8 +411,8 @@
         </div>
     </div>
 
-    <div class="contact-content">
-        <h4>Listings</h4>
+    <div class="contact-content" style="font-weight: bold;">
+        <h4>Types</h4>
         <li><a href="#">Houses</a></li>
         <li><a href="#">Rooms</a></li>
         <li><a href="#">Appartment</a></li>
@@ -418,23 +420,22 @@
     </div>
 
     <div class="contact-content">
-        <h4>Listings</h4>
-        <li><a href="#">Houses</a></li>
-        <li><a href="#">Rooms</a></li>
-        <li><a href="#">Appartment</a></li>
-        <li><a href="#">Hostels</a></li>
+        <h4>Categories</h4>
+        <li><a href="#">Furnished</a></li>
+        <li><a href="#">Male-only</a></li>
+        <li><a href="#">Female-only</a></li>
+        <li><a href="#">SShort-term rental</a></li>
     </div>
 
     <div class="contact-content">
-        <h4>Listings</h4>
-        <li><a href="#">Houses</a></li>
-        <li><a href="#">Rooms</a></li>
-        <li><a href="#">Appartment</a></li>
-        <li><a href="#">Hostels</a></li>
+        <h4>Features</h4>
+        <li><a href="#">Pool</a></li>
+        <li><a href="#">Laundry</a></li>
+        <li><a href="#">Kitchen</a></li>
+        <li><a href="#">TV</a></li>
     </div>
     
 </section>
-</div>
 
 <!-- Login Modal -->
 <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="loginTitle" aria-hidden="true">

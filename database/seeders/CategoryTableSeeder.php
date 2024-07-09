@@ -16,8 +16,6 @@ class CategoryTableSeeder extends Seeder
     public function run()
     {
         $categories = [
-            ['name' => 'Budget Accommodation'],
-            ['name' => 'Luxury Accommodation'],
             ['name' => 'Short-Term Rental'],
             ['name' => 'Long-Term Rental'],
             ['name' => 'Furnished'],

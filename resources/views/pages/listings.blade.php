@@ -144,7 +144,7 @@
         <img src="{{asset('../front/img/logo.png')}}">
     </a>
     <ul class="navbar open">
-        <a href="#">Home</a></li>
+        <a href="{{url('/')}}">Home</a></li>
         <a href="{{ route('about')}}">About Us</a>
         <a href="{{route('contact')}}">Contact Us</a>
 
@@ -218,15 +218,17 @@
           <div class="col-md-12 col-lg-8">
             <div class="title-single-box">
 
-              <h1 class="title-single" style="color: white">Our Amazing Listings</h1>
-              <span class="color-text-a">More Filters</span>
+              <h1 class="title-single" style="color: white">Our Amazing Accommodations</h1>
+              <span class="color-text-a">Find your preferred accomodation!</span>
 
             </div>
           </div>
           
            <div class="col-sm-12 col-lg-4 d-flex justify-content-lg-end justify-content-end" style="margin-top: -100px;">
               <a href="#" class="logo">
-                <img src="{{asset('../front/img/logo.png')}}" style="max-width: 200px;">
+                <button type="button" class="btn btn-b-n navbar-toggle-box navbar-toggle-box-collapse p-2" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01">
+                  <i class="bi bi-search"></i>
+                </button>
             </a>
             </div>
 
@@ -241,12 +243,6 @@
       <div class="container">
         <div class="row">
           <div class="col-sm-12">
-            <div class="grid-option">
-              <button type="button" class="btn btn-b-n navbar-toggle-box navbar-toggle-box-collapse p-2" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01">
-                <i class="bi bi-search"></i>
-              </button>
-            
-            </div>
           </div>
 
 
@@ -584,7 +580,7 @@
     </div>
 
     <div class="contact-content" style="font-weight: bold;">
-        <h4>Listings</h4>
+        <h4>Types</h4>
         <li><a href="#">Houses</a></li>
         <li><a href="#">Rooms</a></li>
         <li><a href="#">Appartment</a></li>
@@ -592,19 +588,19 @@
     </div>
 
     <div class="contact-content">
-        <h4>Listings</h4>
-        <li><a href="#">Houses</a></li>
-        <li><a href="#">Rooms</a></li>
-        <li><a href="#">Appartment</a></li>
-        <li><a href="#">Hostels</a></li>
+        <h4>Categories</h4>
+        <li><a href="#">Furnished</a></li>
+        <li><a href="#">Male-only</a></li>
+        <li><a href="#">Female-only</a></li>
+        <li><a href="#">SShort-term rental</a></li>
     </div>
 
     <div class="contact-content">
-        <h4>Listings</h4>
-        <li><a href="#">Houses</a></li>
-        <li><a href="#">Rooms</a></li>
-        <li><a href="#">Appartment</a></li>
-        <li><a href="#">Hostels</a></li>
+        <h4>Features</h4>
+        <li><a href="#">Pool</a></li>
+        <li><a href="#">Laundry</a></li>
+        <li><a href="#">Kitchen</a></li>
+        <li><a href="#">TV</a></li>
     </div>
     
 </section>
