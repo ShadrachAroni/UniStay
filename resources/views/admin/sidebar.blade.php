@@ -118,13 +118,6 @@
           </li>
 
           <li class="nav-item">
-            <a href="{{route('messages.show')}}" class="nav-link">
-              <i class="link-icon" data-feather="inbox"></i>
-              <span class="link-title">Messages</span>
-            </a>
-          </li>
-
-          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="link-icon" data-feather="check-circle"></i>
               <span class="link-title">Feedbacks</span>
