@@ -21,7 +21,7 @@
 
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="link-icon" data-feather="box"></i>
+              <i class="link-icon" data-feather="bookmark"></i>
               <span class="link-title">Saved Listings</span>
             </a>
           </li>
