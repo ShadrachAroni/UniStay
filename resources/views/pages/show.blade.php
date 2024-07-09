@@ -27,16 +27,6 @@
   <link href="{{asset('front/css/style.css')}}" rel="stylesheet">
 
   <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
-  <style>
-    ::-webkit-scrollbar {
-          display: none;
-          }
-          .card-body-a a:hover{
-              transform: translateY(0px) scale(1.1); 
-              color: var(--main-color);
-          }
-          
-  </style>
 </head>
 
 <body>
@@ -170,7 +160,9 @@
                 </script>
             @endif
                 @else
-                    <a href="{{ route('pages.add') }}">Add Listing</a>
+                <a href="#login" id="openLogin" class="h-btn1" onclick="showLogin()">
+                  Add Listing
+              </a>
         @endauth
     </ul>
 
@@ -216,7 +208,9 @@
               <h1 class="title-single">304 Blaster Up</h1>
               <span class="color-text-a">Chicago, IL 606543</span>
             </div>
+           
           </div> 
+          
           <div class="col-sm-12 col-lg-4 d-flex justify-content-lg-end justify-content-end" style="margin-top: -100px;">
             <a href="#" class="logo">
               <button type="button" class="btn btn-b-n navbar-toggle-box navbar-toggle-box-collapse p-2" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01">
@@ -255,12 +249,9 @@
               <div class="col-md-5 col-lg-4">
                 <div class="property-price d-flex justify-content-center foo">
                   <div class="card-header-c d-flex">
-                    <div class="card-box-ico">
-                      <span class="bi bi-cash">$</span>
-                    </div>
-                    <div class="card-title-c align-self-center">
-                      <h5 class="title-c">15000</h5>
-                    </div>
+                    
+                    <a class="btn btn-a" href="#">Book this Listing</a>
+                    
                   </div>
                 </div>
 
@@ -278,6 +269,10 @@
                       <li>
                         <strong>Listing ID:</strong>
                         <span>1134</span>
+                      </li>
+                      <li>
+                        <strong>price:</strong>
+                        <span>ksh 15000</span>
                       </li>
                       <li>
                         <strong>Location:</strong>
@@ -523,11 +518,83 @@
   <!-- End  Footer -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+<!-- Login Modal -->
+<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="loginTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+      </div>
+      <div class="row2 no-gutters">
+          <div class="col-md-6 d-flex">
+              <div class="modal-body p-5 img d-flex img text-center d-flex align-items-center" style="background-image: url({{asset('form/css/img/A4.jpg')}});">
+              </div>
+            </div>
+            <div class="col-md-6 d-flex">
+              <div class="modal-body p-4 p-md-5 align-items-center color-2">
+                  <div class="tabulation tabulation2">
+                            <div class="d-flex tabs">
+                                <ul class="nav nav-tabs border-0">
+                                  <li class="nav-item">
+                                    <a class="nav-link active" data-toggle="tab" href="#signin">Log in</a>
+                                  </li>
+                                </ul>
+                            </div>
+                            <!-- Tab panes -->
+                            <div class="tab-content border-0">
+                              <div class="tab-pane p-0 container active" id="signin">
+                                  <div class="text w-100">
+                                      <h3 class="mb-4">Log in </h3>
+                                      <form class="signin-form" method="POST" action="{{ route('login') }}" id="loginForm">
+                                          @csrf
+                                      <div class="form-group mb-3 mb-3">
+                                          <label class="label" for="name">Email</label>
+                                          <input type="text" name="email" id="email" class="form-control" placeholder="Email" required>
+                                      </div>
+                                <div class="form-group mb-3 mb-3">
+                                    <label class="label" for="password">Password</label>
+                                  <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <button type="submit" class="form-control btn btn-primary rounded submit px-3">Sign In</button>
+                                </div>
+                                <div class="form-group mb-3 d-md-flex">
+                                    <div class="form-check w-50 text-left">
+                                        <label class="custom-control fill-checkbox">
+                                                        <input type="checkbox" class="fill-control-input">
+                                                        <span class="fill-control-indicator"></span>
+                                                        <span class="fill-control-description">Remember Me</span>
+                                                    </label>
+                                                </div>
+                                                <div class="w-50 text-md-right">
+                                                    <a href="{{route('password.request')}}">Forgot Password</a>
+                                                </div>
+                                </div>
+                              </form>
+                              <p>Dont have an account? <a data-toggle="tab" href="{{route('register')}}">Register</a></p>
+                            </div>
+                              </div>
+                            </div>
+                        </div>
+              </div>
+            </div>
+          </div>
+    </div>
+  </div>
+</div>
 
+<!-- End Modal -->
 <!-- Vendor JS Files -->
 <script src="{{asset('view/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <script src="{{asset('view/vendor/swiper/swiper-bundle.min.js')}}"></script>
 <script src="{{asset('view/vendor/php-email-form/validate.js')}}"></script>
+
+
+<link rel="stylesheet" href="{{asset ('modal/css/ionicons.min.css')}}">
+<link rel="stylesheet" href="{{asset('modal/css/flaticon.css')}}">
+<link rel="stylesheet" href="{{asset('modal/css/style.css')}}">
 
 <!-- Template Main JS File -->
 <script src="{{asset('view/js/main.js')}}"></script>
@@ -568,7 +635,26 @@
 <script src="{{asset('modal/js/main.js')}}"></script>
 <script  src="{{asset('front/js/script.js')}}"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.27/dist/sweetalert2.all.min.js"></script>
+<script>
+  function logout() {
+      document.getElementById('logout-form').submit();
+  }
 
+$(document).ready(function() {
+  @if (session('showLogin'))
+      $('#login').modal('show');
+  @endif
+});
+
+$(document).ready(function() {
+  @if (session('showRegister'))
+      $('#register').modal('show');
+  @endif
+});
+function showLogin() {
+  $('#login').modal('show');
+}
+
+</script>
 </body>
-
 </html>
