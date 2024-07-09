@@ -30,7 +30,7 @@
 
                                     <div>
                                         
-                                        <a href="{{ route('users.edit', $user->id) }}" class="btn btn-link text-sm text-gray-600" data-bs-toggle="modal" data-bs-target="#edit_{{$user->id}}">
+                                        <a href="#" class="btn btn-link text-sm text-gray-600" data-bs-toggle="modal" data-bs-target="#edit_{{$user->id}}">
                                             {{ __('Edit Profile') }}
                                         </a>
 
@@ -49,18 +49,17 @@
             </div>
         </div>
     </div>
-</div>
 
 <!-- Edit Modal -->
-<div class="modal fade" id="edit_{{$user->id}}" tabindex="-1" aria-labelledby="editTitle_{{$user->id}}" aria-hidden="true">
+<div class="modal fade" id="edit_{{$user->id}}" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editTitle_{{$user->id}}">Edit User ID {{$user->id}}</h5>
+                <h5 class="modal-title" id="editTitle_{{$user->id}}">Edit Your Profile</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="btn-close"></button>
             </div>
             <div class="modal-body">
-                <form id="updateForm" method="post" action="{{ route('users.update', $user->id) }}">
+                <form id="updateForm" method="post" action="{{ route('verify.update', $user->id) }}">
                     @csrf
                     @method('PUT')
 
@@ -122,3 +121,85 @@
 </div>
 
 <!-- End Edit Modal -->
+</div>
+
+
+
+<!-- core:js -->
+<script src="../backend/assets/vendors/core/core.js"></script>
+<!-- endinject -->
+
+<!-- Plugin js for this page -->
+<script src="../backend/assets/vendors/flatpickr/flatpickr.min.js"></script>
+<script src="../backend/assets/vendors/apexcharts/apexcharts.min.js"></script>
+<!-- End plugin js for this page -->
+
+<!-- inject:js -->
+<script src="../backend/assets/vendors/feather-icons/feather.min.js"></script>
+<script src="../backend/assets/js/template.js"></script>
+<!-- endinject -->
+
+<!-- Custom js for this page -->
+<script src="../backend/assets/js/dashboard-dark.js"></script>
+<!-- End custom js for this page -->
+
+<!-- Toastr JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+ function confirmDeletion(userId) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('delete-user-form-' + userId).submit();
+                    Swal.fire({
+                    icon: 'success',
+                    title: 'Success!',
+                    text: 'Type deleted Successfully!',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                }
+            });
+        }
+
+
+    // Display Toastr success message if session contains 'success'
+    @if(Session::has('success'))
+        toastr.success("{{ Session::get('success') }}");
+    @endif
+
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            toastr.error("{{ $error }}");
+        @endforeach
+    @endif
+
+    @if(Session::has('message'))
+        var type = "{{ Session::get('alert-type', 'info') }}";
+        switch(type) {
+            case 'info':
+                toastr.info("{{ Session::get('message') }}");
+                break;
+
+            case 'warning':
+                toastr.warning("{{ Session::get('message') }}");
+                break;
+
+            case 'error':
+                toastr.error("{{ Session::get('message') }}");
+                break; 
+        }
+    @endif
+</script>
+
+
+</body>
+</html>   

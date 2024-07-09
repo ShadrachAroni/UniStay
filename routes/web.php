@@ -13,6 +13,7 @@ use App\Http\Controllers\PropertyTypeController;
 use App\Http\Controllers\SurroundingAreaController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\VerifyController;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -44,6 +45,7 @@ Route::get('/auth/Agent', [DashboardController::class, 'AgentRegister'])->name('
 //Route::get('terms', [DashboardController::class, 'showTerms'])->name('terms.show');
 
 Route::resource('properties', \App\Http\Controllers\PropertyController::class);
+Route::resource('verify', \App\Http\Controllers\VerifyController::class);
 Route::get('/pages/Listings', [PropertyController::class, 'view'])->name('view.listings');
 Route::get('/pages/add', [PropertyController::class, 'add'])->name('pages.add');
 Route::get('/pages/show', [PropertyController::class, 'show'])->name('pages.show');
