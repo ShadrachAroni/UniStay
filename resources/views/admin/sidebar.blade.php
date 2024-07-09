@@ -138,6 +138,13 @@
             </a>
           </li>
 
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="link-icon" data-feather="check-circle"></i>
+              <span class="link-title">Tour Appointments</span>
+            </a>
+          </li>
+
         </ul>
       </div>
     </nav>

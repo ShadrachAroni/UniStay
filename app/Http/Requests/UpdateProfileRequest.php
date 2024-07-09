@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class UpdateProfileRequest extends FormRequest
 {
@@ -22,7 +23,7 @@ class UpdateProfileRequest extends FormRequest
             'email' => 'required|email|max:255|unique:users,email,' . $userId,
             'phone' => 'required|string|max:15'. $userId,
             'address' => 'required|string|max:255',
-            'gender' => 'nullable|string|max:255',
+           'gender' => ['required', Rule::in(['male', 'female'])],
             'profile_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'role_id' => 'nullable|exists:roles,id',
             'password' => 'nullable|string|min:8|confirmed',

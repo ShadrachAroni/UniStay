@@ -126,12 +126,12 @@
                                     <br>
                                     <div class="mb-3">
                                         <label for="student_id_card" class="form-label">Student ID</label>
-                                        <input type="file" id="student_id_card" name="student_id_card" class="form-control">
+                                        <input type="file" id="student_id_card" name="student_id_card" class="form-control no-validate">
                                     </div>
                                     
                                     <div class="mb-3">
                                         <label for="national_id_card" class="form-label">National ID</label>
-                                        <input type="file" id="national_id_card" name="national_id_card" class="form-control"s>
+                                        <input type="file" id="national_id_card" name="national_id_card" class="form-control no-validate">
                                     </div>
 
                                     @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
@@ -183,19 +183,23 @@
                 var isValid = true;
 
                 form.find('.form-control').each(function() {
-                    if ($(this).val() === '') {
-                        $(this).addClass('error');
-                        isValid = false;
-                    } else {
-                        $(this).removeClass('error');
-                    }
-                });
+            // Skip the validation for fields with the class 'no-validate'
+            if ($(this).hasClass('no-validate')) {
+                return true; // Continue to the next iteration
+            }
 
-                if (!isValid) {
-                    e.preventDefault();
-                    toastr.error('Please fill out all required fields.');
-                }
-            });
+            if ($(this).val() === '') {
+                $(this).addClass('error');
+                isValid = false;
+            } else {
+                $(this).removeClass('error');
+            }
+        });
+
+        if (!isValid) {
+            e.preventDefault();
+            toastr.error('Please fill out all required fields.');
+        }
 
             $('.form-control').hover(function() {
                 var placeholderText = $(this).attr('placeholder');
