@@ -35,7 +35,7 @@
         <img src="{{asset('../front/img/logo.png')}}">
     </a>
     <ul class="navbar open">
-        <li><a href="{{route('home')}}">Home</a></li>
+        <li><a href="{{url('/')}}">Home</a></li>
         <li><a href="{{route('contact')}}">Contact Us</a></li>
         <li><a href="#">Add Listing</a></li>
     </ul>

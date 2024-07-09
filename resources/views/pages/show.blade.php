@@ -2,8 +2,9 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="description" content="UniStay">
   
   <title>UniStay</title>
@@ -21,11 +22,21 @@
   <link href="{{asset('view/vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
   <link href="{{asset('view/vendor/swiper/swiper-bundle.min.css')}}" rel="stylesheet">
 
-
   <!-- Template Main CSS File -->
   <link href="{{asset('view/css/style.css')}}" rel="stylesheet">
+  <link href="{{asset('front/css/style.css')}}" rel="stylesheet">
 
   <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+  <style>
+    ::-webkit-scrollbar {
+          display: none;
+          }
+          .card-body-a a:hover{
+              transform: translateY(0px) scale(1.1); 
+              color: var(--main-color);
+          }
+          
+  </style>
 </head>
 
 <body>
@@ -35,9 +46,9 @@
   <!--/ Form Search Star /-->
   <div class="box-collapse">
     <div class="title-box-d">
-      <h3 class="title-d">Search Property</h3>
+      <h3 class="title-d" style="color: black">Search Property</h3>
     </div>
-    <span class="close-box-collapse right-boxed bi bi-x"></span>
+    <span class="close-box-collapse right-boxed bi bi-x" style="color: black;"></span>
     <div class="box-collapse-wrap form">
       <form class="form-a">
         <div class="row">
@@ -116,7 +127,7 @@
               </select>
             </div>
           </div>
-          <div class="col-md-12">
+          <div class="col-md-12" style="margin-top: 20px;">
             <button type="submit" class="btn btn-b">Search Property</button>
           </div>
         </div>
@@ -205,6 +216,13 @@
               <h1 class="title-single">304 Blaster Up</h1>
               <span class="color-text-a">Chicago, IL 606543</span>
             </div>
+          </div> 
+          <div class="col-sm-12 col-lg-4 d-flex justify-content-lg-end justify-content-end" style="margin-top: -100px;">
+            <a href="#" class="logo">
+              <button type="button" class="btn btn-b-n navbar-toggle-box navbar-toggle-box-collapse p-2" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01">
+                <i class="bi bi-search"></i>
+              </button>
+          </a>
           </div>
         </div>
       </div>
@@ -219,10 +237,10 @@
             <div id="property-single-carousel" class="swiper">
               <div class="swiper-wrapper">
                 <div class="carousel-item-b swiper-slide">
-                  <img src="assets/img/slide-1.jpg" alt="">
+                  <img src="{{url('view/img/slide-1.jpg')}}" alt="">
                 </div>
                 <div class="carousel-item-b swiper-slide">
-                  <img src="assets/img/slide-2.jpg" alt="">
+                  <img src="{{url('view/img/slide-2.jpg')}}" alt="">
                 </div>
               </div>
             </div>
@@ -245,6 +263,7 @@
                     </div>
                   </div>
                 </div>
+
                 <div class="property-summary">
                   <div class="row">
                     <div class="col-sm-12">
@@ -253,46 +272,45 @@
                       </div>
                     </div>
                   </div>
+
                   <div class="summary-list">
-                    <ul class="list">
-                      <li class="d-flex justify-content-between">
-                        <strong>Property ID:</strong>
+                    <ul class="list row">
+                      <li>
+                        <strong>Listing ID:</strong>
                         <span>1134</span>
                       </li>
-                      <li class="d-flex justify-content-between">
+                      <li>
                         <strong>Location:</strong>
                         <span>Chicago, IL 606543</span>
                       </li>
-                      <li class="d-flex justify-content-between">
+                      <li>
+                        <strong>Status:</strong>
+                        <span>Available</span>
+                      </li>
+                      <li>
                         <strong>Property Type:</strong>
                         <span>House</span>
                       </li>
-                      <li class="d-flex justify-content-between">
-                        <strong>Status:</strong>
-                        <span>Sale</span>
+                      <li>
+                        <strong>Main Category:</strong>
+                        <span>----</span>
                       </li>
-                      <li class="d-flex justify-content-between">
-                        <strong>Area:</strong>
-                        <span>340m
-                          <sup>2</sup>
-                        </span>
-                      </li>
-                      <li class="d-flex justify-content-between">
+                      <li>
                         <strong>Beds:</strong>
-                        <span>4</span>
+                        <span>1-4</span>
                       </li>
-                      <li class="d-flex justify-content-between">
-                        <strong>Baths:</strong>
-                        <span>2</span>
-                      </li>
-                      <li class="d-flex justify-content-between">
-                        <strong>Garage:</strong>
+                      <li>
+                        <strong>Bath:</strong>
                         <span>1</span>
                       </li>
                     </ul>
                   </div>
+                  
+
                 </div>
+
               </div>
+
               <div class="col-md-7 col-lg-7 section-md-t3">
                 <div class="row">
                   <div class="col-sm-12">
@@ -323,7 +341,7 @@
                   </div>
                 </div>
                 <div class="amenities-list color-text-a">
-                  <ul class="list-a no-margin">
+                  <ul class="list-a no-margin" style="color:aqua;">
                     <li>Balcony</li>
                     <li>Outdoor Kitchen</li>
                     <li>Cable Tv</li>
@@ -336,9 +354,11 @@
                   </ul>
                 </div>
               </div>
+
             </div>
           </div>
           <div class="col-md-10 offset-md-1">
+
             <ul class="nav nav-pills-a nav-pills mb-3 section-t3" id="pills-tab" role="tablist">
               <li class="nav-item">
                 <a class="nav-link active" id="pills-video-tab" data-bs-toggle="pill" href="#pills-video" role="tab" aria-controls="pills-video" aria-selected="true">Video</a>
@@ -347,21 +367,24 @@
                 <a class="nav-link" id="pills-plans-tab" data-bs-toggle="pill" href="#pills-plans" role="tab" aria-controls="pills-plans" aria-selected="false">Floor Plans</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" id="pills-map-tab" data-bs-toggle="pill" href="#pills-map" role="tab" aria-controls="pills-map" aria-selected="false">Ubication</a>
+                <a class="nav-link" id="pills-map-tab" data-bs-toggle="pill" href="#pills-map" role="tab" aria-controls="pills-map" aria-selected="false">Map location</a>
               </li>
             </ul>
+
             <div class="tab-content" id="pills-tabContent">
               <div class="tab-pane fade show active" id="pills-video" role="tabpanel" aria-labelledby="pills-video-tab">
                 <iframe src="https://player.vimeo.com/video/73221098" width="100%" height="460" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
               </div>
               <div class="tab-pane fade" id="pills-plans" role="tabpanel" aria-labelledby="pills-plans-tab">
-                <img src="assets/img/plan2.jpg" alt="" class="img-fluid">
+                <img src="{{url('view/img/plan2.jpg')}}" alt="" class="img-fluid">
               </div>
               <div class="tab-pane fade" id="pills-map" role="tabpanel" aria-labelledby="pills-map-tab">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.1422937950147!2d-73.98731968482413!3d40.75889497932681!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25855c6480299%3A0x55194ec5a1ae072e!2sTimes+Square!5e0!3m2!1ses-419!2sve!4v1510329142834" width="100%" height="460" frameborder="0" style="border:0" allowfullscreen></iframe>
               </div>
             </div>
+
           </div>
+
           <div class="col-md-12">
             <div class="row section-t3">
               <div class="col-sm-12">
@@ -372,16 +395,12 @@
             </div>
             <div class="row">
               <div class="col-md-6 col-lg-4">
-                <img src="assets/img/agent-4.jpg" alt="" class="img-fluid">
+                <img src="{{url('view/img/agent-4.jpg')}}" alt="" class="img-fluid">
               </div>
               <div class="col-md-6 col-lg-4">
                 <div class="property-agent">
                   <h4 class="title-agent">Anabella Geller</h4>
-                  <p class="color-text-a">
-                    Nulla porttitor accumsan tincidunt. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet
-                    dui. Quisque velit nisi,
-                    pretium ut lacinia in, elementum id enim.
-                  </p>
+                
                   <ul class="list-unstyled">
                     <li class="d-flex justify-content-between">
                       <strong>Phone:</strong>
@@ -424,34 +443,35 @@
                       </li>
                     </ul>
                   </div>
-                </div>
-              </div>
-              <div class="col-md-12 col-lg-4">
-                <div class="property-contact">
-                  <form class="form-a">
-                    <div class="row">
-                      <div class="col-md-12 mb-1">
-                        <div class="form-group">
-                          <input type="text" class="form-control form-control-lg form-control-a" id="inputName" placeholder="Name *" required>
+                  <div class="col-md-12 col-lg-4">
+                    <div class="property-contact">
+                      <form class="form-a">
+                        <div class="row">
+                          <div class="col-md-12 mb-1">
+                            <div class="form-group">
+                              <input type="text" class="form-control form-control-lg form-control-a" id="inputName" placeholder="Name *" required>
+                            </div>
+                          </div>
+                          <div class="col-md-12 mb-1">
+                            <div class="form-group">
+                              <input type="email" class="form-control form-control-lg form-control-a" id="inputEmail1" placeholder="Email *" required>
+                            </div>
+                          </div>
+                          <div class="col-md-12 mb-1">
+                            <div class="form-group">
+                              <textarea id="textMessage" class="form-control" placeholder="Comment *" name="message" cols="45" rows="8" required></textarea>
+                            </div>
+                          </div>
+                          <div class="col-md-12 mt-3">
+                            <button type="submit" class="btn btn-a">Send Message</button>
+                          </div>
                         </div>
-                      </div>
-                      <div class="col-md-12 mb-1">
-                        <div class="form-group">
-                          <input type="email" class="form-control form-control-lg form-control-a" id="inputEmail1" placeholder="Email *" required>
-                        </div>
-                      </div>
-                      <div class="col-md-12 mb-1">
-                        <div class="form-group">
-                          <textarea id="textMessage" class="form-control" placeholder="Comment *" name="message" cols="45" rows="8" required></textarea>
-                        </div>
-                      </div>
-                      <div class="col-md-12 mt-3">
-                        <button type="submit" class="btn btn-a">Send Message</button>
-                      </div>
+                      </form>
                     </div>
-                  </form>
+                  </div>
                 </div>
               </div>
+             
             </div>
           </div>
         </div>
@@ -502,7 +522,7 @@
 </section>
   <!-- End  Footer -->
 
-<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
 <!-- Vendor JS Files -->
 <script src="{{asset('view/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
@@ -530,14 +550,15 @@
 <script src="{{ asset('../backend/assets/js/dashboard-dark.js')}}"></script>
 <!-- End custom js for this page -->
 
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <!-- jQuery and Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 
-<!-- Bootstrap JS, Popper.js, and jQuery -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+ <!-- Bootstrap JS, Popper.js, and jQuery -->
+ <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+ <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 
 <!--js files-->
@@ -546,8 +567,8 @@
 <script src="{{asset('modal/js/bootstrap.min.js')}}"></script>
 <script src="{{asset('modal/js/main.js')}}"></script>
 <script  src="{{asset('front/js/script.js')}}"></script>
-
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.27/dist/sweetalert2.all.min.js"></script>
 
 </body>
+
 </html>
