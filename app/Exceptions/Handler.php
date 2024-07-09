@@ -46,7 +46,7 @@ class Handler extends ExceptionHandler
     public function render($request, Throwable $exception)
     {
         if ($exception instanceof NotFoundHttpException || $exception instanceof ModelNotFoundException) {
-            return response()->view('errors.404', [], 404);
+            return response()->view('errors.403', [], 404);
         }
 
         if ($exception instanceof \Symfony\Component\HttpKernel\Exception\HttpException && $exception->getStatusCode() === 400) {
@@ -59,7 +59,7 @@ class Handler extends ExceptionHandler
 
         if ($exception instanceof \Illuminate\Database\Eloquent\ModelNotFoundException ||
         $exception instanceof \Symfony\Component\HttpKernel\Exception\NotFoundHttpException) {
-        return response()->view('errors.404', [], 404);
+        return response()->view('errors.403', [], 404);
       }
 
     return parent::render($request, $exception);

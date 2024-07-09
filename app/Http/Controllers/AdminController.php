@@ -29,7 +29,8 @@ class AdminController extends Controller
 
     public function MyListings(){
         
-        $properties = Property::all();
+        $user = auth()->user();
+        $properties = Property::where('agent_id', $user->id)->get();
 
         return view('admin.MyListings', compact('properties'));
     }

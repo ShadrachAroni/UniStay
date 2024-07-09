@@ -33,8 +33,6 @@
     <!-- Layout styles -->
     <link rel="stylesheet" href="{{ asset('backend/assets/css/demo2/style.css') }}">
     <!-- End layout styles -->
-
-    <link rel="shortcut icon" href="{{ asset('backend/assets/images/favicon.png') }}" />
 </head>
 <body>
     <div class="main-wrapper">
@@ -46,7 +44,7 @@
                         <img src="{{ asset('backend/assets/images/others/404.svg') }}" class="img-fluid mb-2" alt="404">
                         <h1 class="fw-bolder mb-22 mt-2 tx-80 text-muted">404</h1>
                         <h4 class="mb-2">Page Not Found</h4>
-                        <h6 class="text-muted mb-3 text-center">Oopps!! The page you were looking for doesn't exist.</h6>
+                        <h6 class="text-muted mb-3 text-center">Oops! The page you were looking for doesn't exist.</h6>
 						<a href="javascript:history.go(-1)">Back</a>
                     </div>
                 </div>

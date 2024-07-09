@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdateUserRequest;
+use App\Models\Property;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -28,6 +29,12 @@ class AgentController extends Controller
     }
 
     public function MyListings(){
-        return view('agent.MyListings');
+
+        $user = auth()->user();
+        
+        $properties = Property::where('agent_id', $user->id)->get();
+
+        return view('agent.MyListings', compact('properties'));
+
     }
 }

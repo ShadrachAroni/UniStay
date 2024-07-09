@@ -19,7 +19,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{route('admin.MyListings')}}" class="nav-link">
+            <a href="{{route('agent.MyListings')}}" class="nav-link">
               <i class="link-icon" data-feather="home"></i>
               <span class="link-title">My listings</span>
             </a>
