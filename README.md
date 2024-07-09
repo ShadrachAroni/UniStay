@@ -94,7 +94,7 @@ resources/views/: Contains the Blade templates for the frontend.
 Additional Sections (Optional)
 
 ## Project Status:
-The project is currently in progress.
+The project is currently in development.
 
 ## Acknowledgements:
 Laravel Documentation
