@@ -184,6 +184,7 @@
                         </div>
 
                         <br>
+                        <label for="availability_status">Drag pointer to select location</label>
                         <div id="map" style="height: 400px; width: 100%;"></div>
         
                         <input type="hidden" id="latitude" name="latitude">

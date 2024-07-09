@@ -103,6 +103,9 @@
                 <li class="nav-item">
                   <a href="#" class="nav-link">Reports</a>
                 </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">Analysis</a>
+                </li>
               </ul>
             </div>
           </li>

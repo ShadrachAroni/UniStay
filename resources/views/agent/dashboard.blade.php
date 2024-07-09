@@ -3,7 +3,7 @@
 	<div class="main-wrapper">
 
 		<!-- partial:partials/_sidebar.html -->
-  @include('admin/sidebar')
+  @include('agent/sidebar')
 		<!-- partial -->
 	
 		<div class="page-wrapper">

@@ -383,7 +383,7 @@
     <div class="about-text" data-aos="zoom-in-up">
         <h2>We help Students find suitable accomodations</h2>
         <p style="color:#d6d6d6;"> Whether you're looking for a cozy single room, a shared apartment, or a place in a student dormitory, UniStay provides comprehensive listings complete with detailed descriptions, photos, and reviews from fellow students</p>
-        <a href="#" class="btn">Get In touch</a>
+        <a href="{{route('contact')}}" class="btn">Get In touch</a>
     </div>
 </section>
 
@@ -392,7 +392,7 @@
     <div class="Subscribe-content">
         <h2>Let's simplify life with UniStay</h2>
         <p> Our revolutionary website designed to simplify the process of finding student accommodation</p>
-        <a href="#" class="btn">Get Started</a>
+        <a href="{{route('register')}}" class="btn">Get Started</a>
     </div>
 </section>
 
