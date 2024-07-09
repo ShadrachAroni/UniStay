@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('properties', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('agent_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('agent_id')->constrained('users');
             $table->string('title');
             $table->text('description');
             $table->text('policies');
@@ -23,11 +23,11 @@ return new class extends Migration
             $table->string('area_name')->nullable();
             $table->decimal('price', 10, 2);
             $table->foreignId('property_type_id')->constrained('property_types')->onDelete('cascade');
-            $table->enum('availability_status', ['available', 'booked', 'unavailable']);
+            $table->enum('availability_status', ['available', 'booked', 'unavailable'])->default('available');
             $table->string('videos')->nullable();
             $table->string('photos')->nullable();
-            $table->decimal('latitude', 10, 8)->nullable();
-            $table->decimal('longitude', 11, 8)->nullable();
+            $table->decimal('latitude', 30, 25)->nullable();
+            $table->decimal('longitude', 30, 25)->nullable();
             $table->timestamp('posted_at');
             $table->timestamps();
         });

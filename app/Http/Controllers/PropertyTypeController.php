@@ -98,6 +98,6 @@ class PropertyTypeController extends Controller
     {
         $type->delete();
 
-        return redirect()->route('listings.types');
+        return redirect()->back();
     }
 }

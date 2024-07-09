@@ -98,6 +98,6 @@ class PropertyFeatureController extends Controller
     {
         $feature->delete();
 
-        return redirect()->route('listings.features');
+        return redirect()->back();
     }
 }

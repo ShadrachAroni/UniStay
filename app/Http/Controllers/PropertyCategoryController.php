@@ -98,6 +98,6 @@ class PropertyCategoryController extends Controller
     {
         $Category->delete();
 
-        return redirect()->route('listings.categories');
+        return redirect()->back();
     }
 }

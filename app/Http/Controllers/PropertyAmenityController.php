@@ -98,6 +98,6 @@ class PropertyAmenityController extends Controller
     {
         $amenity->delete();
 
-        return redirect()->route('listings.amenities');
+        return redirect()->back();
     }
 }

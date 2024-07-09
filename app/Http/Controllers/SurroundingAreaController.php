@@ -98,6 +98,6 @@ class SurroundingAreaController extends Controller
     {
         $surrounding->delete();
 
-        return redirect()->route('listings.surroundings');
+        return redirect()->back();
     }
 }

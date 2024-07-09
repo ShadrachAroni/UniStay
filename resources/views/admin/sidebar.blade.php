@@ -56,7 +56,7 @@
             <div class="collapse" id="Listings">
               <ul class="nav sub-menu">
               <li class="nav-item">
-                  <a href="#" class="nav-link">Add Listings</a>
+                  <a href="{{route('pages.add')}}" class="nav-link">Add Listings</a>
                 </li>
                 <li class="nav-item">
                   <a href="#" class="nav-link">Approved Listings</a>
