@@ -6,7 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="UniStay Accommodation">
     <meta name="author" content="UniStay">
-   
+    
+    <link rel="icon" type="image/png" href="{{ asset('img/logo.png') }}">
+    <link rel="shortcut icon" href="{{ asset('img/logo.png') }}">
 
     <title>UniStay</title>
 
@@ -37,20 +39,17 @@
 <body>
     <div class="main-wrapper">
         <div class="page-wrapper full-page">
-            <div class="page-content d-flex align-items-center justify-content-center">
+           
 
-                <div class="row w-100 mx-0 auth-page">
-                    <div class="col-md-8 col-xl-6 mx-auto d-flex flex-column align-items-center">
-                        <img src="{{ asset('backend/assets/images/others/404.svg') }}" class="img-fluid mb-2" alt="404">
-                        <h1 class="fw-bolder mb-22 mt-2 tx-80 text-muted">404</h1>
-                        <h4 class="mb-2">Page Not Found</h4>
-                        <h6 class="text-muted mb-3 text-center">Oopps!! The page you were looking for doesn't exist.</h6>
-						<a href="javascript:history.go(-1)">Back</a>
+                <div class="container d-flex align-items-center justify-content-center vh-100">
+                    <div class="text-center">
+                        <h1 class="display-1 font-weight-bold">400</h1>
+                        <p class="h3 mb-4">Bad Request</p>
+                        <p class="mb-4">Sorry, but the request could not be understood by the server.</p>
+                        <a href="{{ url('/') }}" class="btn btn-primary">Go Home</a>
                     </div>
                 </div>
 				
-
-            </div>
         </div>
     </div>
 
