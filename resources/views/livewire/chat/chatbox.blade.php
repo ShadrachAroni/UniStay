@@ -1,20 +1,153 @@
 <div>
-    {{-- If your happiness depends on money, you will never be happy with yourself. --}}
+    {{-- Stop trying to control. --}}
 
-    <div class="chatbox_header">
+    @if ($selectedConversation)
+        <div class="chatbox_header">
 
-        header
-    </div>
+            <div class="return">
+                <i class="bi bi-arrow-left"></i>
+            </div>
 
-    <div class="chatbox_body">
-Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi molestias consequuntur assumenda beatae? Eum eius iure dicta, beatae quam at dignissimos porro sunt repudiandae expedita quibusdam voluptates iste, a exercitationem!
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus provident dolores unde sapiente laboriosam quibusdam pariatur commodi id omnis ratione adipisci minima, numquam vel quaerat dolorum officia tempora, voluptatem dolore!
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis explicabo voluptas, tenetur quisquam praesentium mollitia unde delectus atque in est ipsum impedit asperiores officia eum. Minima excepturi assumenda id nisi!
-Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis beatae recusandae ex repudiandae, ab quae fugiat, architecto, quasi deleniti pariatur velit? Beatae obcaecati eius et quaerat impedit unde iste consectetur.
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut quam porro provident! Asperiores, nemo nam. Aliquid hic ex ipsa voluptas libero! Deserunt odit optio dolor maxime nihil mollitia. Ea, quaerat?
-    </div>
+            <div class="img_container">
+                <img src="https://ui-avatars.com/api/?name={{ $receiverInstance->name }}" alt="">
 
-    <div class="chatbox_footer">
-        footer
-    </div>
+            </div>
+
+
+            <div class="name">
+                {{ $receiverInstance->name }}
+            </div>
+
+
+            <div class="info">
+
+                <div class="info_item">
+                    <i class="bi bi-telephone-fill"></i>
+                </div>
+
+                <div class="info_item">
+                    <i class="bi bi-image"></i>
+                </div>
+
+                <div class="info_item">
+                    <i class="bi bi-info-circle-fill"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="chatbox_body">
+            @foreach ($messages as $message)
+                <div class="msg_body  {{ auth()->id() == $message->sender_id ? 'msg_body_me' : 'msg_body_receiver' }}"
+                    style="width:80%;max-width:80%;max-width:max-content">
+
+                    {{ $message->body }}
+                    <div class="msg_body_footer">
+                        <div class="date">
+                            {{ $message->created_at->format('m: i a') }}
+                        </div>
+
+                        <div class="read">
+                            @php
+                                
+                          if($message->user->id === auth()->id()){
+
+                
+                                    if($message->read == 0){
+
+
+                                        echo'<i class="bi bi-check2 status_tick "></i> ';
+                                    }
+                                    else {
+                                        echo'<i class="bi bi-check2-all text-primary  "></i> ';
+                                    }
+
+                          }
+
+
+                            @endphp
+                      
+
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+
+        </div>
+
+
+        <script>
+            $(".chatbox_body").on('scroll', function() {
+                // alert('aahsd');
+                var top = $('.chatbox_body').scrollTop();
+                //   alert('aasd');
+                if (top == 0) {
+
+                    window.livewire.emit('loadmore');
+                }
+
+            });
+        </script>
+
+
+        <script>
+            window.addEventListener('updatedHeight', event => {
+
+                let old = event.detail.height;
+                let newHeight = $('.chatbox_body')[0].scrollHeight;
+
+                let height = $('.chatbox_body').scrollTop(newHeight - old);
+
+
+                window.livewire.emit('updateHeight', {
+                    height: height,
+                });
+
+
+            });
+        </script>
+    @else
+        <div class="fs-4 text-center text-primary mt-5">
+            no conversasion selected
+        </div>
+
+
+
+
+    @endif
+
+
+    <script>
+        window.addEventListener('rowChatToBottom', event => {
+
+            $('.chatbox_body').scrollTop($('.chatbox_body')[0].scrollHeight);
+
+        });
+    </script>
+
+
+<script>
+    $(document).on('click','.return',function(){
+
+
+window.livewire.emit('resetComponent');
+
+    });
+</script>
+ 
+
+<script>
+
+window.addEventListener('markMessageAsRead',event=>{
+ var value= document.querySelectorAll('.status_tick');
+
+ value.array.forEach(element, index => {
+     
+
+    element.classList.remove('bi bi-check2');
+    element.classList.add('bi bi-check2-all','text-primary');
+ });
+
+});
+
+</script>
 </div>
