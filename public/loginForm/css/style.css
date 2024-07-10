@@ -191,7 +191,7 @@ h2 {
     left: 0;
     right: 0;
     transform: translateY(-50%); /* Center vertically using translateY */
-    background: #6571ff;
+    background: #121b25;
     padding: 150px 0; /* Adjust padding as needed */
   }
 
@@ -202,7 +202,7 @@ body {
   font-size: 13px;
   line-height: 1.8;
   color: #222;
-  background: #6571ff;
+  background: #121b25;
   font-weight: 400;
   font-family: Poppins; }
 

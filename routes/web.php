@@ -34,6 +34,9 @@ Route::middleware([
 
 Route::resource('details', \App\Http\Controllers\DetailsController::class);
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+route::get('/user',CreateChat::class)->name('user');
+route::get('/chat{key?}',Main::class)->name('chat');
+
 });
 
 
@@ -42,8 +45,6 @@ Route::get('/pages/Contact', [DashboardController::class, 'contact'])->name('con
 Route::get('/auth/Agent', [DashboardController::class, 'AgentRegister'])->name('register.agent');
 
 
-route::get('/user',CreateChat::class)->name('user');
-route::get('/chat{key?}',Main::class)->name('chat');
 
 //Route::get('policy', [DashboardController::class, 'showPolicy'])->name('policy.show');
 //Route::get('terms', [DashboardController::class, 'showTerms'])->name('terms.show');
