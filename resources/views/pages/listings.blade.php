@@ -30,15 +30,11 @@
   <link href="{{asset('view/css/style.css')}}" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href ="{{asset('front/css/style.css')}}">
   <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
-<style>
-  ::-webkit-scrollbar {
-        display: none;
-        }
-        .card-body-a a:hover{
-            transform: translateY(0px) scale(1.1); 
-            color: var(--main-color);
-        }
-</style>
+  <style>
+    .form-group label{
+      color: black;
+    }
+  </style>
 </head>
 
 <body>
@@ -48,7 +44,7 @@
   <!--/ Form Search Star /-->
   <div class="box-collapse">
     <div class="title-box-d">
-      <h3 class="title-d" style="color: black">Search Property</h3>
+      <h3 class="title-d" style="color: black">Search Listing</h3>
     </div>
     <span class="close-box-collapse right-boxed bi bi-x" style="color: black;"></span>
     <div class="box-collapse-wrap form">

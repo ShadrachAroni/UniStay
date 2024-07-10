@@ -2188,3 +2188,16 @@ footer .credits {
 .icons i:hover{
 color: aqua;
 }
+.form-group label{
+  color: black;
+}
+.logo button{
+  margin-top: 20px;
+  height: 30px;
+  width: 30px;
+  padding: 0;  /* Remove padding */
+  font-size: 1rem;  /* Adjust font size as needed */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

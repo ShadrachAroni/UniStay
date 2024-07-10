@@ -27,6 +27,7 @@
   <link href="{{asset('front/css/style.css')}}" rel="stylesheet">
 
   <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+
 </head>
 
 <body>
@@ -36,7 +37,7 @@
   <!--/ Form Search Star /-->
   <div class="box-collapse">
     <div class="title-box-d">
-      <h3 class="title-d" style="color: black">Search Property</h3>
+      <h3 class="title-d" style="color: black">Search Listing</h3>
     </div>
     <span class="close-box-collapse right-boxed bi bi-x" style="color: black;"></span>
     <div class="box-collapse-wrap form">
@@ -212,13 +213,14 @@
            
           </div> 
           
-          <div class="col-sm-12 col-lg-4 d-flex justify-content-lg-end justify-content-end" style="margin-top: -100px;">
+          <div class="col-sm-12 col-lg-4 d-flex justify-content-lg-end justify-content-end">
             <a href="#" class="logo">
               <button type="button" class="btn btn-b-n navbar-toggle-box navbar-toggle-box-collapse p-2" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01">
                 <i class="bi bi-search"></i>
               </button>
           </a>
           </div>
+
         </div>
       </div>
     </section>
