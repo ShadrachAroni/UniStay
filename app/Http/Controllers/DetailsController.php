@@ -55,31 +55,33 @@ class DetailsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateProfileRequest $request, User $user)
+    public function update(Request $request)
     {
         try {
-            // Validate incoming request data
-            $validatedData = $request->validated();
     
-            // Prepare data for update
-            $updateData = [
-                'Fname' => $validatedData['Fname'],
-                'Lname' => $validatedData['Lname'],
-                'email' => $validatedData['email'],
-                'phone' => $validatedData['phone'],
-                'address' => $validatedData['address'],
-                'gender'=> $validatedData['gender'],
-            ];
-    
-            // Update user with validated data
-            $user->update($updateData);
-    
-            // Update password if provided
-            if (!empty($validatedData['password'])) {
-                $user->password = bcrypt($validatedData['password']);
-                $user->save();
+            $id = Auth::user()->id;
+            $data = User::find($id);
+
+            $data->Fname = $request ->Fname;
+            $data->Lname = $request ->Lname;
+            $data->email = $request ->email;
+            $data->phone = $request ->phone;
+            $data->address = $request ->address;
+            $data->gender = $request ->gender;
+
+
+
+            if ($request->file('profile_photo')){
+                $file = $request->file('profile_photo');
+                @unlink(public_path('upload/img/'.$data->profile_photo));
+                $filename = date('YmdHi').$file->getClientOriginalName();
+                $file->move(public_path('upload/img'),$filename);
+                $data['profile_photo'] = $filename;
             }
-    
+            
+            
+            $data->save();
+
 
             // Redirect to users index with a success message
              return redirect()->route('profile.show')->with('success', 'Profile updated successfully.');

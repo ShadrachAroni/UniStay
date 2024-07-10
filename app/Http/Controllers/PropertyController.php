@@ -46,26 +46,6 @@ class PropertyController extends Controller
         $data = $request->validated();
         $data['agent_id'] = Auth::id();
 
-        if ($request->hasFile('photos')) {
-            $photos = [];
-            foreach ($request->file('photos') as $photo) {
-                $filename = date('YmdHi') . $photo->getClientOriginalName();
-                $photo->move(public_path('upload/images'), $filename);
-                $photos[] = $filename;
-            }
-            $data['photos'] = json_encode($photos);
-        }
-
-        if ($request->hasFile('videos')) {
-            $videos = [];
-            foreach ($request->file('videos') as $video) {
-                $filename = date('YmdHi') . $video->getClientOriginalName();
-                $video->move(public_path('upload/video'), $filename);
-                $videos[] = $filename;
-            }
-            $data['videos'] = json_encode($videos);
-        }
-
         $property = Property::create($data);
 
         $property->features()->sync($request->input('features', []));

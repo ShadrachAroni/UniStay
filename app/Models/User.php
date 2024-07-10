@@ -34,6 +34,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'gender',
         'student_id_card',
         'national_id_card',
+        'profile_photo'
     ];
 
     /**
@@ -54,7 +55,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array<int, string>
      */
     protected $appends = [
-        'profile_photo_url',
+        'profile_photo',
     ];
 
     /**
