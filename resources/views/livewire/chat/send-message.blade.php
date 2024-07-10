@@ -1,3 +1,6 @@
 <div>
-    {{-- In work, do what you enjoy. --}}
+    <div class="chatbox_footer">
+        
+        
+    </div>
 </div>
