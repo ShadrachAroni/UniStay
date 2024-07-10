@@ -10,7 +10,7 @@
                 <div class="d-flex align-items-center justify-content-between mb-2">
 
                 <div>
-                    <img id="showImage" class="wd-100 rounded-circle" src="{{ (!empty(Auth::user()->profile_photo)) ? url('upload/img/'.Auth::user()->profile_photo) : url('upload/img/no_image.jpg')}}" alt="profile"  style="width: 80px; height: 80px;">
+                    <img class="wd-100 rounded-circle" src="{{ (!empty(Auth::user()->profile_photo)) ? url('upload/img/'.Auth::user()->profile_photo) : url('upload/img/no_image.jpg')}}" alt="profile"  style="width: 80px; height: 80px;">
                     <span class="h4 ms-3">{{ Auth::user()->Fname }}</span>
                 </div>
 
