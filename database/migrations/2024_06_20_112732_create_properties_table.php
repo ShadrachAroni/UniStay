@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('agent_id')->constrained('users');
             $table->string('title');
-            $table->text('description');
-            $table->text('policies');
+            $table->text('description')->nullable();
+            $table->text('policies')->nullable();
             $table->string('country');
             $table->string('city');
             $table->string('street');
