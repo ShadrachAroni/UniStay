@@ -5,7 +5,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta name="description" content="UniStay">
-	<meta name="keywords" content="nobleui, bootstrap, bootstrap 5, bootstrap5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
 
     <link rel="icon" type="image/png" href="{{ asset('img/logo.png') }}">
     <link rel="shortcut icon" href="{{ asset('img/logo.png') }}">
@@ -128,7 +127,7 @@
                 <div class="modal-body">
                     <div class="card rounded">
                         <div class="card-body">
-                            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                            <!--<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
 								<ol class="carousel-indicators">
 									<li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true"></li>
 									<li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" class=""></li>
@@ -153,11 +152,10 @@
 									<span class="carousel-control-next-icon" aria-hidden="true"></span>
 									<span class="visually-hidden">Next</span>
 								</a>
-							</div>
+							</div> -->
+
+
                         </div>
-
-
-
                     </div>
                 </div>
             </div>
