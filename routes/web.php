@@ -5,7 +5,6 @@ use App\Http\Controllers\AgentController;
 use App\Http\Controllers\PropertyCategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ErrorController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PropertyAmenityController;
 use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\PropertyFeatureController;
@@ -14,8 +13,6 @@ use App\Http\Controllers\SurroundingAreaController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\VerifyController;
-use App\Livewire\Chat\CreateChat;
-use App\Livewire\Chat\Main;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -34,8 +31,6 @@ Route::middleware([
 
 Route::resource('details', \App\Http\Controllers\DetailsController::class);
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-route::get('/user',CreateChat::class)->name('user');
-route::get('/chat{key?}',Main::class)->name('chat');
 
 });
 
