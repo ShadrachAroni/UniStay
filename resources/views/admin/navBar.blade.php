@@ -38,13 +38,6 @@
                   </li>
 
                   <li class="dropdown-item py-2">
-                    <a href="#" class="text-body ms-0">
-                      <i class="me-2 icon-md" data-feather="home"></i>
-                      <span>Messages</span>
-                    </a>
-                  </li>
-
-                  <li class="dropdown-item py-2">
                     <form id="logout-form" action="{{ route('logout') }}" method="POST">
                       @csrf
                       <a href="#" class="text-body ms-0" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

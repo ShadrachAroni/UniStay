@@ -28,11 +28,16 @@ class AdminController extends Controller
         return view('users.Admins', compact('users', 'roles'));
     }
 
-    public function MyListings(){
-        
+    public function MyListings()
+    {
         $user = auth()->user();
         $properties = Property::where('agent_id', $user->id)->get();
-
+    
+        foreach ($properties as $property) {
+            $photos = json_decode($property->photos, true);
+            $property->photos = is_array($photos) ? $photos : [];
+        }
+    
         return view('admin.MyListings', compact('properties'));
     }
 

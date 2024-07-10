@@ -127,32 +127,32 @@
                 <div class="modal-body">
                     <div class="card rounded">
                         <div class="card-body">
-                            <!--<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-								<ol class="carousel-indicators">
-									<li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true"></li>
-									<li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" class=""></li>
-									<li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" class=""></li>
-								</ol>
-								<div class="carousel-inner">
-									<div class="carousel-item active">
-										<img src="{{ url('upload/img/no_image.jpg') }}" class="d-block w-100" alt="...">
+							@foreach($properties as $property)
+								<div id="carouselIndicators{{ $property->id }}" class="carousel slide" data-bs-ride="carousel">
+									<ol class="carousel-indicators">
+										@foreach($property->photos as $index => $photo)
+											<li data-bs-target="#carouselIndicators{{ $property->id }}" data-bs-slide-to="{{ $index }}" class="{{ $index == 0 ? 'active' : '' }}" aria-current="true"></li>
+										@endforeach
+									</ol>
+									<div class="carousel-inner">
+										@foreach($property->photos as $index => $photo)
+											<div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
+												<img src="{{ url('upload/images/' . $photo) }}" class="d-block w-100" alt="...">
+											</div>
+										@endforeach
 									</div>
-									<div class="carousel-item">
-										<img src="{{ url('upload/img/no_image.jpg') }}" class="d-block w-100" alt="...">
-									</div>
-									<div class="carousel-item">
-										<img src="{{ url('upload/img/no_image.jpg') }}" class="d-block w-100" alt="...">
-									</div>
+									<a class="carousel-control-prev" href="#carouselIndicators{{ $property->id }}" role="button" data-bs-slide="prev">
+										<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+										<span class="visually-hidden">Previous</span>
+									</a>
+									<a class="carousel-control-next" href="#carouselIndicators{{ $property->id }}" role="button" data-bs-slide="next">
+										<span class="carousel-control-next-icon" aria-hidden="true"></span>
+										<span class="visually-hidden">Next</span>
+									</a>
 								</div>
-								<a class="carousel-control-prev" data-bs-target="#carouselExampleIndicators" role="button" data-bs-slide="prev">
-									<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-									<span class="visually-hidden">Previous</span>
-								</a>
-								<a class="carousel-control-next" data-bs-target="#carouselExampleIndicators" role="button" data-bs-slide="next">
-									<span class="carousel-control-next-icon" aria-hidden="true"></span>
-									<span class="visually-hidden">Next</span>
-								</a>
-							</div> -->
+							@endforeach
+
+						
 
 
                         </div>
