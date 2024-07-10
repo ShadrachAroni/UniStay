@@ -14,6 +14,8 @@ use App\Http\Controllers\SurroundingAreaController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\VerifyController;
+use App\Livewire\Chat\CreateChat;
+use App\Livewire\Chat\Main;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -40,6 +42,8 @@ Route::get('/pages/Contact', [DashboardController::class, 'contact'])->name('con
 Route::get('/auth/Agent', [DashboardController::class, 'AgentRegister'])->name('register.agent');
 
 
+route::get('/user',CreateChat::class)->name('user');
+route::get('/chat{key?}',Main::class)->name('chat');
 
 //Route::get('policy', [DashboardController::class, 'showPolicy'])->name('policy.show');
 //Route::get('terms', [DashboardController::class, 'showTerms'])->name('terms.show');
@@ -50,7 +54,7 @@ Route::get('/pages/Listings', [PropertyController::class, 'view'])->name('view.l
 Route::get('/pages/add', [PropertyController::class, 'add'])->name('pages.add');
 Route::get('/pages/show', [PropertyController::class, 'show'])->name('pages.show');
 
-Route::middleware(['auth', 'isAdmin'])->group(function () {
+Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::resource('users', \App\Http\Controllers\UsersController::class);
     Route::get('/Users/Admins', [AdminController::class, 'data'])->name('users.Admins');
@@ -77,13 +81,13 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
 
 });
 
-Route::middleware(['auth', 'isAgent'])->group(function () {
+Route::middleware(['auth', 'agent'])->group(function () {
     Route::get('/agent/dashboard', [AgentController::class, 'index'])->name('agent.dashboard');
     Route::get('/agent/Listings', [AgentController::class, 'MyListings'])->name('agent.MyListings');
 
 });
 
-Route::middleware(['auth', 'isUser'])->group(function () {
+Route::middleware(['auth', 'user'])->group(function () {
     Route::get('user/dashboard', [UserController::class, 'index'])->name('user.dashboard');
 });
 

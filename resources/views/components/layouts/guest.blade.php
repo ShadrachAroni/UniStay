@@ -5,9 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'UniStay') }}</title>
-        <link rel="icon" type="image/png" href="{{ asset('img/logo.png') }}">
-        <link rel="shortcut icon" href="{{ asset('img/logo.png') }}">
+        <title>{{ config('app.name', 'Laravel') }}</title>
+
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
@@ -19,7 +18,7 @@
         @livewireStyles
     </head>
     <body>
-        <div class="font-sans text-gray-900 dark:text-gray-100 antialiased">
+        <div class="font-sans text-gray-900 antialiased">
             {{ $slot }}
         </div>
 
