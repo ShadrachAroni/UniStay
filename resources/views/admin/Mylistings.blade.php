@@ -137,7 +137,9 @@
 								<div class="d-flex align-items-center justify-content-between mb-2">
 									<h6 class="card-title mb-0">Photos</h6>
 								</div>
-								<img src="#" alt="image">
+								@foreach ($property->photos as $photo)
+									<img src="{{ asset('upload/img/' . $photo->filename) }}" alt="Property Photo" style="width:200px;height:auto;">
+								@endforeach
 						</div>
 					</div>
 
@@ -180,7 +182,8 @@
 									<label class="tx-11 fw-bolder mb-0 text-uppercase">Bathrooms:</label>
 									<p class="text-muted">{{$property->baths}}</p>
 								</div>
-								<div class="col-s-6">
+
+								<div class="col-sm-6">
 									<label class="tx-11 fw-bolder mb-0 text-uppercase">Beds:</label>
 									<p class="text-muted">{{$property->beds_start}} - {{$property->beds_end}}</p>
 								</div>

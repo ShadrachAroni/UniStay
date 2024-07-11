@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\properties\StorePropertyRequest;
-
-
-
+use App\Models\Photo;
 use Illuminate\Http\Request;
 use App\Models\Property;
 use App\Models\PropertyCategory;
@@ -39,25 +37,48 @@ class PropertyController extends Controller
      * Store a newly created resource in storage.
      */
 
-    public function store(StorePropertyRequest $request)
-    {
-        try {
-
-        $data = $request->validated();
-        $data['agent_id'] = Auth::id();
-
-        $property = Property::create($data);
-
-        $property->features()->sync($request->input('features', []));
-        $property->amenities()->sync($request->input('amenities', []));
-        $property->surroundings()->sync($request->input('surroundings', []));
-        $property->categories()->sync($request->input('categories', []));
-
-        return redirect()->route('pages.add')->with('success', 'Property added successfully.');
-        } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => 'An error occurred while creating the Listing: ' . $e->getMessage()])->withInput();
-        }
-    }
+     public function store(StorePropertyRequest $request)
+     {
+         try {
+             // Validate and prepare data
+             $data = $request->validated();
+             $data['agent_id'] = Auth::id();
+     
+             // Create the property
+             $property = Property::create($data);
+     
+             // Sync features, amenities, surroundings, and categories
+             $property->features()->sync($request->input('features', []));
+             $property->amenities()->sync($request->input('amenities', []));
+             $property->surroundings()->sync($request->input('surroundings', []));
+             $property->categories()->sync($request->input('categories', []));
+     
+             // Handle photo uploads
+             if ($request->hasFile('photos')) {
+                 $photos = $request->file('photos');
+                 $uploadedPhotos = [];
+     
+                 foreach ($photos as $photo) {
+                     // Generate a unique filename
+                     $filename = date('YmdHi') . $photo->getClientOriginalName();
+                     // Move the file to the public/upload/img directory
+                     $photo->move(public_path('upload/photos'), $filename);
+                     // Store the filename in the array
+                     $uploadedPhotos[] = $filename;
+     
+                     // Save photo to the database
+                     Photo::create([
+                         'property_id' => $property->id,
+                         'filename' => $filename,
+                     ]);
+                 }
+             }
+     
+             return redirect()->route('pages.add')->with('success', 'Property added successfully.');
+         } catch (\Exception $e) {
+             return redirect()->back()->withErrors(['error' => 'An error occurred while creating the Listing: ' . $e->getMessage()])->withInput();
+         }
+     }
 
     /**
      * Display the specified resource.

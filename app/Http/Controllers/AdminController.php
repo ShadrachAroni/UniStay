@@ -31,13 +31,8 @@ class AdminController extends Controller
     public function MyListings()
     {
         $user = auth()->user();
-        $properties = Property::where('agent_id', $user->id)->get();
-    
-        foreach ($properties as $property) {
-            $photos = json_decode($property->photos, true);
-            $property->photos = is_array($photos) ? $photos : [];
-        }
-    
+        $properties = Property::where('agent_id', $user->id)->with('photos')->get();
+        
         return view('admin.MyListings', compact('properties'));
     }
 

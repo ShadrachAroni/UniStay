@@ -27,13 +27,20 @@ return new class extends Migration
             $table->decimal('price', 10, 2);
             $table->foreignId('property_type_id')->constrained('property_types')->onDelete('cascade');
             $table->enum('availability_status', ['available', 'booked', 'unavailable'])->default('available');
-            $table->string('videos')->nullable();
-            $table->string('photos')->nullable();
+            $table->string('video')->nullable();
             $table->decimal('latitude', 30, 25)->nullable();
             $table->decimal('longitude', 30, 25)->nullable();
             $table->timestamp('posted_at');
             $table->timestamps();
         });
+
+        Schema::create('photos', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('property_id')->constrained('properties')->onDelete('cascade');
+            $table->string('filename');
+            $table->timestamps();
+        });
+        
     }
 
     /**
