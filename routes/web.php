@@ -48,7 +48,7 @@ Route::resource('properties', \App\Http\Controllers\PropertyController::class);
 Route::resource('verify', \App\Http\Controllers\VerifyController::class);
 Route::get('/pages/Listings', [PropertyController::class, 'view'])->name('view.listings');
 Route::get('/pages/add', [PropertyController::class, 'add'])->name('pages.add');
-Route::get('/pages/show', [PropertyController::class, 'show'])->name('pages.show');
+Route::get('/pages/show/{id}', [PropertyController::class, 'show'])->name('pages.show');
 
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');

@@ -92,12 +92,16 @@ class PropertyController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(/*string $id*/)
+    public function show($id)
     {
+        // Retrieve the specific property by ID
+        $property = Property::findOrFail($id);
 
-        return view('pages.show');
+        // Retrieve all properties with their associated photos
+        $properties = Property::with('photos')->get();
+        
+        return view('pages.show', compact('property', 'properties'));
     }
-
     /**
      * Show the form for editing the specified resource.
      */
@@ -156,8 +160,9 @@ class PropertyController extends Controller
     }
 
     public function view(){
-
-        return view('pages.listings');
+        $properties = Property::with('photos')->get();
+        
+        return view('pages.listings', compact('properties'));
     }
 
 }

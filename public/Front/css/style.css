@@ -212,7 +212,7 @@ header.sticky{
 .list{
     display: flex;
     align-items: center;
-    gap: 2rem;
+    gap: 1rem;
 }
 .list a{
     color: var(--text-color);
