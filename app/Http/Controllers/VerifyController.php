@@ -28,7 +28,6 @@ class VerifyController extends Controller
                 'email' => $validatedData['email'],
                 'phone' => $validatedData['phone'],
                 'address' => $validatedData['address'],
-                'role_id' => $validatedData['role_id'],
                 'gender'=> $validatedData['gender'],
             ]);
     
@@ -44,7 +43,7 @@ class VerifyController extends Controller
 
         } catch (\Exception $e) {
             // Handle any errors that may occur
-            return redirect()->back()->withErrors(['error' => 'An error occurred while updating the user.'])->withInput();
+            return redirect()->back()->withErrors(['error' => 'An error occurred while updating your profile: ' . $e->getMessage()]);
         }
     }
     

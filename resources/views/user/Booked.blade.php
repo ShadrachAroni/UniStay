@@ -56,6 +56,10 @@
 									<td>
 										<a href="{{ route('properties.show', $property->id) }}" class="btn btn-sm btn-info"  >View</a>
 									</td>
+
+									<td>
+										<a href="#" class="btn btn-sm btn-info"  data-bs-toggle="modal" data-bs-target="#show_{{$booking->property->agent->id }}">View booking details</a>
+									</td>
 		
 									
 								</tr>
@@ -68,6 +72,48 @@
 				
 			</div>
 	</div>
+
+	@foreach($bookings as $booking)
+    <!-- Modal for view  -->
+    <div class="modal fade" id="show_{{$booking->property->agent->id }}" tabindex="-1" aria-labelledby="showTitle_{{$booking->property->agent->id }}" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="showTitle">Agent for {{$booking->property->title}} </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="btn-close"></button>
+                </div>
+                <div class="modal-body">
+                         
+                            <img class="wd-100 rounded-circle" src="{{ (!empty($booking->property->agent->profile_photo)) ? url('upload/img/'.$booking->property->agent->profile_photo) : url('upload/img/no_image.jpg')}}" alt="profile"  style="width: 80px; height: 80px;">
+							<div class="mt-3">
+                                <label class="tx-11 fw-bolder mb-0 text-uppercase">First Name:</label>
+                                <p class="text-muted">{{ $booking->property->agent->Fname }}</p>
+                            </div>
+                            <div class="mt-3">
+                                <label class="tx-11 fw-bolder mb-0 text-uppercase">Last Name:</label>
+                                <p class="text-muted">{{ $booking->property->agent->Lname }}</p>
+                            </div>
+                            <div class="mt-3">
+                                <label class="tx-11 fw-bolder mb-0 text-uppercase">Email:</label>
+                                <p class="text-muted">{{ $booking->property->agent->email }}</p>
+                            </div>
+                            <div class="mt-3">
+                                <label class="tx-11 fw-bolder mb-0 text-uppercase">Contact:</label>
+                                <p class="text-muted">{{ $booking->property->agent->phone}}</p>
+                            </div>
+                            <div class="mt-3">
+                                <label class="tx-11 fw-bolder mb-0 text-uppercase"> Verification status:</label>
+                                <p class="text-muted">{{$booking->property->agent->status }}</p>
+                            </div>
+                        
+                
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End of Modal -->
+    @endforeach
+
 
 <!-- core:js -->
 <script src="{{ asset('../backend/assets/vendors/core/core.js')}}"></script>

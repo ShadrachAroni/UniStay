@@ -24,6 +24,10 @@ Route::get('/', function () {
     return view('home', compact('property'));
 });
 
+Route::get('/', function () {
+    return view('home');
+});
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -36,6 +40,7 @@ Route::middleware([
 Route::resource('details', \App\Http\Controllers\DetailsController::class);
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::get('/booking/requests', [PropertyController::class, 'requests'])->name('requests');
+Route::post('/properties/{id}/book', [PropertyController::class, 'book'])->name('book');
 
 });
 
@@ -58,7 +63,7 @@ Route::post('/property/statis', [BookingController::class, 'status'])->name('sta
 Route::get('/pages/Listings', [PropertyController::class, 'view'])->name('view.listings');
 Route::get('/pages/add', [PropertyController::class, 'add'])->name('pages.add');
 Route::get('/pages/show/{id}', [PropertyController::class, 'show'])->name('pages.show');
-Route::post('/properties/{id}/book', [PropertyController::class, 'book'])->name('book');
+
 
 
 Route::middleware(['auth', 'admin'])->group(function () {

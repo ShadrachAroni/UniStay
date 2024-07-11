@@ -3,13 +3,14 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
 class UpdateUserVerifyRequest extends FormRequest
 {
     public function rules()
     {
-        $userId = $this->route('user')->id; // Get the ID of the user being updated
+        $userId = Auth::user()->id; // Get the ID of the user being updated
 
         return [
             'Fname' => 'required|string|max:255',
