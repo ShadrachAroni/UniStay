@@ -274,10 +274,12 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="showTitle_{{$property->id}}">property ID {{$property->id}} 
 						@foreach ($property->bookings as $booking)
-							@if($property->availability_status === 'booked')
-								(Booked By {{$booking->student->Fname}} {{$booking->student->Fname}})
-							@endif
-						@endforeach
+						@if($booking->status === 'confirmed')
+							<a href="#">
+								Booked By {{$booking->student->Fname}} {{$booking->student->Lname}}
+							</a>
+						@endif
+					@endforeach
 					</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="btn-close"></button>
                 </div>

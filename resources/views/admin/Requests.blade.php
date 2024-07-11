@@ -116,6 +116,7 @@
 											@csrf
 											<input type="hidden" name="property_id" value="{{ $booking->property->id }}">
 											<input type="hidden" name="student_id" value="{{ $booking->student_id }}">
+											<input type="hidden" name="student_email" value="{{ $booking->student->email }}">
 											<button type="submit" class="btn btn-sm btn-primary">Confirm Booking</button>
 										</form>
 									</td>

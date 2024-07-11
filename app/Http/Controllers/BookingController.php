@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\BookingConfirmationEmail;
 use App\Models\Booking;
 use App\Models\Property;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class BookingController extends Controller
 {
@@ -109,6 +112,7 @@ class BookingController extends Controller
             // Retrieve the property ID and student ID from the request
             $propertyId = $request->input('property_id');
             $selectedStudentId = $request->input('student_id');
+            $studentEmail = $request->input('student_email');
     
             // Retrieve all bookings for the specified property
             $bookings = Booking::where('property_id', $propertyId)->get();
@@ -117,14 +121,23 @@ class BookingController extends Controller
             DB::beginTransaction();
     
             foreach ($bookings as $booking) {
-                // Change status to confirmed for the selected student
-                if ($booking->student_id == $selectedStudentId) {
-                    $booking->status = 'confirmed';
-                } else {
-                    // Change status to canceled for other requests
-                    $booking->status = 'canceled';
+                // Change status to canceled for bookings linked to the property
+                if ($booking->property_id == $propertyId) {
+                    // Skip changing status for the selected student's booking
+                    if ($booking->student_id != $selectedStudentId) {
+                        $booking->status = 'canceled';
+                        $booking->save();
+                    }
                 }
-                $booking->save();
+            }
+            
+            // Now, change status to confirmed for the selected student's booking
+            $selectedBooking = Booking::where('property_id', $propertyId)
+                                      ->where('student_id', $selectedStudentId)
+                                      ->first();
+            if ($selectedBooking) {
+                $selectedBooking->status = 'confirmed';
+                $selectedBooking->save();
             }
     
             // Change property availability status to booked
@@ -134,6 +147,9 @@ class BookingController extends Controller
             // Commit the transaction
             DB::commit();
     
+            // Send confirmation email to the selected student
+            Mail::to($studentEmail)->send(new BookingConfirmationEmail($property));
+    
             return redirect()->back()->with('success', 'Bookings confirmed successfully.');
         } catch (\Exception $e) {
             // Rollback the transaction on error
@@ -141,6 +157,7 @@ class BookingController extends Controller
             return redirect()->back()->withErrors(['error' => 'An error occurred while confirming bookings: ' . $e->getMessage()]);
         }
     }
+    
 
     public function status(Request $request)
 {
@@ -167,9 +184,11 @@ class BookingController extends Controller
         DB::beginTransaction();
 
         foreach ($bookings as $booking) {
-            // Change status to pending for all bookings as per the provided logic
-            $booking->status = 'pending';
-            $booking->save();
+            if ($booking->property_id == $propertyId) {
+                // Change status to pending for bookings linked to the specified property
+                $booking->status = 'pending';
+                $booking->save();
+            }
         }
 
         // Change property availability status
