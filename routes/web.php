@@ -15,6 +15,9 @@ use App\Http\Controllers\SurroundingAreaController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\VerifyController;
+use App\Http\Middleware\IsAdmin;
+use App\Http\Middleware\IsAgent;
+use App\Http\Middleware\IsUser;
 use App\Models\Property;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
@@ -66,7 +69,7 @@ Route::get('/pages/show/{id}', [PropertyController::class, 'show'])->name('pages
 
 
 
-Route::middleware(['auth', 'admin'])->group(function () {
+Route::middleware(['auth', IsAdmin::class])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::resource('users', \App\Http\Controllers\UsersController::class);
     Route::get('/Users/Admins', [AdminController::class, 'data'])->name('users.Admins');
@@ -94,13 +97,13 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
 });
 
-Route::middleware(['auth', 'agent'])->group(function () {
+Route::middleware(['auth', IsAgent::class])->group(function () {
     Route::get('/agent/dashboard', [AgentController::class, 'index'])->name('agent.dashboard');
     Route::get('/agent/Listings', [AgentController::class, 'MyListings'])->name('agent.MyListings');
 
 });
 
-Route::middleware(['auth', 'user'])->group(function () {
+Route::middleware(['auth', IsUser::class])->group(function () {
     Route::get('user/dashboard', [UserController::class, 'index'])->name('user.dashboard');
     Route::get('user/Booked/Listings', [UserController::class, 'booked'])->name('booked');
 });

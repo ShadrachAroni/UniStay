@@ -49,7 +49,6 @@
 
 </head>
 <body>
-@include('layouts.Dashpreloader')
 	<div class="main-wrapper">
 
 		<!-- partial:partials/_sidebar.html -->
@@ -97,7 +96,7 @@
                    
                         <td class="py-1">
                             <!-- image -->
-                            <img class="wd-100 rounded-circle" src="{{ (!empty($user->profile_photo)) ? url('upload/img/'.$user->profile_photo) : url('upload/img/no_image.jpg')}}" alt="profile"  style="width: 80px; height: 80px;">
+                            <img class="wd-80 rounded-circle" src="{{ (!empty($user->profile_photo)) ? url('upload/img/'.$user->profile_photo) : url('upload/img/no_image.jpg')}}" alt="profile"  style="width: 65px; height: 65px;">
                             
                         </td>
                         <td>{{ $user->id }}</td>

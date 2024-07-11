@@ -94,7 +94,7 @@
                    
                         <td class="py-1">
                             <!-- image -->
-                        <img src="{{ (!empty($user->profile_photo)) ? url('upload/img'.$user->profile_photo) : url('upload/img/no_image.jpg') }}" alt="image">
+                            <img class="wd-80 rounded-circle" src="{{ (!empty($user->profile_photo)) ? url('upload/img/'.$user->profile_photo) : url('upload/img/no_image.jpg')}}" alt="profile"  style="width: 65px; height: 65px;">
                             
                         </td>
                         <td>{{ $user->id }}</td>
