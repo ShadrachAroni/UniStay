@@ -150,7 +150,7 @@ class BookingController extends Controller
             // Send confirmation email to the selected student
             Mail::to($studentEmail)->send(new BookingConfirmationEmail($property));
     
-            return redirect()->back()->with('success', 'Bookings confirmed successfully.');
+            return redirect()->back()->with('success', 'Confirmation email has been sent.');
         } catch (\Exception $e) {
             // Rollback the transaction on error
             DB::rollback();
