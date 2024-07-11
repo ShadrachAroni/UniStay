@@ -224,7 +224,8 @@
                         </div>
 
                         <br>
-                        <label for="availability_status">Drag pointer to select location</label>
+                        <label for="location">Drag pointer to select location</label>
+
                         <div id="map" style="height: 400px; width: 100%;"></div>
         
                         <input type="hidden" id="latitude" name="latitude">
@@ -237,8 +238,8 @@
                                 <input type="file" class="form-control-file" id="photos" name="photos[]" multiple>
                             </div>
                             <div class="col-sm-6">
-                                <label for="videos">Videos</label>
-                                <input type="file" class="form-control-file" id="videos" name="videos[]" multiple>
+                                <label for="videos">Choose a Descriptive Video</label>
+                                <input type="file" id="videoInput" class="form-control-file" name="video" accept="video/*" required>
                             </div>
                         </div>
 
@@ -314,4 +315,13 @@
         document.getElementById('latitude').value = initialLocation.lat;
         document.getElementById('longitude').value = initialLocation.lng;
     }
+
+        document.getElementById('videoInput').addEventListener('change', function(event) {
+            if (this.files.length > 1) {
+                alert('You can only upload one video.');
+                this.value = ''; // Clear the input
+            }
+        });
 </script>
+</body>
+</html>

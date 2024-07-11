@@ -26,8 +26,8 @@ class StorePropertyRequest extends FormRequest
             'price' => 'required|numeric',
             'property_type_id' => 'required|exists:property_types,id',
             'availability_status' => 'required|in:available,booked,unavailable',
-            'videos.*' => 'nullable|file|mimes:mp4,mov,avi|max:20000',
-            'photos.*' => 'nullable|file|mimes:jpg,jpeg,png|max:5000',
+            'video' => 'nullable|mimes:mp4,avi,mov,mkv|max:20480', // 20MB max size
+            'photos.*' => 'required|file|mimes:jpg,jpeg,png|max:5000',
             'latitude' => 'required|numeric',
             'longitude' => 'required|numeric',
             'categories' => 'array|exists:property_categories,id',
@@ -35,6 +35,15 @@ class StorePropertyRequest extends FormRequest
             'amenities' => 'array|exists:property_amenities,id',
             'surroundings' => 'array|exists:surrounding_areas,id',
             'posted_at' => 'nullable|date',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'video.required' => 'One video is required.',
+            'video.mimes' => 'The video must be a file of type: mp4, avi, mov.',
+            'video.max' => 'The video may not be greater than 20MB.',
         ];
     }
     

@@ -51,7 +51,31 @@
 			margin-bottom: 5px;
 		}
 	</style>
+ <!-- Google Maps JavaScript API -->
+ <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCGH0RkB_JRcwXZziuSysQHsDDBFXVodXI&callback=initMap" async defer></script>
+ <script>
+	function initMap() {
+		// The location of the property
+		const propertyLocation = { 
+			@foreach ($properties as $property)
+				lat: {{ $property->latitude }}, 
+				lng: {{ $property->longitude }} 
+			@endforeach
+		};
 
+		// The map, centered at the property location
+		const map = new google.maps.Map(document.getElementById('map'), {
+			zoom: 10,
+			center: propertyLocation
+		});
+
+		// The marker, positioned at the property location
+		const marker = new google.maps.Marker({
+			position: propertyLocation,
+			map: map
+		});
+	}
+</script>
 </head>
 <body>
 	<div class="main-wrapper">
@@ -165,7 +189,15 @@
 								<div class="d-flex align-items-center justify-content-between mb-2">
 									<h6 class="card-title mb-0">Video</h6>
 								</div>
-								<img src="#" alt="image">
+								@if ($property->video)
+									<video width="320" height="240" controls>
+										<source src="{{ asset('upload/videos/' . $property->video) }}" type="video/mp4">
+										Your browser does not support the video tag.
+									</video>
+								@else
+									<p>No video available</p>
+								@endif
+								
 						</div>
 					</div>
 
@@ -265,8 +297,12 @@
 									</div>
 								</div>
 							</div>
-
-
+							
+							<div class="mt-3 row">
+								<label class="tx-11 fw-bolder mb-0 text-uppercase">Location</label>
+								<div id="map" style="height: 400px; width: 100%;"></div>
+							</div>
+							
                         </div>
 
                     </div>
@@ -276,6 +312,8 @@
     </div>
     <!-- End of Modal -->
     @endforeach
+
+
 
 	<!-- core:js -->
 	<script src="../backend/assets/vendors/core/core.js"></script>
@@ -298,6 +336,9 @@
 	<!-- Toastr JS -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+	
+
 	<script>
 		function confirmDeletion(propertyId) {
 			Swal.fire({

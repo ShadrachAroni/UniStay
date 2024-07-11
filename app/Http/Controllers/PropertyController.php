@@ -43,7 +43,15 @@ class PropertyController extends Controller
              // Validate and prepare data
              $data = $request->validated();
              $data['agent_id'] = Auth::id();
-     
+
+            // Handle video upload
+            if ($request->hasFile('video')) {
+                $video = $request->file('video');
+                $videoFilename = date('YmdHi') . $video->getClientOriginalName();
+                $video->move(public_path('upload/videos'), $videoFilename);
+                $data['video'] = $videoFilename;
+            }
+            
              // Create the property
              $property = Property::create($data);
      
@@ -73,6 +81,7 @@ class PropertyController extends Controller
                      ]);
                  }
              }
+            
      
              return redirect()->route('pages.add')->with('success', 'Property added successfully.');
          } catch (\Exception $e) {
