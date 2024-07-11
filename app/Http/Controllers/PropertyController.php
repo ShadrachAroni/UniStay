@@ -193,43 +193,59 @@ class PropertyController extends Controller
     }
 
     public function requests()
-    {
-        try {
-            $role = Auth::user()->role_id;
-            $user = Auth::user();
-            $properties = null;
-            $bookings = null;
-    
-            switch ($role) {
-                case '1':
-                    //  Fetch all properties and bookings
-                    $bookings = Booking::join('properties', 'bookings.property_id', '=', 'properties.id')
-                        ->where('properties.agent_id', $user->id)
-                        ->get();
-                    return view('admin.Requests', compact('bookings'));
-                    break;
+{
+    try {
+        $role = Auth::user()->role_id;
+        $user = Auth::user();
 
-                case '3':
-                     // Fetch all properties and bookings
-                     $bookings = Booking::join('properties', 'bookings.property_id', '=', 'properties.id')
-                     ->where('properties.agent_id', $user->id)
-                     ->get();
-                 return view('agent.Requests', compact('bookings'));;
-                    break;
-                    
-                case '2':
-                    $bookings = Booking::join('properties', 'bookings.property_id', '=', 'properties.id')
-                    ->where('bookings.student_id', $user->id)
+        switch ($role) {
+            case '1':
+                // Fetch all properties and bookings for admin
+                $bookings = Booking::select('bookings.*')
+                    ->join('properties', 'bookings.property_id', '=', 'properties.id')
+                    ->where('properties.agent_id', $user->id)
+                    ->where(function ($query) {
+                        $query->where('bookings.status', 'pending')
+                            ->orWhere('bookings.status', 'canceled');
+                    })
                     ->get();
-                    return view('user.Requests', compact('bookings'));
-                    break;
-                default:
-                    return view('home');
-                    break;
-            }
-        } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
+                return view('admin.Requests', compact('bookings'));
+                break;
+
+            case '3':
+                // Fetch all properties and bookings for agent
+                $bookings = Booking::select('bookings.*')
+                    ->join('properties', 'bookings.property_id', '=', 'properties.id')
+                    ->where('properties.agent_id', $user->id)
+                    ->where(function ($query) {
+                        $query->where('bookings.status', 'pending')
+                            ->orWhere('bookings.status', 'canceled');
+                    })
+                    ->get();
+                return view('agent.Requests', compact('bookings'));
+                break;
+
+            case '2':
+                // Fetch all properties and bookings for user
+                $bookings = Booking::select('bookings.*')
+                    ->join('properties', 'bookings.property_id', '=', 'properties.id')
+                    ->where('bookings.student_id', $user->id)
+                    ->where(function ($query) {
+                        $query->where('bookings.status', 'pending')
+                            ->orWhere('bookings.status', 'canceled');
+                    })
+                    ->get();
+                return view('user.Requests', compact('bookings'));
+                break;
+
+            default:
+                return view('home');
+                break;
         }
+    } catch (\Exception $e) {
+        return redirect()->back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
     }
+}
+
     
 }

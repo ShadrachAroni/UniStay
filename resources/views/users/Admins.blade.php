@@ -158,7 +158,7 @@
                             <div class="d-flex align-items-center justify-content-between mb-2">
                                 <h6 class="card-title mb-0">Photo</h6>
                             </div>
-                            <img src="{{ (!empty($user->profile_photo)) ? url('upload/img'.$user->profile_photo) : url('upload/img/no_image.jpg') }}" alt="image">
+                            <img class="wd-100 rounded-circle" src="{{ (!empty($user->profile_photo)) ? url('upload/img/'.$user->profile_photo) : url('upload/img/no_image.jpg')}}" alt="profile"  style="width: 80px; height: 80px;">
                             <div class="mt-3">
                                 <label class="tx-11 fw-bolder mb-0 text-uppercase">First Name:</label>
                                 <p class="text-muted">{{ $user->Fname }}</p>

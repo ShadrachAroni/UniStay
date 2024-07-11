@@ -50,6 +50,9 @@
 		.row label{
 			margin-bottom: 5px;
 		}
+		.card {
+			margin-bottom: 25px;
+		}
 	</style>
  <!-- Google Maps JavaScript API -->
  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCGH0RkB_JRcwXZziuSysQHsDDBFXVodXI&callback=initMap" async defer></script>
@@ -103,48 +106,162 @@
 					</div>
 				</div>
 
-				<table class="table table-striped">
-					<thead>
-						<tr>
-							<th>Photo</th>
-							<th>ID</th>
-							<th>Title</th>
-							<th>Agent ID</th>
-                            <th colspan="2">Actions</th>
-						</tr>
-					</thead>
-					<tbody>
-						@foreach ($properties as $property)
-						<tr>
-							<td class="py-1">
-								<!-- image -->
-								@if ($property->photos->isNotEmpty())
-									@php
-										$photo = $property->photos->first();
-									@endphp
-									<img src="{{ asset('upload/photos/' . $photo->filename) }}" alt="Property Photo" style="width:53px;height:53px;">
-								@else
-									<img src="{{url('upload/img/no_image.png')}}" alt="">
-								@endif
-							</td>
-							<td>{{ $property->id }}</td>
-							<td>{{ $property->title }}</td>
-							<td>{{ $property->agent_id }}</td>
-							<td>
-                                <a href="{{ route('properties.show', $property->id) }}" class="btn btn-sm btn-info"  data-bs-toggle="modal" data-bs-target="#show_{{$property->id}}">View</a>
-							</td>
+				<div class="card">
+					<div class="card-body">
+						<h4 class="mb-3 mb-md-0">Available</h4>
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>Photo</th>
+									<th>ID</th>
+									<th>Title</th>
+									<th>Agent ID</th>
+									<th colspan="2">Actions</th>
+								</tr>
+							</thead>
+							<tbody>
+								@foreach ($properties->where('availability_status', 'available') as $property)
+								<tr>
+									<td class="py-1">
+										<!-- image -->
+										@if ($property->photos->isNotEmpty())
+											@php
+												$photo = $property->photos->first();
+											@endphp
+											<img src="{{ asset('upload/photos/' . $photo->filename) }}" alt="Property Photo" style="width:53px;height:53px;">
+										@else
+											<img src="{{url('upload/img/no_image.png')}}" alt="">
+										@endif
+									</td>
+									<td>{{ $property->id }}</td>
+									<td>{{ $property->title }}</td>
+									<td>{{ $property->agent_id }}</td>
+									<td>
+										<a href="{{ route('properties.show', $property->id) }}" class="btn btn-sm btn-info"  data-bs-toggle="modal" data-bs-target="#show_{{$property->id}}">View</a>
+									</td>
 
-                            <td>
-                                <form id="delete-property-form-{{ $property->id }}" class="inline-block" action="{{ route('properties.destroy', $property->id) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="button" class="btn btn-sm btn-danger" onclick="confirmDeletion('{{ $property->id }}')">Delete</button>
-                                </form>
-                            </td>
-						</tr>
-						@endforeach
-					</tbody>
-				</table>
+									<td>
+										<a href="#" class="btn btn-sm btn-primary"  data-bs-toggle="modal" data-bs-target="#change_{{$property->id}}">Change Status</a>
+									</td>
+		
+									<td>
+										<form id="delete-property-form-{{ $property->id }}" class="inline-block" action="{{ route('properties.destroy', $property->id) }}" method="POST">
+											@csrf
+											@method('DELETE')
+											<button type="button" class="btn btn-sm btn-danger" onclick="confirmDeletion('{{ $property->id }}')">Delete</button>
+										</form>
+									</td>
+								</tr>
+								@endforeach
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+				<div class="card">
+					<div class="card-body">
+						<h4 class="mb-3 mb-md-0">Booked</h4>
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>Photo</th>
+									<th>ID</th>
+									<th>Title</th>
+									<th>Agent ID</th>
+									<th colspan="2">Actions</th>
+								</tr>
+							</thead>
+							<tbody>
+								@foreach ($properties->where('availability_status', 'booked') as $property)
+								<tr>
+									<td class="py-1">
+										<!-- image -->
+										@if ($property->photos->isNotEmpty())
+											@php
+												$photo = $property->photos->first();
+											@endphp
+											<img src="{{ asset('upload/photos/' . $photo->filename) }}" alt="Property Photo" style="width:53px;height:53px;">
+										@else
+											<img src="{{url('upload/img/no_image.png')}}" alt="">
+										@endif
+									</td>
+									<td>{{ $property->id }}</td>
+									<td>{{ $property->title }}</td>
+									<td>{{ $property->agent_id }}</td>
+									<td>
+										<a href="{{ route('properties.show', $property->id) }}" class="btn btn-sm btn-info"  data-bs-toggle="modal" data-bs-target="#show_{{$property->id}}">View</a>
+									</td>
+
+									<td>
+										<a href="#" class="btn btn-sm btn-primary"  data-bs-toggle="modal" data-bs-target="#change_{{$property->id}}">Change Status</a>
+									</td>
+		
+									<td>
+										<form id="delete-property-form-{{ $property->id }}" class="inline-block" action="{{ route('properties.destroy', $property->id) }}" method="POST">
+											@csrf
+											@method('DELETE')
+											<button type="button" class="btn btn-sm btn-danger" onclick="confirmDeletion('{{ $property->id }}')">Delete</button>
+										</form>
+									</td>
+								</tr>
+								@endforeach
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+				<div class="card">
+					<div class="card-body">
+						<h4 class="mb-3 mb-md-0">Unavailable</h4>
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>Photo</th>
+									<th>ID</th>
+									<th>Title</th>
+									<th>Agent ID</th>
+									<th colspan="2">Actions</th>
+								</tr>
+							</thead>
+							<tbody>
+								@foreach ($properties->where('availability_status', 'unavailable') as $property)
+								<tr>
+									<td class="py-1">
+										<!-- image -->
+										@if ($property->photos->isNotEmpty())
+											@php
+												$photo = $property->photos->first();
+											@endphp
+											<img src="{{ asset('upload/photos/' . $photo->filename) }}" alt="Property Photo" style="width:53px;height:53px;">
+										@else
+											<img src="{{url('upload/img/no_image.png')}}" alt="">
+										@endif
+									</td>
+									<td>{{ $property->id }}</td>
+									<td>{{ $property->title }}</td>
+									<td>{{ $property->agent_id }}</td>
+									<td>
+										<a href="{{ route('properties.show', $property->id) }}" class="btn btn-sm btn-info"  data-bs-toggle="modal" data-bs-target="#show_{{$property->id}}">View</a>
+									</td>
+									<td>
+										<a href="#" class="btn btn-sm btn-primary"  data-bs-toggle="modal" data-bs-target="#change_{{$property->id}}">Change Status</a>
+									</td>
+									
+									<td>
+										<form id="delete-property-form-{{ $property->id }}" class="inline-block" action="{{ route('properties.destroy', $property->id) }}" method="POST">
+											@csrf
+											@method('DELETE')
+											<button type="button" class="btn btn-sm btn-danger" onclick="confirmDeletion('{{ $property->id }}')">Delete</button>
+										</form>
+									</td>
+								</tr>
+								@endforeach
+							</tbody>
+						</table>
+					</div>
+				</div>
+				
+				
 			</div>
 		</div>
 	</div>
@@ -155,7 +272,13 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="showTitle_{{$property->id}}">property ID {{$property->id}} </h5>
+                    <h5 class="modal-title" id="showTitle_{{$property->id}}">property ID {{$property->id}} 
+						@foreach ($property->bookings as $booking)
+							@if($property->availability_status === 'booked')
+								(Booked By {{$booking->student->Fname}} {{$booking->student->Fname}})
+							@endif
+						@endforeach
+					</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="btn-close"></button>
                 </div>
                 <div class="modal-body">
@@ -313,6 +436,44 @@
     <!-- End of Modal -->
     @endforeach
 
+		<!-- change Modal -->
+@foreach($properties as $property)
+<div class="modal fade" id="change_{{$property->id}}" tabindex="-1" aria-labelledby="changeTitle_{{$property->id}}" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="changeTitle_{{$property->id}}">Change property ID {{$property->id}} Availability status</h5>
+                <button property="button" class="btn-close" data-bs-dismiss="modal" aria-label="btn-close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="updateForm" method="POST" action="{{ route('status.change') }}">
+                    @csrf
+
+					<div class="mb-3">
+						<label for="availability_status" class="form-label">Availability Status</label>
+						<select id="availability_status" class="form-control" name="availability_status">
+							<option value="available" {{ old('availability_status', $property->availability_status) == 'available' ? 'selected' : '' }}>Available</option>
+							<option value="unavailable" {{ old('availability_status', $property->availability_status) == 'unavailable' ? 'selected' : '' }}>Unavailable</option>
+							<option value="booked" {{ old('availability_status', $property->availability_status) == 'booked' ? 'selected' : '' }}>Booked</option>
+						</select>
+						@error('availability_status')
+							<p class="text-sm text-red-600">{{ $message }}</p>
+						@enderror
+					</div>
+					<input type="hidden" name="property_id" value="{{ $property->id }}">
+
+                    <div class="modal-footer">
+                        <button property="submit" class="btn btn-primary">Update</button>
+
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End change Modal -->
+@endforeach
 
 
 	<!-- core:js -->

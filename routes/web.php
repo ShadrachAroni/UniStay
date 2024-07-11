@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AgentController;
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\PropertyCategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DetailsController;
@@ -48,6 +49,12 @@ Route::get('/auth/Agent', [DashboardController::class, 'AgentRegister'])->name('
 
 Route::resource('properties', \App\Http\Controllers\PropertyController::class);
 Route::resource('verify', \App\Http\Controllers\VerifyController::class);
+Route::resource('booking', \App\Http\Controllers\BookingController::class);
+
+Route::post('/booking/cancel', [BookingController::class, 'cancel'])->name('booking.cancel');
+Route::post('/booking/confirm', [BookingController::class, 'confirm'])->name('booking.confirm');
+Route::post('/property/statis', [BookingController::class, 'status'])->name('status.change');
+
 Route::get('/pages/Listings', [PropertyController::class, 'view'])->name('view.listings');
 Route::get('/pages/add', [PropertyController::class, 'add'])->name('pages.add');
 Route::get('/pages/show/{id}', [PropertyController::class, 'show'])->name('pages.show');
@@ -90,6 +97,7 @@ Route::middleware(['auth', 'agent'])->group(function () {
 
 Route::middleware(['auth', 'user'])->group(function () {
     Route::get('user/dashboard', [UserController::class, 'index'])->name('user.dashboard');
+    Route::get('user/Booked/Listings', [UserController::class, 'booked'])->name('booked');
 });
 
 

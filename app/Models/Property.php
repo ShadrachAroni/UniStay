@@ -54,4 +54,10 @@ class Property extends Model
     {
         return $this->hasMany(Photo::class);
     }
+
+    public function updateAvailability($status)
+    {
+        $this->availability_status = $status;
+        $this->save();
+    }
 }

@@ -56,19 +56,19 @@
 	<div class="main-wrapper">
 
 		<!-- partial:partials/_sidebar.html -->
-		@include('admin/sidebar')
+		@include('user/sidebar')
 		<!-- partial -->
 
 		<div class="page-wrapper">
 
 			<!-- partial:partials/_navbar.html -->
-			@include('admin/navBar')
+			@include('user/navBar')
 			<!-- partial -->
 
 			<div class="page-content">
 				<div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
 					<div>
-						<h4 class="mb-3 mb-md-0">View Listings</h4>
+						<h4 class="mb-3 mb-md-0">View Booking Requests</h4>
 					</div>
 					<div class="d-flex align-items-center flex-wrap text-nowrap">
 						<div class="input-group flatpickr wd-200 me-2 mb-2 mb-md-0" id="dashboardDate">
@@ -92,7 +92,7 @@
 						@foreach ($bookings as $booking)
 						<tr>
 							
-                            <td>{{ $booking->property->id }}</td>
+                            <td>{{ $booking->id }}</td>
 							<td>{{ $booking->property->title }}</td>
 							<td>{{ $booking->status }}</td>
 							<td>
@@ -100,10 +100,21 @@
 							</td>
 
                             <td>
-                                <form id="delete-booking-form-{{ $booking->id }}" class="inline-block" action="#" method="POST">
-									@csrf
-									<button type="button" class="btn btn-sm btn-danger" onclick="confirmDeletion('{{ $booking->id }}')">Cancel</button>
-								</form>
+                               
+
+									@if($booking->status === 'canceled')
+									<form id="delete-booking-form-{{ $booking->id }}" class="inline-block" action="{{ route('booking.destroy', $booking->id) }}" method="POST">
+										@csrf
+										@method('DELETE')
+										<button type="submit" class="btn btn-sm btn-danger" onclick="confirmDeletion('{{ $booking->id }}')">Delete Request</button>
+									</form>
+									@else
+									<form id="delete-booking-form-{{ $booking->id }}" class="inline-block" action="{{ route('booking.cancel') }}" method="POST">
+										@csrf
+										<button type="button" class="btn btn-sm btn-danger" onclick="confirmCancelation('{{ $booking->id }}')">Cancel Booking</button>
+									</form>
+									@endif
+								
                             </td>
 						</tr>
 						@endforeach
@@ -115,20 +126,38 @@
 
   @foreach($bookings as $booking)
     <!-- Modal for view  -->
-    <div class="modal fade" id="show_{{$booking->property->agent->id }}" tabindex="-1" aria-labelledby="showTitle_{{$booking->property->agent->id }}{{$booking->property->agent->id }}" aria-hidden="true" style="display: none;">
+    <div class="modal fade" id="show_{{$booking->property->agent->id }}" tabindex="-1" aria-labelledby="showTitle_{{$booking->property->agent->id }}" aria-hidden="true" style="display: none;">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="showTitle">Booking for {{$booking->property->title}} </h5>
+                    <h5 class="modal-title" id="showTitle">Agent for {{$booking->property->title}} </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="btn-close"></button>
                 </div>
                 <div class="modal-body">
-					<div class="card rounded">
-                        <div class="card-body">
-
-
-                        </div>
-                    </div>
+                         
+                            <img class="wd-100 rounded-circle" src="{{ (!empty($booking->property->agent->profile_photo)) ? url('upload/img/'.$booking->property->agent->profile_photo) : url('upload/img/no_image.jpg')}}" alt="profile"  style="width: 80px; height: 80px;">
+							<div class="mt-3">
+                                <label class="tx-11 fw-bolder mb-0 text-uppercase">First Name:</label>
+                                <p class="text-muted">{{ $booking->property->agent->Fname }}</p>
+                            </div>
+                            <div class="mt-3">
+                                <label class="tx-11 fw-bolder mb-0 text-uppercase">Last Name:</label>
+                                <p class="text-muted">{{ $booking->property->agent->Lname }}</p>
+                            </div>
+                            <div class="mt-3">
+                                <label class="tx-11 fw-bolder mb-0 text-uppercase">Email:</label>
+                                <p class="text-muted">{{ $booking->property->agent->email }}</p>
+                            </div>
+                            <div class="mt-3">
+                                <label class="tx-11 fw-bolder mb-0 text-uppercase">Contact:</label>
+                                <p class="text-muted">{{ $booking->property->agent->phone}}</p>
+                            </div>
+                            <div class="mt-3">
+                                <label class="tx-11 fw-bolder mb-0 text-uppercase"> Verification status:</label>
+                                <p class="text-muted">{{$booking->property->agent->status }}</p>
+                            </div>
+                        
+                
                 </div>
             </div>
         </div>
@@ -171,20 +200,44 @@
 				showCancelButton: true,
 				confirmButtonColor: '#3085d6',
 				cancelButtonColor: '#d33',
-				confirmButtonText: 'Yes, Cancel!'
+				confirmButtonText: 'Yes, Delete!'
 			}).then((result) => {
 				if (result.isConfirmed) {
 					document.getElementById('delete-booking-form-' +BookingId).submit();
 					Swal.fire({
 						icon: 'success',
 						title: 'Success!',
-						text: 'Type deleted Successfully!',
+						text: 'Request Deleted Successfully!',
 						showConfirmButton: false,
 						timer: 1500
 					});
 				}
 			});
 		}
+
+		function confirmCancelation(BookingId) {
+			Swal.fire({
+				title: 'Are you sure?',
+				text: "You won't be able to revert this!",
+				icon: 'warning',
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonColor: '#d33',
+				confirmButtonText: 'Yes, Cancel Request!'
+			}).then((result) => {
+				if (result.isConfirmed) {
+					document.getElementById('delete-booking-form-' +BookingId).submit();
+					Swal.fire({
+						icon: 'success',
+						title: 'Success!',
+						text: 'Request Cnacelled Successfully!',
+						showConfirmButton: false,
+						timer: 1500
+					});
+				}
+			});
+		}
+
 
 		@if(Session::has('success'))
 			toastr.success("{{ Session::get('success') }}");
