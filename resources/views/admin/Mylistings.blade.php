@@ -43,6 +43,13 @@
 		img{
 			width: 50px;
 		}
+		.row{
+			margin-bottom: 15px;
+		}
+
+		.row label{
+			margin-bottom: 5px;
+		}
 	</style>
 
 </head>
@@ -125,11 +132,123 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="btn-close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="card rounded">
+					<div class="card rounded" style="margin-bottom: 20px">
                         <div class="card-body">
-						
+								<div class="d-flex align-items-center justify-content-between mb-2">
+									<h6 class="card-title mb-0">Photos</h6>
+								</div>
+								<img src="#" alt="image">
+						</div>
+					</div>
+
+					<div class="card rounded" style="margin-bottom: 20px">
+                        <div class="card-body">
+								<div class="d-flex align-items-center justify-content-between mb-2">
+									<h6 class="card-title mb-0">Video</h6>
+								</div>
+								<img src="#" alt="image">
+						</div>
+					</div>
+
+                    <div class="card rounded">
+
+                        <div class="card-body">
+
+
+							<div class="justify-content-center text-center">
+								<label class="tx-11 fw-bolder mb-0 text-uppercase">Title:</label>
+								<p class="text-muted">{{$property->title}}</p>
+							</div>
+
+							<div class="justify-content-center text-center row" >
+                                <label class="tx-11 fw-bolder mb-0 text-uppercase">Type:</label>
+                                <p class="text-muted">{{$property->propertyType->name}}</p>
+                            </div>
+							
+							<div class="justify-content-center text-center row">
+								<label class="tx-11 fw-bolder mb-0 text-uppercase">Description:</label>
+								<p class="text-muted">{{$property->description}}</p>
+							</div>
+
+                            <div class="justify-content-center text-center row">
+                                <label class="tx-11 fw-bolder mb-0 text-uppercase">Policies:</label>
+                                <p class="text-muted">{{$property->policies}}</p>
+                            </div>
+
+							<div class="row">
+								<div class="col-sm-6">
+									<label class="tx-11 fw-bolder mb-0 text-uppercase">Bathrooms:</label>
+									<p class="text-muted">{{$property->baths}}</p>
+								</div>
+								<div class="col-s-6">
+									<label class="tx-11 fw-bolder mb-0 text-uppercase">Beds:</label>
+									<p class="text-muted">{{$property->beds_start}} - {{$property->beds_end}}</p>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-sm-6">
+									<label class="tx-11 fw-bolder mb-0 text-uppercase">Country:</label>
+									<p class="text-muted">{{$property->country}}</p>
+								</div>
+								<div class="col-sm-6">
+									<label class="tx-11 fw-bolder mb-0 text-uppercase">City</label>
+									<p class="text-muted">{{$property->city}}</p>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-sm-6">
+									<label class="tx-11 fw-bolder mb-0 text-uppercase">Street:</label>
+									<p class="text-muted">{{$property->street}}</p>
+								</div>
+								<div class="col-sm-6">
+									<label class="tx-11 fw-bolder mb-0 text-uppercase">Area Name</label>
+									<p class="text-muted">{{$property->area_name}}</p>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-sm-6" >
+									<label class="tx-11 fw-bolder mb-0 text-uppercase">Features:</label>
+									<div style="max-height: 100px; overflow-y: auto;">
+										@foreach ($property->features as $feature)
+											<li>{{ $feature->name }}</li>
+										@endforeach
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<label class="tx-11 fw-bolder mb-0 text-uppercase">Amenities:</label>
+									<div style="max-height: 100px; overflow-y: auto;">
+										@foreach ($property->amenities as $amenity)
+											<li>{{ $amenity->name }}</li>
+										@endforeach
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-sm-6">
+									<label class="tx-11 fw-bolder mb-0 text-uppercase">Categories:</label>
+									<div style="max-height: 100px; overflow-y: auto;">
+										@foreach ($property->categories as $category)
+											<li>{{ $category->name }}</li>
+										@endforeach
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<label class="tx-11 fw-bolder mb-0 text-uppercase">Surrounding:</label>
+									<div style="max-height: 100px; overflow-y: auto;">
+										@foreach ($property->surroundings as $surrounding)
+											<li>{{ $surrounding->name }}</li>
+										@endforeach
+									</div>
+								</div>
+							</div>
+
 
                         </div>
+
                     </div>
                 </div>
             </div>

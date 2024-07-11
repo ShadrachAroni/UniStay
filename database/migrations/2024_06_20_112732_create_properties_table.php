@@ -19,6 +19,9 @@ return new class extends Migration
             $table->text('policies')->nullable();
             $table->string('country');
             $table->string('city');
+            $table->integer('beds_start')->nullable();
+            $table->integer('beds_end')->nullable();
+            $table->integer('baths')->nullable();
             $table->string('street');
             $table->string('area_name')->nullable();
             $table->decimal('price', 10, 2);

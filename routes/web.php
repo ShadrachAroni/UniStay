@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AgentController;
 use App\Http\Controllers\PropertyCategoryController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DetailsController;
 use App\Http\Controllers\ErrorController;
 use App\Http\Controllers\PropertyAmenityController;
 use App\Http\Controllers\PropertyController;
@@ -33,7 +34,6 @@ Route::resource('details', \App\Http\Controllers\DetailsController::class);
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 });
-
 
 Route::get('/pages/About', [DashboardController::class, 'about'])->name('about');
 Route::get('/pages/Contact', [DashboardController::class, 'contact'])->name('contact');

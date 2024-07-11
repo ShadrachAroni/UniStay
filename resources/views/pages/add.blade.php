@@ -40,6 +40,7 @@
         <li><a href="{{ route('home')}}">Home</a></li>
         <li><a href="{{ route('about')}}">About Us</a></li>
         <li><a href="{{route('contact')}}">Contact Us</a></li>
+        <li><a href="{{route('view.listings')}}">All listings</a></li>
     </ul>
 
     <div class="h-btn">
@@ -73,7 +74,7 @@
     </div>  
 </header>
 
-<section class="ftco-section img bg-hero" style="background-image: url({{ asset('front/img/p2.png')}});">
+<section class="ftco-section img bg-hero" style="background-color: gray;">
     <div class="container">
         <div class="row justify-content-center">
             <div class="card" style=" background-color: rgba(0, 0, 0, 0.5); padding: 20px; color: white; border-radius: 10px; border-radius: 20px; ">
@@ -97,80 +98,119 @@
                             <textarea class="form-control" id="policies" name="policies" rows="4" style="border-radius: 10px;"></textarea>
                         </div>
 
-                        <div class="mb-3">
-                            <label for="country">Country</label>
-                            <input type="text" class="form-control" id="country" name="country" style="border-radius: 10px;" required>
+                        <div class="row">
+                            <div class="mb-3 col-sm-6">
+                                <label for="country">Country</label>
+                                <input type="text" class="form-control" id="country" name="country" style="border-radius: 10px;" required>
+                            </div>
+
+                            <div class="mb-3 col-sm-6">
+                                <label for="city">City</label>
+                                <input type="text" class="form-control" id="city" name="city" style="border-radius: 10px;" required>
+                            </div>
                         </div>
 
-                        <div class="mb-3">
-                            <label for="city">City</label>
-                            <input type="text" class="form-control" id="city" name="city" style="border-radius: 10px;" required>
+                        <div class="row">
+                            <div class="mb-3 col-sm-6">
+                                <label for="street">Street</label>
+                                <input type="text" class="form-control" id="street" name="street" style="border-radius: 10px;" required>
+                            </div>
+
+                            <div class="mb-3 col-sm-6">
+                                <label for="area_name">Area Name  (Optional)</label>
+                                <input type="text" class="form-control" id="area_name" style="border-radius: 10px;" name="area_name">
+                            </div>
                         </div>
 
-                        <div class="mb-3">
-                            <label for="street">Street</label>
-                            <input type="text" class="form-control" id="street" name="street" style="border-radius: 10px;" required>
+                        <div class="row">
+                            <div class="mb-3 col-sm-6">
+                                <label for="beds">Range of number of beds</label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control" id="beds_start" name="beds_start" placeholder="Min" style="border-top-left-radius: 10px; border-bottom-left-radius: 10px;" required>
+                                    <span class="input-group-text">to</span>
+                                    <input type="number" class="form-control" id="beds_end" name="beds_end" placeholder="Max" style="border-top-right-radius: 10px; border-bottom-right-radius: 10px;" required>
+                                </div>
+                            </div>
+
+                            <div class="mb-3 col-sm-6">
+                                <label for="baths">Number of Bathrooms</label>
+                                <input type="number" class="form-control" id="baths" name="baths" step="0" style="border-radius: 10px;" required>
+                            </div>
                         </div>
 
-                        <div class="mb-3">
-                            <label for="area_name">Area Name  (Optional)</label>
-                            <input type="text" class="form-control" id="area_name" style="border-radius: 10px;" name="area_name">
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="price">Price</label>
-                            <input type="number" class="form-control" id="price" name="price" step="0.01" style="border-radius: 10px;" required>
-                        </div>
+                        <div class="row">
+                            <div class="mb-3 col-sm-6">
+                                <label for="price">Price</label>
+                                <input type="number" class="form-control" id="price" name="price" step="0.01" style="border-radius: 10px;" required>
+                            </div>
 
 
-                        <div class="mb-3">
-                            <label for="property_type_id">Property Type</label>
-                            <select class="form-control" id="property_type_id" name="property_type_id" style="border-radius: 10px;" required>
-                                @foreach($propertyTypes as $propertyType)
-                                    <option value="{{ $propertyType->id }}">{{ $propertyType->name }}</option>
-                                @endforeach
-                            </select>
+                            <div class="mb-3 col-sm-6">
+                                <label for="property_type_id">Type</label>
+                                <select class="form-control" id="property_type_id" name="property_type_id" style="border-radius: 10px;" required>
+                                    @foreach($propertyTypes as $propertyType)
+                                        <option value="{{ $propertyType->id }}">{{ $propertyType->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
 
                         <div class="row">
                             <div class="col-sm-6">
                                 <label for="features">Features</label>
-                                <select class="form-control" id="features" name="features[]" multiple>
+                                <div style="max-height: 200px; overflow-y: auto;">
                                     @foreach($features as $feature)
-                                        <option value="{{ $feature->id }}">{{ $feature->name }}</option>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="feature{{ $feature->id }}" name="features[]" value="{{ $feature->id }}">
+                                            <label class="form-check-label" for="feature{{ $feature->id }}">
+                                                {{ $feature->name }}
+                                            </label>
+                                        </div>
                                     @endforeach
-                                </select>
-
+                                </div>
                             </div>
+
                             <div class="col-sm-6">
                                 <label for="amenities">Amenities</label>
-                                <select class="form-control" id="amenities" name="amenities[]" multiple>
+                                <div style="max-height: 200px; overflow-y: auto;">
                                     @foreach($amenities as $amenity)
-                                        <option value="{{ $amenity->id }}">{{ $amenity->name }}</option>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="amenity{{ $amenity->id }}" name="amenities[]" value="{{ $amenity->id }}">
+                                            <label class="form-check-label" for="amenity{{ $amenity->id }}">
+                                                {{ $amenity->name }}
+                                            </label>
+                                        </div>
                                     @endforeach
-                                </select>
-
+                                </div>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-sm-6">
                                 <label for="categories">Categories</label>
-                                <select class="form-control" id="categories" name="categories[]" multiple>
+                                <div style="max-height: 200px; overflow-y: auto;">
                                     @foreach($categories as $category)
-                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="category{{ $category->id }}" name="categories[]" value="{{ $category->id }}">
+                                            <label class="form-check-label" for="category{{ $category->id }}">
+                                                {{ $category->name }}
+                                            </label>
+                                        </div>
                                     @endforeach
-                                </select>
-
+                                </div>
                             </div>
                             <div class="col-sm-6">
                                 <label for="surroundings">Surrounding Area Availabilities</label>
-                                <select class="form-control" id="surroundings" name="surroundings[]" multiple>
+                                <div style="max-height: 200px; overflow-y: auto;">
                                     @foreach($surroundings as $surrounding)
-                                        <option value="{{ $surrounding->id }}">{{ $surrounding->name }}</option>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="surrounding{{ $surrounding->id }}" name="surroundings[]" value="{{ $surrounding->id }}">
+                                            <label class="form-check-label" for="surrounding{{ $surrounding->id }}">
+                                                {{ $surrounding->name }}
+                                            </label>
+                                        </div>
                                     @endforeach
-                                </select>
-
+                                </div>
                             </div>
                         </div>
 

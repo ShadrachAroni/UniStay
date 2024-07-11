@@ -27,7 +27,7 @@
         </div>
 
         <div class="mb-3">
-           <a href=" ">Forgot password?</a>
+           <a href="#">Forgot password?</a>
         </div>
     </x-slot>
     

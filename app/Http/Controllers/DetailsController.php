@@ -68,7 +68,7 @@ class DetailsController extends Controller
             $data->phone = $request ->phone;
             $data->address = $request ->address;
             $data->gender = $request ->gender;
-
+            $data->updated_at = now();
 
 
             if ($request->file('profile_photo')){

@@ -50,6 +50,10 @@
                                 <label class="tx-11 fw-bolder mb-0 text-uppercase">Account type:</label>
                                 <p class="text-muted">{{ Auth::user()->role->name }}</p>
                             </div>
+                            <div class="mt-3">
+                                <label class="tx-11 fw-bolder mb-0 text-uppercase">Updated at:</label>
+                                <p class="text-muted"> {{ Auth::user()->updated_at->format('M d, Y H:i') }}</p>
+                            </div>
                 </div>
             </div>
         </div>
