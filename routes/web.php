@@ -14,11 +14,13 @@ use App\Http\Controllers\SurroundingAreaController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\VerifyController;
+use App\Models\Property;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 Route::get('/', function () {
-    return view('home');
+    $property = Property::with('photos')->get();
+    return view('home', compact('property'));
 });
 
 Route::middleware([
@@ -32,13 +34,13 @@ Route::middleware([
 
 Route::resource('details', \App\Http\Controllers\DetailsController::class);
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/booking/requests', [PropertyController::class, 'requests'])->name('requests');
 
 });
 
 Route::get('/pages/About', [DashboardController::class, 'about'])->name('about');
 Route::get('/pages/Contact', [DashboardController::class, 'contact'])->name('contact');
 Route::get('/auth/Agent', [DashboardController::class, 'AgentRegister'])->name('register.agent');
-
 
 
 //Route::get('policy', [DashboardController::class, 'showPolicy'])->name('policy.show');
@@ -49,6 +51,8 @@ Route::resource('verify', \App\Http\Controllers\VerifyController::class);
 Route::get('/pages/Listings', [PropertyController::class, 'view'])->name('view.listings');
 Route::get('/pages/add', [PropertyController::class, 'add'])->name('pages.add');
 Route::get('/pages/show/{id}', [PropertyController::class, 'show'])->name('pages.show');
+Route::post('/properties/{id}/book', [PropertyController::class, 'book'])->name('book');
+
 
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
@@ -74,6 +78,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/Listings', [AdminController::class, 'MyListings'])->name('admin.MyListings');
     Route::get('/admin/Analytics', [AdminController::class, 'Analytics'])->name('Analytics');
     Route::get('/admin/Messages', [AdminController::class, 'messages'])->name('messages');
+
 
 });
 

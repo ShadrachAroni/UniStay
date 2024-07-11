@@ -11,6 +11,7 @@ use App\Models\PropertyType;
 use App\Models\PropertyFeature;
 use App\Models\PropertyAmenity;
 use App\Models\SurroundingArea;
+use App\Models\Booking;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -165,4 +166,70 @@ class PropertyController extends Controller
         return view('pages.listings', compact('properties'));
     }
 
+    public function book($id)
+    {
+        try{
+            $property = Property::find($id);
+        
+            if (!$property) {
+                // Property not found, handle error
+                return redirect()->back()->with('error', 'Property not found.');
+            }
+        
+            // Create a new booking record
+            $booking = new Booking();
+            $booking->property_id = $property->id;
+            $booking->student_id = auth()->user()->id; // Assuming you are using Laravel's authentication
+            $booking->booking_date = now(); // Set the booking date as current date/time
+            $booking->status = 'pending'; // Initial status
+            $booking->payment_status = 'pending'; // Initial payment status
+            $booking->save();
+        
+            // Redirect back with SweetAlert success message
+            return redirect()->back()->with('success', 'Property successfully booked.');
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => 'An error occurred while booking the listing: ' . $e->getMessage()]);
+        }
+    }
+
+    public function requests()
+    {
+        try {
+            $role = Auth::user()->role_id;
+            $user = Auth::user();
+            $properties = null;
+            $bookings = null;
+    
+            switch ($role) {
+                case '1':
+                    //  Fetch all properties and bookings
+                    $bookings = Booking::join('properties', 'bookings.property_id', '=', 'properties.id')
+                        ->where('properties.agent_id', $user->id)
+                        ->get();
+                    return view('admin.Requests', compact('bookings'));
+                    break;
+
+                case '3':
+                     // Fetch all properties and bookings
+                     $bookings = Booking::join('properties', 'bookings.property_id', '=', 'properties.id')
+                     ->where('properties.agent_id', $user->id)
+                     ->get();
+                 return view('agent.Requests', compact('bookings'));;
+                    break;
+                    
+                case '2':
+                    $bookings = Booking::join('properties', 'bookings.property_id', '=', 'properties.id')
+                    ->where('bookings.student_id', $user->id)
+                    ->get();
+                    return view('user.Requests', compact('bookings'));
+                    break;
+                default:
+                    return view('home');
+                    break;
+            }
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
+        }
+    }
+    
 }

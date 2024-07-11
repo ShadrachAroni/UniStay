@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Booking;
 use App\Models\Property;
 use App\Models\Role;
 use App\Models\User;
@@ -56,12 +57,6 @@ class AdminController extends Controller
         ->get();
 
         return view('admin.analytics', compact('users', 'agents', 'properties'));
-
-    }
-
-    public function messages(){
-
-        return view('admin.messages');
 
     }
 

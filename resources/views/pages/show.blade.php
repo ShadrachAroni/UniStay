@@ -28,6 +28,10 @@
 
   <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
 
+  <!-- Toastr CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
+
   <style>
     .more {
     color: white;
@@ -37,6 +41,13 @@
 .more:hover {
     color: aqua;
     transform: scale(1.1); /* Scale up the element on hover */
+}
+.disabled {
+    color: #999; /* Gray color for text */
+    cursor: not-allowed; /* Change cursor to indicate it's not clickable */
+    text-decoration: none; /* Remove underline */
+    pointer-events: none; /* Disable pointer events to prevent interaction */
+    opacity: 0.5; /* Reduce opacity to visually indicate it's disabled */
 }
   </style>
 </head>
@@ -262,7 +273,14 @@
                   <div class="property-price d-flex justify-content-center foo">
                     <div class="card-header-c d-flex">
                       
-                      <a class="btn btn-a" href="#">Book this Listing</a>
+                      @if($property->availability_status === 'unavailable' || $property->availability_status === 'booked')
+                          <a class="btn disabled" href="#">property {{$property->availability_status}}</a>
+                      @else
+                      <form action="{{ route('book', ['id' => $property->id]) }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-a">Book This Listing</button>
+                    </form>
+                      @endif
                       
                     </div>
                   </div>
@@ -427,31 +445,23 @@
               </div>
               <div class="row">
                 <div class="col-md-6 col-lg-4">
-                  <img src="{{url('view/img/agent-4.jpg')}}" alt="" class="img-fluid">
+                  <img class="img-fluid" src="{{ (!empty($property->agent->profile_photo)) ? url('upload/img/'.$property->agent->profile_photo) : url('upload/img/no_image.jpg')}}" alt="profile">
                 </div>
                 <div class="col-md-6 col-lg-4">
                   <div class="property-agent">
-                    <h4 class="title-agent">Anabella Geller</h4>
+                    <h4 class="title-agent">{{$property->agent->Fname}} {{$property->agent->Fname}}</h4>
                   
                     <ul class="list-unstyled">
                       <li class="d-flex justify-content-between">
-                        <strong>Phone:</strong>
-                        <span class="color-text-a">(222) 4568932</span>
-                      </li>
-                      <li class="d-flex justify-content-between">
-                        <strong>Mobile:</strong>
-                        <span class="color-text-a">777 287 378 737</span>
+                        <strong>Contact:</strong>
+                        <span class="color-text-a">{{$property->agent->phone}}</span>
                       </li>
                       <li class="d-flex justify-content-between">
                         <strong>Email:</strong>
-                        <span class="color-text-a">annabella@example.com</span>
-                      </li>
-                      <li class="d-flex justify-content-between">
-                        <strong>Skype:</strong>
-                        <span class="color-text-a">Annabela.ge</span>
+                        <span class="color-text-a">{{$property->agent->email}}</span>
                       </li>
                     </ul>
-                    <div class="socials-a">
+                    <div class="icons">
                       <ul class="list-inline">
                         <li class="list-inline-item">
                           <a href="#">
@@ -647,8 +657,39 @@
 <script src="{{asset('modal/js/bootstrap.min.js')}}"></script>
 <script src="{{asset('modal/js/main.js')}}"></script>
 <script  src="{{asset('front/js/script.js')}}"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.27/dist/sweetalert2.all.min.js"></script>
+
+<!-- Toastr JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
+
+ <!-- SweetAlert script -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.27/dist/sweetalert2.all.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+ <!-- Script to handle SweetAlert success message -->
+ <script>
+     @if(session('success'))
+           Swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                text: '{{ session('success') }}',
+                showConfirmButton: false,
+                timer: 2000
+            }).then(() => {
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Wait for reply from Agent or Contact them using the details below:',
+                    html: `
+                            Contact: <a href="#" style="color: blue; text-decoration:underline;">({{$property->agent->phone}})</a>
+                            <br>
+                            Email: <a href="#" style="color: blue; text-decoration:underline;">{{$property->agent->email}}</a>
+                        `,
+                    confirmButtonText: 'OK <i class="fa fa-thumbs-up"></i>'
+                });
+            });
+     @endif
+     
   function logout() {
       document.getElementById('logout-form').submit();
   }
@@ -667,6 +708,32 @@ $(document).ready(function() {
 function showLogin() {
   $('#login').modal('show');
 }
+@if(Session::has('success'))
+        toastr.success("{{ Session::get('success') }}");
+    @endif
+
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            toastr.error("{{ $error }}");
+        @endforeach
+    @endif
+
+    @if(Session::has('message'))
+        var type = "{{ Session::get('alert-type', 'info') }}";
+        switch(type) {
+            case 'info':
+                toastr.info("{{ Session::get('message') }}");
+                break;
+
+            case 'warning':
+                toastr.warning("{{ Session::get('message') }}");
+                break;
+
+            case 'error':
+                toastr.error("{{ Session::get('message') }}");
+                break; 
+        }
+    @endif
 
 </script>
 </body>
