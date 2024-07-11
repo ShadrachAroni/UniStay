@@ -94,10 +94,13 @@
 						<tr>
 							<td class="py-1">
 								<!-- image -->
-								@if ($property->photos)
-								<img src="{{ asset('upload/images/' . json_decode($property->photos)[0]) }}" alt="image">
-                                @else
-                                <img src="{{ url('upload/img/no_image.jpg') }}" alt="image">
+								@if ($property->photos->isNotEmpty())
+									@php
+										$photo = $property->photos->first();
+									@endphp
+									<img src="{{ asset('upload/photos/' . $photo->filename) }}" alt="Property Photo" style="width:53px;height:53px;">
+								@else
+									<img src="{{url('upload/img/no_image.png')}}" alt="">
 								@endif
 							</td>
 							<td>{{ $property->id }}</td>
@@ -137,9 +140,23 @@
 								<div class="d-flex align-items-center justify-content-between mb-2">
 									<h6 class="card-title mb-0">Photos</h6>
 								</div>
-								@foreach ($property->photos as $photo)
-									<img src="{{ asset('upload/img/' . $photo->filename) }}" alt="Property Photo" style="width:200px;height:auto;">
-								@endforeach
+								<div id="carouselControls" class="carousel slide" data-bs-ride="carousel">
+									<div class="carousel-inner">
+										@foreach ($property->photos as $index => $photo)
+											<div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
+												<img src="{{ asset('upload/photos/' . $photo->filename) }}" class="d-block w-100" alt="Property Photo" style="width:200px;height:auto;">
+											</div>
+										@endforeach
+									</div>
+									<a class="carousel-control-prev" href="#carouselControls" role="button" data-bs-slide="prev">
+										<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+										<span class="visually-hidden">Previous</span>
+									</a>
+									<a class="carousel-control-next" href="#carouselControls" role="button" data-bs-slide="next">
+										<span class="carousel-control-next-icon" aria-hidden="true"></span>
+										<span class="visually-hidden">Next</span>
+									</a>
+								</div>
 						</div>
 					</div>
 
