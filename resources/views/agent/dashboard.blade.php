@@ -8,7 +8,7 @@
 		<div class="page-wrapper">
 					
 			<!-- partial:partials/_navbar.html -->
-	@include('admin/navBar')
+	@include('agent/navBar')
 			<!-- partial -->
 
 			<div class="page-content">

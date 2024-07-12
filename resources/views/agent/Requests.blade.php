@@ -51,49 +51,24 @@
 			margin-bottom: 5px;
 		}
 	</style>
- <!-- Google Maps JavaScript API -->
- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCGH0RkB_JRcwXZziuSysQHsDDBFXVodXI&callback=initMap" async defer></script>
- <script>
-	function initMap() {
-		// The location of the property
-		const propertyLocation = { 
-			@foreach ($properties as $property)
-				lat: {{ $property->latitude }}, 
-				lng: {{ $property->longitude }} 
-			@endforeach
-		};
-
-		// The map, centered at the property location
-		const map = new google.maps.Map(document.getElementById('map'), {
-			zoom: 10,
-			center: propertyLocation
-		});
-
-		// The marker, positioned at the property location
-		const marker = new google.maps.Marker({
-			position: propertyLocation,
-			map: map
-		});
-	}
-</script>
 </head>
 <body>
 	<div class="main-wrapper">
 
 		<!-- partial:partials/_sidebar.html -->
-		@include('admin/sidebar')
+		@include('agent/sidebar')
 		<!-- partial -->
 
 		<div class="page-wrapper">
 
 			<!-- partial:partials/_navbar.html -->
-			@include('admin/navBar')
+			@include('agent/navBar')
 			<!-- partial -->
 
 			<div class="page-content">
 				<div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
 					<div>
-						<h4 class="mb-3 mb-md-0">View Listings</h4>
+						<h4 class="mb-3 mb-md-0">View Booking Requests</h4>
 					</div>
 					<div class="d-flex align-items-center flex-wrap text-nowrap">
 						<div class="input-group flatpickr wd-200 me-2 mb-2 mb-md-0" id="dashboardDate">
@@ -108,33 +83,54 @@
 						<tr>
 							<th>Booking ID</th>
 							<th>Property Title</th>
-							<th>Student Name</th>
+							<th>status</th>
 							<th>Student Info</th>
                             <th colspan="2">Actions</th>
 						</tr>
 					</thead>
 					<tbody>
-						@foreach ($properties as $property)
+						@foreach ($bookings as $booking)
 						<tr>
 							
-                            <td>{{ $property->booking->id }}</td>
-							<td>{{ $property->title }}</td>
-							<td>{{ $property->booking->student->Fname }}</td>
+                            <td>{{ $booking->id }}</td>
+							<td>{{ $booking->property->title }}</td>
+							<td>{{ $booking->status }}</td>
 							<td>
-                                <a href="#" class="btn btn-sm btn-info"  data-bs-toggle="modal" data-bs-target="#show_{{$property->id}}">View</a>
+                                <a href="#" class="btn btn-sm btn-info"  data-bs-toggle="modal" data-bs-target="#show_{{$booking->property->agent->id }}">View</a>
 							</td>
 
-                            <td>
-                                <form id="delete-property-form-{{ $property->id }}" class="inline-block" action="#" method="POST">
-                                    <button type="button" class="btn btn-sm btn-primary">Confirm</button>
-                                </form>
-                            </td>
+                            
+                               
 
-                            <td>
-                                <form id="delete-property-form-{{ $property->id }}" class="inline-block" action="#" method="POST">
-                                    <button type="button" class="btn btn-sm btn-danger">Cancel</button>
-                                </form>
-                            </td>
+									@if($booking->status === 'canceled')
+									<td>
+										<form id="delete-booking-form-{{ $booking->id }}" class="inline-block" action="{{ route('booking.destroy', $booking->id) }}" method="POST">
+											@csrf
+											@method('DELETE')
+											<button type="submit" class="btn btn-sm btn-danger" onclick="confirmDeletion('{{ $booking->id }}')">Delete Request</button>
+										</form>
+									</td>
+									@else
+									<td>
+										<form id="conirm-booking-form-{{ $booking->id }}" class="inline-block" action="{{ route('booking.confirm') }}" method="POST">
+											@csrf
+											<input type="hidden" name="property_id" value="{{ $booking->property->id }}">
+											<input type="hidden" name="student_id" value="{{ $booking->student_id }}">
+											<input type="hidden" name="student_email" value="{{ $booking->student->email }}">
+											<button type="submit" class="btn btn-sm btn-primary">Confirm Booking</button>
+										</form>
+									</td>
+
+									<td>
+										<form id="delete-booking-form-{{ $booking->id }}" class="inline-block" action="{{ route('booking.cancel') }}" method="POST">
+											@csrf
+											
+											<button type="button" class="btn btn-sm btn-danger" onclick="confirmCancelation('{{ $booking->id }}')">Cancel Booking</button>
+										</form>
+									</td>
+									@endif
+								
+                            
 						</tr>
 						@endforeach
 					</tbody>
@@ -143,22 +139,40 @@
 		</div>
 	</div>
 
-    @foreach($properties as $property)
+  @foreach($bookings as $booking)
     <!-- Modal for view  -->
-    <div class="modal fade" id="show_{{$property->id}}" tabindex="-1" aria-labelledby="showTitle_{{$property->id}}" aria-hidden="true" style="display: none;">
+    <div class="modal fade" id="show_{{$booking->student->id }}" tabindex="-1" aria-labelledby="showTitle_{{$booking->student->id }}" aria-hidden="true" style="display: none;">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="showTitle_{{$property->id}}">property ID {{$property->id}} </h5>
+                    <h5 class="modal-title" id="showTitle">Student Booking {{$booking->property->title}} </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="btn-close"></button>
                 </div>
                 <div class="modal-body">
-					<div class="card rounded">
-                        <div class="card-body">
-
-
-                        </div>
-                    </div>
+                         
+                            <img class="wd-100 rounded-circle" src="{{ (!empty($booking->student->profile_photo)) ? url('upload/img/'.$booking->student->profile_photo) : url('upload/img/no_image.jpg')}}" alt="profile"  style="width: 80px; height: 80px;">
+							<div class="mt-3">
+                                <label class="tx-11 fw-bolder mb-0 text-uppercase">First Name:</label>
+                                <p class="text-muted">{{ $booking->student->Fname }}</p>
+                            </div>
+                            <div class="mt-3">
+                                <label class="tx-11 fw-bolder mb-0 text-uppercase">Last Name:</label>
+                                <p class="text-muted">{{ $booking->student->Lname }}</p>
+                            </div>
+                            <div class="mt-3">
+                                <label class="tx-11 fw-bolder mb-0 text-uppercase">Email:</label>
+                                <p class="text-muted">{{ $booking->student->email }}</p>
+                            </div>
+                            <div class="mt-3">
+                                <label class="tx-11 fw-bolder mb-0 text-uppercase">Contact:</label>
+                                <p class="text-muted">{{ $booking->student->phone}}</p>
+                            </div>
+                            <div class="mt-3">
+                                <label class="tx-11 fw-bolder mb-0 text-uppercase"> Verification status:</label>
+                                <p class="text-muted">{{$booking->student->status }}</p>
+                            </div>
+                        
+                
                 </div>
             </div>
         </div>
@@ -193,7 +207,7 @@
 	
 
 	<script>
-		function confirmDeletion(propertyId) {
+		function confirmDeletion(BookingId) {
 			Swal.fire({
 				title: 'Are you sure?',
 				text: "You won't be able to revert this!",
@@ -201,20 +215,44 @@
 				showCancelButton: true,
 				confirmButtonColor: '#3085d6',
 				cancelButtonColor: '#d33',
-				confirmButtonText: 'Yes, delete it!'
+				confirmButtonText: 'Yes, Delete!'
 			}).then((result) => {
 				if (result.isConfirmed) {
-					document.getElementById('delete-property-form-' + propertyId).submit();
+					document.getElementById('delete-booking-form-' +BookingId).submit();
 					Swal.fire({
 						icon: 'success',
 						title: 'Success!',
-						text: 'Type deleted Successfully!',
+						text: 'Request Deleted Successfully!',
 						showConfirmButton: false,
 						timer: 1500
 					});
 				}
 			});
 		}
+
+		function confirmCancelation(BookingId) {
+			Swal.fire({
+				title: 'Are you sure?',
+				text: "You won't be able to revert this!",
+				icon: 'warning',
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonColor: '#d33',
+				confirmButtonText: 'Yes, Cancel Booking!'
+			}).then((result) => {
+				if (result.isConfirmed) {
+					document.getElementById('delete-booking-form-' +BookingId).submit();
+					Swal.fire({
+						icon: 'success',
+						title: 'Success!',
+						text: 'Booking Cancelled Successfully!',
+						showConfirmButton: false,
+						timer: 1500
+					});
+				}
+			});
+		}
+
 
 		@if(Session::has('success'))
 			toastr.success("{{ Session::get('success') }}");
