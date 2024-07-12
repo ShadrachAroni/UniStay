@@ -165,8 +165,12 @@ class PropertyController extends Controller
 
     public function view(){
         $properties = Property::with('photos')->get();
-        
-        return view('pages.listings', compact('properties'));
+        $categories = PropertyCategory::all();
+        $propertyTypes = PropertyType::all();
+        $features = PropertyFeature::all();
+        $amenities = PropertyAmenity::all();
+        $surroundings = SurroundingArea::all();
+        return view('pages.listings', compact('categories', 'propertyTypes', 'features', 'amenities', 'surroundings','properties'));
     }
 
     public function book($id)
@@ -256,5 +260,37 @@ class PropertyController extends Controller
         }
     }
 
+    public function search(Request $request)
+    {
+        $keyword = $request->input('keyword');
+
+        $properties = Property::where('title', 'like', "%{$keyword}%")
+            ->orWhere('description', 'like', "%{$keyword}%")
+            ->orWhere('city', 'like', "%{$keyword}%")
+            ->orWhere('street', 'like', "%{$keyword}%")
+            ->orWhere('area_name', 'like', "%{$keyword}%")
+            ->orWhereHas('features', function ($query) use ($keyword) {
+                $query->where('name', 'like', "%{$keyword}%");
+            })
+            ->orWhereHas('amenities', function ($query) use ($keyword) {
+                $query->where('name', 'like', "%{$keyword}%");
+            })
+            ->orWhereHas('surroundings', function ($query) use ($keyword) {
+                $query->where('name', 'like', "%{$keyword}%");
+            })
+            ->orWhereHas('categories', function ($query) use ($keyword) {
+                $query->where('name', 'like', "%{$keyword}%");
+            })
+            ->get();
+
+            $properties = Property::with('photos')->get();
+            $categories = PropertyCategory::all();
+            $propertyTypes = PropertyType::all();
+            $features = PropertyFeature::all();
+            $amenities = PropertyAmenity::all();
+            $surroundings = SurroundingArea::all();
+            return view('pages.listings', compact('categories', 'propertyTypes', 'features', 'amenities', 'surroundings','properties'));
+    }
     
+
 }

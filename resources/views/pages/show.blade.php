@@ -229,7 +229,8 @@
             <div class="col-md-12 col-lg-8">
               <div class="title-single-box">
                 <h1 class="title-single">{{$property->title}}</h1>
-                <span class="color-text-a">{{$property->city}},{{$property->street}}</span>
+                <span class="color-text-a">{{$property->city}},{{$property->street}}</span><br>
+                <span class="color-text-a">Posted on {{$property->created_at->format('d M, Y')}}</span>
               </div>
             
             </div> 

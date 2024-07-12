@@ -34,6 +34,76 @@
     .form-group label{
       color: black;
     }
+    .range-container {
+      display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px;
+        }
+        .range-value {
+            font-size: 1.5em;
+            margin-left: 10px;
+            color: black;
+        }
+        
+        .multi-select-container {
+            position: relative;
+            display: inline-block;
+            width: 100%; /* Ensure the container uses full width */
+        }
+
+        .multi-select-dropdown {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 200px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            max-height: 200px; /* Set max height for the dropdown */
+            overflow-y: auto;  /* Add scrollbar if content overflows */
+            width: 100%; /* Make dropdown match the width of the button */
+        }
+
+        .multi-select-dropdown label {
+          display: flex; /* Use flexbox for layout */
+          justify-content: space-between; /* Push contents to the right */
+          align-items: center; /* Align items vertically */
+          padding: 8px;
+          cursor: pointer;
+          color: black;  /* Change text color to black */
+        }
+
+        .multi-select-dropdown label:hover {
+            background-color: #f1f1f1;
+        }
+
+        .multi-select-btn {
+            padding: 10px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            color: black;  /* Change button text color to black */
+            display: inline-block;
+            width: 100%; /* Ensure button uses full width */
+            box-sizing: border-box; /* Include padding and border in width calculation */
+        }
+
+        .multi-select-btn::after {
+            content: ' ▼';
+        }
+
+        /* Optional: Ensure checkboxes are styled properly */
+        .multi-select-option {
+            margin-right: 10px;
+        }
+
+        /* Style for the input container */
+        #selectedValues {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
   </style>
 </head>
 
@@ -44,87 +114,120 @@
   <!--/ Form Search Star /-->
   <div class="box-collapse">
     <div class="title-box-d">
-      <h3 class="title-d" style="color: black">Search Listing</h3>
+      <h3 class="title-d" style="color: black">Search for Listing</h3>
     </div>
     <span class="close-box-collapse right-boxed bi bi-x" style="color: black;"></span>
     <div class="box-collapse-wrap form">
-      <form class="form-a">
+      <form action="{{ route('properties.search') }}" method="GET" class="form-a">
         <div class="row">
           <div class="col-md-12 mb-2">
             <div class="form-group">
               <label class="pb-2" for="Type">Keyword</label>
-              <input type="text" class="form-control form-control-lg form-control-a" placeholder="Keyword">
+              <input type="text" name="keyword" class="form-control form-control-lg form-control-a" placeholder="Keyword">
             </div>
           </div>
-          <div class="col-md-6 mb-2">
+
+          <div class="col-md-12 mb-2">
             <div class="form-group mt-3">
-              <label class="pb-2" for="Type">Type</label>
-              <select class="form-control form-select form-control-a" id="Type">
-                <option>All Type</option>
-                <option>For Rent</option>
-                <option>For Sale</option>
-                <option>Open House</option>
+              <label class="pb-2" for="Type">Price Range</label>
+              <div class="range-container">
+                <input type="range" name="priceRange" class="form-range" id="formRange" min="0" max="100000" value="0" step="100">
+                <label class="pb-2" for="price">0 to
+                  <span class=" pb-2" id="rangeValue">Ksh 0</span>
+                </label>
+            </div>
+            </div>
+          </div>
+
+          <div class="col-md-12 mb-2">
+            <div class="form-group mt-3">
+              <label class="pb-2" for="Type">Types</label>
+              <select name="propertyTypes" class="form-control form-select form-control-a" id="Type">
+                <option value="none">none</option>
+                @foreach($propertyTypes as $propertyType)
+                      <option value="{{ $propertyType->id }}">{{ $propertyType->name }}</option>
+                  @endforeach
               </select>
             </div>
           </div>
+
           <div class="col-md-6 mb-2">
             <div class="form-group mt-3">
-              <label class="pb-2" for="city">City</label>
-              <select class="form-control form-select form-control-a" id="city">
-                <option>All City</option>
-                <option>Alabama</option>
-                <option>Arizona</option>
-                <option>California</option>
-                <option>Colorado</option>
+              <label class="pb-2" for="category">Categories</label>
+              <select name="categories" class="form-control form-select form-control-a" id="Type">
+                <option value="none">none</option>
+                @foreach($categories as $category)
+                      <option value="{{ $category->id }}">{{ $category->name }}</option>
+                  @endforeach
               </select>
             </div>
-          </div>
+        </div>
+    
+        <div class="col-md-6 mb-2">
+            <div class="form-group mt-3">
+              <label class="pb-2" for="feature">feature</label>
+              <select name="features" class="form-control form-select form-control-a" id="Type">
+                <option value="none">none</option>
+                @foreach($features as $feature)
+                      <option value="{{ $feature->id }}">{{ $feature->name }}</option>
+                  @endforeach
+              </select>
+            </div>
+        </div>
+    
+        <div class="col-md-6 mb-2">
+            <div class="form-group mt-3">
+              <label class="pb-2" for="amenity">amenities</label>
+              <select name="amenities" class="form-control form-select form-control-a" id="amenity">
+                <option value="none">none</option>
+                @foreach($amenities as $amenity)
+                      <option value="{{ $amenity->id }}">{{ $amenity->name }}</option>
+                  @endforeach
+              </select>
+            </div>
+        </div>
+    
+        <div class="col-md-6 mb-2">
+            <div class="form-group mt-3">
+              <label class="pb-2" for="surrounding">surroundings</label>
+              <select name="surroundings" class="form-control form-select form-control-a" id="surrounding">
+                <option value="none">none</option>
+                @foreach($surroundings as $surrounding)
+                      <option value="{{ $surrounding->id }}">{{ $surrounding->name }}</option>
+                  @endforeach
+              </select>
+            </div>
+        </div>
+
           <div class="col-md-6 mb-2">
             <div class="form-group mt-3">
-              <label class="pb-2" for="bedrooms">Bedrooms</label>
-              <select class="form-control form-select form-control-a" id="bedrooms">
-                <option>Any</option>
-                <option>01</option>
-                <option>02</option>
-                <option>03</option>
-              </select>
+              <label class="pb-2" for="Type">Country</label>
+              <input name="country" type="text" class="form-control form-control-lg form-control-a" placeholder="Country">
             </div>
           </div>
+
           <div class="col-md-6 mb-2">
             <div class="form-group mt-3">
-              <label class="pb-2" for="garages">Garages</label>
-              <select class="form-control form-select form-control-a" id="garages">
-                <option>Any</option>
-                <option>01</option>
-                <option>02</option>
-                <option>03</option>
-                <option>04</option>
-              </select>
+              <label class="pb-2" for="Type">City</label>
+              <input name="city" type="text" class="form-control form-control-lg form-control-a" placeholder="City">
             </div>
           </div>
+
+
           <div class="col-md-6 mb-2">
             <div class="form-group mt-3">
-              <label class="pb-2" for="bathrooms">Bathrooms</label>
-              <select class="form-control form-select form-control-a" id="bathrooms">
-                <option>Any</option>
-                <option>01</option>
-                <option>02</option>
-                <option>03</option>
-              </select>
+              <label class="pb-2" for="Type">area name</label>
+              <input name="area_name" type="text" class="form-control form-control-lg form-control-a" placeholder="Area name">
             </div>
           </div>
+
           <div class="col-md-6 mb-2">
             <div class="form-group mt-3">
-              <label class="pb-2" for="price">Min Price</label>
-              <select class="form-control form-select form-control-a" id="price">
-                <option>Unlimite</option>
-                <option>$50,000</option>
-                <option>$100,000</option>
-                <option>$150,000</option>
-                <option>$200,000</option>
-              </select>
+              <label class="pb-2" for="Type">street</label>
+              <input name="street" type="text" class="form-control form-control-lg form-control-a" placeholder="Street">
             </div>
           </div>
+
           <div class="col-md-12" style="margin-top: 20px;">
             <button type="submit" class="btn btn-b">Search Property</button>
           </div>
@@ -240,72 +343,82 @@
         <div class="row">
           <div class="col-sm-12">
           </div>
-
-          @foreach ($properties as $property)
-            <div class="col-md-4">
-              <div class="card-box-a card-shadow">
-                <div class="img-box-a" style="position: relative;">
-                  @if ($property->photos->isNotEmpty())
-                      @php
-                          $photo = $property->photos->first();
-                      @endphp
-                      <img src="{{ asset('upload/photos/' . $photo->filename) }}" class="img-a img-fluid" alt="Property Photo" style="height: 55vh;">
-                      <span class="availability-status" style="position: absolute; top: 10px; left: 10px; color: black; font-weight: bold; padding: 5px; text-transform: uppercase;">
-                          {{ $property->availability_status }}
-                      </span>
-                  @else
-                      <img src="{{ url('upload/img/no_image.png') }}" class="img-a img-fluid" alt="No Image" style="height: 60vh;">
-                  @endif
-              </div>
-                <div class="card-overlay">
-                  <div class="card-overlay-a-content">
-                    <div class="card-header-a">
-                      <h2 class="card-title-a">
-                        <a href="#">{{$property->title}}
-                          <br />{{$property->city}},{{$property->street}}</a>
-                      </h2>
-                    </div>
-                    <div class="card-body-a">
-                      <div class="price-box d-flex">
-                        <span class="price-a">price | Ksh {{$property->price}}</span>
+          @if($properties->isEmpty())
+            <div class="col-12">
+                <p>No properties found.</p>
+                <div class="center-btn">
+                  <a href="{{ route('view.listings') }}" class="h-btn2" > 
+                    View All Listings
+                  </a>
+                </div>
+            </div>
+          @else
+            @foreach ($properties as $property)
+              <div class="col-md-4">
+                <div class="card-box-a card-shadow">
+                  <div class="img-box-a" style="position: relative;">
+                    @if ($property->photos->isNotEmpty())
+                        @php
+                            $photo = $property->photos->first();
+                        @endphp
+                        <img src="{{ asset('upload/photos/' . $photo->filename) }}" class="img-a img-fluid" alt="Property Photo" style="height: 55vh;">
+                        <span class="availability-status" style="position: absolute; top: 10px; left: 10px; color: black; font-weight: bold; padding: 5px; text-transform: uppercase;">
+                            {{ $property->availability_status }}
+                        </span>
+                    @else
+                        <img src="{{ url('upload/img/no_image.png') }}" class="img-a img-fluid" alt="No Image" style="height: 60vh;">
+                    @endif
+                </div>
+                  <div class="card-overlay">
+                    <div class="card-overlay-a-content">
+                      <div class="card-header-a">
+                        <h2 class="card-title-a">
+                          <a href="#">{{$property->title}}
+                            <br />{{$property->city}},{{$property->street}}</a>
+                        </h2>
                       </div>
-                      <div class="price-box d-flex">
-                        <span class="price-a">monthly</span>
+                      <div class="card-body-a">
+                        <div class="price-box d-flex">
+                          <span class="price-a">price | Ksh {{$property->price}}</span>
+                        </div>
+                        <div class="price-box d-flex">
+                          <span class="price-a">monthly</span>
+                        </div>
+                        <a href="{{ route('pages.show', ['id' => $property->id]) }}" class="link-a">
+                          Click here to view
+                          <span data-feather="arrow-right">></span>
+                      </a>
                       </div>
-                      <a href="{{ route('pages.show', ['id' => $property->id]) }}" class="link-a">
-                        Click here to view
-                        <span data-feather="arrow-right">></span>
-                    </a>
-                    </div>
-                    <div class="card-footer-a">
-                      <ul class="card-info d-flex justify-content-around">
-                        <li>
-
+                      <div class="card-footer-a">
+                        <ul class="card-info d-flex justify-content-around">
                           <li>
-                            <h4 class="card-info-title">Category</h4>
-                            <span> {{ $property->categories->first()->name }}</span>
+
+                            <li>
+                              <h4 class="card-info-title">Category</h4>
+                              <span> {{ $property->categories->first()->name }}</span>
+                            </li>
+                            <li>
+                            <h4 class="card-info-title">Type</h4>
+                            <span>{{$property->propertyType->name}}</span>
                           </li>
                           <li>
-                          <h4 class="card-info-title">Type</h4>
-                          <span>{{$property->propertyType->name}}</span>
-                        </li>
-                        <li>
-                          <h4 class="card-info-title">Beds</h4>
-                          <span>{{$property->beds_start}} - {{$property->beds_end}}</span>
-                        </li>
-                        <li>
-                          <h4 class="card-info-title">Baths</h4>
-                          <span>{{$property->baths}}</span>
-                        </li>
+                            <h4 class="card-info-title">Beds</h4>
+                            <span>{{$property->beds_start}} - {{$property->beds_end}}</span>
+                          </li>
+                          <li>
+                            <h4 class="card-info-title">Baths</h4>
+                            <span>{{$property->baths}}</span>
+                          </li>
 
-                      </ul>
+                        </ul>
+                      </div>
                     </div>
                   </div>
                 </div>
+                <a href="#" class="h-btn2" style="margin-left: 0px; margin-top: -60px;"> Save Listing </a>
               </div>
-              <a href="#" class="h-btn2" style="margin-left: 0px; margin-top: -60px;"> Save Listing </a>
-            </div>
-          @endforeach
+            @endforeach
+          @endif
 
         </div>
 
@@ -491,7 +604,44 @@ $(document).ready(function() {
 function showLogin() {
   $('#login').modal('show');
 }
+const formRange = document.getElementById('formRange');
+        const rangeValue = document.getElementById('rangeValue');
 
+        formRange.addEventListener('input', () => {
+          rangeValue.textContent = `Ksh ${parseInt(formRange.value).toLocaleString()}`;
+        });
+        function setupMultiSelect(btnId, dropdownId, inputId) {
+            const multiSelectBtn = document.getElementById(btnId);
+            const multiSelectDropdown = document.getElementById(dropdownId);
+            const checkboxes = multiSelectDropdown.querySelectorAll('.multi-select-option');
+            const inputContainer = document.getElementById(inputId);
+
+            multiSelectBtn.addEventListener('click', () => {
+                multiSelectDropdown.style.display = multiSelectDropdown.style.display === 'none' || !multiSelectDropdown.style.display ? 'block' : 'none';
+            });
+
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', () => {
+                    const selectedOptions = Array.from(checkboxes)
+                        .filter(checkbox => checkbox.checked)
+                        .map(checkbox => checkbox.parentNode.textContent.trim());
+
+                    inputContainer.value = selectedOptions.join(', ');
+                });
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!multiSelectBtn.contains(e.target) && !multiSelectDropdown.contains(e.target)) {
+                    multiSelectDropdown.style.display = 'none';
+                }
+            });
+        }
+
+        // Initialize multi-selects
+        setupMultiSelect('multiSelectBtnAmenities', 'multiSelectDropdownAmenities', 'selectedValues');
+        setupMultiSelect('multiSelectBtnCategories', 'multiSelectDropdownCategories', 'selectedValues');
+        setupMultiSelect('multiSelectBtnFeatures', 'multiSelectDropdownFeatures', 'selectedValues');
+        setupMultiSelect('multiSelectBtnSurroundings', 'multiSelectDropdownSurroundings', 'selectedValues');
 </script>
 </body>
 

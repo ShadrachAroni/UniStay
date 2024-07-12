@@ -63,9 +63,10 @@ Route::post('/booking/cancel', [BookingController::class, 'cancel'])->name('book
 Route::post('/booking/confirm', [BookingController::class, 'confirm'])->name('booking.confirm');
 Route::post('/property/statis', [BookingController::class, 'status'])->name('status.change');
 
-Route::get('/pages/Listings', [PropertyController::class, 'view'])->name('view.listings');
+Route::get('/Listings', [PropertyController::class, 'view'])->name('view.listings');
 Route::get('/pages/add', [PropertyController::class, 'add'])->name('pages.add');
 Route::get('/pages/show/{id}', [PropertyController::class, 'show'])->name('pages.show');
+Route::get('/pages/Listings', [PropertyController::class, 'search'])->name('properties.search');
 
 
 

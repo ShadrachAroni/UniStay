@@ -136,11 +136,11 @@
         <p>Discovering suitable student accommodation is now simpler than ever with our innovative application. Designed with students in mind, our platform streamlines the search process, offering a comprehensive database of verified listings tailored to your needs and preferences. </p>
 
         <div class="h-search">
-            <form  action="#">
-                <i class="fas fa-map-marker-alt search-icon"></i>
-                <input type="search" placeholder="Search by location..." class="search-input">
-                <input type="submit" value="Search">
-            </form>
+                
+                <form action="{{ route('properties.search') }}" method="GET">
+                    <input type="search" name="keyword"  class="search-input" placeholder="Search for properties...">
+                    <input type="submit" value="Search">
+                </form>
         </div>
     </div>
 
