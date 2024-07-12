@@ -19,17 +19,25 @@ use App\Http\Middleware\IsAdmin;
 use App\Http\Middleware\IsAgent;
 use App\Http\Middleware\IsUser;
 use App\Models\Property;
+use App\Models\PropertyAmenity;
+use App\Models\PropertyCategory;
+use App\Models\PropertyFeature;
+use App\Models\PropertyType;
+use App\Models\SurroundingArea;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 Route::get('/', function () {
     $property = Property::with('photos')->get();
-    return view('home', compact('property'));
+    $properties = Property::with('photos')->get();
+    $categories = PropertyCategory::all();
+    $propertyTypes = PropertyType::all();
+    $features = PropertyFeature::all();
+    $amenities = PropertyAmenity::all();
+    $surroundings = SurroundingArea::all();
+    return view('home', compact('categories', 'propertyTypes', 'features', 'amenities', 'surroundings','properties','property'));
 });
 
-Route::get('/', function () {
-    return view('home');
-});
 
 Route::middleware([
     'auth:sanctum',
@@ -37,7 +45,14 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/home', function () {
-        return view('home');
+        $property = Property::with('photos')->get();
+        $properties = Property::with('photos')->get();
+        $categories = PropertyCategory::all();
+        $propertyTypes = PropertyType::all();
+        $features = PropertyFeature::all();
+        $amenities = PropertyAmenity::all();
+        $surroundings = SurroundingArea::all();
+        return view('home', compact('categories', 'propertyTypes', 'features', 'amenities', 'surroundings','properties','property'));
     })->name('home');
 
 Route::resource('details', \App\Http\Controllers\DetailsController::class);

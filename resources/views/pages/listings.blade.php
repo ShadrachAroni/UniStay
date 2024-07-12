@@ -382,7 +382,7 @@
                           <span class="price-a">price | Ksh {{$property->price}}</span>
                         </div>
                         <div class="price-box d-flex">
-                          <span class="price-a">monthly</span>
+                          <span class="price-a">{{$property->payment}}</span>
                         </div>
                         <a href="{{ route('pages.show', ['id' => $property->id]) }}" class="link-a">
                           Click here to view

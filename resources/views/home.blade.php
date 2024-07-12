@@ -216,160 +216,81 @@
     </div>
     <div class="container">
         <div class="row">
-          <div class="col-md-4">
-            <div class="card-box-a card-shadow">
-              <div class="img-box-a">
-                <img src="{{url('view/img/property-1.jpg')}}" alt="" class="img-a img-fluid">
-              </div>
-              <div class="card-overlay">
-                <div class="card-overlay-a-content">
-                  <div class="card-header-a">
-                    <h2 class="card-title-a">
-                      <a href="#">204 Mount
-                        <br /> Olive Road Two</a>
-                    </h2>
-                  </div>
-                  <div class="card-body-a">
-                    <div class="price-box d-flex">
-                      <span class="price-a">price | ksh 12000</span>
+         @if($properties->isEmpty())
+            <div class="col-12">
+                <p>No properties found.</p>
+                <div class="center-btn">
+                  <a href="{{ route('view.listings') }}" class="h-btn2" > 
+                    View All Listings
+                  </a>
+                </div>
+            </div>
+          @else
+            @foreach ($properties as $property)
+              <div class="col-md-4">
+                <div class="card-box-a card-shadow">
+                  <div class="img-box-a" style="position: relative;">
+                    @if ($property->photos->isNotEmpty())
+                        @php
+                            $photo = $property->photos->first();
+                        @endphp
+                        <img src="{{ asset('upload/photos/' . $photo->filename) }}" class="img-a img-fluid" alt="Property Photo" style="height: 55vh;">
+                        <span class="availability-status" style="position: absolute; top: 10px; left: 10px; color: black; font-weight: bold; padding: 5px; text-transform: uppercase;">
+                            {{ $property->availability_status }}
+                        </span>
+                    @else
+                        <img src="{{ url('upload/img/no_image.png') }}" class="img-a img-fluid" alt="No Image" style="height: 60vh;">
+                    @endif
+                </div>
+                  <div class="card-overlay">
+                    <div class="card-overlay-a-content">
+                      <div class="card-header-a">
+                        <h2 class="card-title-a">
+                          <a href="#">{{$property->title}}
+                            <br />{{$property->city}},{{$property->street}}</a>
+                        </h2>
+                      </div>
+                      <div class="card-body-a">
+                        <div class="price-box d-flex">
+                          <span class="price-a">price | Ksh {{$property->price}}</span>
+                        </div>
+                        <div class="price-box d-flex">
+                          <span class="price-a">{{$property->payment}}</span>
+                        </div>
+                        <a href="{{ route('pages.show', ['id' => $property->id]) }}" class="link-a">
+                          Click here to view
+                          <span data-feather="arrow-right">></span>
+                      </a>
+                      </div>
+                      <div class="card-footer-a">
+                        <ul class="card-info d-flex justify-content-around">
+                          <li>
+
+                            <li>
+                              <h4 class="card-info-title">Category</h4>
+                              <span> {{ $property->categories->first()->name }}</span>
+                            </li>
+                            <li>
+                            <h4 class="card-info-title">Type</h4>
+                            <span>{{$property->propertyType->name}}</span>
+                          </li>
+                          <li>
+                            <h4 class="card-info-title">Beds</h4>
+                            <span>{{$property->beds_start}} - {{$property->beds_end}}</span>
+                          </li>
+                          <li>
+                            <h4 class="card-info-title">Baths</h4>
+                            <span>{{$property->baths}}</span>
+                          </li>
+
+                        </ul>
+                      </div>
                     </div>
-                    <div class="price-box d-flex">
-                      <span class="price-a">monthly</span>
-                    </div>
-                    <a href="#" class="link-a">Click here to view ->
-                      <span class="bi bi-chevron-right"></span>
-                    </a>
-                  </div>
-                  <div class="card-footer-a">
-                    <ul class="card-info d-flex justify-content-around">
-                      <li>
-
-                        <li>
-                          <h4 class="card-info-title">Category</h4>
-                          <span>Hostel</span>
-                        </li>
-                        <li>
-                        <h4 class="card-info-title">Type</h4>
-                        <span>Room</span>
-                      </li>
-                      <li>
-                        <h4 class="card-info-title">Beds</h4>
-                        <span>2</span>
-                      </li>
-                      <li>
-                        <h4 class="card-info-title">Baths</h4>
-                        <span>1</span>
-                      </li>
-
-                    </ul>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-        
-        <div class="col-md-4">
-        <div class="card-box-a card-shadow">
-            <div class="img-box-a">
-            <img src="{{url('view/img/property-3.jpg')}}" alt="" class="img-a img-fluid">
-            </div>
-            <div class="card-overlay">
-            <div class="card-overlay-a-content">
-                <div class="card-header-a">
-                <h2 class="card-title-a">
-                    <a href="#">204 Mount
-                    <br /> Olive Road Two</a>
-                </h2>
-                </div>
-                <div class="card-body-a">
-                <div class="price-box d-flex">
-                    <span class="price-a">price | Ksh 12000</span>
-                </div>
-                <div class="price-box d-flex">
-                    <span class="price-a">monthly</span>
-                </div>
-                <a href="#" class="link-a">Click here to view ->
-                    <span class="bi bi-chevron-right"></span>
-                </a>
-                </div>
-                <div class="card-footer-a">
-                <ul class="card-info d-flex justify-content-around">
-                    <li>
-
-                    <li>
-                        <h4 class="card-info-title">Category</h4>
-                        <span>Hostel</span>
-                    </li>
-                    <li>
-                    <h4 class="card-info-title">Type</h4>
-                    <span>Room</span>
-                    </li>
-                    <li>
-                    <h4 class="card-info-title">Beds</h4>
-                    <span>2</span>
-                    </li>
-                    <li>
-                    <h4 class="card-info-title">Baths</h4>
-                    <span>1</span>
-                    </li>
-                </ul>
-                </div>
-            </div>
-            </div>
-        </div>
-        </div>
-
-        <div class="col-md-4">
-        <div class="card-box-a card-shadow">
-            <div class="img-box-a">
-            <img src="{{url('view/img/property-6.jpg')}}" alt="" class="img-a img-fluid">
-            </div>
-            <div class="card-overlay">
-            <div class="card-overlay-a-content">
-                <div class="card-header-a">
-                <h2 class="card-title-a">
-                    <a href="#">204 Mount
-                    <br /> Olive Road Two</a>
-                </h2>
-                </div>
-                <div class="card-body-a">
-                <div class="price-box d-flex">
-                    <span class="price-a">price | Ksh 12000</span>
-                </div>
-                <div class="price-box d-flex">
-                    <span class="price-a">monthly</span>
-                </div>
-                <a href="#" class="link-a">Click here to view ->
-                    <span class="bi bi-chevron-right"></span>
-                </a>
-                </div>
-                <div class="card-footer-a">
-                <ul class="card-info d-flex justify-content-around">
-                    <li>
-
-                    <li>
-                        <h4 class="card-info-title">Category</h4>
-                        <span>Hostel</span>
-                    </li>
-                    <li>
-                    <h4 class="card-info-title">Type</h4>
-                    <span>Room</span>
-                    </li>
-                    <li>
-                    <h4 class="card-info-title">Beds</h4>
-                    <span>2</span>
-                    </li>
-                    <li>
-                    <h4 class="card-info-title">Baths</h4>
-                    <span>1</span>
-                    </li>
-                </ul>
-                </div>
-            </div>
-            </div>
-        </div>
-        </div>
-
+            @endforeach
+          @endif
       </div>
 
     <div class="center-btn">

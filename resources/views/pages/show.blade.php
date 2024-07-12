@@ -303,7 +303,7 @@
                         </li>
                         <li>
                           <strong>price:</strong>
-                          <span>ksh {{$property->price}}</span>
+                          <span>ksh {{$property->price}}/{{$property->payment}}</span>
                         </li>
                         <li>
                           <strong>Location:</strong>

@@ -266,6 +266,7 @@ class PropertyController extends Controller
 
         $properties = Property::where('title', 'like', "%{$keyword}%")
             ->orWhere('description', 'like', "%{$keyword}%")
+            ->orWhere('payment', 'like', "%{$keyword}%")
             ->orWhere('city', 'like', "%{$keyword}%")
             ->orWhere('street', 'like', "%{$keyword}%")
             ->orWhere('area_name', 'like', "%{$keyword}%")

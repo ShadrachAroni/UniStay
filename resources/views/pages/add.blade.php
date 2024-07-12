@@ -117,8 +117,8 @@
                             </div>
 
                             <div class="mb-3 col-sm-6">
-                                <label for="area_name">Area Name  (Optional)</label>
-                                <input type="text" class="form-control" id="area_name" style="border-radius: 10px;" name="area_name">
+                                <label for="area_name">Area Name</label>
+                                <input type="text" class="form-control" id="area_name" style="border-radius: 10px;" name="area_name" aria-required="">
                             </div>
                         </div>
 
@@ -220,6 +220,16 @@
                                 <option value="available">Available</option>
                                 <option value="booked">Booked</option>
                                 <option value="unavailable">Unavailable</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="payment">Availability Status</label>
+                            <select class="form-control" id="payment" name="payment" style="border-radius: 10px;" required>
+                                <option value="monthly">Monthly</option>
+                                <option value="yearly">Yearly</option>
+                                <option value="bimonthly">Bimonthly</option>
+                                <option value="quartely">Quartely</option>
                             </select>
                         </div>
 
