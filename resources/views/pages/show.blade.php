@@ -25,7 +25,7 @@
   <!-- Template Main CSS File -->
   <link href="{{asset('view/css/style.css')}}" rel="stylesheet">
   <link href="{{asset('front/css/style.css')}}" rel="stylesheet">
-
+  
   <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
 
   <!-- Toastr CSS -->
@@ -384,9 +384,11 @@
                     </div>
                   </div>
                     <div class="row">
-                    <a class="more" href="#">Features <span data-feather="arrow-right"></span></a>
-                    <a class="more" href="#">Categories<span data-feather="arrow-right"></span></a>
-                    <a class="more" href="#">Surrounding Availabilities<span data-feather="arrow-right"></span></a>
+                    <a class="more" href="#" data-bs-toggle="modal" data-bs-target="#show_features">Features <span data-feather="arrow-right"></span></a>
+
+                    <a class="more" href="#" data-bs-toggle="modal" data-bs-target="#show_categories">Categories<span data-feather="arrow-right"></span></a>
+
+                    <a class="more" href="#" data-bs-toggle="modal" data-bs-target="#show_surroundings">Surrounding Availabilities<span data-feather="arrow-right"></span></a>
                   </div>
                 </div>
 
@@ -610,6 +612,17 @@
 </div>
 
 <!-- End Modal -->
+
+
+<!-- Modal-->
+
+<!-- End of Modal -->
+
+
+
+
+
+
 <!-- Vendor JS Files -->
 <script src="{{asset('view/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <script src="{{asset('view/vendor/swiper/swiper-bundle.min.js')}}"></script>
@@ -667,6 +680,7 @@
  <!-- SweetAlert script -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.27/dist/sweetalert2.all.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
  <!-- Script to handle SweetAlert success message -->
  <script>
@@ -737,5 +751,6 @@ function showLogin() {
     @endif
 
 </script>
+
 </body>
 </html>

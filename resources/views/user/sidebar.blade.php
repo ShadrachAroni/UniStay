@@ -28,11 +28,17 @@
 
           <li class="nav-item">
             <a href="{{route("requests")}}" class="nav-link">
-              <i class="link-icon" data-feather="book"></i>
+              <i class="link-icon" data-feather="book-open"></i>
               <span class="link-title">Requested Bookings</span>
             </a>
           </li>
 
+          <li class="nav-item">
+            <a href="{{route("booked")}}" class="nav-link">
+              <i class="link-icon" data-feather="book"></i>
+              <span class="link-title">Booked listings</span>
+            </a>
+          </li>
 
           <li class="nav-item">
             <a href="#" class="nav-link">
