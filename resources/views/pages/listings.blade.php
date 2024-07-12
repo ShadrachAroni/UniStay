@@ -345,7 +345,7 @@
           </div>
           @if($properties->isEmpty())
             <div class="col-12">
-                <p>No properties found.</p>
+                <p>No Listings found.</p>
                 <div class="center-btn">
                   <a href="{{ route('view.listings') }}" class="h-btn2" > 
                     View All Listings
