@@ -186,6 +186,45 @@
                                 <label class="tx-11 fw-bolder mb-0 text-uppercase">Role:</label>
                                 <p class="text-muted">{{ $user->role->name }}</p>
                             </div>
+
+                            @if($user->role_id === 2)
+                                @if($user->student_id_card)
+                                    <div id="student_id_card" class="carousel slide" data-bs-ride="carousel">
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active">
+                                                <img class="d-block w-100" src="{{url('upload/documents/'.$user->student_id_card)}}" alt="student_id_card" >
+                                            </div>
+                                        </div>
+                                    </div>
+                                @else
+                                    <p>no student ID</p>
+                                @endif
+                                @if($user->national_id_card)
+                                    <div id="national_id_card" class="carousel slide" data-bs-ride="carousel">
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active">
+                                                <img class="d-block w-100" src="{{url('upload/documents/'.$user->national_id_card)}}" alt="national_id_card" >
+                                            </div>
+                                        </div>
+                                    </div>
+                                @else
+                                    <p>No National ID</p>
+                                @endif
+                            @else
+                                @if($user->national_id_card)
+                                    <div id="national_id_card" class="carousel slide" data-bs-ride="carousel">
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active">
+                                                <img class="d-block w-100" src="{{url('upload/documents/'.$user->national_id_card)}}" alt="national_id_card" >
+                                            </div>
+                                        </div>
+                                    </div>
+                                @else
+                                    <p>No National ID</p>
+                                @endif
+                            @endif
+
+
                         </div>
                     </div>
                 </div>

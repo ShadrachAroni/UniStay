@@ -93,6 +93,9 @@ Route::middleware(['auth', IsAdmin::class])->group(function () {
     Route::get('/Users/Agents', [AgentController::class, 'data'])->name('users.Agents');
     Route::get('/Users/verification', [UsersController::class, 'verification'])->name('users.verification');
     Route::put('/users/approve/{id}', [UsersController::class, 'approve'])->name('users.approve');
+    Route::put('/property/feature/{id}', [PropertyController::class, 'feature'])->name('property.feature');
+    Route::put('/property/Unfeature/{id}', [PropertyController::class, 'Unfeature'])->name('property.Unfeature');
+
 
     Route::put('/users/reject/{id}', [UsersController::class, 'reject'])->name('users.reject');
 
@@ -106,7 +109,8 @@ Route::middleware(['auth', IsAdmin::class])->group(function () {
     Route::resource('amenities', \App\Http\Controllers\PropertyAmenityController::class);
     Route::get('/listings/categories', [PropertyCategoryController::class, 'categories'])->name('listings.categories');
     Route::resource('categories', \App\Http\Controllers\PropertyCategoryController::class);
-    Route::get('/admin/Listings', [AdminController::class, 'MyListings'])->name('admin.MyListings');
+    Route::get('/All/Listings', [AdminController::class, 'All'])->name('all');
+    Route::get('/admin/Listings', [AdminController::class, 'ALL_Listings'])->name('admin.ALL');
     Route::get('/admin/Analytics', [AdminController::class, 'Analytics'])->name('Analytics');
     Route::get('/admin/Messages', [AdminController::class, 'messages'])->name('messages');
 

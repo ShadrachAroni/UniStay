@@ -293,5 +293,39 @@ class PropertyController extends Controller
             return view('pages.listings', compact('categories', 'propertyTypes', 'features', 'amenities', 'surroundings','properties'));
     }
     
+    public function feature(Request $request, $id)
+    {
+        try {
+            // Find the property by ID
+            $property = Property::findOrFail($id);
 
+
+            $property->featured = true; 
+
+            // Save the changes
+            $property->save();
+
+            return redirect()->back()->with('success', 'Property added to Featured');
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
+        }
+    }
+
+    public function Unfeature(Request $request, $id)
+    {
+        try {
+            // Find the property by ID
+            $property = Property::findOrFail($id);
+
+
+            $property->featured = false; 
+
+            // Save the changes
+            $property->save();
+
+            return redirect()->back()->with('success', 'Property removed from Featured');
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
+        }
+    }
 }

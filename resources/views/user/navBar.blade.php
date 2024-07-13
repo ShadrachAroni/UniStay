@@ -46,10 +46,12 @@
                     </form>
                   </li>
 
+                 
+                  
                   <li class="dropdown-item py-2">
-                    <a href="{{ route('home') }}" class="text-body ms-0">
-                      <i class="me-2 icon-md" data-feather="home"></i>
-                      <span>Home</span>
+                    <a href="{{ route('register.agent') }}" class="text-body ms-0">
+                      <i class="me-2 icon-md" data-feather="alert-circle"></i>
+                      <span>Change to agent account</span>
                     </a>
                   </li>
                   

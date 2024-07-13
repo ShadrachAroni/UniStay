@@ -28,6 +28,7 @@ return new class extends Migration
             $table->foreignId('property_type_id')->constrained('property_types')->onDelete('cascade');
             $table->enum('availability_status', ['available', 'booked', 'unavailable'])->default('available');
             $table->enum('payment', ['monthly','bimonthly','quartely','yearly'])->default('monthly');
+            $table->boolean('featured')->default(false);
             $table->string('video')->nullable();
             $table->decimal('latitude', 30, 25)->nullable();
             $table->decimal('longitude', 30, 25)->nullable();

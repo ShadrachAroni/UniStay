@@ -41,6 +41,14 @@ class AdminController extends Controller
         return view('admin.MyListings', compact('properties'));
     }
 
+    public function All()
+    {
+
+        $properties = Property::with(['photos', 'bookings'])->get();
+
+        return view('admin.All_Listings', compact('properties'));
+    }
+
     public function Analytics(){
 
     // Fetch the data from the database

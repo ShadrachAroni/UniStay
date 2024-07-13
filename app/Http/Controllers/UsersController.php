@@ -144,9 +144,6 @@ class UsersController extends Controller
     {
         $user->delete();
 
-        // Send rejection email notification
-        Notification::send($user, new UserRejectedNotification());
-
         return redirect()->route('users.verification');
     }
 }

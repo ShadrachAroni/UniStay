@@ -216,9 +216,9 @@
     </div>
     <div class="container">
         <div class="row">
-         @if($properties->isEmpty())
+            @if(!$properties->contains('featured', true))
             <div class="col-12">
-                <p>No properties found.</p>
+                <p>No Featured Listings</p>
                 <div class="center-btn">
                   <a href="{{ route('view.listings') }}" class="h-btn2" > 
                     View All Listings
@@ -226,7 +226,7 @@
                 </div>
             </div>
           @else
-            @foreach ($properties as $property)
+          @foreach ($properties->where('featured', true) as $property)
               <div class="col-md-4">
                 <div class="card-box-a card-shadow">
                   <div class="img-box-a" style="position: relative;">

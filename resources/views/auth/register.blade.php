@@ -60,7 +60,7 @@
 
                                 <p><a href="{{ route('register.agent') }}" class="text-muted">Click Here</a> to register as agent</p>
                                 <br>
-                                <form id="registerForm" method="POST" action="{{ route('register') }}" class="forms-sample">
+                                <form id="registerForm" method="POST" action="{{ route('register') }}" class="forms-sample" enctype="multipart/form-data">
                                     @csrf
                                     <div class="mb-3">
                                         <label for="Fname" class="form-label">First Name</label>
