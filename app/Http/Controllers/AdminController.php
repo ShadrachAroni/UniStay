@@ -49,27 +49,27 @@ class AdminController extends Controller
         return view('admin.All_Listings', compact('properties'));
     }
 
-    public function Analytics(){
-
-    // Fetch the data from the database
-    $users = DB::table('users')
-        ->select(DB::raw('DATE(created_at) as date'), DB::raw('count(*) as count'))
-        ->where('role_id', 2)
-        ->groupBy('date')
-        ->get();
-
-    $agents = DB::table('users')
-        ->select(DB::raw('DATE(created_at) as date'), DB::raw('count(*) as count'))
-        ->where('role_id', 3)
-        ->groupBy('date')
-        ->get();
-
-    $properties = Property::select(DB::raw('DATE(created_at) as date'), DB::raw('count(*) as count'))
-        ->groupBy('date')
-        ->get();
-
-        return view('admin.analytics', compact('users', 'agents', 'properties'));
-
+    public function Analytics()
+    {
+        // Fetch the data from the database
+        $users = DB::table('users')
+            ->select(DB::raw('DATE(created_at) as date'), DB::raw('count(*) as count'))
+            ->where('role_id', 2)
+            ->groupBy('date')
+            ->get();
+    
+        $agents = DB::table('users')
+            ->select(DB::raw('DATE(created_at) as date'), DB::raw('count(*) as count'))
+            ->where('role_id', 3)
+            ->groupBy('date')
+            ->get();
+    
+        $properties = Property::select(DB::raw('DATE(created_at) as date'), DB::raw('count(*) as count'))
+            ->groupBy('date')
+            ->get();
+    
+        $totalUsers = User::count();
+    
+        return view('admin.analytics', compact('users', 'agents', 'properties', 'totalUsers'));
     }
-
 }

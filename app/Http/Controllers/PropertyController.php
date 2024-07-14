@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\properties\StorePropertyRequest;
 use App\Mail\BookingConfirmationStudent;
+use App\Mail\BookingNotificationAdmin;
 use App\Mail\BookingNotificationAgent;
 use App\Models\Photo;
 use Illuminate\Http\Request;
@@ -197,6 +198,9 @@ class PropertyController extends Controller
 
             // Send email to the agent
             Mail::to($property->agent->email)->send(new BookingNotificationAgent($property->agent, $property));
+
+             // Send email to admin
+             Mail::to('Shadracking7@gmail.com')->send(new BookingNotificationAdmin($property->agent, $property));
 
             // Redirect back with SweetAlert success message
             return redirect()->back()->with('success', 'Property successfully booked.');

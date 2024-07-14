@@ -219,11 +219,6 @@
             @if(!$properties->contains('featured', true))
             <div class="col-12">
                 <p>No Featured Listings</p>
-                <div class="center-btn">
-                  <a href="{{ route('view.listings') }}" class="h-btn2" > 
-                    View All Listings
-                  </a>
-                </div>
             </div>
           @else
           @foreach ($properties->where('featured', true) as $property)
@@ -345,7 +340,7 @@
         <li><a href="#">Furnished</a></li>
         <li><a href="#">Male-only</a></li>
         <li><a href="#">Female-only</a></li>
-        <li><a href="#">SShort-term rental</a></li>
+        <li><a href="#">Short-term rental</a></li>
     </div>
 
     <div class="contact-content">

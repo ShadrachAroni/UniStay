@@ -128,7 +128,7 @@
 				
 				<div class="card-body">
 					<div class="mb-3 justify-content-center">
-						<label for="chart">User Data</label>
+						<label for="chart">Users Data</label>
 					</div>
 					<div class="card">
 						<div id="chart"></div>
@@ -145,6 +145,18 @@
 						<div id="propertyChart"></div>
 					</div>
 				</div>
+				<br>
+				<br>
+
+                <div class="page-content">
+                    <div class="card-body">
+                        <div class="mb-3 justify-content-center">
+                            <label for="userChart">Total</label>
+                        </div>
+                        <div class="card">
+                            <canvas id="userChart" width="400" height="200"></canvas>
+                        </div>
+                    </div>
 
             </div>
         </div>
@@ -169,6 +181,7 @@
     <!-- Toastr JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         // ApexCharts initialization
         var usersData = @json($users);
@@ -249,7 +262,7 @@
             },
             series: [
                 {
-                    name: 'Properties',
+                    name: 'Listings',
                     data: propertySeries
                 }
             ],
@@ -267,6 +280,110 @@
         var propertyChart = new ApexCharts(document.querySelector("#propertyChart"), propertyOptions);
         propertyChart.render();
 
+        document.addEventListener('DOMContentLoaded', function() {
+            var usersData = <?php echo json_encode($users); ?>;
+            var agentsData = <?php echo json_encode($agents); ?>;
+            var propertiesData = <?php echo json_encode($properties); ?>;
+
+            var allDates = [...new Set([
+                ...usersData.map(user => user.date),
+                ...agentsData.map(agent => agent.date),
+                ...propertiesData.map(property => property.date)
+            ])];
+
+            // Function to sum counts for the same date
+            function sumCounts(data, dates) {
+                return dates.map(date => {
+                    let sum = 0;
+                    data.forEach(item => {
+                        if (item.date === date) {
+                            sum += parseInt(item.count);
+                        }
+                    });
+                    return sum;
+                });
+            }
+
+            var userSeries = sumCounts(usersData, allDates);
+            var agentSeries = sumCounts(agentsData, allDates);
+            var propertySeries = sumCounts(propertiesData, allDates);
+
+            // Combine users and agents counts into a single array
+            var totalSeries = allDates.map((date, index) => {
+                return userSeries[index] + agentSeries[index];
+            });
+
+            var ctx = document.getElementById('userChart').getContext('2d');
+            var gradient1 = ctx.createLinearGradient(0, 0, 0, 400);
+            gradient1.addColorStop(0, 'rgba(75, 192, 192, 0.6)');
+            gradient1.addColorStop(1, 'rgba(75, 192, 192, 0.3)');
+
+            var chart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: allDates,
+                    datasets: [{
+                        label: 'Total Number Of Users',
+                        data: totalSeries,
+                        backgroundColor: gradient1,
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 2,
+                        hoverBackgroundColor: 'rgba(75, 192, 192, 0.8)',
+                        hoverBorderColor: 'rgba(75, 192, 192, 1)',
+                        hoverBorderWidth: 3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            labels: {
+                                font: {
+                                    size: 14
+                                }
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                            titleColor: 'white',
+                            bodyColor: 'white',
+                            bodyFont: {
+                                size: 16
+                            },
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                color: 'rgba(75, 192, 192, 1)',
+                                font: {
+                                    size: 14
+                                }
+                            },
+                            grid: {
+                                color: 'rgba(75, 192, 192, 0.2)'
+                            }
+                        },
+                        x: {
+                            ticks: {
+                                color: 'rgba(75, 192, 192, 1)',
+                                font: {
+                                    size: 14
+                                }
+                            },
+                            grid: {
+                                color: 'rgba(75, 192, 192, 0.2)'
+                            }
+                        }
+                    }
+                }
+            });
+        });
     </script>
+
 </body>
 </html>

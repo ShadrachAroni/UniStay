@@ -55,14 +55,17 @@
             </a>
             <div class="collapse" id="Listings">
               <ul class="nav sub-menu">
-              <li class="nav-item">
-                  <a href="{{route('pages.add')}}" class="nav-link">Add Listings</a>
+                <li class="nav-item">
+                  <a href="{{route('all')}}" class="nav-link">All Listings</a>
                 </li>
                 <li class="nav-item">
                   <a href="#" class="nav-link">Approved Listings</a>
                 </li>
                 <li class="nav-item">
                   <a href="#" class="nav-link">Pending Approval</a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{route('pages.add')}}" class="nav-link">Add Listings</a>
                 </li>
                 <li class="nav-item">
                   <a href="{{ route('listings.types') }}" class="nav-link">Types</a>
@@ -98,7 +101,7 @@
                   <a href="#" class="nav-link">Receipts</a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">Transaction History</a>
+                  <a href="#" class="nav-link">Transactions</a>
                 </li>
                 <li class="nav-item">
                   <a href="#" class="nav-link">Reports</a>

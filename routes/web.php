@@ -110,7 +110,7 @@ Route::middleware(['auth', IsAdmin::class])->group(function () {
     Route::get('/listings/categories', [PropertyCategoryController::class, 'categories'])->name('listings.categories');
     Route::resource('categories', \App\Http\Controllers\PropertyCategoryController::class);
     Route::get('/All/Listings', [AdminController::class, 'All'])->name('all');
-    Route::get('/admin/Listings', [AdminController::class, 'ALL_Listings'])->name('admin.ALL');
+    Route::get('/admin/Listings', [AdminController::class, 'MyListings'])->name('admin.MyListings');
     Route::get('/admin/Analytics', [AdminController::class, 'Analytics'])->name('Analytics');
     Route::get('/admin/Messages', [AdminController::class, 'messages'])->name('messages');
 
