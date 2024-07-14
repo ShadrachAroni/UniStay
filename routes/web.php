@@ -64,7 +64,7 @@ Route::post('/properties/{id}/book', [PropertyController::class, 'book'])->name(
 
 Route::get('/pages/About', [DashboardController::class, 'about'])->name('about');
 Route::get('/pages/Contact', [DashboardController::class, 'contact'])->name('contact');
-Route::get('/auth/Agent', [DashboardController::class, 'AgentRegister'])->name('register.agent');
+Route::get('/register/Agent', [DashboardController::class, 'AgentRegister'])->name('register.agent');
 
 
 //Route::get('policy', [DashboardController::class, 'showPolicy'])->name('policy.show');
@@ -82,6 +82,7 @@ Route::get('/Listings', [PropertyController::class, 'view'])->name('view.listing
 Route::get('/pages/add', [PropertyController::class, 'add'])->name('pages.add');
 Route::get('/pages/show/{id}', [PropertyController::class, 'show'])->name('pages.show');
 Route::get('/pages/Listings', [PropertyController::class, 'search'])->name('properties.search');
+Route::get('/pages/Listings', [PropertyController::class, 'search2'])->name('properties.search2');
 
 
 
@@ -113,14 +114,11 @@ Route::middleware(['auth', IsAdmin::class])->group(function () {
     Route::get('/admin/Listings', [AdminController::class, 'MyListings'])->name('admin.MyListings');
     Route::get('/admin/Analytics', [AdminController::class, 'Analytics'])->name('Analytics');
     Route::get('/admin/Messages', [AdminController::class, 'messages'])->name('messages');
-
-
 });
 
 Route::middleware(['auth', IsAgent::class])->group(function () {
     Route::get('/agent/dashboard', [AgentController::class, 'index'])->name('agent.dashboard');
     Route::get('/agent/Listings', [AgentController::class, 'MyListings'])->name('agent.MyListings');
-
 });
 
 Route::middleware(['auth', IsUser::class])->group(function () {

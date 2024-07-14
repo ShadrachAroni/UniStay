@@ -196,7 +196,7 @@
                                             <label for="ids">Upload a copy of your National ID for verification</label>
                                             <br>
                                             <div class="mb-3">
-                                                <input type="file" id="national_id_card" name="national_id_card" class="form-control" required>
+                                                <input type="file" id="national_id_card" name="national_id_card" class="form-control">
                                             </div>
                                             <input type="hidden" name="role_id" value="3">
                                             @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())

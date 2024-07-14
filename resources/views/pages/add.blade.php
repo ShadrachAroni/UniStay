@@ -249,7 +249,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <label for="videos">Choose a Descriptive Video</label>
-                                <input type="file" id="videoInput" class="form-control-file" name="video" accept="video/*" required>
+                                <input type="file" id="videoInput" class="form-control-file" name="video" accept="video/*">
                             </div>
                         </div>
 

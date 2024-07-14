@@ -25,7 +25,8 @@
   <!-- Template Main CSS File -->
   <link href="{{asset('view/css/style.css')}}" rel="stylesheet">
   <link href="{{asset('front/css/style.css')}}" rel="stylesheet">
-  
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
   <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
 
   <!-- Toastr CSS -->
@@ -50,6 +51,11 @@
     opacity: 0.5; /* Reduce opacity to visually indicate it's disabled */
 }
   </style>
+  <style>
+    #map {
+        height: 600px;
+    }
+</style>
 </head>
 <body>
 
@@ -221,7 +227,7 @@
   <!-- End Header/Navbar -->
 
   <main id="main">
-    @foreach ($properties as $property)
+   
       <!-- ======= Intro Single ======= -->
       <section class="intro-single">
         <div class="container">
@@ -411,7 +417,7 @@
               <div class="tab-content" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="pills-video" role="tabpanel" aria-labelledby="pills-video-tab">
                   @if ($property->video)
-									<video width="320" height="240" controls>
+									<video controls>
 										<source src="{{ asset('upload/videos/' . $property->video) }}" type="video/mp4">
 										Your browser does not support the video tag.
 									</video>
@@ -424,13 +430,16 @@
                       @php
                           $photo = $property->photos->first();
                       @endphp
-                      <img src="{{ asset('upload/photos/' . $photo->filename) }}" class="img-a img-fluid" alt="Property Photo" style="height: 55vh;">
+                      <img src="{{ asset('upload/photos/' . $photo->filename) }}" class="img-a img-fluid" alt="Property Photo" style="height: 55vh; width: 60%;">
                   @else
                       <img src="{{ url('upload/img/no_image.png') }}" class="img-a img-fluid" alt="No Image" style="height: 60vh;">
                   @endif
                 </div>
                 <div class="tab-pane fade" id="pills-map" role="tabpanel" aria-labelledby="pills-map-tab">
-                  <iframe src="https://www.google.com/maps/embed/v1/view?key=API_KEY&center={{$property->latitude}},{{$property->longitude}}&zoom=14" width="100%" height="460" frameborder="0" style="border:0;" allowfullscreen></iframe>
+                  
+                  <div id="map" width="100%" height="460" frameborder="0" style="border:0;" allowfullscreen></div>
+
+                 <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.1422937950147!2d-73.98731968482413!3d40.75889497932681!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25855c6480299%3A0x55194ec5a1ae072e!2sTimes+Square!5e0!3m2!1ses-419!2sve!4v1510329142834" width="100%" height="460" frameborder="0" style="border:0;" allowfullscreen></iframe> -->
 
 
                 </div>
@@ -498,7 +507,7 @@
         </div>
       </section>
       <!-- End Property Single-->
-    @endforeach
+
 
   </main>
   <!-- End #main -->
@@ -675,15 +684,24 @@
 <!-- Toastr JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script>
 
  <!-- SweetAlert script -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.27/dist/sweetalert2.all.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
- <!-- Script to handle SweetAlert success message -->
- <script>
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script>
+    // Replace these coordinates with your desired latitude and longitude
+    var latitude = {{$property->latitude}};
+    var longitude = {{$property->longitude}};
+
+    // Create the map and set its initial view
+    var map = L.map('map').setView([latitude, longitude], 13); // Zoom level 13
+
+    // Add a marker to the map
+    L.marker([latitude, longitude]).addTo(map);
+    
      @if(session('success'))
            Swal.fire({
                 icon: 'success',

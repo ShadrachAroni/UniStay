@@ -261,7 +261,7 @@
 					</div>
 				</div>
 				
-				
+				<a href="{{route('pages.add')}}" class="btn btn-sm btn-info">Add Listing</a>
 			</div>
 		</div>
 	</div>

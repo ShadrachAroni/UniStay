@@ -28,7 +28,7 @@ class StorePropertyRequest extends FormRequest
             'availability_status' => 'required|in:available,booked,unavailable',
             'payment' => 'required|in:monthly,yearly,bimonthly,quartely',
             'video' => 'nullable|mimes:mp4,avi,mov,mkv|max:20480', // 20MB max size
-            'photos.*' => 'required|file|mimes:jpg,jpeg,png|max:5000',
+            'photos.*' => 'required|file|image|max:5000',
             'latitude' => 'required|numeric',
             'longitude' => 'required|numeric',
             'categories' => 'array|exists:property_categories,id',

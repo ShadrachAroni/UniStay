@@ -56,9 +56,13 @@ class DashboardController extends Controller
 
     public function AgentRegister() {
 
-        $id = Auth::user()->id;
-        $user = User::findOrFail($id); // Ensure that you get a single user instance
+        if(Auth::check()){
+            $id = Auth::user()->id;
+            $user = User::findOrFail($id); // Ensure that you get a single user instance
 
-        return view('auth.agent', ['user' => $user]);
+            return view('auth.agent', ['user' => $user]);
+        }else{
+            return view('auth.agent');
+        }
     }
 }
