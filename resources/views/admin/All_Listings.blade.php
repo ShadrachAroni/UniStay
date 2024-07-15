@@ -379,46 +379,6 @@
     <!-- End of Modal -->
     @endforeach
 
-		<!-- change Modal -->
-@foreach($properties as $property)
-<div class="modal fade" id="change_{{$property->id}}" tabindex="-1" aria-labelledby="changeTitle_{{$property->id}}" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="changeTitle_{{$property->id}}">Change property ID {{$property->id}} Availability status</h5>
-                <button property="button" class="btn-close" data-bs-dismiss="modal" aria-label="btn-close"></button>
-            </div>
-            <div class="modal-body">
-                <form id="updateForm" method="POST" action="{{ route('status.change') }}">
-                    @csrf
-
-					<div class="mb-3">
-						<label for="availability_status" class="form-label">Availability Status</label>
-						<select id="availability_status" class="form-control" name="availability_status">
-							<option value="available" {{ old('availability_status', $property->availability_status) == 'available' ? 'selected' : '' }}>Available</option>
-							<option value="unavailable" {{ old('availability_status', $property->availability_status) == 'unavailable' ? 'selected' : '' }}>Unavailable</option>
-							<option value="booked" {{ old('availability_status', $property->availability_status) == 'booked' ? 'selected' : '' }}>Booked</option>
-						</select>
-						@error('availability_status')
-							<p class="text-sm text-red-600">{{ $message }}</p>
-						@enderror
-					</div>
-					<input type="hidden" name="property_id" value="{{ $property->id }}">
-
-                    <div class="modal-footer">
-                        <button property="submit" class="btn btn-primary">Update</button>
-
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- End change Modal -->
-@endforeach
-
-
 	<!-- core:js -->
 	<script src="../backend/assets/vendors/core/core.js"></script>
 	<!-- endinject -->
