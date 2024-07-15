@@ -141,26 +141,14 @@
 									</td>
 
 									<td>
-										<a href="#" class="btn btn-sm btn-primary"  data-bs-toggle="modal" data-bs-target="#change_{{$property->id}}">Change Status</a>
+										<a href="#" class="btn btn-sm btn-secondary"  data-bs-toggle="modal" data-bs-target="#change_{{$property->id}}">Change Status</a>
 									</td>
-		
-
-									@if($property->featured === false)
 									<td>
 										<form class="inline-block" action="{{ route('property.feature', $property->id) }}" method="POST">
 											@csrf
-											<button type="submit" class="btn btn-sm btn-danger">Feature Listiing</button>
+											<button type="submit" class="btn btn-sm btn-primary">Feature Listiing</button>
 										</form>
 									</td>
-									@else
-									<td>
-										<form class="inline-block" action="{{ route('property.unfeature',$property->id) }}" method="POST">
-											@csrf
-											
-											<button type="button" class="btn btn-sm btn-danger">Unfeature Listing</button>
-										</form>
-									</td>
-									@endif
 								</tr>
 								@endforeach
 							</tbody>
@@ -205,16 +193,7 @@
 									<td>
 										<a href="#" class="btn btn-sm btn-primary"  data-bs-toggle="modal" data-bs-target="#change_{{$property->id}}">Change Status</a>
 									</td>
-		
 
-									@if($property->featured === 'canceled')
-									<td>
-										<form class="inline-block" action="{{ route('property.feature', $property->id) }}" method="POST">
-											@csrf
-											<button type="submit" class="btn btn-sm btn-danger">Feature Listiing</button>
-										</form>
-									</td>
-									@else
 									<td>
 										<form class="inline-block" action="{{ route('property.unfeature',$property->id) }}" method="POST">
 											@csrf
@@ -222,7 +201,6 @@
 											<button type="button" class="btn btn-sm btn-danger">Unfeature Listing</button>
 										</form>
 									</td>
-									@endif
 								</tr>
 								@endforeach
 							</tbody>

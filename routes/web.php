@@ -82,7 +82,7 @@ Route::get('/Listings', [PropertyController::class, 'view'])->name('view.listing
 Route::get('/pages/add', [PropertyController::class, 'add'])->name('pages.add');
 Route::get('/pages/show/{id}', [PropertyController::class, 'show'])->name('pages.show');
 Route::get('/pages/Listings', [PropertyController::class, 'search'])->name('properties.search');
-Route::get('/pages/Listings', [PropertyController::class, 'search2'])->name('properties.search2');
+Route::get('/listings/filter', [PropertyController::class, 'search2'])->name('properties.search2');
 
 
 
@@ -95,7 +95,7 @@ Route::middleware(['auth', IsAdmin::class])->group(function () {
     Route::get('/Users/verification', [UsersController::class, 'verification'])->name('users.verification');
     Route::put('/users/approve/{id}', [UsersController::class, 'approve'])->name('users.approve');
     Route::put('/property/feature/{id}', [PropertyController::class, 'feature'])->name('property.feature');
-    Route::put('/property/Unfeature/{id}', [PropertyController::class, 'Unfeature'])->name('property.Unfeature');
+    Route::put('/property/Unfeature/{id}', [PropertyController::class, 'Unfeature'])->name('property.unfeature');
 
 
     Route::put('/users/reject/{id}', [UsersController::class, 'reject'])->name('users.reject');
