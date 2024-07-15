@@ -142,6 +142,7 @@
 									<td>
 										<form class="inline-block" action="{{ route('property.feature', $property->id) }}" method="POST">
 											@csrf
+											@method('PUT')
 											<button type="submit" class="btn btn-sm btn-primary">Feature Listiing</button>
 										</form>
 									</td>
@@ -187,10 +188,10 @@
 									</td>
 
 									<td>
-										<form class="inline-block" action="{{ route('property.unfeature',$property->id) }}" method="POST">
+										<form class="inline-block" action="{{ route('property.unfeature', $property->id) }}" method="POST">
 											@csrf
-											
-											<button type="button" class="btn btn-sm btn-danger">Unfeature Listing</button>
+											@method('PUT')
+											<button type="submit" class="btn btn-sm btn-danger">UnFeature Listiing</button>
 										</form>
 									</td>
 								</tr>

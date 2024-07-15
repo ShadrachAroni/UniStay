@@ -74,7 +74,7 @@ Route::resource('properties', \App\Http\Controllers\PropertyController::class);
 Route::resource('verify', \App\Http\Controllers\VerifyController::class);
 Route::resource('booking', \App\Http\Controllers\BookingController::class);
 
-Route::post('/booking/cancel', [BookingController::class, 'cancel'])->name('booking.cancel');
+Route::post('/booking/cancel/{id}', [BookingController::class, 'cancel'])->name('booking.cancel');
 Route::post('/booking/confirm', [BookingController::class, 'confirm'])->name('booking.confirm');
 Route::post('/property/statis', [BookingController::class, 'status'])->name('status.change');
 

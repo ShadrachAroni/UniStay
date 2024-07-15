@@ -109,7 +109,7 @@
 										<button type="submit" class="btn btn-sm btn-danger" onclick="confirmDeletion('{{ $booking->id }}')">Delete Request</button>
 									</form>
 									@else
-									<form id="delete-booking-form-{{ $booking->id }}" class="inline-block" action="{{ route('booking.cancel') }}" method="POST">
+									<form id="delete-booking-form-{{ $booking->id }}" class="inline-block" action="{{ route('booking.cancel', ['id' => $booking->property->id]) }}" method="POST">
 										@csrf
 										<button type="button" class="btn btn-sm btn-danger" onclick="confirmCancelation('{{ $booking->id }}')">Cancel Booking</button>
 									</form>

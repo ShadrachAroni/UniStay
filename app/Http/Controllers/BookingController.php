@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\BookingCancelAgent;
+use App\Mail\BookingCancelStudent;
 use App\Mail\BookingConfirmationEmail;
 use App\Models\Booking;
 use App\Models\Property;
@@ -83,9 +85,10 @@ class BookingController extends Controller
         return redirect()->back()->withErrors(['error' => 'An error occurred while deleting the booking: ' . $e->getMessage()]);
     }
 }
-    public function cancel()
+    public function cancel($id)
     {
         $user = Auth::user();
+        $property = Property::find($id);
 
         try {
             // Update bookings where student_id matches the logged-in user's ID
@@ -98,6 +101,19 @@ class BookingController extends Controller
             })
             ->update(['status' => 'canceled']);
 
+            if(Auth::check()){
+            // Send email to the student
+                Mail::to(auth()->user()->email)->send(new BookingCancelStudent(auth()->user(), $property));
+
+                // Send email to the agent
+                Mail::to($property->agent->email)->send(new BookingCancelAgent($property->agent, $property));
+            }else{
+                    // Send email to the student
+                Mail::to(auth()->user()->email)->send(new BookingCancelAgent(auth()->user(), $property));
+
+                // Send email to the agent
+                Mail::to($property->agent->email)->send(new BookingCancelStudent($property->agent, $property));
+            }
 
             return redirect()->back()->with('success', 'Bookings cancelled successfully.');
 
