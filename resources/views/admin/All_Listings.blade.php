@@ -139,10 +139,6 @@
 									<td>
 										<a href="{{ route('properties.show', $property->id) }}" class="btn btn-sm btn-info"  data-bs-toggle="modal" data-bs-target="#show_{{$property->id}}">View</a>
 									</td>
-
-									<td>
-										<a href="#" class="btn btn-sm btn-secondary"  data-bs-toggle="modal" data-bs-target="#change_{{$property->id}}">Change Status</a>
-									</td>
 									<td>
 										<form class="inline-block" action="{{ route('property.feature', $property->id) }}" method="POST">
 											@csrf
@@ -188,10 +184,6 @@
 									<td>{{ $property->agent_id }}</td>
 									<td>
 										<a href="{{ route('properties.show', $property->id) }}" class="btn btn-sm btn-info"  data-bs-toggle="modal" data-bs-target="#show_{{$property->id}}">View</a>
-									</td>
-
-									<td>
-										<a href="#" class="btn btn-sm btn-primary"  data-bs-toggle="modal" data-bs-target="#change_{{$property->id}}">Change Status</a>
 									</td>
 
 									<td>
